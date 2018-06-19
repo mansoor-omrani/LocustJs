@@ -10,6 +10,10 @@ module.exports = function (grunt) {
 			}
         },
         uglify: {
+			options: {
+				sourceMap: true,
+				sourceMapName: 'dist/locust.sourcemap.map'
+			  },
 			locustJs: {
 				src: "dist/locust.js",
 				dest: "dist/locust.min.js"
