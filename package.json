@@ -1,6 +1,6 @@
 {
- "version": "1.0.0",
  "name": "LocustJs",
+ "version": "1.0.0",
  "description": "A library of various helpful utilities",
  "homepage": "https://github.com/mansoor-omrani/LocustJs",
  "author": {
@@ -12,6 +12,7 @@
   "type": "git",
   "url": "https://github.com/mansoor-omrani/LocustJs.git"
  },
+ "main": "dist/locust.js",
  "licenses": [
   {
    "type": "MIT",
