@@ -1,0 +1,23 @@
+﻿{
+  "locustJs": [
+    "src/Locust.Base.js",
+	"src/Locust.Bootstrap.js",
+	"src/Locust.Compression.js",
+	"src/Locust.Conversion.js",
+	"src/Locust.Cryptography.js",
+	"src/Locust.Extensions.Array.js",
+	"src/Locust.Extensions.String.js",
+	"src/Locust.Form.js",
+	"src/Locust.Hash.js",
+	"src/Locust.IO.js",
+	"src/Locust.jQuery.Extend.js",
+	"src/Locust.jQuery.Validation.Unobtrusive.Extend.js",
+	"src/Locust.Language.js",
+	"src/Locust.Logging.js",
+	"src/Locust.Math.js",
+	"src/Locust.Mime.js",
+	"src/Locust.Storage.js",
+	"src/Locust.Translation.js",
+	"src/Locust.Validation.js"
+  ]
+}

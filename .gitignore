@@ -1,32 +1,23 @@
-# Prerequisites
-*.d
+#  bower
+bower_components/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+#  node
+node_modules/
+npm-debug.log
 
-# Precompiled Headers
-*.gch
-*.pch
+### vim ###
+.*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+.versions
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+*.tmp
+.fake/
 
-# Fortran module files
-*.mod
-*.smod
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
