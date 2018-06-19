@@ -1,7 +1,7 @@
 {
  "name": "LocustJs",
  "version": "1.0.0",
- "description": "A library of various helpful utilities",
+ "description": "An independent javascript library containing various helpful utilities",
  "homepage": "https://github.com/mansoor-omrani/LocustJs",
  "author": {
   "name": "Mansoor Omrani",

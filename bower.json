@@ -1,0 +1,17 @@
+{
+  "name": "LocustJs",
+  "description": "An independent javascript library containing various helpful utilities",
+  "main": "dist/locust.js",
+  "authors": [
+    "Mansoor Omrani"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mansoor-omrani/LocustJs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

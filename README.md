@@ -1,5 +1,5 @@
 # LocustJs
-A personal library containing various utilities.
+An independent javascript library containing various helpful utilities.
 
 I am a C# developer. I created this library based on previous experiences and coding in ASP.NET web application projects.
 
