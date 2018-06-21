@@ -972,19 +972,27 @@ String.prototype.splitString = function (separator, splitOptions) {
         return;
     };
     (function ($) {
+		if ($) {
         // source: http://jasonwatmore.com/post/2013/10/16/aspnet-mvc-required-checkbox-with-data-annotations
-        $(function () {
-            var defaultRangeValidator = $.validator.methods.range;
-            $.validator.methods.range = function (value, element, param) {
-                if (element.type === 'checkbox') {
-                    // if it's a checkbox return true if it is checked
-                    return element.checked;
-                } else {
-                    // otherwise run the default validation function
-                    return defaultRangeValidator.call(this, value, element, param);
-                }
-            }
-        });
+			$(function () {
+				if ($.validator) {
+					var defaultRangeValidator = $.validator.methods.range;
+					$.validator.methods.range = function (value, element, param) {
+						if (element.type === 'checkbox') {
+							// if it's a checkbox return true if it is checked
+							return element.checked;
+						} else {
+							// otherwise run the default validation function
+							return defaultRangeValidator.call(this, value, element, param);
+						}
+					}
+				} else {
+					console.log("Locust.jQuery.Validation.Unobtrusive.Extend: jQuery-validation not found.");
+				}
+			});
+		} else {
+			console.log("Locust.jQuery.Validation.Unobtrusive.Extend: jQuery not found.");
+		}
     })(w.jQuery);
 })(__locustMainContext);
 
