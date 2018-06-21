@@ -15,7 +15,7 @@
 		if ($) {
         // source: http://jasonwatmore.com/post/2013/10/16/aspnet-mvc-required-checkbox-with-data-annotations
 			$(function () {
-				if ($.validator) {
+				if ($.validator && $.validator.methods) {
 					var defaultRangeValidator = $.validator.methods.range;
 					$.validator.methods.range = function (value, element, param) {
 						if (element.type === 'checkbox') {
