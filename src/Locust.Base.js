@@ -1,17 +1,20 @@
-﻿var __locustMainContext = window;
-
-(function (w) {
-    if (!w.$$) {
-        w.$$ = { };
+﻿(function (w) {
+	if (!w) {
+        throw "Locust.Base: no context given. aborting.";
+		
+        return;
     }
-    if (!w.$$.Name) {
-        w.$$.Name = "Locust";
+    if (!w.Locust) {
+        w.Locust = { };
     }
-    if (!w.$$.Version) {
-        w.$$.Version = "1.0.0";
+    if (!w.Locust.Name) {
+        w.Locust.Name = "Locust";
     }
-    if (!w.$$.isEmpty || typeof w.$$.isEmpty != "function") {
-        w.$$.isEmpty = function(x) {
+    if (!w.Locust.Version) {
+        w.Locust.Version = "1.1.0";
+    }
+    if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
+        w.Locust.isEmpty = function(x) {
             if (!x)
                 return true;
 
@@ -22,5 +25,6 @@
             return true;
         };
     }
-    w.Locust = w.$$;
+    
+	w.$$ = w.Locust;
 })(__locustMainContext);

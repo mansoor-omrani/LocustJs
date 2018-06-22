@@ -11,16 +11,10 @@
         console.log("Locust.Translation: Locust.Language namespace not found (use 'Locust.Language.js')");
         return;
     }
-    if (!w.Locust.Logging) {
-        console.log("Locust.Logging: Locust.Logging namespace not found (use 'Locust.Logging.js')");
-        return;
-    }
-
-    if (!w.Locust.TextFileTranslator) {
-        w.Locust.TextFileTranslator = function (config) {
-            var _config = $.extend({
-                name: "Texts",
-                basePath: "/localization",
+    
+	if (!w.Locust.TextFileTranslator) {
+		w.Locust.TextFileTranslator = function (config) {
+			var _config = $.extend({
                 logger: null,
                 files: {
                     cdt: [],
@@ -28,19 +22,10 @@
                 }
             }, config);
 
-            if (!_config.logger) {
-                if (Locust && Locust.Logging && Locust.Logging.ConsoleLogger) {
-                    _config.logger = new Locust.Logging.ConsoleLogger();
-                } else {
-                    _config.logger = {
-                        log: function (category, message) { console.log((category ? category + (data ? ": " + data : "") : data)); }
-                    }
-                }
-            }
+            _config.logger = w.Locust.validateLogger(_config.logger);
 
             var _self = this;
-            var _store = new Locust.Storage.LocalDataStore({ name: _config.name, useCompression: true });
-            var _texts = [];
+			var _texts = [];
 
             function _getValues(rawValues) {
                 var result = [];
@@ -94,8 +79,10 @@
                 }
 
                 return result;
-            }
+            };
             function _loadCitFile(content) {
+				var result = [];
+				
                 if (content) {
                     var _lines = content.splitString("\n", StringSplitOptions.TrimAndRemoveEmptyEntries);
 
@@ -112,7 +99,7 @@
                                 var lang = left[2].substr(0, dotIndex);
                                 var values = left[2].substr(dotIndex + 1).trim();
 
-                                _texts.push({
+                                result.push({
                                     key: (key + "/" + value + "/" + lang),
                                     values: _getValues(values)
                                 });
@@ -120,8 +107,12 @@
                         }
                     })
                 }
-            }
+				
+				return result;
+            };
             function _loadCdtFile(content) {
+				var result = [];
+				
                 if (content) {
                     var _lines = content.splitString("\n", StringSplitOptions.TrimAndRemoveEmptyEntries);
 
@@ -139,7 +130,7 @@
                                 var lang = left[3].substr(0, dotIndex);
                                 var values = left[3].substr(dotIndex + 1).trim();
 
-                                _texts.push({
+                                result.push({
                                     key: (key + "/" + globalValue + "/" + culture + "/" + lang),
                                     values: _getValues(values)
                                 });
@@ -147,54 +138,118 @@
                         }
                     })
                 }
+				
+				return result;
+            };
+		}
+	}
+    if (!w.Locust.TextFileTranslator) {
+        w.Locust.TextFileTranslator = function (config) {
+            var _config = $.extend({
+                name: "Texts",
+                basePath: "/localization",
+                logger: null,
+                files: {
+                    cdt: [],
+                    cit: []
+                }
+            }, config);
+
+            if (!_config.logger) {
+                if (Locust && Locust.Logging && Locust.Logging.ConsoleLogger) {
+                    _config.logger = new Locust.Logging.ConsoleLogger();
+                } else {
+                    _config.logger = {
+                        log: function (category, data) { console.log((category ? category + (data ? ": " + data : "") : data)); }
+                    }
+                }
             }
 
-            _self.load = function () {
-                $(_config.cit).each(function (i, f) {
-                    var file = _config.basePath + "/cit/" + f;
-                    $.post(file).done(function (result) {
-                        // _store.addOrUpdate(file, result);
-                        _loadCitFile(result);
+            var _self = this;
+            var _store = new Locust.Storage.LocalDataStore({ name: _config.name, useCompression: true });
+            
+            var loadTexts = function(storenames, type) {
+				$(storenames).each(function (i, storename) {
+					var hash = "";
+					var item = _store.getByKey(storename);
+					
+					if (item && item.value) {
+						hash = item.value.hash;
+					}
+					
+                    var file = _config.basePath + "/" + type + "/" + storename;
+					
+                    $.post(file,{hash:hash}).done(function (result) {
+                        if (result && result.Hash) {
+							_store.addOrUpdate(storename, { hash: result.Hash, items: result.Data });
+						} else {
+							_config.logger.log("Locust.Translation.loadTexts", "no response: " + file + ", type: " + type);
+						}
                     }).fail(function (xhr, text, msg) {
-                        _config.logger.log("Locust.Translation.loadCit", "Load fialed: " + file);
+                        _config.logger.log("Locust.Translation.loadTexts", "failed: " + file + ", type: " + type);
                     });
                 });
-
-                $(_config.cdt).each(function (i, f) {
-                    var file = _config.basePath + "/cdt/" + f;
-                    $.post(file).done(function (result) {
-                        //_store.addOrUpdate(file, result);
-                        _loadCdtFile(result);
-                    }).fail(function (xhr, text, msg) {
-                        _config.logger.log("Locust.Translation.loadCdt", "Load fialed: " + file);
-                    });
-                });
-            }
-
-            _self.getIndependent = function (key, value, lang) {
-                var _lang = lang || w.Locust.Language.Current.shortName;
-                var arr = _texts.filter(function (item) {
-                    return item.key == (key + "/" + value + "/" + _lang);
-                });
-
-                if ($.isArray(arr) && arr.length) {
-                    return arr[0];
-                }
-
-                return null;
-            }
-            _self.getDependent = function (key, globalValue, culture, lang) {
-                var _lang = lang || w.Locust.Language.Current.shortName;
-                var arr = _texts.filter(function (item) {
-                    return item.key == (key + "/" + globalValue + "/" + culture + "/" + _lang);
-                });
-
-                if ($.isArray(arr) && arr.length) {
-                    return arr[0];
-                }
-
-                return null;
-            }
+			};
+			
+			_self.load = function () {
+				loadTexts(_config.cit, "cit");
+				loadTexts(_config.cdt, "cdt");
+            };
+			_self.get = function(key, value1, value2, lang) {
+				var _lang;
+				var _key = key;
+				var _globalValue = "";
+				var _value = "";
+				var searchKey = "";
+				
+				if (value1 == undefined && value2 == undefined && lang == undefined) {
+					searchKey = key;
+				} else {
+					if (lang == undefined) {
+						_value = value1;
+						_lang = value2 || w.Locust.Language.Current.shortName;
+						
+						searchKey = "/" + _key + "/" + _value + "/" + _lang;
+					} else {
+						_globalValue = value1;
+						_value = value2;
+						_lang = lang || w.Locust.Language.Current.shortName;
+						
+						searchKey = "/" + _key + "/" + _globalValue + "/" + _value + "/" + _lang;
+					}
+				}
+				
+				if (searchKey) {
+					try {
+						for (var i = 0; i < _store.count(); i++) {
+							var item = _store.getByIndex(i);
+							var items = item.value.items;
+							
+							if (items) {
+								for (var __key in items) {
+									if (__key == searchKey) {
+										return items[key];
+									}
+								}
+							}
+						}
+					} catch (e) {
+						_config.logger.log("Translation.getSingle error: " + e + ", args: key=" + key + ", value1=" + value1 + ", value2=" + value2 + ", lang=" + lang);
+					}
+				}
+				
+				return [];
+			};
+			_self.getSingle = function(key, value1, value2, lang) {
+				var result = "";
+				var values = _self.get(key, value1, value2, lang);
+				
+				if (values && values.length) {
+					result = values[0];
+				}
+				
+				return result;
+			}
         }
     }
 })(__locustMainContext);

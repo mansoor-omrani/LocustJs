@@ -28,7 +28,7 @@
                 _config.logger = new Locust.Logging.ConsoleLogger();
             } else {
                 _config.logger = {
-                    log: function (category, message) { console.log((category ? category + (data ? ": " + data : "") : data)); }
+                    log: function (category, data) { console.log((category ? category + (data ? ": " + data : "") : data)); }
                 }
             }
         }

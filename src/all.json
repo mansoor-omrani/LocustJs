@@ -1,5 +1,6 @@
 ﻿{
   "locustJs": [
+	"src/Locust.0.js",
     "src/Locust.Base.js",
 	"src/Locust.Bootstrap.js",
 	"src/Locust.Compression.js",

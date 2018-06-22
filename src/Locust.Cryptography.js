@@ -1,16 +1,26 @@
 ﻿(function (w) {
-    if (!w) {
-        console.log("Locust.Cryptography: no context given (use 'Locust.Base.js')");
-        return;
+    function __error(msg) {
+		if (w.console && w.console.log) {
+			console.log(msg);
+		} else {
+			throw msg;
+		}
+	};
+	if (!w) {
+        throw "Locust.Cryptography: no context given (use 'Locust.Base.js')";
     }
     if (!w.Locust) {
-        console.log("Locust.Cryptography: Locust namespace not found (use 'Locust.Base.js')");
-        return;
+		__error("Locust.Cryptography: Locust namespace not found (use 'Locust.Base.js')");
+		return;
+    }
+	if (!w.Base64) {
+		__error("Locust.Cryptography: js-base64 library not found (https://www.npmjs.com/package/js-base64).");
+		return;
     }
     if (!w.Locust.Cryptography) {
         w.Locust.Cryptography = {};
     }
-    // source: https://jsfiddle.net/orlovsky/sxk584d6/
+	// source: https://jsfiddle.net/orlovsky/sxk584d6/
     // with a little alteration regarding salt and also applying Base64 to encrypt/decrypt
     // requires: js-base64
     w.Locust.Cryptography.XorCrypt = function (config) {

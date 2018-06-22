@@ -1,6 +1,19 @@
-﻿var __locustMainContext = window;
-
-(function (w) {
+﻿(function (w) {
+	function __error(msg) {
+		if (w.console && w.console.log) {
+			console.log(msg);
+		} else {
+			throw msg;
+		}
+	};
+	if (!w) {
+        throw "Locust.Bootstrap: no context given (use 'Locust.Base.js')";
+    }
+    if (!w.Locust) {
+		__error("Locust.Bootstrap: Locust namespace not found (use 'Locust.Base.js')");
+		return;
+    }
+	
     var __modal_cnt = 0;
     var __btn_cnt = 0;
 
@@ -140,14 +153,6 @@
         });
     }
 
-    if (!w) {
-        console.log("Locust.Bootstrap: no context given (use 'Locust.Base.js')");
-        return;
-    }
-    if (!w.$$) {
-        console.log("Locust.Bootstrap: Locust namespace not found (use 'Locust.Base.js')");
-        return;
-    }
     if (!w.$$.Bootstrap) {
         w.$$.Bootstrap = {};
     }

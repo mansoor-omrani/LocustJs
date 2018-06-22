@@ -1,11 +1,17 @@
 ﻿(function (w) {
-    if (!w) {
-        console.log("Locust.Compression: no context given (use 'Locust.Base.js')");
-        return;
+	function __error(msg) {
+		if (w.console && w.console.log) {
+			console.log(msg);
+		} else {
+			throw msg;
+		}
+	};
+	if (!w) {
+        throw "Locust.Compression: no context given (use 'Locust.Base.js')";
     }
     if (!w.Locust) {
-        console.log("Locust.Compression: Locust namespace not found (use 'Locust.Base.js')");
-        return;
+		__error("Locust.Compression: Locust namespace not found (use 'Locust.Base.js')");
+		return;
     }
     if (!w.Locust.Compression) {
         w.Locust.Compression = {};
@@ -17,15 +23,7 @@
             logger: null
         }, config);
 
-        if (!_config.logger) {
-            if (Locust && Locust.Logging && Locust.Logging.ConsoleLogger) {
-                _config.logger = new Locust.Logging.ConsoleLogger();
-            } else {
-                _config.logger = {
-                    log: function (category, message) { console.log((category ? category + (data ? ": " + data : "") : data)); }
-                }
-            }
-        }
+        _config.logger = w.Locust.validateLogger(_config.logger);
 
         _self.compressString = function (rawStr) {
             if (!pako) {

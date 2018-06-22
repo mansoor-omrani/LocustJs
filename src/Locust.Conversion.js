@@ -1,11 +1,17 @@
 ﻿(function (w) {
-    if (!w) {
-        console.log("Locust.Conversion: no context given (use 'Locust.Base.js')");
-        return;
+    function __error(msg) {
+		if (w.console && w.console.log) {
+			console.log(msg);
+		} else {
+			throw msg;
+		}
+	};
+	if (!w) {
+        throw "Locust.Convert: no context given (use 'Locust.Base.js')";
     }
     if (!w.Locust) {
-        console.log("Locust.Conversion: Locust namespace not found (use 'Locust.Base.js')");
-        return;
+		__error("Locust.Convert: Locust namespace not found (use 'Locust.Base.js')");
+		return;
     }
     if (!w.Locust.Convert) {
         w.Locust.Convert = {};
