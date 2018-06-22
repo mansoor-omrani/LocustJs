@@ -208,11 +208,7 @@
             var _config = w.jQuery.extend({
                 name: "Texts",
                 basePath: "/localization",
-                logger: null,
-                files: {
-                    cdt: [],
-                    cit: []
-                }
+                logger: null
             }, config);
 
             _config.logger = w.Locust.getLogger(_config.logger);
@@ -232,13 +228,15 @@
                     var file = _config.basePath + "/" + type + "/" + storename;
 					
                     w.jQuery.post(file,{hash:hash}).done(function (result) {
-                        if (result && result.Hash) {
-							_store.addOrUpdate(storename, { hash: result.Hash, items: result.Data });
+                        if (result) {
+							if (!hash || (!result.Hash && hash != result.Hash)) {
+								_store.addOrUpdate(storename, { hash: result.Hash, items: result.Data });
+							}
 						} else {
-							_config.logger.log("Locust.Translation.loadTexts", "no response: " + file + ", type: " + type);
+							_config.logger.alert("Locust.Translation.loadTexts", "no response: " + file + ", type: " + type);
 						}
                     }).fail(function (xhr, text, msg) {
-                        _config.logger.log("Locust.Translation.loadTexts", "failed: " + file + ", type: " + type);
+                        _config.logger.fail("Locust.Translation.loadTexts", "failed: " + file + ", type: " + type);
                     });
                 });
 			};
@@ -286,7 +284,7 @@
 							}
 						}
 					} catch (e) {
-						_config.logger.log("Translation.getSingle error: " + e + ", args: key=" + key + ", value1=" + value1 + ", value2=" + value2 + ", lang=" + lang);
+						_config.logger.danger("Translation.getSingle error: " + e + ", args: key=" + key + ", value1=" + value1 + ", value2=" + value2 + ", lang=" + lang);
 					}
 				}
 				
