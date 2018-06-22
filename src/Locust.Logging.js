@@ -168,51 +168,51 @@
 	};
 	w.Locust.Logging.DOMLogger.prototype.info = function(category, message) {
 		if (w.Locust.Logging.__LOG_INFO)
-			this._log"info", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_INFO_COLOR);
+			this._log("info", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_INFO_COLOR);
 	};
 	w.Locust.Logging.DOMLogger.prototype.primary = function(category, message) {
 		if (w.Locust.Logging.__LOG_PRIMARY)
-			this._log"primary", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_PRIMARY_COLOR);
+			this._log("primary", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_PRIMARY_COLOR);
 	};
 	w.Locust.Logging.DOMLogger.prototype.secondary = function(category, message) {
 		if (w.Locust.Logging.__LOG_SECONDARY)
-			this._log"secondary", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_SECONDARY_COLOR);
+			this._log("secondary", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_SECONDARY_COLOR);
 	};
 	w.Locust.Logging.DOMLogger.prototype.success = function(category, message) {
 		if (w.Locust.Logging.__LOG_SUCCESS)
-			this._log"success", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_SUCCESS_COLOR);
+			this._log("success", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_SUCCESS_COLOR);
 	};
 	w.Locust.Logging.DOMLogger.prototype.alert = function(category, message) {
 		if (w.Locust.Logging.__LOG_ALERT)
-			this._log"alert", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_ALERT_COLOR);
+			this._log("alert", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_ALERT_COLOR);
 	};
 	w.Locust.Logging.DOMLogger.prototype.warning = function(category, message) {
 		if (w.Locust.Logging.__LOG_WARNING)
-			this._log"warning", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_WARNING_COLOR);
+			this._log("warning", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_WARNING_COLOR);
 	};
 	w.Locust.Logging.DOMLogger.prototype.danger = function(category, message) {
 		if (w.Locust.Logging.__LOG_DANGER)
-			this._log"danger", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_DANGER_COLOR + ';font-weight:bold');
+			this._log("danger", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_DANGER_COLOR + ';font-weight:bold');
 	};
 	w.Locust.Logging.DOMLogger.prototype.fail = function(category, message) {
 		if (w.Locust.Logging.__LOG_FAIL)
-			this._log"fail", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_FAIL_COLOR);
+			this._log("fail", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_FAIL_COLOR);
 	};
 	w.Locust.Logging.DOMLogger.prototype.abort = function(category, message) {
 		if (w.Locust.Logging.__LOG_ABORT)
-			this._log"abort", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_ABORT_COLOR);
+			this._log("abort", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_ABORT_COLOR);
 	};
 	w.Locust.Logging.DOMLogger.prototype.cancel = function(category, message) {
 		if (w.Locust.Logging.__LOG_CANCEL)
-			this._log"cancel", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_CANCEL_COLOR);
+			this._log("cancel", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_CANCEL_COLOR);
 	};
 	w.Locust.Logging.DOMLogger.prototype.suggest = function(category, message) {
 		if (w.Locust.Logging.__LOG_SUGGEST)
-			this._log"suggest", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_SUGGEST_COLOR);
+			this._log("suggest", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_SUGGEST_COLOR);
 	};
 	w.Locust.Logging.DOMLogger.prototype.trace = function(category, message) {
 		if (w.Locust.Logging.__LOG_TRACE)
-			this._log"trace", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_TRACE_COLOR);
+			this._log("trace", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_TRACE_COLOR);
 	};
 	
 	// ------------------------- helpers ----------------------------

@@ -1,13 +1,18 @@
 ﻿(function (w) {
-    if (!w) {
-        console.log("Locust.Language: no context given (use 'Locust.Base.js')");
-        return;
+    function __error(msg) {
+		if (w.console && w.console.error) {
+			w.console.error(msg);
+		} else {
+			throw msg;
+		}
+	}
+	if (!w) {
+        throw "Locust.Language: no context given (use 'Locust.Base.js')";
     }
     if (!w.Locust) {
-        console.log("Locust.Language: Locust namespace not found (use 'Locust.Base.js')");
-        return;
+		__error("Locust.Language: Locust namespace not found (use 'Locust.Base.js')");
+		return;
     }
-    
     if (!w.Locust.Language) {
         w.Locust.Language = {};
     }

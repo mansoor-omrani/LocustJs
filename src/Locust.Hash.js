@@ -1,17 +1,24 @@
 ﻿(function (w) {
-    if (!w) {
-        console.log("Locust.Hash: no context given (use 'Locust.Base.js')");
-        return;
+    function __error(msg) {
+		if (w.console && w.console.error) {
+			w.console.error(msg);
+		} else {
+			throw msg;
+		}
+	}
+	if (!w) {
+        throw "Locust.Page: no context given (use 'Locust.Base.js')";
     }
     if (!w.Locust) {
-        console.log("Locust.Hash: Locust namespace not found (use 'Locust.Base.js')");
-        return;
+		__error("Locust.Page: Locust namespace not found (use 'Locust.Base.js')");
+		return;
     }
     if (!w.Locust.Page) {
         w.Locust.Page = {}
     }
 
     w.Locust.Page.HashClass = function (paramSeparator, keyValueSeparator) {
+		var _self = this;
         var hash = {};
         var generateHash = function (arg) {
             var result = "";
@@ -23,10 +30,10 @@
             return result.substr(1);
         }
         var getHash = function () {
-            return window.location.hash;
+            return w.location.hash;
         }
         var setHash = function (arg) {
-            window.location.hash = arg;
+            w.location.hash = arg;
         }
         if (!paramSeparator) {
             paramSeparator = '&';
@@ -46,10 +53,10 @@
                 }
             }
         });
-        this.GetString = function () {
+        _self.getString = function () {
             return generateHash(hash);
         };
-        this.Get = function (arg) {
+        _self.get = function (arg) {
             if (typeof arg == "undefined") {
                 return hash;
             }
@@ -69,11 +76,12 @@
                 return "";
             }
         };
-        this.Set = function (key, value) {
+        _self.set = function (key, value) {
             if (value) {
                 if (key) {
                     hash[key] = value;
                     setHash(generateHash(hash));
+					
                     return getHash();
                 } else {
                     return null;
@@ -82,11 +90,13 @@
             if (typeof key == 'string') {
                 hash[key] = "";
                 setHash(generateHash(hash));
+				
                 return getHash();
             }
             if (typeof key == 'object') {
                 hash = key;
                 setHash(generateHash(key));
+				
                 return getHash();
             }
         };

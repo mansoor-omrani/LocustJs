@@ -1,11 +1,11 @@
 ﻿(function (w) {
     function __error(msg) {
-		if (w.console && w.console.log) {
-			console.log(msg);
+		if (w.console && w.console.error) {
+			w.console.error(msg);
 		} else {
 			throw msg;
 		}
-	};
+	}
 	if (!w) {
         throw "Locust.Convert: no context given (use 'Locust.Base.js')";
     }
@@ -18,14 +18,16 @@
     }
     Locust.Convert.TryParseInt = function (str, defaultValue) {
         // source: http://pietschsoft.com/post/2008/01/14/JavaScript-intTryParse-Equivalent
-        var retValue = defaultValue;
+        var result = defaultValue;
+		
         if (str !== null) {
             if (str.length > 0) {
-                if (!isNaN(str)) {
-                    retValue = parseInt(str);
+                if (!w.isNaN(str)) {
+                    result = w.parseInt(str);
                 }
             }
         }
-        return retValue;
+		
+        return result;
     }
 })(__locustMainContext);

@@ -1,12 +1,26 @@
 ﻿(function (w) {
-    if (!w) {
-        console.log("Locust.IO: no context given (use 'Locust.Base.js')");
-        return;
+    function __error(msg) {
+		if (w.console && w.console.error) {
+			w.console.error(msg);
+		} else {
+			throw msg;
+		}
+	};
+	if (!w) {
+        throw "Locust.IO: no context given (use 'Locust.Base.js')";
     }
     if (!w.Locust) {
-        console.log("Locust.IO: Locust namespace not found (use 'Locust.Base.js')");
-        return;
+		__error("Locust.IO: Locust namespace not found (use 'Locust.Base.js')");
+		return;
     }
+	if (!w.Locust.Mime) {
+		__error("Locust.IO: Locust.Mime namespace not found (use 'Locust.Base.js')");
+		return;
+    }
+	if (!w.Locust.Logging) {
+		__error("Locust.IO: Locust.Logging namespace not found (use 'Locust.Logging.js')");
+		return;
+	}
     if (!w.Locust.IO) {
         w.Locust.IO = {};
     }
@@ -23,15 +37,7 @@
             logger: logger
         };
 
-        if (!_config.logger) {
-            if (Locust && Locust.Logging && Locust.Logging.ConsoleLogger) {
-                _config.logger = new Locust.Logging.ConsoleLogger();
-            } else {
-                _config.logger = {
-                    log: function (category, data) { console.log((category ? category + (data ? ": " + data : "") : data)); }
-                }
-            }
-        }
+        _config.logger = w.Locust.getLogger(_config.logger);
 
         _self.getName = function () {
             var result = "";
@@ -105,18 +111,7 @@
             if (!_mime) {
                 var ext = _self.getExtension();
                 if (ext) {
-                    if (ext.substr(0, 1) == ".") {
-                        ext = ext.substr(1);
-                    }
-                    if (ext == "mp3") {
-                        _mime = "audio/mpeg";
-                    } else if (ext == "wav") {
-                        _mime = "audio/wav";
-                    } else if (ext == "ogg") {
-                        _mime = "audio/ogg";
-                    } else if (ext == "webm") {
-                        _mime = "audio/webm";
-                    }
+                    _mime = w.Locust.Mime.getMimeType(ext);
                 }
             }
 

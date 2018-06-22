@@ -1,15 +1,19 @@
 ﻿(function (w) {
-    if (!w) {
-        console.log("Locust.Mime: no context given (use 'Locust.Base.js')");
-        return;
+    function __error(msg) {
+		if (w.console && w.console.error) {
+			w.console.error(msg);
+		} else {
+			throw msg;
+		}
+	}
+	if (!w) {
+        throw "Locust.Mime: no context given (use 'Locust.Base.js')";
     }
     if (!w.Locust) {
-        console.log("Locust.Mime: Locust namespace not found (use 'Locust.Base.js')");
-        return;
+		__error("Locust.Mime: Locust namespace not found (use 'Locust.Base.js')");
+		return;
     }
-    if (!w.Locust.Mime) {
-        w.Locust.Mime = {};
-    }
+    
     var __mimes;
     var __mimeTypes;
 
@@ -2977,28 +2981,70 @@
         ];
     }
 
-    w.Locust.Mime.getMime = function (extension) {
-        if (!__mimes) {
-            _initMimes();
-            _initMimeTypes();
-        }
+	if (!w.Locust.Mime) {
+        w.Locust.Mime = {
+			get MimeTypes() {
+				if (!__mimes) {
+					_initMimes();
+					_initMimeTypes();
+				}
+				
+				return __mimeTypes;
+			},
+			get Mimes() {
+				if (!__mimes) {
+					_initMimes();
+					_initMimeTypes();
+				}
+				
+				return __mimes;
+			},
+			getExtension: function(filenameOrExtension) {
+				var result = "";
+				var dotIndex = (filenameOrExtension || "").lastIndexOf('.');
+				
+				if (dotIndex >= 0) {
+					result = (filenameOrExtension.substr(dotIndex + 1) || "").toLowerCase();
+				}
+				
+				return result;
+			},
+			getFullMime: function(filenameOrExtension) {
+				if (!__mimes) {
+					_initMimes();
+					_initMimeTypes();
+				}
 
-        var result = "";
-        var ext = extension.toLowerCase();
+				var result = __mimes[208];
+				var ext = w.Locust.Mime.getExtension(filenameOrExtension);
 
-        if (ext && ext[0] == '.') {
-            ext = ext.substr(1);
-        }
-        if (ext) {
-            var mimeType = __mimeTypes.find(function (mt) { return mt.extension == ext && mt.isDefault });
-            if (mimeType) {
-                var mime = __mimes.find(function (m) { return m.id == mimeType.mimeId });
-                if (mime) {
-                    result = mime.value;
-                }
-            }
-        }
+				if (ext) {
+					var mimeType = __mimeTypes.find(function (mt) { return mt.extension == ext && mt.isDefault });
+					if (mimeType) {
+						result = __mimes[mimeType.mimeId - 1];
+					}
+				}
 
-        return result;
+				return result;
+			},
+			getMimeType: function (filenameOrExtension) {
+				if (!__mimes) {
+					_initMimes();
+					_initMimeTypes();
+				}
+
+				var result = "application/octet-stream";
+				var ext = w.Locust.Mime.getExtension(filenameOrExtension);
+
+				if (ext) {
+					var mimeType = __mimeTypes.find(function (mt) { return mt.extension == ext && mt.isDefault });
+					if (mimeType) {
+						result = __mimes[mimeType.mimeId - 1].value;
+					}
+				}
+
+				return result;
+			}
+		};
     }
 })(__locustMainContext);

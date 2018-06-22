@@ -5,7 +5,7 @@
 		} else {
 			throw msg;
 		}
-	};
+	}
 	if (!w) {
         throw "Locust.Storage: no context given (use 'Locust.Base.js')";
     }
@@ -14,48 +14,49 @@
 		return;
     }
 	if (!w.Locust.Logging) {
-		__error("Locust.Extensions.Array: Locust.Logging namespace not found (use 'Locust.Logging.js')");
+		__error("Locust.Storage: Locust.Logging namespace not found (use 'Locust.Logging.js')");
 		return;
 	}
+	if (!w.jQuery) {
+        console.log("Locust.Storage: jQuery library not found");
+        return;
+    }
     if (!w.Locust.Storage) {
         w.Locust.Storage = {};
     }
-	w.Locust.NoKeyProtector = {
-		fixedLength: false,
-		length: 0,
-		separator: '#',
-		encode: function(key) { return key; },
-		decode: function (value) { return value; }
+	w.Locust.Storage.NoKeyProtector = function() {
+		this.fixedLength = false;
+		this.length = 0;
+		this.separator = '#';
+		this.encode = function(key) { return key; }
+		this.decode = function (key) { return key; }
 	}
-	w.Locust.fixedSizeReverseStrippedIntKeyProtector = function (length){
+	w.Locust.Storage.fixedSizeReverseStrippedIntKeyProtector = function (length){
 		var _self = this;
 		
-		var _rand = function(i, j) {
-			return Math.floor(Math.random() * j) + 1;
-		};
 		_self.fixedLength = true;
 		_self.length = length;
 		_self.separator = '';
 		_self.encode = function(n) {
-			var _length = 
+			var _length = _self.length;
             var arr = [];
             var s = n.toString();
 
-            arr.push(String.fromCharCode(109 + _rand(0, 10)));
+            arr.push(String.fromCharCode(109 + w.Math.rand(0, 10)));
 
             for (var i = s.length - 1; i >= 0; i--) {
                 arr.push(String.fromCharCode((i % 2 == 0 ? 65 + parseInt(s[i]) : 97 + parseInt(s[i]))));
             };
 
             if (arr.length < _self.length)
-                arr.unshift(String.fromCharCode(77 + _rand(0, 10)));
+                arr.unshift(String.fromCharCode(77 + w.Math.rand(0, 10)));
             if (arr.length < _self.length)
-                arr.push(String.fromCharCode(77 + _rand(0, 10)));
+                arr.push(String.fromCharCode(77 + w.Math.rand(0, 10)));
             if (arr.length < _self.length)
-                arr.push(String.fromCharCode(109 + _rand(0, 10)));
+                arr.push(String.fromCharCode(109 + w.Math.rand(0, 10)));
 
             return arr.join("");
-        };
+        }
         _self.decode = function(code) {
             var arr = [];
 			
@@ -70,10 +71,10 @@
             }
             return parseInt(arr.join(""));
         }
-	};
+	}
 	w.Locust.Storage.LocalDataStore = function (config) {
         w.Locust.Storage.LocalDataStore._id = (w.Locust.Storage.LocalDataStore._id || 0) + 1;
-		var _defaultKeyProtector = w.Locust.NoKeyProtector;
+		var _defaultKeyProtector = new w.Locust.Storage.NoKeyProtector();
 		var _defaultValueChannel = {
 			serialize: function(data) { return JSON.stringify(data); },
 			deserialize: function(data) { return JSON.parse(data); }
@@ -81,7 +82,7 @@
         var _self = this;
         var _name = "Locust.Storage.LocalDataStore";
         var _id = w.Locust.Storage.LocalDataStore._id;
-        var _config = w.$.extend({
+        var _config = w.jQuery.extend({
 			name: "",
             useCompression: false,
 			keyProtector: null,

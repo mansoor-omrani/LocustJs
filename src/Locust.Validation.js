@@ -1,11 +1,17 @@
 ﻿(function (w) {
-    if (!w) {
-        console.log("Locust.Validation: no context given (use 'Locust.Base.js')");
-        return;
+    function __error(msg) {
+		if (w.console && w.console.error) {
+			w.console.error(msg);
+		} else {
+			throw msg;
+		}
+	}
+	if (!w) {
+        throw "Locust.Validation: no context given (use 'Locust.Base.js')";
     }
     if (!w.Locust) {
-        console.log("Locust.Validation: Locust namespace not found (use 'Locust.Base.js')");
-        return;
+		__error("Locust.Validation: Locust namespace not found (use 'Locust.Base.js')");
+		return;
     }
     if (!w.Locust.Validation) {
         w.Locust.Validation = {};

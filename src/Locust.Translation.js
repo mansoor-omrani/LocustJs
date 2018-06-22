@@ -1,28 +1,45 @@
 ﻿(function (w) {
-    if (!w) {
-        console.log("Locust.Translation: no context given (use 'Locust.Base.js')");
-        return;
+    function __error(msg) {
+		if (w.console && w.console.error) {
+			w.console.error(msg);
+		} else {
+			throw msg;
+		}
+	}
+	if (!w) {
+        throw "Locust.Translation: no context given (use 'Locust.Base.js')";
     }
     if (!w.Locust) {
-        console.log("Locust.Translation: Locust namespace not found (use 'Locust.Base.js')");
-        return;
+		__error("Locust.Translation: Locust namespace not found (use 'Locust.Base.js')");
+		return;
     }
+	if (!w.Locust.Logging) {
+		__error("Locust.Translation: Locust.Logging namespace not found (use 'Locust.Logging.js')");
+		return;
+	}
     if (!w.Locust.Language) {
-        console.log("Locust.Translation: Locust.Language namespace not found (use 'Locust.Language.js')");
+        __error("Locust.Translation: Locust.Language namespace not found (use 'Locust.Language.js')");
         return;
     }
-    
-	if (!w.Locust.TextFileTranslator) {
-		w.Locust.TextFileTranslator = function (config) {
-			var _config = $.extend({
-                logger: null,
-                files: {
-                    cdt: [],
-                    cit: []
-                }
+	if (!w.Locust.Storage) {
+        __error("Locust.Translation: Locust.Storage namespace not found (use 'Locust.Language.js')");
+        return;
+    }
+    if (!w.jQuery) {
+        __error("Locust.Translation: jQuery library not found");
+        return;
+    }
+	if (!w.Locust.Translation) {
+		w.Locust.Translation = {};
+	}
+	if (!w.Locust.Translation.ManualContentTranslator) {
+		w.Locust.Translation.ManualContentTranslator = function(config) {
+			var _self = this;
+			var _config = w.jQuery.extend({
+                logger: null
             }, config);
 
-            _config.logger = w.Locust.validateLogger(_config.logger);
+            _config.logger = w.Locust.getLogger(_config.logger);
 
             var _self = this;
 			var _texts = [];
@@ -79,18 +96,16 @@
                 }
 
                 return result;
-            };
-            function _loadCitFile(content) {
-				var result = [];
-				
+            }
+            function _loadCit(content) {
                 if (content) {
-                    var _lines = content.splitString("\n", StringSplitOptions.TrimAndRemoveEmptyEntries);
+                    var _lines = content.splitString("\n", w.StringSplitOptions.TrimAndRemoveEmptyEntries);
 
-                    $(_lines).each(function (i, line) {
+                    w.jQuery(_lines).each(function (i, line) {
                         line = line ? line.trim() : "";
 
                         if (line && line[0] != '#') {
-                            var left = line.splitString("/", StringSplitOptions.TrimAndRemoveEmptyEntries);
+                            var left = line.splitString("/", w.StringSplitOptions.TrimAndRemoveEmptyEntries);
 
                             if (left.length == 3) {
                                 var key = left[0].trim();
@@ -99,7 +114,7 @@
                                 var lang = left[2].substr(0, dotIndex);
                                 var values = left[2].substr(dotIndex + 1).trim();
 
-                                result.push({
+                                _texts.push({
                                     key: (key + "/" + value + "/" + lang),
                                     values: _getValues(values)
                                 });
@@ -107,20 +122,16 @@
                         }
                     })
                 }
-				
-				return result;
-            };
-            function _loadCdtFile(content) {
-				var result = [];
-				
+            }
+            function _loadCdt(content) {
                 if (content) {
-                    var _lines = content.splitString("\n", StringSplitOptions.TrimAndRemoveEmptyEntries);
+                    var _lines = content.splitString("\n", w.StringSplitOptions.TrimAndRemoveEmptyEntries);
 
-                    $(_lines).each(function (i, line) {
+                    w.jQuery(_lines).each(function (i, line) {
                         line = line ? line.trim() : "";
 
                         if (line && line[0] != '#') {
-                            var left = line.splitString("/", StringSplitOptions.TrimAndRemoveEmptyEntries);
+                            var left = line.splitString("/", w.StringSplitOptions.TrimAndRemoveEmptyEntries);
 
                             if (left.length == 4) {
                                 var key = left[0].trim();
@@ -130,7 +141,7 @@
                                 var lang = left[3].substr(0, dotIndex);
                                 var values = left[3].substr(dotIndex + 1).trim();
 
-                                result.push({
+                                _texts.push({
                                     key: (key + "/" + globalValue + "/" + culture + "/" + lang),
                                     values: _getValues(values)
                                 });
@@ -138,14 +149,63 @@
                         }
                     })
                 }
+            }
+			_self.load = function(content, type) {
+				if (type == "cdt") {
+					_loadCdt(content);
+				} else if (type == "cit") {
+					_loadCit(content);
+				}
+			}
+			_self.get = function(key, value1, value2, lang) {
+				var result = [];
+				var _lang;
+				var _key = key;
+				var _globalValue = "";
+				var _value = "";
+				var searchKey = "";
+				
+				if (value1 == undefined && value2 == undefined && lang == undefined) {
+					searchKey = key;
+				} else {
+					if (lang == undefined) {
+						_value = value1;
+						_lang = value2 || w.Locust.Language.Current.shortName;
+						
+						searchKey = "/" + _key + "/" + _value + "/" + _lang;
+					} else {
+						_globalValue = value1;
+						_value = value2;
+						_lang = lang || w.Locust.Language.Current.shortName;
+						
+						searchKey = "/" + _key + "/" + _globalValue + "/" + _value + "/" + _lang;
+					}
+				}
+				
+				if (searchKey) {
+					var item = _texts.find(function(x) { return x.key == searchKey; });
+					if (item) {
+						result = item.values;
+					}
+				}
 				
 				return result;
-            };
+			}
+			_self.getSingle = function(key, value1, value2, lang) {
+				var result = "";
+				var values = _self.get(key, value1, value2, lang);
+				
+				if (values && values.length) {
+					result = values[0];
+				}
+				
+				return result;
+			}
 		}
 	}
-    if (!w.Locust.TextFileTranslator) {
-        w.Locust.TextFileTranslator = function (config) {
-            var _config = $.extend({
+    if (!w.Locust.Translation.TranslatorProxy) {
+        w.Locust.Translation.TranslatorProxy = function (config) {
+            var _config = w.jQuery.extend({
                 name: "Texts",
                 basePath: "/localization",
                 logger: null,
@@ -155,21 +215,13 @@
                 }
             }, config);
 
-            if (!_config.logger) {
-                if (Locust && Locust.Logging && Locust.Logging.ConsoleLogger) {
-                    _config.logger = new Locust.Logging.ConsoleLogger();
-                } else {
-                    _config.logger = {
-                        log: function (category, data) { console.log((category ? category + (data ? ": " + data : "") : data)); }
-                    }
-                }
-            }
+            _config.logger = w.Locust.getLogger(_config.logger);
 
             var _self = this;
             var _store = new Locust.Storage.LocalDataStore({ name: _config.name, useCompression: true });
             
             var loadTexts = function(storenames, type) {
-				$(storenames).each(function (i, storename) {
+				w.jQuery(storenames).each(function (i, storename) {
 					var hash = "";
 					var item = _store.getByKey(storename);
 					
@@ -179,7 +231,7 @@
 					
                     var file = _config.basePath + "/" + type + "/" + storename;
 					
-                    $.post(file,{hash:hash}).done(function (result) {
+                    w.jQuery.post(file,{hash:hash}).done(function (result) {
                         if (result && result.Hash) {
 							_store.addOrUpdate(storename, { hash: result.Hash, items: result.Data });
 						} else {
@@ -239,7 +291,7 @@
 				}
 				
 				return [];
-			};
+			}
 			_self.getSingle = function(key, value1, value2, lang) {
 				var result = "";
 				var values = _self.get(key, value1, value2, lang);

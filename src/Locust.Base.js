@@ -1,8 +1,6 @@
 ﻿(function (w) {
 	if (!w) {
         throw "Locust.Base: no context given. aborting.";
-		
-        return;
     }
     if (!w.Locust) {
         w.Locust = { };
@@ -15,11 +13,14 @@
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
-            if (!x)
+            if (x == undefined || x == null) {
                 return true;
-
+			}
+			
             for (var key in x) {
-                return !x.hasOwnProperty(key);
+                if (x.hasOwnProperty(key)) {
+					return false;
+				}
             }
 
             return true;

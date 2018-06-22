@@ -1,14 +1,20 @@
 ﻿(function (w) {
-    if (!w) {
-        console.log("Locust.jQuery.Extend: no context given (use 'Locust.Base.js')");
-        return;
+    function __error(msg) {
+		if (w.console && w.console.error) {
+			w.console.error(msg);
+		} else {
+			throw msg;
+		}
+	};
+	if (!w) {
+        throw "Locust.jQuery.Extend: no context given (use 'Locust.Base.js')";
     }
     if (!w.Locust) {
-        console.log("Locust.jQuery.Extend: Locust namespace not found (use 'Locust.Base.js')");
-        return;
+		__error("Locust.jQuery.Extend: Locust namespace not found (use 'Locust.Base.js')");
+		return;
     }
     if (!w.jQuery) {
-        console.log("Locust.jQuery.Extend: jQuery library not found");
+        __error("Locust.jQuery.Extend: jQuery library not found");
         return;
     }
     (function ($) {

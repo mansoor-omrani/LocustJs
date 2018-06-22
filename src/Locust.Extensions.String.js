@@ -19,7 +19,7 @@
 	}
 	var _logger = w.Locust.getLogger();
 	// ------------------------ String extensions -----------------------------//
-	var w.StringSplitOptions =
+	w.StringSplitOptions =
 	{
 		None: 0,
 		RemoveEmptyEntries: 1,
@@ -56,7 +56,7 @@
 		_logger.warning("Locust.Extensions.String", "String.prototype.ltrim already declared.");
 	}
 	
-	if (!) {
+	if (!w.String.prototype.rtrim) {
 		w.String.prototype.rtrim = function () {
 			return this.replace(/\s+$/, '');
 		}
@@ -239,21 +239,21 @@
 				var _item;
 				var item = arr[i++];
 				switch (splitOptions) {
-					case StringSplitOptions.RemoveEmptyEntries: if (item) result.push(item); break;
-					case StringSplitOptions.TrimEntries: result.push((item || "").trim()); break;
-					case StringSplitOptions.TrimAndRemoveEmptyEntries:
+					case w.StringSplitOptions.RemoveEmptyEntries: if (item) result.push(item); break;
+					case w.StringSplitOptions.TrimEntries: result.push((item || "").trim()); break;
+					case w.StringSplitOptions.TrimAndRemoveEmptyEntries:
 						_item = (item || "").toString().trim();
 						if (_item)
 							result.push(_item);
 						break;
-					case StringSplitOptions.ToLowerEntries: result.push((item || "").toString().toLowerCase()); break;
-					case StringSplitOptions.TrimToLowerAndRemoveEmptyEntries:
+					case w.StringSplitOptions.ToLowerEntries: result.push((item || "").toString().toLowerCase()); break;
+					case w.StringSplitOptions.TrimToLowerAndRemoveEmptyEntries:
 						_item = (item || "").toString().trim().toLowerCase();
 						if (_item)
 							result.push(_item);
 						break;
-					case StringSplitOptions.ToUpperEntries: result.push((item || "").toString().toUpperCase()); break;
-					case StringSplitOptions.TrimToUpperAndRemoveEmptyEntries:
+					case w.StringSplitOptions.ToUpperEntries: result.push((item || "").toString().toUpperCase()); break;
+					case w.StringSplitOptions.TrimToUpperAndRemoveEmptyEntries:
 						_item = (item || "").toString().trim().toUpperCase();
 						if (_item)
 							result.push(_item);

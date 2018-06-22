@@ -5,7 +5,7 @@
 		} else {
 			throw msg;
 		}
-	};
+	}
 	if (!w) {
 		throw "Locust.Extensions.Array: no context given (use 'Locust.Base.js')";
 	}
@@ -35,7 +35,7 @@
 			while (0 !== currentIndex) {
 
 				// Pick a remaining element...
-				randomIndex = Math.floor(Math.random() * currentIndex);
+				randomIndex = w.Math.floor(w.Math.random() * currentIndex);
 				currentIndex -= 1;
 
 				// And swap it with the current element.
