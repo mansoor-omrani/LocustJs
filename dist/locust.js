@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.1.2";
+        w.Locust.Version = "1.2.0";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
