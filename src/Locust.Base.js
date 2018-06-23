@@ -10,7 +10,7 @@
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.2.2";
+        w.Locust.Version = "1.2.3";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {

@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.2.2";
+        w.Locust.Version = "1.2.3";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -5249,16 +5249,21 @@ var __warnings = true;
 					
                     var file = _config.basePath + "/" + type + "/" + storename;
 					
-                    w.jQuery.post(file,{hash:hash}).done(function (result) {
-                        if (result) {
-							if (!hash || (!result.Hash && hash != result.Hash)) {
-								_store.addOrUpdate(storename, { hash: result.Hash, items: result.Data });
+                    w.jQuery.post(file,{hash:hash}).done(function (r) {
+						try {
+							var result = JSON.parse(r);
+							if (result) {
+								if (!hash || (!result.Hash && hash != result.Hash)) {
+									_store.addOrUpdate(storename, { hash: result.Hash, items: result.Data });
+								}
+							} else {
+								_config.logger.alert("Locust.Translation.loadTexts", "no response: " + file + ", type: " + type);
 							}
-						} else {
-							_config.logger.alert("Locust.Translation.loadTexts", "no response: " + file + ", type: " + type);
+						} catch (e) {
+							_config.logger.fail("Locust.Translation.loadTexts", "processing server response failed: " + file + ", type: " + type + ", error = " + e);
 						}
                     }).fail(function (xhr, text, msg) {
-                        _config.logger.fail("Locust.Translation.loadTexts", "failed: " + file + ", type: " + type);
+                        _config.logger.fail("Locust.Translation.loadTexts", "calling /localization api failed: " + file + ", type: " + type);
                     });
                 });
 			};
