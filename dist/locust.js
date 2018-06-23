@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.2.1";
+        w.Locust.Version = "1.2.2";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -4952,7 +4952,7 @@ var __warnings = true;
             return x;
         };
         _self.getByIndex = function (index) {
-            if (_data.length && index && index >= 0 && index < _data.length)
+            if (_data.length && index != undefined && index != null && index >= 0 && index < _data.length)
                 return _data[index];
             else
                 return null;

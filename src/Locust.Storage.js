@@ -228,7 +228,7 @@
             return x;
         };
         _self.getByIndex = function (index) {
-            if (_data.length && index && index >= 0 && index < _data.length)
+            if (_data.length && index != undefined && index != null && index >= 0 && index < _data.length)
                 return _data[index];
             else
                 return null;
