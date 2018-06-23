@@ -5256,7 +5256,7 @@ var __warnings = true;
 						try {
 							var result = JSON.parse(r);
 							if (result) {
-								if (!hash || (!result.Hash && hash != result.Hash)) {
+								if (!hash || (result.Hash != "" && hash != result.Hash)) {
 									_store.addOrUpdate(storename, { hash: result.Hash, items: result.Data });
 								}
 							} else {
