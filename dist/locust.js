@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.2.3";
+        w.Locust.Version = "1.2.4";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -5297,6 +5297,8 @@ var __warnings = true;
 				}
 				
 				if (searchKey) {
+					searchKey = searchKey.toLowerCase();
+					
 					try {
 						for (var i = 0; i < _store.count(); i++) {
 							var item = _store.getByIndex(i);

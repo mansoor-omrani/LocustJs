@@ -276,6 +276,8 @@
 				}
 				
 				if (searchKey) {
+					searchKey = searchKey.toLowerCase();
+					
 					try {
 						for (var i = 0; i < _store.count(); i++) {
 							var item = _store.getByIndex(i);
