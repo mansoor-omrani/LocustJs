@@ -1,4 +1,5 @@
-﻿(function (w) {
+﻿//================================= Locust.Base =================================
+(function (w) {
 	if (!w) {
         throw "Locust.Base: no context given. aborting.";
     }

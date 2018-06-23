@@ -1,4 +1,5 @@
-﻿(function (w) {
+﻿//================================= Locust.Bootstrap =================================
+(function (w) {
 	function __error(msg) {
 		if (w.console && w.console.error) {
 			w.console.error(msg);
