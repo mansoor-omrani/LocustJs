@@ -96,18 +96,19 @@
 		_config.logger = w.Locust.getLogger(_config.logger);
 		
 		if (!_config.keyProtector || !_config.keyProtector.encode || !_config.keyProtector.decode || typeof _config.keyProtector.encode != "function" || typeof _config.keyProtector.decode != "function") {
-			_config.logger("Locust.Storage.LocalDataStore", "bad keyProtector. default keyProtector used.");
+			_config.logger.warning("Locust.Storage.LocalDataStore", "bad keyProtector. default keyProtector used.");
 			_config.keyProtector = _defaultKeyProtector;
 		}
 		if (!_config.valueChannel || !_config.valueChannel.serialize || !_config.valueChannel.deserialize || typeof _config.valueChannel.serialize != "function" || typeof _config.valueChannel.deserialize != "function") {
-			_config.logger("Locust.Storage.LocalDataStore", "bad valueChannel. default valueChannel used.");
+			_config.logger.warning("Locust.Storage.LocalDataStore", "bad valueChannel. default valueChannel used.");
 			_config.valueChannel = _defaultValueChannel;
 		}
 		if (!_config.name) {
             _config.name = "_locust.storage.lds" + _id;
         }
 		if (_config.useCompression && !w.Locust.Compression) {
-			_config.logger("Locust.Storage.LocalDataStore", "Locust.Compression namespace not found (use 'Locust.Compression.js'). aborting.");
+			_config.logger.abort("Locust.Storage.LocalDataStore", "Locust.Compression namespace not found.");
+			_config.logger.suggest("Locust.Storage.LocalDataStore", "use 'Locust.Compression.js')");
 			return;
 		}
         if (_config.useCompression && !_config.compressor) {
@@ -128,7 +129,7 @@
         // constructor
         function _ctor() {
 			if (!w.localStorage) {
-				_config.logger.log("Locust.Storage.LocalDataStore._ctor(): client does not support localStorage.");
+				_config.logger.abort("Locust.Storage.LocalDataStore._ctor(): client does not support localStorage.");
 				
 				return;
 			}
@@ -168,7 +169,7 @@
                     }
                 }
             } catch (e) {
-                _config.logger.log(_name, "_ctor()", e);
+                _config.logger.danger(_name, "_ctor()", e);
                 _data = [];
                 save();
             }
@@ -180,7 +181,7 @@
 
         function save() {
 			if (!w.localStorage) {
-				_config.logger.log("Locust.Storage.LocalDataStore.save(): client does not support localStorage.");
+				_config.logger.abort("Locust.Storage.LocalDataStore.save(): client does not support localStorage.");
 				
 				return;
 			}
@@ -192,7 +193,7 @@
 						var d = _config.valueChannel.serialize(_data[i].value);
 						result.push(_config.keyProtector.encode(_data[i].key) + _config.keyProtector.separator + d);
 					} catch(e) {
-						_config.logger.log(_name, "save(): item[" + i + "]", e);
+						_config.logger.danger(_name, "save(): item[" + i + "]", e);
 					}
                 };
                 var str = result.join(_config.separator);
@@ -200,7 +201,7 @@
 
                 w.localStorage.setItem(_config.name, compressed);
             } catch (e) {
-                _config.logger.log(_name, "save()", e);
+                _config.logger.danger(_name, "save()", e);
             }
         };
 
