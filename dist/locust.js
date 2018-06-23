@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.2.0";
+        w.Locust.Version = "1.2.1";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -4860,7 +4860,11 @@ var __warnings = true;
 			
             try {
                 var str = w.localStorage.getItem(_config.name);
-                var decompressed = (_config.useCompression)? _config.compressor.decompressString(str): str;
+                var decompressed = str;
+				
+				if (_config.useCompression && str) {
+					decompressed = _config.compressor.decompressString(decompressed);
+				}
 
                 if (decompressed) {
                     var arr = decompressed.split(_config.separator);

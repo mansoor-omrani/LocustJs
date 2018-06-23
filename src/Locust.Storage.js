@@ -136,7 +136,11 @@
 			
             try {
                 var str = w.localStorage.getItem(_config.name);
-                var decompressed = (_config.useCompression)? _config.compressor.decompressString(str): str;
+                var decompressed = str;
+				
+				if (_config.useCompression && str) {
+					decompressed = _config.compressor.decompressString(decompressed);
+				}
 
                 if (decompressed) {
                     var arr = decompressed.split(_config.separator);
