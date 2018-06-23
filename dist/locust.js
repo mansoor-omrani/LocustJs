@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.2.6";
+        w.Locust.Version = "1.2.7";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -5242,7 +5242,7 @@ var __warnings = true;
             var _store = new Locust.Storage.LocalDataStore({ name: _config.name, useCompression: true });
             
             var loadTexts = function(storenames, type) {
-				var d = w.jQuery.Deffered();
+				var d = w.jQuery.Deferred();
 				
 				if (!storenames || !storenames.length) {
 					d.resolve();
@@ -5284,7 +5284,7 @@ var __warnings = true;
 			};
 			
 			_self.load = function () {
-				var d = w.jQuery.Deffered();
+				var d = w.jQuery.Deferred();
 				
 				var d1 = loadTexts(_config.cit, "cit");
 				var d2 = loadTexts(_config.cdt, "cdt");
