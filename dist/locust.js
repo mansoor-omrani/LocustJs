@@ -1307,2963 +1307,2969 @@ var __warnings = true;
     // we don't fill __mimes & __mimeTypes not to waste memory.
     // these variables are only initialized at first call to getMime().
     function _initMimes() {
-        __mimes = [
-              { "id": 1, "source": "iana", "value": "application/1d-interleaved-parityfec", "compressible": false, "charSet": "UTF-8", "extensions": "" }
-            , { "id": 2, "source": "iana", "value": "application/3gpdash-qoe-report+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 3, "source": "iana", "value": "application/3gpp-ims+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 4, "source": "iana", "value": "application/a2l", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 5, "source": "iana", "value": "application/activemessage", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 6, "source": "iana", "value": "application/alto-costmap+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 7, "source": "iana", "value": "application/alto-costmapfilter+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 8, "source": "iana", "value": "application/alto-directory+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 9, "source": "iana", "value": "application/alto-endpointcost+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 10, "source": "iana", "value": "application/alto-endpointcostparams+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 11, "source": "iana", "value": "application/alto-endpointprop+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 12, "source": "iana", "value": "application/alto-endpointpropparams+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 13, "source": "iana", "value": "application/alto-error+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 14, "source": "iana", "value": "application/alto-networkmap+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 15, "source": "iana", "value": "application/alto-networkmapfilter+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 16, "source": "iana", "value": "application/aml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 17, "source": "iana", "value": "application/andrew-inset", "compressible": false, "charSet": "", "extensions": "ez" }
-            , { "id": 18, "source": "iana", "value": "application/applefile", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 19, "source": "apache", "value": "application/applixware", "compressible": false, "charSet": "", "extensions": "aw" }
-            , { "id": 20, "source": "iana", "value": "application/atf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 21, "source": "iana", "value": "application/atfx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 22, "source": "iana", "value": "application/atom+xml", "compressible": true, "charSet": "", "extensions": "atom" }
-            , { "id": 23, "source": "iana", "value": "application/atomcat+xml", "compressible": false, "charSet": "", "extensions": "atomcat" }
-            , { "id": 24, "source": "iana", "value": "application/atomdeleted+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 25, "source": "iana", "value": "application/atomicmail", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 26, "source": "iana", "value": "application/atomsvc+xml", "compressible": false, "charSet": "", "extensions": "atomsvc" }
-            , { "id": 27, "source": "iana", "value": "application/atxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 28, "source": "iana", "value": "application/auth-policy+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 29, "source": "iana", "value": "application/bacnet-xdd+zip", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 30, "source": "iana", "value": "application/batch-smtp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 31, "source": "", "value": "application/bdoc", "compressible": false, "charSet": "", "extensions": "bdoc" }
-            , { "id": 32, "source": "iana", "value": "application/beep+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 33, "source": "iana", "value": "application/calendar+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 34, "source": "iana", "value": "application/calendar+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 35, "source": "iana", "value": "application/call-completion", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 36, "source": "iana", "value": "application/cals-1840", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 37, "source": "iana", "value": "application/cbor", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 38, "source": "iana", "value": "application/ccmp+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 39, "source": "iana", "value": "application/ccxml+xml", "compressible": false, "charSet": "", "extensions": "ccxml" }
-            , { "id": 40, "source": "iana", "value": "application/cdfx+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 41, "source": "iana", "value": "application/cdmi-capability", "compressible": false, "charSet": "", "extensions": "cdmia" }
-            , { "id": 42, "source": "iana", "value": "application/cdmi-container", "compressible": false, "charSet": "", "extensions": "cdmic" }
-            , { "id": 43, "source": "iana", "value": "application/cdmi-domain", "compressible": false, "charSet": "", "extensions": "cdmid" }
-            , { "id": 44, "source": "iana", "value": "application/cdmi-object", "compressible": false, "charSet": "", "extensions": "cdmio" }
-            , { "id": 45, "source": "iana", "value": "application/cdmi-queue", "compressible": false, "charSet": "", "extensions": "cdmiq" }
-            , { "id": 46, "source": "iana", "value": "application/cdni", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 47, "source": "iana", "value": "application/cea", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 48, "source": "iana", "value": "application/cea-2018+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 49, "source": "iana", "value": "application/cellml+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 50, "source": "iana", "value": "application/cfw", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 51, "source": "iana", "value": "application/cms", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 52, "source": "iana", "value": "application/cnrp+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 53, "source": "iana", "value": "application/coap-group+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 54, "source": "iana", "value": "application/commonground", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 55, "source": "iana", "value": "application/conference-info+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 56, "source": "iana", "value": "application/cpl+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 57, "source": "iana", "value": "application/csrattrs", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 58, "source": "iana", "value": "application/csta+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 59, "source": "iana", "value": "application/cstadata+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 60, "source": "iana", "value": "application/csvm+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 61, "source": "apache", "value": "application/cu-seeme", "compressible": false, "charSet": "", "extensions": "cu" }
-            , { "id": 62, "source": "iana", "value": "application/cybercash", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 63, "source": "", "value": "application/dart", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 64, "source": "iana", "value": "application/dash+xml", "compressible": false, "charSet": "", "extensions": "mpd" }
-            , { "id": 65, "source": "iana", "value": "application/dashdelta", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 66, "source": "iana", "value": "application/davmount+xml", "compressible": false, "charSet": "", "extensions": "davmount" }
-            , { "id": 67, "source": "iana", "value": "application/dca-rft", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 68, "source": "iana", "value": "application/dcd", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 69, "source": "iana", "value": "application/dec-dx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 70, "source": "iana", "value": "application/dialog-info+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 71, "source": "iana", "value": "application/dicom", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 72, "source": "iana", "value": "application/dii", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 73, "source": "iana", "value": "application/dit", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 74, "source": "iana", "value": "application/dns", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 75, "source": "apache", "value": "application/docbook+xml", "compressible": false, "charSet": "", "extensions": "dbk" }
-            , { "id": 76, "source": "iana", "value": "application/dskpp+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 77, "source": "iana", "value": "application/dssc+der", "compressible": false, "charSet": "", "extensions": "dssc" }
-            , { "id": 78, "source": "iana", "value": "application/dssc+xml", "compressible": false, "charSet": "", "extensions": "xdssc" }
-            , { "id": 79, "source": "iana", "value": "application/dvcs", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 80, "source": "iana", "value": "application/ecmascript", "compressible": true, "charSet": "", "extensions": "ecma" }
-            , { "id": 81, "source": "iana", "value": "application/edi-consent", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 82, "source": "iana", "value": "application/edi-x12", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 83, "source": "iana", "value": "application/edifact", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 84, "source": "iana", "value": "application/efi", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 85, "source": "iana", "value": "application/emergencycalldata.comment+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 86, "source": "iana", "value": "application/emergencycalldata.deviceinfo+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 87, "source": "iana", "value": "application/emergencycalldata.providerinfo+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 88, "source": "iana", "value": "application/emergencycalldata.serviceinfo+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 89, "source": "iana", "value": "application/emergencycalldata.subscriberinfo+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 90, "source": "iana", "value": "application/emma+xml", "compressible": false, "charSet": "", "extensions": "emma" }
-            , { "id": 91, "source": "iana", "value": "application/emotionml+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 92, "source": "iana", "value": "application/encaprtp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 93, "source": "iana", "value": "application/epp+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 94, "source": "iana", "value": "application/epub+zip", "compressible": false, "charSet": "", "extensions": "epub" }
-            , { "id": 95, "source": "iana", "value": "application/eshop", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 96, "source": "iana", "value": "application/exi", "compressible": false, "charSet": "", "extensions": "exi" }
-            , { "id": 97, "source": "iana", "value": "application/fastinfoset", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 98, "source": "iana", "value": "application/fastsoap", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 99, "source": "iana", "value": "application/fdt+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 100, "source": "iana", "value": "application/fits", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 101, "source": "iana", "value": "application/font-sfnt", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 102, "source": "iana", "value": "application/font-tdpfr", "compressible": false, "charSet": "", "extensions": "pfr" }
-            , { "id": 103, "source": "iana", "value": "application/font-woff", "compressible": false, "charSet": "", "extensions": "woff" }
-            , { "id": 104, "source": "", "value": "application/font-woff2", "compressible": false, "charSet": "", "extensions": "woff2" }
-            , { "id": 105, "source": "iana", "value": "application/framework-attributes+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 106, "source": "apache", "value": "application/gml+xml", "compressible": false, "charSet": "", "extensions": "gml" }
-            , { "id": 107, "source": "apache", "value": "application/gpx+xml", "compressible": false, "charSet": "", "extensions": "gpx" }
-            , { "id": 108, "source": "apache", "value": "application/gxf", "compressible": false, "charSet": "", "extensions": "gxf" }
-            , { "id": 109, "source": "iana", "value": "application/gzip", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 110, "source": "iana", "value": "application/h224", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 111, "source": "iana", "value": "application/held+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 112, "source": "iana", "value": "application/http", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 113, "source": "iana", "value": "application/hyperstudio", "compressible": false, "charSet": "", "extensions": "stk" }
-            , { "id": 114, "source": "iana", "value": "application/ibe-key-request+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 115, "source": "iana", "value": "application/ibe-pkg-reply+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 116, "source": "iana", "value": "application/ibe-pp-data", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 117, "source": "iana", "value": "application/iges", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 118, "source": "iana", "value": "application/im-iscomposing+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 119, "source": "iana", "value": "application/index", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 120, "source": "iana", "value": "application/index.cmd", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 121, "source": "iana", "value": "application/index.obj", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 122, "source": "iana", "value": "application/index.response", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 123, "source": "iana", "value": "application/index.vnd", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 124, "source": "iana", "value": "application/inkml+xml", "compressible": false, "charSet": "", "extensions": "ink, inkml" }
-            , { "id": 125, "source": "iana", "value": "application/iotp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 126, "source": "iana", "value": "application/ipfix", "compressible": false, "charSet": "", "extensions": "ipfix" }
-            , { "id": 127, "source": "iana", "value": "application/ipp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 128, "source": "iana", "value": "application/isup", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 129, "source": "iana", "value": "application/its+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 130, "source": "apache", "value": "application/java-archive", "compressible": false, "charSet": "", "extensions": "jar, war, ear" }
-            , { "id": 131, "source": "apache", "value": "application/java-serialized-object", "compressible": false, "charSet": "", "extensions": "ser" }
-            , { "id": 132, "source": "apache", "value": "application/java-vm", "compressible": false, "charSet": "", "extensions": "class" }
-            , { "id": 133, "source": "iana", "value": "application/javascript", "compressible": true, "charSet": "UTF-8", "extensions": "js" }
-            , { "id": 134, "source": "iana", "value": "application/jose", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 135, "source": "iana", "value": "application/jose+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 136, "source": "iana", "value": "application/jrd+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 137, "source": "iana", "value": "application/json", "compressible": true, "charSet": "UTF-8", "extensions": "json, map" }
-            , { "id": 138, "source": "iana", "value": "application/json-patch+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 139, "source": "iana", "value": "application/json-seq", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 140, "source": "", "value": "application/json5", "compressible": false, "charSet": "", "extensions": "json5" }
-            , { "id": 141, "source": "apache", "value": "application/jsonml+json", "compressible": true, "charSet": "", "extensions": "jsonml" }
-            , { "id": 142, "source": "iana", "value": "application/jwk+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 143, "source": "iana", "value": "application/jwk-set+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 144, "source": "iana", "value": "application/jwt", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 145, "source": "iana", "value": "application/kpml-request+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 146, "source": "iana", "value": "application/kpml-response+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 147, "source": "iana", "value": "application/ld+json", "compressible": true, "charSet": "", "extensions": "jsonld" }
-            , { "id": 148, "source": "iana", "value": "application/link-format", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 149, "source": "iana", "value": "application/load-control+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 150, "source": "iana", "value": "application/lost+xml", "compressible": false, "charSet": "", "extensions": "lostxml" }
-            , { "id": 151, "source": "iana", "value": "application/lostsync+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 152, "source": "iana", "value": "application/lxf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 153, "source": "iana", "value": "application/mac-binhex40", "compressible": false, "charSet": "", "extensions": "hqx" }
-            , { "id": 154, "source": "apache", "value": "application/mac-compactpro", "compressible": false, "charSet": "", "extensions": "cpt" }
-            , { "id": 155, "source": "iana", "value": "application/macwriteii", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 156, "source": "iana", "value": "application/mads+xml", "compressible": false, "charSet": "", "extensions": "mads" }
-            , { "id": 157, "source": "", "value": "application/manifest+json", "compressible": true, "charSet": "UTF-8", "extensions": "webmanifest" }
-            , { "id": 158, "source": "iana", "value": "application/marc", "compressible": false, "charSet": "", "extensions": "mrc" }
-            , { "id": 159, "source": "iana", "value": "application/marcxml+xml", "compressible": false, "charSet": "", "extensions": "mrcx" }
-            , { "id": 160, "source": "iana", "value": "application/mathematica", "compressible": false, "charSet": "", "extensions": "ma, nb, mb" }
-            , { "id": 161, "source": "iana", "value": "application/mathml+xml", "compressible": false, "charSet": "", "extensions": "mathml" }
-            , { "id": 162, "source": "iana", "value": "application/mathml-content+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 163, "source": "iana", "value": "application/mathml-presentation+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 164, "source": "iana", "value": "application/mbms-associated-procedure-description+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 165, "source": "iana", "value": "application/mbms-deregister+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 166, "source": "iana", "value": "application/mbms-envelope+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 167, "source": "iana", "value": "application/mbms-msk+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 168, "source": "iana", "value": "application/mbms-msk-response+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 169, "source": "iana", "value": "application/mbms-protection-description+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 170, "source": "iana", "value": "application/mbms-reception-report+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 171, "source": "iana", "value": "application/mbms-register+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 172, "source": "iana", "value": "application/mbms-register-response+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 173, "source": "iana", "value": "application/mbms-schedule+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 174, "source": "iana", "value": "application/mbms-user-service-description+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 175, "source": "iana", "value": "application/mbox", "compressible": false, "charSet": "", "extensions": "mbox" }
-            , { "id": 176, "source": "iana", "value": "application/media-policy-dataset+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 177, "source": "iana", "value": "application/media_control+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 178, "source": "iana", "value": "application/mediaservercontrol+xml", "compressible": false, "charSet": "", "extensions": "mscml" }
-            , { "id": 179, "source": "iana", "value": "application/merge-patch+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 180, "source": "apache", "value": "application/metalink+xml", "compressible": false, "charSet": "", "extensions": "metalink" }
-            , { "id": 181, "source": "iana", "value": "application/metalink4+xml", "compressible": false, "charSet": "", "extensions": "meta4" }
-            , { "id": 182, "source": "iana", "value": "application/mets+xml", "compressible": false, "charSet": "", "extensions": "mets" }
-            , { "id": 183, "source": "iana", "value": "application/mf4", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 184, "source": "iana", "value": "application/mikey", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 185, "source": "iana", "value": "application/mods+xml", "compressible": false, "charSet": "", "extensions": "mods" }
-            , { "id": 186, "source": "iana", "value": "application/moss-keys", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 187, "source": "iana", "value": "application/moss-signature", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 188, "source": "iana", "value": "application/mosskey-data", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 189, "source": "iana", "value": "application/mosskey-request", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 190, "source": "iana", "value": "application/mp21", "compressible": false, "charSet": "", "extensions": "m21, mp21" }
-            , { "id": 191, "source": "iana", "value": "application/mp4", "compressible": false, "charSet": "", "extensions": "mp4s, m4p" }
-            , { "id": 192, "source": "iana", "value": "application/mpeg4-generic", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 193, "source": "iana", "value": "application/mpeg4-iod", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 194, "source": "iana", "value": "application/mpeg4-iod-xmt", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 195, "source": "iana", "value": "application/mrb-consumer+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 196, "source": "iana", "value": "application/mrb-publish+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 197, "source": "iana", "value": "application/msc-ivr+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 198, "source": "iana", "value": "application/msc-mixer+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 199, "source": "iana", "value": "application/msword", "compressible": false, "charSet": "", "extensions": "doc, dot" }
-            , { "id": 200, "source": "iana", "value": "application/mxf", "compressible": false, "charSet": "", "extensions": "mxf" }
-            , { "id": 201, "source": "iana", "value": "application/nasdata", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 202, "source": "iana", "value": "application/news-checkgroups", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 203, "source": "iana", "value": "application/news-groupinfo", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 204, "source": "iana", "value": "application/news-transmission", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 205, "source": "iana", "value": "application/nlsml+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 206, "source": "iana", "value": "application/nss", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 207, "source": "iana", "value": "application/ocsp-request", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 208, "source": "iana", "value": "application/ocsp-response", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 209, "source": "iana", "value": "application/octet-stream", "compressible": false, "charSet": "", "extensions": "bin, dms, lrf, mar, so, dist, distz, pkg, bpk, dump, elc, deploy, exe, dll, deb, dmg, iso, img, msi, msp, msm, buffer" }
-            , { "id": 210, "source": "iana", "value": "application/oda", "compressible": false, "charSet": "", "extensions": "oda" }
-            , { "id": 211, "source": "iana", "value": "application/odx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 212, "source": "iana", "value": "application/oebps-package+xml", "compressible": false, "charSet": "", "extensions": "opf" }
-            , { "id": 213, "source": "iana", "value": "application/ogg", "compressible": false, "charSet": "", "extensions": "ogx" }
-            , { "id": 214, "source": "apache", "value": "application/omdoc+xml", "compressible": false, "charSet": "", "extensions": "omdoc" }
-            , { "id": 215, "source": "apache", "value": "application/onenote", "compressible": false, "charSet": "", "extensions": "onetoc, onetoc2, onetmp, onepkg" }
-            , { "id": 216, "source": "iana", "value": "application/oxps", "compressible": false, "charSet": "", "extensions": "oxps" }
-            , { "id": 217, "source": "iana", "value": "application/p2p-overlay+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 218, "source": "iana", "value": "application/parityfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 219, "source": "iana", "value": "application/patch-ops-error+xml", "compressible": false, "charSet": "", "extensions": "xer" }
-            , { "id": 220, "source": "iana", "value": "application/pdf", "compressible": false, "charSet": "", "extensions": "pdf" }
-            , { "id": 221, "source": "iana", "value": "application/pdx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 222, "source": "iana", "value": "application/pgp-encrypted", "compressible": false, "charSet": "", "extensions": "pgp" }
-            , { "id": 223, "source": "iana", "value": "application/pgp-keys", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 224, "source": "iana", "value": "application/pgp-signature", "compressible": false, "charSet": "", "extensions": "asc, sig" }
-            , { "id": 225, "source": "apache", "value": "application/pics-rules", "compressible": false, "charSet": "", "extensions": "prf" }
-            , { "id": 226, "source": "iana", "value": "application/pidf+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 227, "source": "iana", "value": "application/pidf-diff+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 228, "source": "iana", "value": "application/pkcs10", "compressible": false, "charSet": "", "extensions": "p10" }
-            , { "id": 229, "source": "iana", "value": "application/pkcs12", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 230, "source": "iana", "value": "application/pkcs7-mime", "compressible": false, "charSet": "", "extensions": "p7m, p7c" }
-            , { "id": 231, "source": "iana", "value": "application/pkcs7-signature", "compressible": false, "charSet": "", "extensions": "p7s" }
-            , { "id": 232, "source": "iana", "value": "application/pkcs8", "compressible": false, "charSet": "", "extensions": "p8" }
-            , { "id": 233, "source": "iana", "value": "application/pkix-attr-cert", "compressible": false, "charSet": "", "extensions": "ac" }
-            , { "id": 234, "source": "iana", "value": "application/pkix-cert", "compressible": false, "charSet": "", "extensions": "cer" }
-            , { "id": 235, "source": "iana", "value": "application/pkix-crl", "compressible": false, "charSet": "", "extensions": "crl" }
-            , { "id": 236, "source": "iana", "value": "application/pkix-pkipath", "compressible": false, "charSet": "", "extensions": "pkipath" }
-            , { "id": 237, "source": "iana", "value": "application/pkixcmp", "compressible": false, "charSet": "", "extensions": "pki" }
-            , { "id": 238, "source": "iana", "value": "application/pls+xml", "compressible": false, "charSet": "", "extensions": "pls" }
-            , { "id": 239, "source": "iana", "value": "application/poc-settings+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 240, "source": "iana", "value": "application/postscript", "compressible": true, "charSet": "", "extensions": "ai, eps, ps" }
-            , { "id": 241, "source": "iana", "value": "application/ppsp-tracker+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 242, "source": "iana", "value": "application/problem+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 243, "source": "iana", "value": "application/problem+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 244, "source": "iana", "value": "application/provenance+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 245, "source": "iana", "value": "application/prs.alvestrand.titrax-sheet", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 246, "source": "iana", "value": "application/prs.cww", "compressible": false, "charSet": "", "extensions": "cww" }
-            , { "id": 247, "source": "iana", "value": "application/prs.hpub+zip", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 248, "source": "iana", "value": "application/prs.nprend", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 249, "source": "iana", "value": "application/prs.plucker", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 250, "source": "iana", "value": "application/prs.rdf-xml-crypt", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 251, "source": "iana", "value": "application/prs.xsf+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 252, "source": "iana", "value": "application/pskc+xml", "compressible": false, "charSet": "", "extensions": "pskcxml" }
-            , { "id": 253, "source": "iana", "value": "application/qsig", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 254, "source": "iana", "value": "application/raptorfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 255, "source": "iana", "value": "application/rdap+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 256, "source": "iana", "value": "application/rdf+xml", "compressible": true, "charSet": "", "extensions": "rdf" }
-            , { "id": 257, "source": "iana", "value": "application/reginfo+xml", "compressible": false, "charSet": "", "extensions": "rif" }
-            , { "id": 258, "source": "iana", "value": "application/relax-ng-compact-syntax", "compressible": false, "charSet": "", "extensions": "rnc" }
-            , { "id": 259, "source": "iana", "value": "application/remote-printing", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 260, "source": "iana", "value": "application/reputon+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 261, "source": "iana", "value": "application/resource-lists+xml", "compressible": false, "charSet": "", "extensions": "rl" }
-            , { "id": 262, "source": "iana", "value": "application/resource-lists-diff+xml", "compressible": false, "charSet": "", "extensions": "rld" }
-            , { "id": 263, "source": "iana", "value": "application/rfc+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 264, "source": "iana", "value": "application/riscos", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 265, "source": "iana", "value": "application/rlmi+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 266, "source": "iana", "value": "application/rls-services+xml", "compressible": false, "charSet": "", "extensions": "rs" }
-            , { "id": 267, "source": "iana", "value": "application/rpki-ghostbusters", "compressible": false, "charSet": "", "extensions": "gbr" }
-            , { "id": 268, "source": "iana", "value": "application/rpki-manifest", "compressible": false, "charSet": "", "extensions": "mft" }
-            , { "id": 269, "source": "iana", "value": "application/rpki-roa", "compressible": false, "charSet": "", "extensions": "roa" }
-            , { "id": 270, "source": "iana", "value": "application/rpki-updown", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 271, "source": "apache", "value": "application/rsd+xml", "compressible": false, "charSet": "", "extensions": "rsd" }
-            , { "id": 272, "source": "apache", "value": "application/rss+xml", "compressible": true, "charSet": "", "extensions": "rss" }
-            , { "id": 273, "source": "iana", "value": "application/rtf", "compressible": true, "charSet": "", "extensions": "rtf" }
-            , { "id": 274, "source": "iana", "value": "application/rtploopback", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 275, "source": "iana", "value": "application/rtx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 276, "source": "iana", "value": "application/samlassertion+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 277, "source": "iana", "value": "application/samlmetadata+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 278, "source": "iana", "value": "application/sbml+xml", "compressible": false, "charSet": "", "extensions": "sbml" }
-            , { "id": 279, "source": "iana", "value": "application/scaip+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 280, "source": "iana", "value": "application/scim+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 281, "source": "iana", "value": "application/scvp-cv-request", "compressible": false, "charSet": "", "extensions": "scq" }
-            , { "id": 282, "source": "iana", "value": "application/scvp-cv-response", "compressible": false, "charSet": "", "extensions": "scs" }
-            , { "id": 283, "source": "iana", "value": "application/scvp-vp-request", "compressible": false, "charSet": "", "extensions": "spq" }
-            , { "id": 284, "source": "iana", "value": "application/scvp-vp-response", "compressible": false, "charSet": "", "extensions": "spp" }
-            , { "id": 285, "source": "iana", "value": "application/sdp", "compressible": false, "charSet": "", "extensions": "sdp" }
-            , { "id": 286, "source": "iana", "value": "application/sep+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 287, "source": "iana", "value": "application/sep-exi", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 288, "source": "iana", "value": "application/session-info", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 289, "source": "iana", "value": "application/set-payment", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 290, "source": "iana", "value": "application/set-payment-initiation", "compressible": false, "charSet": "", "extensions": "setpay" }
-            , { "id": 291, "source": "iana", "value": "application/set-registration", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 292, "source": "iana", "value": "application/set-registration-initiation", "compressible": false, "charSet": "", "extensions": "setreg" }
-            , { "id": 293, "source": "iana", "value": "application/sgml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 294, "source": "iana", "value": "application/sgml-open-catalog", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 295, "source": "iana", "value": "application/shf+xml", "compressible": false, "charSet": "", "extensions": "shf" }
-            , { "id": 296, "source": "iana", "value": "application/sieve", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 297, "source": "iana", "value": "application/simple-filter+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 298, "source": "iana", "value": "application/simple-message-summary", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 299, "source": "iana", "value": "application/simplesymbolcontainer", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 300, "source": "iana", "value": "application/slate", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 301, "source": "iana", "value": "application/smil", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 302, "source": "iana", "value": "application/smil+xml", "compressible": false, "charSet": "", "extensions": "smi, smil" }
-            , { "id": 303, "source": "iana", "value": "application/smpte336m", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 304, "source": "iana", "value": "application/soap+fastinfoset", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 305, "source": "iana", "value": "application/soap+xml", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 306, "source": "iana", "value": "application/sparql-query", "compressible": false, "charSet": "", "extensions": "rq" }
-            , { "id": 307, "source": "iana", "value": "application/sparql-results+xml", "compressible": false, "charSet": "", "extensions": "srx" }
-            , { "id": 308, "source": "iana", "value": "application/spirits-event+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 309, "source": "iana", "value": "application/sql", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 310, "source": "iana", "value": "application/srgs", "compressible": false, "charSet": "", "extensions": "gram" }
-            , { "id": 311, "source": "iana", "value": "application/srgs+xml", "compressible": false, "charSet": "", "extensions": "grxml" }
-            , { "id": 312, "source": "iana", "value": "application/sru+xml", "compressible": false, "charSet": "", "extensions": "sru" }
-            , { "id": 313, "source": "apache", "value": "application/ssdl+xml", "compressible": false, "charSet": "", "extensions": "ssdl" }
-            , { "id": 314, "source": "iana", "value": "application/ssml+xml", "compressible": false, "charSet": "", "extensions": "ssml" }
-            , { "id": 315, "source": "iana", "value": "application/tamp-apex-update", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 316, "source": "iana", "value": "application/tamp-apex-update-confirm", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 317, "source": "iana", "value": "application/tamp-community-update", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 318, "source": "iana", "value": "application/tamp-community-update-confirm", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 319, "source": "iana", "value": "application/tamp-error", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 320, "source": "iana", "value": "application/tamp-sequence-adjust", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 321, "source": "iana", "value": "application/tamp-sequence-adjust-confirm", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 322, "source": "iana", "value": "application/tamp-status-query", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 323, "source": "iana", "value": "application/tamp-status-response", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 324, "source": "iana", "value": "application/tamp-update", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 325, "source": "iana", "value": "application/tamp-update-confirm", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 326, "source": "", "value": "application/tar", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 327, "source": "iana", "value": "application/tei+xml", "compressible": false, "charSet": "", "extensions": "tei, teicorpus" }
-            , { "id": 328, "source": "iana", "value": "application/thraud+xml", "compressible": false, "charSet": "", "extensions": "tfi" }
-            , { "id": 329, "source": "iana", "value": "application/timestamp-query", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 330, "source": "iana", "value": "application/timestamp-reply", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 331, "source": "iana", "value": "application/timestamped-data", "compressible": false, "charSet": "", "extensions": "tsd" }
-            , { "id": 332, "source": "iana", "value": "application/ttml+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 333, "source": "iana", "value": "application/tve-trigger", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 334, "source": "iana", "value": "application/ulpfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 335, "source": "iana", "value": "application/urc-grpsheet+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 336, "source": "iana", "value": "application/urc-ressheet+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 337, "source": "iana", "value": "application/urc-targetdesc+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 338, "source": "iana", "value": "application/urc-uisocketdesc+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 339, "source": "iana", "value": "application/vcard+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 340, "source": "iana", "value": "application/vcard+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 341, "source": "iana", "value": "application/vemmi", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 342, "source": "apache", "value": "application/vividence.scriptfile", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 343, "source": "iana", "value": "application/vnd.3gpp-prose+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 344, "source": "iana", "value": "application/vnd.3gpp-prose-pc3ch+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 345, "source": "iana", "value": "application/vnd.3gpp.access-transfer-events+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 346, "source": "iana", "value": "application/vnd.3gpp.bsf+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 347, "source": "iana", "value": "application/vnd.3gpp.mid-call+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 348, "source": "iana", "value": "application/vnd.3gpp.pic-bw-large", "compressible": false, "charSet": "", "extensions": "plb" }
-            , { "id": 349, "source": "iana", "value": "application/vnd.3gpp.pic-bw-small", "compressible": false, "charSet": "", "extensions": "psb" }
-            , { "id": 350, "source": "iana", "value": "application/vnd.3gpp.pic-bw-var", "compressible": false, "charSet": "", "extensions": "pvb" }
-            , { "id": 351, "source": "iana", "value": "application/vnd.3gpp.sms", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 352, "source": "iana", "value": "application/vnd.3gpp.sms+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 353, "source": "iana", "value": "application/vnd.3gpp.srvcc-ext+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 354, "source": "iana", "value": "application/vnd.3gpp.srvcc-info+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 355, "source": "iana", "value": "application/vnd.3gpp.state-and-event-info+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 356, "source": "iana", "value": "application/vnd.3gpp.ussd+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 357, "source": "iana", "value": "application/vnd.3gpp2.bcmcsinfo+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 358, "source": "iana", "value": "application/vnd.3gpp2.sms", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 359, "source": "iana", "value": "application/vnd.3gpp2.tcap", "compressible": false, "charSet": "", "extensions": "tcap" }
-            , { "id": 360, "source": "iana", "value": "application/vnd.3lightssoftware.imagescal", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 361, "source": "iana", "value": "application/vnd.3m.post-it-notes", "compressible": false, "charSet": "", "extensions": "pwn" }
-            , { "id": 362, "source": "iana", "value": "application/vnd.accpac.simply.aso", "compressible": false, "charSet": "", "extensions": "aso" }
-            , { "id": 363, "source": "iana", "value": "application/vnd.accpac.simply.imp", "compressible": false, "charSet": "", "extensions": "imp" }
-            , { "id": 364, "source": "iana", "value": "application/vnd.acucobol", "compressible": false, "charSet": "", "extensions": "acu" }
-            , { "id": 365, "source": "iana", "value": "application/vnd.acucorp", "compressible": false, "charSet": "", "extensions": "atc, acutc" }
-            , { "id": 366, "source": "apache", "value": "application/vnd.adobe.air-application-installer-package+zip", "compressible": false, "charSet": "", "extensions": "air" }
-            , { "id": 367, "source": "iana", "value": "application/vnd.adobe.flash.movie", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 368, "source": "iana", "value": "application/vnd.adobe.formscentral.fcdt", "compressible": false, "charSet": "", "extensions": "fcdt" }
-            , { "id": 369, "source": "iana", "value": "application/vnd.adobe.fxp", "compressible": false, "charSet": "", "extensions": "fxp, fxpl" }
-            , { "id": 370, "source": "iana", "value": "application/vnd.adobe.partial-upload", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 371, "source": "iana", "value": "application/vnd.adobe.xdp+xml", "compressible": false, "charSet": "", "extensions": "xdp" }
-            , { "id": 372, "source": "iana", "value": "application/vnd.adobe.xfdf", "compressible": false, "charSet": "", "extensions": "xfdf" }
-            , { "id": 373, "source": "iana", "value": "application/vnd.aether.imp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 374, "source": "iana", "value": "application/vnd.ah-barcode", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 375, "source": "iana", "value": "application/vnd.ahead.space", "compressible": false, "charSet": "", "extensions": "ahead" }
-            , { "id": 376, "source": "iana", "value": "application/vnd.airzip.filesecure.azf", "compressible": false, "charSet": "", "extensions": "azf" }
-            , { "id": 377, "source": "iana", "value": "application/vnd.airzip.filesecure.azs", "compressible": false, "charSet": "", "extensions": "azs" }
-            , { "id": 378, "source": "apache", "value": "application/vnd.amazon.ebook", "compressible": false, "charSet": "", "extensions": "azw" }
-            , { "id": 379, "source": "iana", "value": "application/vnd.americandynamics.acc", "compressible": false, "charSet": "", "extensions": "acc" }
-            , { "id": 380, "source": "iana", "value": "application/vnd.amiga.ami", "compressible": false, "charSet": "", "extensions": "ami" }
-            , { "id": 381, "source": "iana", "value": "application/vnd.amundsen.maze+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 382, "source": "apache", "value": "application/vnd.android.package-archive", "compressible": false, "charSet": "", "extensions": "apk" }
-            , { "id": 383, "source": "iana", "value": "application/vnd.anki", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 384, "source": "iana", "value": "application/vnd.anser-web-certificate-issue-initiation", "compressible": false, "charSet": "", "extensions": "cii" }
-            , { "id": 385, "source": "apache", "value": "application/vnd.anser-web-funds-transfer-initiation", "compressible": false, "charSet": "", "extensions": "fti" }
-            , { "id": 386, "source": "iana", "value": "application/vnd.antix.game-component", "compressible": false, "charSet": "", "extensions": "atx" }
-            , { "id": 387, "source": "iana", "value": "application/vnd.apache.thrift.binary", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 388, "source": "iana", "value": "application/vnd.apache.thrift.compact", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 389, "source": "iana", "value": "application/vnd.apache.thrift.json", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 390, "source": "iana", "value": "application/vnd.api+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 391, "source": "iana", "value": "application/vnd.apple.installer+xml", "compressible": false, "charSet": "", "extensions": "mpkg" }
-            , { "id": 392, "source": "iana", "value": "application/vnd.apple.mpegurl", "compressible": false, "charSet": "", "extensions": "m3u8" }
-            , { "id": 393, "source": "", "value": "application/vnd.apple.pkpass", "compressible": false, "charSet": "", "extensions": "pkpass" }
-            , { "id": 394, "source": "iana", "value": "application/vnd.arastra.swi", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 395, "source": "iana", "value": "application/vnd.aristanetworks.swi", "compressible": false, "charSet": "", "extensions": "swi" }
-            , { "id": 396, "source": "iana", "value": "application/vnd.artsquare", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 397, "source": "iana", "value": "application/vnd.astraea-software.iota", "compressible": false, "charSet": "", "extensions": "iota" }
-            , { "id": 398, "source": "iana", "value": "application/vnd.audiograph", "compressible": false, "charSet": "", "extensions": "aep" }
-            , { "id": 399, "source": "iana", "value": "application/vnd.autopackage", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 400, "source": "iana", "value": "application/vnd.avistar+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 401, "source": "iana", "value": "application/vnd.balsamiq.bmml+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 402, "source": "iana", "value": "application/vnd.balsamiq.bmpr", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 403, "source": "iana", "value": "application/vnd.bekitzur-stech+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 404, "source": "iana", "value": "application/vnd.biopax.rdf+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 405, "source": "iana", "value": "application/vnd.blueice.multipass", "compressible": false, "charSet": "", "extensions": "mpm" }
-            , { "id": 406, "source": "iana", "value": "application/vnd.bluetooth.ep.oob", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 407, "source": "iana", "value": "application/vnd.bluetooth.le.oob", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 408, "source": "iana", "value": "application/vnd.bmi", "compressible": false, "charSet": "", "extensions": "bmi" }
-            , { "id": 409, "source": "iana", "value": "application/vnd.businessobjects", "compressible": false, "charSet": "", "extensions": "rep" }
-            , { "id": 410, "source": "iana", "value": "application/vnd.cab-jscript", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 411, "source": "iana", "value": "application/vnd.canon-cpdl", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 412, "source": "iana", "value": "application/vnd.canon-lips", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 413, "source": "iana", "value": "application/vnd.cendio.thinlinc.clientconf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 414, "source": "iana", "value": "application/vnd.century-systems.tcp_stream", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 415, "source": "iana", "value": "application/vnd.chemdraw+xml", "compressible": false, "charSet": "", "extensions": "cdxml" }
-            , { "id": 416, "source": "iana", "value": "application/vnd.chipnuts.karaoke-mmd", "compressible": false, "charSet": "", "extensions": "mmd" }
-            , { "id": 417, "source": "iana", "value": "application/vnd.cinderella", "compressible": false, "charSet": "", "extensions": "cdy" }
-            , { "id": 418, "source": "iana", "value": "application/vnd.cirpack.isdn-ext", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 419, "source": "iana", "value": "application/vnd.citationstyles.style+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 420, "source": "iana", "value": "application/vnd.claymore", "compressible": false, "charSet": "", "extensions": "cla" }
-            , { "id": 421, "source": "iana", "value": "application/vnd.cloanto.rp9", "compressible": false, "charSet": "", "extensions": "rp9" }
-            , { "id": 422, "source": "iana", "value": "application/vnd.clonk.c4group", "compressible": false, "charSet": "", "extensions": "c4g, c4d, c4f, c4p, c4u" }
-            , { "id": 423, "source": "iana", "value": "application/vnd.cluetrust.cartomobile-config", "compressible": false, "charSet": "", "extensions": "c11amc" }
-            , { "id": 424, "source": "iana", "value": "application/vnd.cluetrust.cartomobile-config-pkg", "compressible": false, "charSet": "", "extensions": "c11amz" }
-            , { "id": 425, "source": "iana", "value": "application/vnd.coffeescript", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 426, "source": "iana", "value": "application/vnd.collection+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 427, "source": "iana", "value": "application/vnd.collection.doc+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 428, "source": "iana", "value": "application/vnd.collection.next+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 429, "source": "iana", "value": "application/vnd.commerce-battelle", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 430, "source": "iana", "value": "application/vnd.commonspace", "compressible": false, "charSet": "", "extensions": "csp" }
-            , { "id": 431, "source": "iana", "value": "application/vnd.contact.cmsg", "compressible": false, "charSet": "", "extensions": "cdbcmsg" }
-            , { "id": 432, "source": "iana", "value": "application/vnd.coreos.ignition+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 433, "source": "iana", "value": "application/vnd.cosmocaller", "compressible": false, "charSet": "", "extensions": "cmc" }
-            , { "id": 434, "source": "iana", "value": "application/vnd.crick.clicker", "compressible": false, "charSet": "", "extensions": "clkx" }
-            , { "id": 435, "source": "iana", "value": "application/vnd.crick.clicker.keyboard", "compressible": false, "charSet": "", "extensions": "clkk" }
-            , { "id": 436, "source": "iana", "value": "application/vnd.crick.clicker.palette", "compressible": false, "charSet": "", "extensions": "clkp" }
-            , { "id": 437, "source": "iana", "value": "application/vnd.crick.clicker.template", "compressible": false, "charSet": "", "extensions": "clkt" }
-            , { "id": 438, "source": "iana", "value": "application/vnd.crick.clicker.wordbank", "compressible": false, "charSet": "", "extensions": "clkw" }
-            , { "id": 439, "source": "iana", "value": "application/vnd.criticaltools.wbs+xml", "compressible": false, "charSet": "", "extensions": "wbs" }
-            , { "id": 440, "source": "iana", "value": "application/vnd.ctc-posml", "compressible": false, "charSet": "", "extensions": "pml" }
-            , { "id": 441, "source": "iana", "value": "application/vnd.ctct.ws+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 442, "source": "iana", "value": "application/vnd.cups-pdf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 443, "source": "iana", "value": "application/vnd.cups-postscript", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 444, "source": "iana", "value": "application/vnd.cups-ppd", "compressible": false, "charSet": "", "extensions": "ppd" }
-            , { "id": 445, "source": "iana", "value": "application/vnd.cups-raster", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 446, "source": "iana", "value": "application/vnd.cups-raw", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 447, "source": "iana", "value": "application/vnd.curl", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 448, "source": "apache", "value": "application/vnd.curl.car", "compressible": false, "charSet": "", "extensions": "car" }
-            , { "id": 449, "source": "apache", "value": "application/vnd.curl.pcurl", "compressible": false, "charSet": "", "extensions": "pcurl" }
-            , { "id": 450, "source": "iana", "value": "application/vnd.cyan.dean.root+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 451, "source": "iana", "value": "application/vnd.cybank", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 452, "source": "iana", "value": "application/vnd.dart", "compressible": true, "charSet": "", "extensions": "dart" }
-            , { "id": 453, "source": "iana", "value": "application/vnd.data-vision.rdz", "compressible": false, "charSet": "", "extensions": "rdz" }
-            , { "id": 454, "source": "iana", "value": "application/vnd.debian.binary-package", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 455, "source": "iana", "value": "application/vnd.dece.data", "compressible": false, "charSet": "", "extensions": "uvf, uvvf, uvd, uvvd" }
-            , { "id": 456, "source": "iana", "value": "application/vnd.dece.ttml+xml", "compressible": false, "charSet": "", "extensions": "uvt, uvvt" }
-            , { "id": 457, "source": "iana", "value": "application/vnd.dece.unspecified", "compressible": false, "charSet": "", "extensions": "uvx, uvvx" }
-            , { "id": 458, "source": "iana", "value": "application/vnd.dece.zip", "compressible": false, "charSet": "", "extensions": "uvz, uvvz" }
-            , { "id": 459, "source": "iana", "value": "application/vnd.denovo.fcselayout-link", "compressible": false, "charSet": "", "extensions": "fe_launch" }
-            , { "id": 460, "source": "iana", "value": "application/vnd.desmume-movie", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 461, "source": "apache", "value": "application/vnd.desmume.movie", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 462, "source": "iana", "value": "application/vnd.dir-bi.plate-dl-nosuffix", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 463, "source": "iana", "value": "application/vnd.dm.delegation+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 464, "source": "iana", "value": "application/vnd.dna", "compressible": false, "charSet": "", "extensions": "dna" }
-            , { "id": 465, "source": "iana", "value": "application/vnd.document+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 466, "source": "apache", "value": "application/vnd.dolby.mlp", "compressible": false, "charSet": "", "extensions": "mlp" }
-            , { "id": 467, "source": "iana", "value": "application/vnd.dolby.mobile.1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 468, "source": "iana", "value": "application/vnd.dolby.mobile.2", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 469, "source": "iana", "value": "application/vnd.doremir.scorecloud-binary-document", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 470, "source": "iana", "value": "application/vnd.dpgraph", "compressible": false, "charSet": "", "extensions": "dpg" }
-            , { "id": 471, "source": "iana", "value": "application/vnd.dreamfactory", "compressible": false, "charSet": "", "extensions": "dfac" }
-            , { "id": 472, "source": "iana", "value": "application/vnd.drive+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 473, "source": "apache", "value": "application/vnd.ds-keypoint", "compressible": false, "charSet": "", "extensions": "kpxx" }
-            , { "id": 474, "source": "iana", "value": "application/vnd.dtg.local", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 475, "source": "iana", "value": "application/vnd.dtg.local.flash", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 476, "source": "iana", "value": "application/vnd.dtg.local.html", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 477, "source": "iana", "value": "application/vnd.dvb.ait", "compressible": false, "charSet": "", "extensions": "ait" }
-            , { "id": 478, "source": "iana", "value": "application/vnd.dvb.dvbj", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 479, "source": "iana", "value": "application/vnd.dvb.esgcontainer", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 480, "source": "iana", "value": "application/vnd.dvb.ipdcdftnotifaccess", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 481, "source": "iana", "value": "application/vnd.dvb.ipdcesgaccess", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 482, "source": "iana", "value": "application/vnd.dvb.ipdcesgaccess2", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 483, "source": "iana", "value": "application/vnd.dvb.ipdcesgpdd", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 484, "source": "iana", "value": "application/vnd.dvb.ipdcroaming", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 485, "source": "iana", "value": "application/vnd.dvb.iptv.alfec-base", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 486, "source": "iana", "value": "application/vnd.dvb.iptv.alfec-enhancement", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 487, "source": "iana", "value": "application/vnd.dvb.notif-aggregate-root+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 488, "source": "iana", "value": "application/vnd.dvb.notif-container+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 489, "source": "iana", "value": "application/vnd.dvb.notif-generic+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 490, "source": "iana", "value": "application/vnd.dvb.notif-ia-msglist+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 491, "source": "iana", "value": "application/vnd.dvb.notif-ia-registration-request+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 492, "source": "iana", "value": "application/vnd.dvb.notif-ia-registration-response+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 493, "source": "iana", "value": "application/vnd.dvb.notif-init+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 494, "source": "iana", "value": "application/vnd.dvb.pfr", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 495, "source": "iana", "value": "application/vnd.dvb.service", "compressible": false, "charSet": "", "extensions": "svc" }
-            , { "id": 496, "source": "iana", "value": "application/vnd.dxr", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 497, "source": "iana", "value": "application/vnd.dynageo", "compressible": false, "charSet": "", "extensions": "geo" }
-            , { "id": 498, "source": "iana", "value": "application/vnd.dzr", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 499, "source": "iana", "value": "application/vnd.easykaraoke.cdgdownload", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 500, "source": "iana", "value": "application/vnd.ecdis-update", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 501, "source": "iana", "value": "application/vnd.ecowin.chart", "compressible": false, "charSet": "", "extensions": "mag" }
-            , { "id": 502, "source": "iana", "value": "application/vnd.ecowin.filerequest", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 503, "source": "iana", "value": "application/vnd.ecowin.fileupdate", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 504, "source": "iana", "value": "application/vnd.ecowin.series", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 505, "source": "iana", "value": "application/vnd.ecowin.seriesrequest", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 506, "source": "iana", "value": "application/vnd.ecowin.seriesupdate", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 507, "source": "iana", "value": "application/vnd.emclient.accessrequest+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 508, "source": "iana", "value": "application/vnd.enliven", "compressible": false, "charSet": "", "extensions": "nml" }
-            , { "id": 509, "source": "iana", "value": "application/vnd.enphase.envoy", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 510, "source": "iana", "value": "application/vnd.eprints.data+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 511, "source": "iana", "value": "application/vnd.epson.esf", "compressible": false, "charSet": "", "extensions": "esf" }
-            , { "id": 512, "source": "iana", "value": "application/vnd.epson.msf", "compressible": false, "charSet": "", "extensions": "msf" }
-            , { "id": 513, "source": "iana", "value": "application/vnd.epson.quickanime", "compressible": false, "charSet": "", "extensions": "qam" }
-            , { "id": 514, "source": "iana", "value": "application/vnd.epson.salt", "compressible": false, "charSet": "", "extensions": "slt" }
-            , { "id": 515, "source": "iana", "value": "application/vnd.epson.ssf", "compressible": false, "charSet": "", "extensions": "ssf" }
-            , { "id": 516, "source": "iana", "value": "application/vnd.ericsson.quickcall", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 517, "source": "iana", "value": "application/vnd.eszigno3+xml", "compressible": false, "charSet": "", "extensions": "es3, et3" }
-            , { "id": 518, "source": "iana", "value": "application/vnd.etsi.aoc+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 519, "source": "iana", "value": "application/vnd.etsi.asic-e+zip", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 520, "source": "iana", "value": "application/vnd.etsi.asic-s+zip", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 521, "source": "iana", "value": "application/vnd.etsi.cug+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 522, "source": "iana", "value": "application/vnd.etsi.iptvcommand+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 523, "source": "iana", "value": "application/vnd.etsi.iptvdiscovery+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 524, "source": "iana", "value": "application/vnd.etsi.iptvprofile+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 525, "source": "iana", "value": "application/vnd.etsi.iptvsad-bc+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 526, "source": "iana", "value": "application/vnd.etsi.iptvsad-cod+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 527, "source": "iana", "value": "application/vnd.etsi.iptvsad-npvr+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 528, "source": "iana", "value": "application/vnd.etsi.iptvservice+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 529, "source": "iana", "value": "application/vnd.etsi.iptvsync+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 530, "source": "iana", "value": "application/vnd.etsi.iptvueprofile+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 531, "source": "iana", "value": "application/vnd.etsi.mcid+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 532, "source": "iana", "value": "application/vnd.etsi.mheg5", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 533, "source": "iana", "value": "application/vnd.etsi.overload-control-policy-dataset+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 534, "source": "iana", "value": "application/vnd.etsi.pstn+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 535, "source": "iana", "value": "application/vnd.etsi.sci+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 536, "source": "iana", "value": "application/vnd.etsi.simservs+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 537, "source": "iana", "value": "application/vnd.etsi.timestamp-token", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 538, "source": "iana", "value": "application/vnd.etsi.tsl+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 539, "source": "iana", "value": "application/vnd.etsi.tsl.der", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 540, "source": "iana", "value": "application/vnd.eudora.data", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 541, "source": "iana", "value": "application/vnd.ezpix-album", "compressible": false, "charSet": "", "extensions": "ez2" }
-            , { "id": 542, "source": "iana", "value": "application/vnd.ezpix-package", "compressible": false, "charSet": "", "extensions": "ez3" }
-            , { "id": 543, "source": "iana", "value": "application/vnd.f-secure.mobile", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 544, "source": "iana", "value": "application/vnd.fastcopy-disk-image", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 545, "source": "iana", "value": "application/vnd.fdf", "compressible": false, "charSet": "", "extensions": "fdf" }
-            , { "id": 546, "source": "iana", "value": "application/vnd.fdsn.mseed", "compressible": false, "charSet": "", "extensions": "mseed" }
-            , { "id": 547, "source": "iana", "value": "application/vnd.fdsn.seed", "compressible": false, "charSet": "", "extensions": "seed, dataless" }
-            , { "id": 548, "source": "iana", "value": "application/vnd.ffsns", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 549, "source": "iana", "value": "application/vnd.filmit.zfc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 550, "source": "iana", "value": "application/vnd.fints", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 551, "source": "iana", "value": "application/vnd.firemonkeys.cloudcell", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 552, "source": "iana", "value": "application/vnd.flographit", "compressible": false, "charSet": "", "extensions": "gph" }
-            , { "id": 553, "source": "iana", "value": "application/vnd.fluxtime.clip", "compressible": false, "charSet": "", "extensions": "ftc" }
-            , { "id": 554, "source": "iana", "value": "application/vnd.font-fontforge-sfd", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 555, "source": "iana", "value": "application/vnd.framemaker", "compressible": false, "charSet": "", "extensions": "fm, frame, maker, book" }
-            , { "id": 556, "source": "iana", "value": "application/vnd.frogans.fnc", "compressible": false, "charSet": "", "extensions": "fnc" }
-            , { "id": 557, "source": "iana", "value": "application/vnd.frogans.ltf", "compressible": false, "charSet": "", "extensions": "ltf" }
-            , { "id": 558, "source": "iana", "value": "application/vnd.fsc.weblaunch", "compressible": false, "charSet": "", "extensions": "fsc" }
-            , { "id": 559, "source": "iana", "value": "application/vnd.fujitsu.oasys", "compressible": false, "charSet": "", "extensions": "oas" }
-            , { "id": 560, "source": "iana", "value": "application/vnd.fujitsu.oasys2", "compressible": false, "charSet": "", "extensions": "oa2" }
-            , { "id": 561, "source": "iana", "value": "application/vnd.fujitsu.oasys3", "compressible": false, "charSet": "", "extensions": "oa3" }
-            , { "id": 562, "source": "iana", "value": "application/vnd.fujitsu.oasysgp", "compressible": false, "charSet": "", "extensions": "fg5" }
-            , { "id": 563, "source": "iana", "value": "application/vnd.fujitsu.oasysprs", "compressible": false, "charSet": "", "extensions": "bh2" }
-            , { "id": 564, "source": "iana", "value": "application/vnd.fujixerox.art-ex", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 565, "source": "iana", "value": "application/vnd.fujixerox.art4", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 566, "source": "iana", "value": "application/vnd.fujixerox.ddd", "compressible": false, "charSet": "", "extensions": "ddd" }
-            , { "id": 567, "source": "iana", "value": "application/vnd.fujixerox.docuworks", "compressible": false, "charSet": "", "extensions": "xdw" }
-            , { "id": 568, "source": "iana", "value": "application/vnd.fujixerox.docuworks.binder", "compressible": false, "charSet": "", "extensions": "xbd" }
-            , { "id": 569, "source": "iana", "value": "application/vnd.fujixerox.docuworks.container", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 570, "source": "iana", "value": "application/vnd.fujixerox.hbpl", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 571, "source": "iana", "value": "application/vnd.fut-misnet", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 572, "source": "iana", "value": "application/vnd.fuzzysheet", "compressible": false, "charSet": "", "extensions": "fzs" }
-            , { "id": 573, "source": "iana", "value": "application/vnd.genomatix.tuxedo", "compressible": false, "charSet": "", "extensions": "txd" }
-            , { "id": 574, "source": "iana", "value": "application/vnd.geo+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 575, "source": "iana", "value": "application/vnd.geocube+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 576, "source": "iana", "value": "application/vnd.geogebra.file", "compressible": false, "charSet": "", "extensions": "ggb" }
-            , { "id": 577, "source": "iana", "value": "application/vnd.geogebra.tool", "compressible": false, "charSet": "", "extensions": "ggt" }
-            , { "id": 578, "source": "iana", "value": "application/vnd.geometry-explorer", "compressible": false, "charSet": "", "extensions": "gex, gre" }
-            , { "id": 579, "source": "iana", "value": "application/vnd.geonext", "compressible": false, "charSet": "", "extensions": "gxt" }
-            , { "id": 580, "source": "iana", "value": "application/vnd.geoplan", "compressible": false, "charSet": "", "extensions": "g2w" }
-            , { "id": 581, "source": "iana", "value": "application/vnd.geospace", "compressible": false, "charSet": "", "extensions": "g3w" }
-            , { "id": 582, "source": "iana", "value": "application/vnd.gerber", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 583, "source": "iana", "value": "application/vnd.globalplatform.card-content-mgt", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 584, "source": "iana", "value": "application/vnd.globalplatform.card-content-mgt-response", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 585, "source": "iana", "value": "application/vnd.gmx", "compressible": false, "charSet": "", "extensions": "gmx" }
-            , { "id": 586, "source": "", "value": "application/vnd.google-apps.document", "compressible": false, "charSet": "", "extensions": "gdoc" }
-            , { "id": 587, "source": "", "value": "application/vnd.google-apps.presentation", "compressible": false, "charSet": "", "extensions": "gslides" }
-            , { "id": 588, "source": "", "value": "application/vnd.google-apps.spreadsheet", "compressible": false, "charSet": "", "extensions": "gsheet" }
-            , { "id": 589, "source": "iana", "value": "application/vnd.google-earth.kml+xml", "compressible": true, "charSet": "", "extensions": "kml" }
-            , { "id": 590, "source": "iana", "value": "application/vnd.google-earth.kmz", "compressible": false, "charSet": "", "extensions": "kmz" }
-            , { "id": 591, "source": "iana", "value": "application/vnd.gov.sk.e-form+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 592, "source": "iana", "value": "application/vnd.gov.sk.e-form+zip", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 593, "source": "iana", "value": "application/vnd.gov.sk.xmldatacontainer+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 594, "source": "iana", "value": "application/vnd.grafeq", "compressible": false, "charSet": "", "extensions": "gqf, gqs" }
-            , { "id": 595, "source": "iana", "value": "application/vnd.gridmp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 596, "source": "iana", "value": "application/vnd.groove-account", "compressible": false, "charSet": "", "extensions": "gac" }
-            , { "id": 597, "source": "iana", "value": "application/vnd.groove-help", "compressible": false, "charSet": "", "extensions": "ghf" }
-            , { "id": 598, "source": "iana", "value": "application/vnd.groove-identity-message", "compressible": false, "charSet": "", "extensions": "gim" }
-            , { "id": 599, "source": "iana", "value": "application/vnd.groove-injector", "compressible": false, "charSet": "", "extensions": "grv" }
-            , { "id": 600, "source": "iana", "value": "application/vnd.groove-tool-message", "compressible": false, "charSet": "", "extensions": "gtm" }
-            , { "id": 601, "source": "iana", "value": "application/vnd.groove-tool-template", "compressible": false, "charSet": "", "extensions": "tpl" }
-            , { "id": 602, "source": "iana", "value": "application/vnd.groove-vcard", "compressible": false, "charSet": "", "extensions": "vcg" }
-            , { "id": 603, "source": "iana", "value": "application/vnd.hal+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 604, "source": "iana", "value": "application/vnd.hal+xml", "compressible": false, "charSet": "", "extensions": "hal" }
-            , { "id": 605, "source": "iana", "value": "application/vnd.handheld-entertainment+xml", "compressible": false, "charSet": "", "extensions": "zmm" }
-            , { "id": 606, "source": "iana", "value": "application/vnd.hbci", "compressible": false, "charSet": "", "extensions": "hbci" }
-            , { "id": 607, "source": "iana", "value": "application/vnd.hcl-bireports", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 608, "source": "iana", "value": "application/vnd.hdt", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 609, "source": "iana", "value": "application/vnd.heroku+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 610, "source": "iana", "value": "application/vnd.hhe.lesson-player", "compressible": false, "charSet": "", "extensions": "les" }
-            , { "id": 611, "source": "iana", "value": "application/vnd.hp-hpgl", "compressible": false, "charSet": "", "extensions": "hpgl" }
-            , { "id": 612, "source": "iana", "value": "application/vnd.hp-hpid", "compressible": false, "charSet": "", "extensions": "hpid" }
-            , { "id": 613, "source": "iana", "value": "application/vnd.hp-hps", "compressible": false, "charSet": "", "extensions": "hps" }
-            , { "id": 614, "source": "iana", "value": "application/vnd.hp-jlyt", "compressible": false, "charSet": "", "extensions": "jlt" }
-            , { "id": 615, "source": "iana", "value": "application/vnd.hp-pcl", "compressible": false, "charSet": "", "extensions": "pcl" }
-            , { "id": 616, "source": "iana", "value": "application/vnd.hp-pclxl", "compressible": false, "charSet": "", "extensions": "pclxl" }
-            , { "id": 617, "source": "iana", "value": "application/vnd.httphone", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 618, "source": "iana", "value": "application/vnd.hydrostatix.sof-data", "compressible": false, "charSet": "", "extensions": "sfd-hdstx" }
-            , { "id": 619, "source": "iana", "value": "application/vnd.hyperdrive+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 620, "source": "iana", "value": "application/vnd.hzn-3d-crossword", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 621, "source": "iana", "value": "application/vnd.ibm.afplinedata", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 622, "source": "iana", "value": "application/vnd.ibm.electronic-media", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 623, "source": "iana", "value": "application/vnd.ibm.minipay", "compressible": false, "charSet": "", "extensions": "mpy" }
-            , { "id": 624, "source": "iana", "value": "application/vnd.ibm.modcap", "compressible": false, "charSet": "", "extensions": "afp, listafp, list3820" }
-            , { "id": 625, "source": "iana", "value": "application/vnd.ibm.rights-management", "compressible": false, "charSet": "", "extensions": "irm" }
-            , { "id": 626, "source": "iana", "value": "application/vnd.ibm.secure-container", "compressible": false, "charSet": "", "extensions": "sc" }
-            , { "id": 627, "source": "iana", "value": "application/vnd.iccprofile", "compressible": false, "charSet": "", "extensions": "icc, icm" }
-            , { "id": 628, "source": "iana", "value": "application/vnd.ieee.1905", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 629, "source": "iana", "value": "application/vnd.igloader", "compressible": false, "charSet": "", "extensions": "igl" }
-            , { "id": 630, "source": "iana", "value": "application/vnd.immervision-ivp", "compressible": false, "charSet": "", "extensions": "ivp" }
-            , { "id": 631, "source": "iana", "value": "application/vnd.immervision-ivu", "compressible": false, "charSet": "", "extensions": "ivu" }
-            , { "id": 632, "source": "iana", "value": "application/vnd.ims.imsccv1p1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 633, "source": "iana", "value": "application/vnd.ims.imsccv1p2", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 634, "source": "iana", "value": "application/vnd.ims.imsccv1p3", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 635, "source": "iana", "value": "application/vnd.ims.lis.v2.result+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 636, "source": "iana", "value": "application/vnd.ims.lti.v2.toolconsumerprofile+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 637, "source": "iana", "value": "application/vnd.ims.lti.v2.toolproxy+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 638, "source": "iana", "value": "application/vnd.ims.lti.v2.toolproxy.id+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 639, "source": "iana", "value": "application/vnd.ims.lti.v2.toolsettings+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 640, "source": "iana", "value": "application/vnd.ims.lti.v2.toolsettings.simple+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 641, "source": "iana", "value": "application/vnd.informedcontrol.rms+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 642, "source": "iana", "value": "application/vnd.informix-visionary", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 643, "source": "iana", "value": "application/vnd.infotech.project", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 644, "source": "iana", "value": "application/vnd.infotech.project+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 645, "source": "iana", "value": "application/vnd.innopath.wamp.notification", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 646, "source": "iana", "value": "application/vnd.insors.igm", "compressible": false, "charSet": "", "extensions": "igm" }
-            , { "id": 647, "source": "iana", "value": "application/vnd.intercon.formnet", "compressible": false, "charSet": "", "extensions": "xpw, xpx" }
-            , { "id": 648, "source": "iana", "value": "application/vnd.intergeo", "compressible": false, "charSet": "", "extensions": "i2g" }
-            , { "id": 649, "source": "iana", "value": "application/vnd.intertrust.digibox", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 650, "source": "iana", "value": "application/vnd.intertrust.nncp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 651, "source": "iana", "value": "application/vnd.intu.qbo", "compressible": false, "charSet": "", "extensions": "qbo" }
-            , { "id": 652, "source": "iana", "value": "application/vnd.intu.qfx", "compressible": false, "charSet": "", "extensions": "qfx" }
-            , { "id": 653, "source": "iana", "value": "application/vnd.iptc.g2.catalogitem+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 654, "source": "iana", "value": "application/vnd.iptc.g2.conceptitem+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 655, "source": "iana", "value": "application/vnd.iptc.g2.knowledgeitem+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 656, "source": "iana", "value": "application/vnd.iptc.g2.newsitem+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 657, "source": "iana", "value": "application/vnd.iptc.g2.newsmessage+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 658, "source": "iana", "value": "application/vnd.iptc.g2.packageitem+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 659, "source": "iana", "value": "application/vnd.iptc.g2.planningitem+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 660, "source": "iana", "value": "application/vnd.ipunplugged.rcprofile", "compressible": false, "charSet": "", "extensions": "rcprofile" }
-            , { "id": 661, "source": "iana", "value": "application/vnd.irepository.package+xml", "compressible": false, "charSet": "", "extensions": "irp" }
-            , { "id": 662, "source": "iana", "value": "application/vnd.is-xpr", "compressible": false, "charSet": "", "extensions": "xpr" }
-            , { "id": 663, "source": "iana", "value": "application/vnd.isac.fcs", "compressible": false, "charSet": "", "extensions": "fcs" }
-            , { "id": 664, "source": "iana", "value": "application/vnd.jam", "compressible": false, "charSet": "", "extensions": "jam" }
-            , { "id": 665, "source": "iana", "value": "application/vnd.japannet-directory-service", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 666, "source": "iana", "value": "application/vnd.japannet-jpnstore-wakeup", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 667, "source": "iana", "value": "application/vnd.japannet-payment-wakeup", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 668, "source": "iana", "value": "application/vnd.japannet-registration", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 669, "source": "iana", "value": "application/vnd.japannet-registration-wakeup", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 670, "source": "iana", "value": "application/vnd.japannet-setstore-wakeup", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 671, "source": "iana", "value": "application/vnd.japannet-verification", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 672, "source": "iana", "value": "application/vnd.japannet-verification-wakeup", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 673, "source": "iana", "value": "application/vnd.jcp.javame.midlet-rms", "compressible": false, "charSet": "", "extensions": "rms" }
-            , { "id": 674, "source": "iana", "value": "application/vnd.jisp", "compressible": false, "charSet": "", "extensions": "jisp" }
-            , { "id": 675, "source": "iana", "value": "application/vnd.joost.joda-archive", "compressible": false, "charSet": "", "extensions": "joda" }
-            , { "id": 676, "source": "iana", "value": "application/vnd.jsk.isdn-ngn", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 677, "source": "iana", "value": "application/vnd.kahootz", "compressible": false, "charSet": "", "extensions": "ktz, ktr" }
-            , { "id": 678, "source": "iana", "value": "application/vnd.kde.karbon", "compressible": false, "charSet": "", "extensions": "karbon" }
-            , { "id": 679, "source": "iana", "value": "application/vnd.kde.kchart", "compressible": false, "charSet": "", "extensions": "chrt" }
-            , { "id": 680, "source": "iana", "value": "application/vnd.kde.kformula", "compressible": false, "charSet": "", "extensions": "kfo" }
-            , { "id": 681, "source": "iana", "value": "application/vnd.kde.kivio", "compressible": false, "charSet": "", "extensions": "flw" }
-            , { "id": 682, "source": "iana", "value": "application/vnd.kde.kontour", "compressible": false, "charSet": "", "extensions": "kon" }
-            , { "id": 683, "source": "iana", "value": "application/vnd.kde.kpresenter", "compressible": false, "charSet": "", "extensions": "kpr, kpt" }
-            , { "id": 684, "source": "iana", "value": "application/vnd.kde.kspread", "compressible": false, "charSet": "", "extensions": "ksp" }
-            , { "id": 685, "source": "iana", "value": "application/vnd.kde.kword", "compressible": false, "charSet": "", "extensions": "kwd, kwt" }
-            , { "id": 686, "source": "iana", "value": "application/vnd.kenameaapp", "compressible": false, "charSet": "", "extensions": "htke" }
-            , { "id": 687, "source": "iana", "value": "application/vnd.kidspiration", "compressible": false, "charSet": "", "extensions": "kia" }
-            , { "id": 688, "source": "iana", "value": "application/vnd.kinar", "compressible": false, "charSet": "", "extensions": "kne, knp" }
-            , { "id": 689, "source": "iana", "value": "application/vnd.koan", "compressible": false, "charSet": "", "extensions": "skp, skd, skt, skm" }
-            , { "id": 690, "source": "iana", "value": "application/vnd.kodak-descriptor", "compressible": false, "charSet": "", "extensions": "sse" }
-            , { "id": 691, "source": "iana", "value": "application/vnd.las.las+xml", "compressible": false, "charSet": "", "extensions": "lasxml" }
-            , { "id": 692, "source": "iana", "value": "application/vnd.liberty-request+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 693, "source": "iana", "value": "application/vnd.llamagraphics.life-balance.desktop", "compressible": false, "charSet": "", "extensions": "lbd" }
-            , { "id": 694, "source": "iana", "value": "application/vnd.llamagraphics.life-balance.exchange+xml", "compressible": false, "charSet": "", "extensions": "lbe" }
-            , { "id": 695, "source": "iana", "value": "application/vnd.lotus-1-2-3", "compressible": false, "charSet": "", "extensions": "123" }
-            , { "id": 696, "source": "iana", "value": "application/vnd.lotus-approach", "compressible": false, "charSet": "", "extensions": "apr" }
-            , { "id": 697, "source": "iana", "value": "application/vnd.lotus-freelance", "compressible": false, "charSet": "", "extensions": "pre" }
-            , { "id": 698, "source": "iana", "value": "application/vnd.lotus-notes", "compressible": false, "charSet": "", "extensions": "nsf" }
-            , { "id": 699, "source": "iana", "value": "application/vnd.lotus-organizer", "compressible": false, "charSet": "", "extensions": "org" }
-            , { "id": 700, "source": "iana", "value": "application/vnd.lotus-screencam", "compressible": false, "charSet": "", "extensions": "scm" }
-            , { "id": 701, "source": "iana", "value": "application/vnd.lotus-wordpro", "compressible": false, "charSet": "", "extensions": "lwp" }
-            , { "id": 702, "source": "iana", "value": "application/vnd.macports.portpkg", "compressible": false, "charSet": "", "extensions": "portpkg" }
-            , { "id": 703, "source": "iana", "value": "application/vnd.mapbox-vector-tile", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 704, "source": "iana", "value": "application/vnd.marlin.drm.actiontoken+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 705, "source": "iana", "value": "application/vnd.marlin.drm.conftoken+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 706, "source": "iana", "value": "application/vnd.marlin.drm.license+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 707, "source": "iana", "value": "application/vnd.marlin.drm.mdcf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 708, "source": "iana", "value": "application/vnd.mason+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 709, "source": "iana", "value": "application/vnd.maxmind.maxmind-db", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 710, "source": "iana", "value": "application/vnd.mcd", "compressible": false, "charSet": "", "extensions": "mcd" }
-            , { "id": 711, "source": "iana", "value": "application/vnd.medcalcdata", "compressible": false, "charSet": "", "extensions": "mc1" }
-            , { "id": 712, "source": "iana", "value": "application/vnd.mediastation.cdkey", "compressible": false, "charSet": "", "extensions": "cdkey" }
-            , { "id": 713, "source": "iana", "value": "application/vnd.meridian-slingshot", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 714, "source": "iana", "value": "application/vnd.mfer", "compressible": false, "charSet": "", "extensions": "mwf" }
-            , { "id": 715, "source": "iana", "value": "application/vnd.mfmp", "compressible": false, "charSet": "", "extensions": "mfm" }
-            , { "id": 716, "source": "iana", "value": "application/vnd.micro+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 717, "source": "iana", "value": "application/vnd.micrografx.flo", "compressible": false, "charSet": "", "extensions": "flo" }
-            , { "id": 718, "source": "iana", "value": "application/vnd.micrografx.igx", "compressible": false, "charSet": "", "extensions": "igx" }
-            , { "id": 719, "source": "iana", "value": "application/vnd.microsoft.portable-executable", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 720, "source": "iana", "value": "application/vnd.miele+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 721, "source": "iana", "value": "application/vnd.mif", "compressible": false, "charSet": "", "extensions": "mif" }
-            , { "id": 722, "source": "iana", "value": "application/vnd.minisoft-hp3000-save", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 723, "source": "iana", "value": "application/vnd.mitsubishi.misty-guard.trustweb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 724, "source": "iana", "value": "application/vnd.mobius.daf", "compressible": false, "charSet": "", "extensions": "daf" }
-            , { "id": 725, "source": "iana", "value": "application/vnd.mobius.dis", "compressible": false, "charSet": "", "extensions": "dis" }
-            , { "id": 726, "source": "iana", "value": "application/vnd.mobius.mbk", "compressible": false, "charSet": "", "extensions": "mbk" }
-            , { "id": 727, "source": "iana", "value": "application/vnd.mobius.mqy", "compressible": false, "charSet": "", "extensions": "mqy" }
-            , { "id": 728, "source": "iana", "value": "application/vnd.mobius.msl", "compressible": false, "charSet": "", "extensions": "msl" }
-            , { "id": 729, "source": "iana", "value": "application/vnd.mobius.plc", "compressible": false, "charSet": "", "extensions": "plc" }
-            , { "id": 730, "source": "iana", "value": "application/vnd.mobius.txf", "compressible": false, "charSet": "", "extensions": "txf" }
-            , { "id": 731, "source": "iana", "value": "application/vnd.mophun.application", "compressible": false, "charSet": "", "extensions": "mpn" }
-            , { "id": 732, "source": "iana", "value": "application/vnd.mophun.certificate", "compressible": false, "charSet": "", "extensions": "mpc" }
-            , { "id": 733, "source": "iana", "value": "application/vnd.motorola.flexsuite", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 734, "source": "iana", "value": "application/vnd.motorola.flexsuite.adsi", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 735, "source": "iana", "value": "application/vnd.motorola.flexsuite.fis", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 736, "source": "iana", "value": "application/vnd.motorola.flexsuite.gotap", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 737, "source": "iana", "value": "application/vnd.motorola.flexsuite.kmr", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 738, "source": "iana", "value": "application/vnd.motorola.flexsuite.ttc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 739, "source": "iana", "value": "application/vnd.motorola.flexsuite.wem", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 740, "source": "iana", "value": "application/vnd.motorola.iprm", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 741, "source": "iana", "value": "application/vnd.mozilla.xul+xml", "compressible": true, "charSet": "", "extensions": "xul" }
-            , { "id": 742, "source": "iana", "value": "application/vnd.ms-3mfdocument", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 743, "source": "iana", "value": "application/vnd.ms-artgalry", "compressible": false, "charSet": "", "extensions": "cil" }
-            , { "id": 744, "source": "iana", "value": "application/vnd.ms-asf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 745, "source": "iana", "value": "application/vnd.ms-cab-compressed", "compressible": false, "charSet": "", "extensions": "cab" }
-            , { "id": 746, "source": "apache", "value": "application/vnd.ms-color.iccprofile", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 747, "source": "iana", "value": "application/vnd.ms-excel", "compressible": false, "charSet": "", "extensions": "xls, xlm, xla, xlc, xlt, xlw" }
-            , { "id": 748, "source": "iana", "value": "application/vnd.ms-excel.addin.macroenabled.12", "compressible": false, "charSet": "", "extensions": "xlam" }
-            , { "id": 749, "source": "iana", "value": "application/vnd.ms-excel.sheet.binary.macroenabled.12", "compressible": false, "charSet": "", "extensions": "xlsb" }
-            , { "id": 750, "source": "iana", "value": "application/vnd.ms-excel.sheet.macroenabled.12", "compressible": false, "charSet": "", "extensions": "xlsm" }
-            , { "id": 751, "source": "iana", "value": "application/vnd.ms-excel.template.macroenabled.12", "compressible": false, "charSet": "", "extensions": "xltm" }
-            , { "id": 752, "source": "iana", "value": "application/vnd.ms-fontobject", "compressible": true, "charSet": "", "extensions": "eot" }
-            , { "id": 753, "source": "iana", "value": "application/vnd.ms-htmlhelp", "compressible": false, "charSet": "", "extensions": "chm" }
-            , { "id": 754, "source": "iana", "value": "application/vnd.ms-ims", "compressible": false, "charSet": "", "extensions": "ims" }
-            , { "id": 755, "source": "iana", "value": "application/vnd.ms-lrm", "compressible": false, "charSet": "", "extensions": "lrm" }
-            , { "id": 756, "source": "iana", "value": "application/vnd.ms-office.activex+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 757, "source": "iana", "value": "application/vnd.ms-officetheme", "compressible": false, "charSet": "", "extensions": "thmx" }
-            , { "id": 758, "source": "apache", "value": "application/vnd.ms-opentype", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 759, "source": "apache", "value": "application/vnd.ms-package.obfuscated-opentype", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 760, "source": "apache", "value": "application/vnd.ms-pki.seccat", "compressible": false, "charSet": "", "extensions": "cat" }
-            , { "id": 761, "source": "apache", "value": "application/vnd.ms-pki.stl", "compressible": false, "charSet": "", "extensions": "stl" }
-            , { "id": 762, "source": "iana", "value": "application/vnd.ms-playready.initiator+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 763, "source": "iana", "value": "application/vnd.ms-powerpoint", "compressible": false, "charSet": "", "extensions": "ppt, pps, pot" }
-            , { "id": 764, "source": "iana", "value": "application/vnd.ms-powerpoint.addin.macroenabled.12", "compressible": false, "charSet": "", "extensions": "ppam" }
-            , { "id": 765, "source": "iana", "value": "application/vnd.ms-powerpoint.presentation.macroenabled.12", "compressible": false, "charSet": "", "extensions": "pptm" }
-            , { "id": 766, "source": "iana", "value": "application/vnd.ms-powerpoint.slide.macroenabled.12", "compressible": false, "charSet": "", "extensions": "sldm" }
-            , { "id": 767, "source": "iana", "value": "application/vnd.ms-powerpoint.slideshow.macroenabled.12", "compressible": false, "charSet": "", "extensions": "ppsm" }
-            , { "id": 768, "source": "iana", "value": "application/vnd.ms-powerpoint.template.macroenabled.12", "compressible": false, "charSet": "", "extensions": "potm" }
-            , { "id": 769, "source": "iana", "value": "application/vnd.ms-printdevicecapabilities+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 770, "source": "apache", "value": "application/vnd.ms-printing.printticket+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 771, "source": "iana", "value": "application/vnd.ms-printschematicket+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 772, "source": "iana", "value": "application/vnd.ms-project", "compressible": false, "charSet": "", "extensions": "mpp, mpt" }
-            , { "id": 773, "source": "iana", "value": "application/vnd.ms-tnef", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 774, "source": "iana", "value": "application/vnd.ms-windows.devicepairing", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 775, "source": "iana", "value": "application/vnd.ms-windows.nwprinting.oob", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 776, "source": "iana", "value": "application/vnd.ms-windows.printerpairing", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 777, "source": "iana", "value": "application/vnd.ms-windows.wsd.oob", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 778, "source": "iana", "value": "application/vnd.ms-wmdrm.lic-chlg-req", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 779, "source": "iana", "value": "application/vnd.ms-wmdrm.lic-resp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 780, "source": "iana", "value": "application/vnd.ms-wmdrm.meter-chlg-req", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 781, "source": "iana", "value": "application/vnd.ms-wmdrm.meter-resp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 782, "source": "iana", "value": "application/vnd.ms-word.document.macroenabled.12", "compressible": false, "charSet": "", "extensions": "docm" }
-            , { "id": 783, "source": "iana", "value": "application/vnd.ms-word.template.macroenabled.12", "compressible": false, "charSet": "", "extensions": "dotm" }
-            , { "id": 784, "source": "iana", "value": "application/vnd.ms-works", "compressible": false, "charSet": "", "extensions": "wps, wks, wcm, wdb" }
-            , { "id": 785, "source": "iana", "value": "application/vnd.ms-wpl", "compressible": false, "charSet": "", "extensions": "wpl" }
-            , { "id": 786, "source": "iana", "value": "application/vnd.ms-xpsdocument", "compressible": false, "charSet": "", "extensions": "xps" }
-            , { "id": 787, "source": "iana", "value": "application/vnd.msa-disk-image", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 788, "source": "iana", "value": "application/vnd.mseq", "compressible": false, "charSet": "", "extensions": "mseq" }
-            , { "id": 789, "source": "iana", "value": "application/vnd.msign", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 790, "source": "iana", "value": "application/vnd.multiad.creator", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 791, "source": "iana", "value": "application/vnd.multiad.creator.cif", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 792, "source": "iana", "value": "application/vnd.music-niff", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 793, "source": "iana", "value": "application/vnd.musician", "compressible": false, "charSet": "", "extensions": "mus" }
-            , { "id": 794, "source": "iana", "value": "application/vnd.muvee.style", "compressible": false, "charSet": "", "extensions": "msty" }
-            , { "id": 795, "source": "iana", "value": "application/vnd.mynfc", "compressible": false, "charSet": "", "extensions": "taglet" }
-            , { "id": 796, "source": "iana", "value": "application/vnd.ncd.control", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 797, "source": "iana", "value": "application/vnd.ncd.reference", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 798, "source": "iana", "value": "application/vnd.nervana", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 799, "source": "iana", "value": "application/vnd.netfpx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 800, "source": "iana", "value": "application/vnd.neurolanguage.nlu", "compressible": false, "charSet": "", "extensions": "nlu" }
-            , { "id": 801, "source": "iana", "value": "application/vnd.nintendo.nitro.rom", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 802, "source": "iana", "value": "application/vnd.nintendo.snes.rom", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 803, "source": "iana", "value": "application/vnd.nitf", "compressible": false, "charSet": "", "extensions": "ntf, nitf" }
-            , { "id": 804, "source": "iana", "value": "application/vnd.noblenet-directory", "compressible": false, "charSet": "", "extensions": "nnd" }
-            , { "id": 805, "source": "iana", "value": "application/vnd.noblenet-sealer", "compressible": false, "charSet": "", "extensions": "nns" }
-            , { "id": 806, "source": "iana", "value": "application/vnd.noblenet-web", "compressible": false, "charSet": "", "extensions": "nnw" }
-            , { "id": 807, "source": "iana", "value": "application/vnd.nokia.catalogs", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 808, "source": "iana", "value": "application/vnd.nokia.conml+wbxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 809, "source": "iana", "value": "application/vnd.nokia.conml+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 810, "source": "iana", "value": "application/vnd.nokia.iptv.config+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 811, "source": "iana", "value": "application/vnd.nokia.isds-radio-presets", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 812, "source": "iana", "value": "application/vnd.nokia.landmark+wbxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 813, "source": "iana", "value": "application/vnd.nokia.landmark+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 814, "source": "iana", "value": "application/vnd.nokia.landmarkcollection+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 815, "source": "iana", "value": "application/vnd.nokia.n-gage.ac+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 816, "source": "iana", "value": "application/vnd.nokia.n-gage.data", "compressible": false, "charSet": "", "extensions": "ngdat" }
-            , { "id": 817, "source": "iana", "value": "application/vnd.nokia.n-gage.symbian.install", "compressible": false, "charSet": "", "extensions": "n-gage" }
-            , { "id": 818, "source": "iana", "value": "application/vnd.nokia.ncd", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 819, "source": "iana", "value": "application/vnd.nokia.pcd+wbxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 820, "source": "iana", "value": "application/vnd.nokia.pcd+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 821, "source": "iana", "value": "application/vnd.nokia.radio-preset", "compressible": false, "charSet": "", "extensions": "rpst" }
-            , { "id": 822, "source": "iana", "value": "application/vnd.nokia.radio-presets", "compressible": false, "charSet": "", "extensions": "rpss" }
-            , { "id": 823, "source": "iana", "value": "application/vnd.novadigm.edm", "compressible": false, "charSet": "", "extensions": "edm" }
-            , { "id": 824, "source": "iana", "value": "application/vnd.novadigm.edx", "compressible": false, "charSet": "", "extensions": "edx" }
-            , { "id": 825, "source": "iana", "value": "application/vnd.novadigm.ext", "compressible": false, "charSet": "", "extensions": "ext" }
-            , { "id": 826, "source": "iana", "value": "application/vnd.ntt-local.content-share", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 827, "source": "iana", "value": "application/vnd.ntt-local.file-transfer", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 828, "source": "iana", "value": "application/vnd.ntt-local.ogw_remote-access", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 829, "source": "iana", "value": "application/vnd.ntt-local.sip-ta_remote", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 830, "source": "iana", "value": "application/vnd.ntt-local.sip-ta_tcp_stream", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 831, "source": "iana", "value": "application/vnd.oasis.opendocument.chart", "compressible": false, "charSet": "", "extensions": "odc" }
-            , { "id": 832, "source": "iana", "value": "application/vnd.oasis.opendocument.chart-template", "compressible": false, "charSet": "", "extensions": "otc" }
-            , { "id": 833, "source": "iana", "value": "application/vnd.oasis.opendocument.database", "compressible": false, "charSet": "", "extensions": "odb" }
-            , { "id": 834, "source": "iana", "value": "application/vnd.oasis.opendocument.formula", "compressible": false, "charSet": "", "extensions": "odf" }
-            , { "id": 835, "source": "iana", "value": "application/vnd.oasis.opendocument.formula-template", "compressible": false, "charSet": "", "extensions": "odft" }
-            , { "id": 836, "source": "iana", "value": "application/vnd.oasis.opendocument.graphics", "compressible": false, "charSet": "", "extensions": "odg" }
-            , { "id": 837, "source": "iana", "value": "application/vnd.oasis.opendocument.graphics-template", "compressible": false, "charSet": "", "extensions": "otg" }
-            , { "id": 838, "source": "iana", "value": "application/vnd.oasis.opendocument.image", "compressible": false, "charSet": "", "extensions": "odi" }
-            , { "id": 839, "source": "iana", "value": "application/vnd.oasis.opendocument.image-template", "compressible": false, "charSet": "", "extensions": "oti" }
-            , { "id": 840, "source": "iana", "value": "application/vnd.oasis.opendocument.presentation", "compressible": false, "charSet": "", "extensions": "odp" }
-            , { "id": 841, "source": "iana", "value": "application/vnd.oasis.opendocument.presentation-template", "compressible": false, "charSet": "", "extensions": "otp" }
-            , { "id": 842, "source": "iana", "value": "application/vnd.oasis.opendocument.spreadsheet", "compressible": false, "charSet": "", "extensions": "ods" }
-            , { "id": 843, "source": "iana", "value": "application/vnd.oasis.opendocument.spreadsheet-template", "compressible": false, "charSet": "", "extensions": "ots" }
-            , { "id": 844, "source": "iana", "value": "application/vnd.oasis.opendocument.text", "compressible": false, "charSet": "", "extensions": "odt" }
-            , { "id": 845, "source": "iana", "value": "application/vnd.oasis.opendocument.text-master", "compressible": false, "charSet": "", "extensions": "odm" }
-            , { "id": 846, "source": "iana", "value": "application/vnd.oasis.opendocument.text-template", "compressible": false, "charSet": "", "extensions": "ott" }
-            , { "id": 847, "source": "iana", "value": "application/vnd.oasis.opendocument.text-web", "compressible": false, "charSet": "", "extensions": "oth" }
-            , { "id": 848, "source": "iana", "value": "application/vnd.obn", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 849, "source": "iana", "value": "application/vnd.oftn.l10n+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 850, "source": "iana", "value": "application/vnd.oipf.contentaccessdownload+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 851, "source": "iana", "value": "application/vnd.oipf.contentaccessstreaming+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 852, "source": "iana", "value": "application/vnd.oipf.cspg-hexbinary", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 853, "source": "iana", "value": "application/vnd.oipf.dae.svg+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 854, "source": "iana", "value": "application/vnd.oipf.dae.xhtml+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 855, "source": "iana", "value": "application/vnd.oipf.mippvcontrolmessage+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 856, "source": "iana", "value": "application/vnd.oipf.pae.gem", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 857, "source": "iana", "value": "application/vnd.oipf.spdiscovery+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 858, "source": "iana", "value": "application/vnd.oipf.spdlist+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 859, "source": "iana", "value": "application/vnd.oipf.ueprofile+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 860, "source": "iana", "value": "application/vnd.oipf.userprofile+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 861, "source": "iana", "value": "application/vnd.olpc-sugar", "compressible": false, "charSet": "", "extensions": "xo" }
-            , { "id": 862, "source": "iana", "value": "application/vnd.oma-scws-config", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 863, "source": "iana", "value": "application/vnd.oma-scws-http-request", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 864, "source": "iana", "value": "application/vnd.oma-scws-http-response", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 865, "source": "iana", "value": "application/vnd.oma.bcast.associated-procedure-parameter+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 866, "source": "iana", "value": "application/vnd.oma.bcast.drm-trigger+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 867, "source": "iana", "value": "application/vnd.oma.bcast.imd+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 868, "source": "iana", "value": "application/vnd.oma.bcast.ltkm", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 869, "source": "iana", "value": "application/vnd.oma.bcast.notification+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 870, "source": "iana", "value": "application/vnd.oma.bcast.provisioningtrigger", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 871, "source": "iana", "value": "application/vnd.oma.bcast.sgboot", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 872, "source": "iana", "value": "application/vnd.oma.bcast.sgdd+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 873, "source": "iana", "value": "application/vnd.oma.bcast.sgdu", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 874, "source": "iana", "value": "application/vnd.oma.bcast.simple-symbol-container", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 875, "source": "iana", "value": "application/vnd.oma.bcast.smartcard-trigger+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 876, "source": "iana", "value": "application/vnd.oma.bcast.sprov+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 877, "source": "iana", "value": "application/vnd.oma.bcast.stkm", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 878, "source": "iana", "value": "application/vnd.oma.cab-address-book+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 879, "source": "iana", "value": "application/vnd.oma.cab-feature-handler+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 880, "source": "iana", "value": "application/vnd.oma.cab-pcc+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 881, "source": "iana", "value": "application/vnd.oma.cab-subs-invite+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 882, "source": "iana", "value": "application/vnd.oma.cab-user-prefs+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 883, "source": "iana", "value": "application/vnd.oma.dcd", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 884, "source": "iana", "value": "application/vnd.oma.dcdc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 885, "source": "iana", "value": "application/vnd.oma.dd2+xml", "compressible": false, "charSet": "", "extensions": "dd2" }
-            , { "id": 886, "source": "iana", "value": "application/vnd.oma.drm.risd+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 887, "source": "iana", "value": "application/vnd.oma.group-usage-list+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 888, "source": "iana", "value": "application/vnd.oma.pal+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 889, "source": "iana", "value": "application/vnd.oma.poc.detailed-progress-report+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 890, "source": "iana", "value": "application/vnd.oma.poc.final-report+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 891, "source": "iana", "value": "application/vnd.oma.poc.groups+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 892, "source": "iana", "value": "application/vnd.oma.poc.invocation-descriptor+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 893, "source": "iana", "value": "application/vnd.oma.poc.optimized-progress-report+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 894, "source": "iana", "value": "application/vnd.oma.push", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 895, "source": "iana", "value": "application/vnd.oma.scidm.messages+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 896, "source": "iana", "value": "application/vnd.oma.xcap-directory+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 897, "source": "iana", "value": "application/vnd.omads-email+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 898, "source": "iana", "value": "application/vnd.omads-file+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 899, "source": "iana", "value": "application/vnd.omads-folder+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 900, "source": "iana", "value": "application/vnd.omaloc-supl-init", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 901, "source": "iana", "value": "application/vnd.onepager", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 902, "source": "iana", "value": "application/vnd.openblox.game+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 903, "source": "iana", "value": "application/vnd.openblox.game-binary", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 904, "source": "iana", "value": "application/vnd.openeye.oeb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 905, "source": "apache", "value": "application/vnd.openofficeorg.extension", "compressible": false, "charSet": "", "extensions": "oxt" }
-            , { "id": 906, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.custom-properties+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 907, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.customxmlproperties+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 908, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.drawing+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 909, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.drawingml.chart+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 910, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.drawingml.chartshapes+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 911, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.drawingml.diagramcolors+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 912, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.drawingml.diagramdata+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 913, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.drawingml.diagramlayout+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 914, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.drawingml.diagramstyle+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 915, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.extended-properties+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 916, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml-template", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 917, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.commentauthors+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 918, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.comments+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 919, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.handoutmaster+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 920, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.notesmaster+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 921, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.notesslide+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 922, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.presentation", "compressible": false, "charSet": "", "extensions": "pptx" }
-            , { "id": 923, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 924, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.presprops+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 925, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.slide", "compressible": false, "charSet": "", "extensions": "sldx" }
-            , { "id": 926, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.slide+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 927, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.slidelayout+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 928, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.slidemaster+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 929, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.slideshow", "compressible": false, "charSet": "", "extensions": "ppsx" }
-            , { "id": 930, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.slideshow.main+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 931, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.slideupdateinfo+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 932, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.tablestyles+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 933, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.tags+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 934, "source": "apache", "value": "application/vnd.openxmlformats-officedocument.presentationml.template", "compressible": false, "charSet": "", "extensions": "potx" }
-            , { "id": 935, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.template.main+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 936, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.presentationml.viewprops+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 937, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml-template", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 938, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.calcchain+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 939, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.chartsheet+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 940, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.comments+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 941, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.connections+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 942, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.dialogsheet+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 943, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.externallink+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 944, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcachedefinition+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 945, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcacherecords+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 946, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.pivottable+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 947, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.querytable+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 948, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.revisionheaders+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 949, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.revisionlog+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 950, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sharedstrings+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 951, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "compressible": false, "charSet": "", "extensions": "xlsx" }
-            , { "id": 952, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 953, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheetmetadata+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 954, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 955, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.table+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 956, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.tablesinglecells+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 957, "source": "apache", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.template", "compressible": false, "charSet": "", "extensions": "xltx" }
-            , { "id": 958, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.template.main+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 959, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.usernames+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 960, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.volatiledependencies+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 961, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 962, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.theme+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 963, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.themeoverride+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 964, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.vmldrawing", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 965, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml-template", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 966, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.comments+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 967, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "compressible": false, "charSet": "", "extensions": "docx" }
-            , { "id": 968, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document.glossary+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 969, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 970, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.endnotes+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 971, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.fonttable+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 972, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 973, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 974, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 975, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 976, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 977, "source": "apache", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.template", "compressible": false, "charSet": "", "extensions": "dotx" }
-            , { "id": 978, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 979, "source": "iana", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.websettings+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 980, "source": "iana", "value": "application/vnd.openxmlformats-package.core-properties+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 981, "source": "iana", "value": "application/vnd.openxmlformats-package.digital-signature-xmlsignature+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 982, "source": "iana", "value": "application/vnd.openxmlformats-package.relationships+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 983, "source": "iana", "value": "application/vnd.oracle.resource+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 984, "source": "iana", "value": "application/vnd.orange.indata", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 985, "source": "iana", "value": "application/vnd.osa.netdeploy", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 986, "source": "iana", "value": "application/vnd.osgeo.mapguide.package", "compressible": false, "charSet": "", "extensions": "mgp" }
-            , { "id": 987, "source": "iana", "value": "application/vnd.osgi.bundle", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 988, "source": "iana", "value": "application/vnd.osgi.dp", "compressible": false, "charSet": "", "extensions": "dp" }
-            , { "id": 989, "source": "iana", "value": "application/vnd.osgi.subsystem", "compressible": false, "charSet": "", "extensions": "esa" }
-            , { "id": 990, "source": "iana", "value": "application/vnd.otps.ct-kip+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 991, "source": "iana", "value": "application/vnd.oxli.countgraph", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 992, "source": "iana", "value": "application/vnd.pagerduty+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 993, "source": "iana", "value": "application/vnd.palm", "compressible": false, "charSet": "", "extensions": "pdb, pqa, oprc" }
-            , { "id": 994, "source": "iana", "value": "application/vnd.panoply", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 995, "source": "iana", "value": "application/vnd.paos+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 996, "source": "apache", "value": "application/vnd.paos.xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 997, "source": "iana", "value": "application/vnd.pawaafile", "compressible": false, "charSet": "", "extensions": "paw" }
-            , { "id": 998, "source": "iana", "value": "application/vnd.pcos", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 999, "source": "iana", "value": "application/vnd.pg.format", "compressible": false, "charSet": "", "extensions": "str" }
-            , { "id": 1000, "source": "iana", "value": "application/vnd.pg.osasli", "compressible": false, "charSet": "", "extensions": "ei6" }
-            , { "id": 1001, "source": "iana", "value": "application/vnd.piaccess.application-licence", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1002, "source": "iana", "value": "application/vnd.picsel", "compressible": false, "charSet": "", "extensions": "efif" }
-            , { "id": 1003, "source": "iana", "value": "application/vnd.pmi.widget", "compressible": false, "charSet": "", "extensions": "wg" }
-            , { "id": 1004, "source": "iana", "value": "application/vnd.poc.group-advertisement+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1005, "source": "iana", "value": "application/vnd.pocketlearn", "compressible": false, "charSet": "", "extensions": "plf" }
-            , { "id": 1006, "source": "iana", "value": "application/vnd.powerbuilder6", "compressible": false, "charSet": "", "extensions": "pbd" }
-            , { "id": 1007, "source": "iana", "value": "application/vnd.powerbuilder6-s", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1008, "source": "iana", "value": "application/vnd.powerbuilder7", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1009, "source": "iana", "value": "application/vnd.powerbuilder7-s", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1010, "source": "iana", "value": "application/vnd.powerbuilder75", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1011, "source": "iana", "value": "application/vnd.powerbuilder75-s", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1012, "source": "iana", "value": "application/vnd.preminet", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1013, "source": "iana", "value": "application/vnd.previewsystems.box", "compressible": false, "charSet": "", "extensions": "box" }
-            , { "id": 1014, "source": "iana", "value": "application/vnd.proteus.magazine", "compressible": false, "charSet": "", "extensions": "mgz" }
-            , { "id": 1015, "source": "iana", "value": "application/vnd.publishare-delta-tree", "compressible": false, "charSet": "", "extensions": "qps" }
-            , { "id": 1016, "source": "iana", "value": "application/vnd.pvi.ptid1", "compressible": false, "charSet": "", "extensions": "ptid" }
-            , { "id": 1017, "source": "iana", "value": "application/vnd.pwg-multiplexed", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1018, "source": "iana", "value": "application/vnd.pwg-xhtml-print+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1019, "source": "iana", "value": "application/vnd.qualcomm.brew-app-res", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1020, "source": "iana", "value": "application/vnd.quark.quarkxpress", "compressible": false, "charSet": "", "extensions": "qxd, qxt, qwd, qwt, qxl, qxb" }
-            , { "id": 1021, "source": "iana", "value": "application/vnd.quobject-quoxdocument", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1022, "source": "iana", "value": "application/vnd.radisys.moml+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1023, "source": "iana", "value": "application/vnd.radisys.msml+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1024, "source": "iana", "value": "application/vnd.radisys.msml-audit+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1025, "source": "iana", "value": "application/vnd.radisys.msml-audit-conf+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1026, "source": "iana", "value": "application/vnd.radisys.msml-audit-conn+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1027, "source": "iana", "value": "application/vnd.radisys.msml-audit-dialog+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1028, "source": "iana", "value": "application/vnd.radisys.msml-audit-stream+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1029, "source": "iana", "value": "application/vnd.radisys.msml-conf+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1030, "source": "iana", "value": "application/vnd.radisys.msml-dialog+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1031, "source": "iana", "value": "application/vnd.radisys.msml-dialog-base+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1032, "source": "iana", "value": "application/vnd.radisys.msml-dialog-fax-detect+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1033, "source": "iana", "value": "application/vnd.radisys.msml-dialog-fax-sendrecv+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1034, "source": "iana", "value": "application/vnd.radisys.msml-dialog-group+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1035, "source": "iana", "value": "application/vnd.radisys.msml-dialog-speech+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1036, "source": "iana", "value": "application/vnd.radisys.msml-dialog-transform+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1037, "source": "iana", "value": "application/vnd.rainstor.data", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1038, "source": "iana", "value": "application/vnd.rapid", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1039, "source": "iana", "value": "application/vnd.realvnc.bed", "compressible": false, "charSet": "", "extensions": "bed" }
-            , { "id": 1040, "source": "iana", "value": "application/vnd.recordare.musicxml", "compressible": false, "charSet": "", "extensions": "mxl" }
-            , { "id": 1041, "source": "iana", "value": "application/vnd.recordare.musicxml+xml", "compressible": false, "charSet": "", "extensions": "musicxml" }
-            , { "id": 1042, "source": "iana", "value": "application/vnd.renlearn.rlprint", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1043, "source": "iana", "value": "application/vnd.rig.cryptonote", "compressible": false, "charSet": "", "extensions": "cryptonote" }
-            , { "id": 1044, "source": "apache", "value": "application/vnd.rim.cod", "compressible": false, "charSet": "", "extensions": "cod" }
-            , { "id": 1045, "source": "apache", "value": "application/vnd.rn-realmedia", "compressible": false, "charSet": "", "extensions": "rm" }
-            , { "id": 1046, "source": "apache", "value": "application/vnd.rn-realmedia-vbr", "compressible": false, "charSet": "", "extensions": "rmvb" }
-            , { "id": 1047, "source": "iana", "value": "application/vnd.route66.link66+xml", "compressible": false, "charSet": "", "extensions": "link66" }
-            , { "id": 1048, "source": "iana", "value": "application/vnd.rs-274x", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1049, "source": "iana", "value": "application/vnd.ruckus.download", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1050, "source": "iana", "value": "application/vnd.s3sms", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1051, "source": "iana", "value": "application/vnd.sailingtracker.track", "compressible": false, "charSet": "", "extensions": "st" }
-            , { "id": 1052, "source": "iana", "value": "application/vnd.sbm.cid", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1053, "source": "iana", "value": "application/vnd.sbm.mid2", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1054, "source": "iana", "value": "application/vnd.scribus", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1055, "source": "iana", "value": "application/vnd.sealed.3df", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1056, "source": "iana", "value": "application/vnd.sealed.csf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1057, "source": "iana", "value": "application/vnd.sealed.doc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1058, "source": "iana", "value": "application/vnd.sealed.eml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1059, "source": "iana", "value": "application/vnd.sealed.mht", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1060, "source": "iana", "value": "application/vnd.sealed.net", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1061, "source": "iana", "value": "application/vnd.sealed.ppt", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1062, "source": "iana", "value": "application/vnd.sealed.tiff", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1063, "source": "iana", "value": "application/vnd.sealed.xls", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1064, "source": "iana", "value": "application/vnd.sealedmedia.softseal.html", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1065, "source": "iana", "value": "application/vnd.sealedmedia.softseal.pdf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1066, "source": "iana", "value": "application/vnd.seemail", "compressible": false, "charSet": "", "extensions": "see" }
-            , { "id": 1067, "source": "iana", "value": "application/vnd.sema", "compressible": false, "charSet": "", "extensions": "sema" }
-            , { "id": 1068, "source": "iana", "value": "application/vnd.semd", "compressible": false, "charSet": "", "extensions": "semd" }
-            , { "id": 1069, "source": "iana", "value": "application/vnd.semf", "compressible": false, "charSet": "", "extensions": "semf" }
-            , { "id": 1070, "source": "iana", "value": "application/vnd.shana.informed.formdata", "compressible": false, "charSet": "", "extensions": "ifm" }
-            , { "id": 1071, "source": "iana", "value": "application/vnd.shana.informed.formtemplate", "compressible": false, "charSet": "", "extensions": "itp" }
-            , { "id": 1072, "source": "iana", "value": "application/vnd.shana.informed.interchange", "compressible": false, "charSet": "", "extensions": "iif" }
-            , { "id": 1073, "source": "iana", "value": "application/vnd.shana.informed.package", "compressible": false, "charSet": "", "extensions": "ipk" }
-            , { "id": 1074, "source": "iana", "value": "application/vnd.simtech-mindmapper", "compressible": false, "charSet": "", "extensions": "twd, twds" }
-            , { "id": 1075, "source": "iana", "value": "application/vnd.siren+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 1076, "source": "iana", "value": "application/vnd.smaf", "compressible": false, "charSet": "", "extensions": "mmf" }
-            , { "id": 1077, "source": "iana", "value": "application/vnd.smart.notebook", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1078, "source": "iana", "value": "application/vnd.smart.teacher", "compressible": false, "charSet": "", "extensions": "teacher" }
-            , { "id": 1079, "source": "iana", "value": "application/vnd.software602.filler.form+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1080, "source": "iana", "value": "application/vnd.software602.filler.form-xml-zip", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1081, "source": "iana", "value": "application/vnd.solent.sdkm+xml", "compressible": false, "charSet": "", "extensions": "sdkm, sdkd" }
-            , { "id": 1082, "source": "iana", "value": "application/vnd.spotfire.dxp", "compressible": false, "charSet": "", "extensions": "dxp" }
-            , { "id": 1083, "source": "iana", "value": "application/vnd.spotfire.sfs", "compressible": false, "charSet": "", "extensions": "sfs" }
-            , { "id": 1084, "source": "iana", "value": "application/vnd.sss-cod", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1085, "source": "iana", "value": "application/vnd.sss-dtf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1086, "source": "iana", "value": "application/vnd.sss-ntf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1087, "source": "apache", "value": "application/vnd.stardivision.calc", "compressible": false, "charSet": "", "extensions": "sdc" }
-            , { "id": 1088, "source": "apache", "value": "application/vnd.stardivision.draw", "compressible": false, "charSet": "", "extensions": "sda" }
-            , { "id": 1089, "source": "apache", "value": "application/vnd.stardivision.impress", "compressible": false, "charSet": "", "extensions": "sdd" }
-            , { "id": 1090, "source": "apache", "value": "application/vnd.stardivision.math", "compressible": false, "charSet": "", "extensions": "smf" }
-            , { "id": 1091, "source": "apache", "value": "application/vnd.stardivision.writer", "compressible": false, "charSet": "", "extensions": "sdw, vor" }
-            , { "id": 1092, "source": "apache", "value": "application/vnd.stardivision.writer-global", "compressible": false, "charSet": "", "extensions": "sgl" }
-            , { "id": 1093, "source": "iana", "value": "application/vnd.stepmania.package", "compressible": false, "charSet": "", "extensions": "smzip" }
-            , { "id": 1094, "source": "iana", "value": "application/vnd.stepmania.stepchart", "compressible": false, "charSet": "", "extensions": "sm" }
-            , { "id": 1095, "source": "iana", "value": "application/vnd.street-stream", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1096, "source": "iana", "value": "application/vnd.sun.wadl+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1097, "source": "apache", "value": "application/vnd.sun.xml.calc", "compressible": false, "charSet": "", "extensions": "sxc" }
-            , { "id": 1098, "source": "apache", "value": "application/vnd.sun.xml.calc.template", "compressible": false, "charSet": "", "extensions": "stc" }
-            , { "id": 1099, "source": "apache", "value": "application/vnd.sun.xml.draw", "compressible": false, "charSet": "", "extensions": "sxd" }
-            , { "id": 1100, "source": "apache", "value": "application/vnd.sun.xml.draw.template", "compressible": false, "charSet": "", "extensions": "std" }
-            , { "id": 1101, "source": "apache", "value": "application/vnd.sun.xml.impress", "compressible": false, "charSet": "", "extensions": "sxi" }
-            , { "id": 1102, "source": "apache", "value": "application/vnd.sun.xml.impress.template", "compressible": false, "charSet": "", "extensions": "sti" }
-            , { "id": 1103, "source": "apache", "value": "application/vnd.sun.xml.math", "compressible": false, "charSet": "", "extensions": "sxm" }
-            , { "id": 1104, "source": "apache", "value": "application/vnd.sun.xml.writer", "compressible": false, "charSet": "", "extensions": "sxw" }
-            , { "id": 1105, "source": "apache", "value": "application/vnd.sun.xml.writer.global", "compressible": false, "charSet": "", "extensions": "sxg" }
-            , { "id": 1106, "source": "apache", "value": "application/vnd.sun.xml.writer.template", "compressible": false, "charSet": "", "extensions": "stw" }
-            , { "id": 1107, "source": "iana", "value": "application/vnd.sus-calendar", "compressible": false, "charSet": "", "extensions": "sus, susp" }
-            , { "id": 1108, "source": "iana", "value": "application/vnd.svd", "compressible": false, "charSet": "", "extensions": "svd" }
-            , { "id": 1109, "source": "iana", "value": "application/vnd.swiftview-ics", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1110, "source": "apache", "value": "application/vnd.symbian.install", "compressible": false, "charSet": "", "extensions": "sis, sisx" }
-            , { "id": 1111, "source": "iana", "value": "application/vnd.syncml+xml", "compressible": false, "charSet": "", "extensions": "xsm" }
-            , { "id": 1112, "source": "iana", "value": "application/vnd.syncml.dm+wbxml", "compressible": false, "charSet": "", "extensions": "bdm" }
-            , { "id": 1113, "source": "iana", "value": "application/vnd.syncml.dm+xml", "compressible": false, "charSet": "", "extensions": "xdm" }
-            , { "id": 1114, "source": "iana", "value": "application/vnd.syncml.dm.notification", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1115, "source": "iana", "value": "application/vnd.syncml.dmddf+wbxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1116, "source": "iana", "value": "application/vnd.syncml.dmddf+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1117, "source": "iana", "value": "application/vnd.syncml.dmtnds+wbxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1118, "source": "iana", "value": "application/vnd.syncml.dmtnds+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1119, "source": "iana", "value": "application/vnd.syncml.ds.notification", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1120, "source": "iana", "value": "application/vnd.tao.intent-module-archive", "compressible": false, "charSet": "", "extensions": "tao" }
-            , { "id": 1121, "source": "iana", "value": "application/vnd.tcpdump.pcap", "compressible": false, "charSet": "", "extensions": "pcap, cap, dmp" }
-            , { "id": 1122, "source": "iana", "value": "application/vnd.tmd.mediaflex.api+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1123, "source": "iana", "value": "application/vnd.tml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1124, "source": "iana", "value": "application/vnd.tmobile-livetv", "compressible": false, "charSet": "", "extensions": "tmo" }
-            , { "id": 1125, "source": "iana", "value": "application/vnd.trid.tpt", "compressible": false, "charSet": "", "extensions": "tpt" }
-            , { "id": 1126, "source": "iana", "value": "application/vnd.triscape.mxs", "compressible": false, "charSet": "", "extensions": "mxs" }
-            , { "id": 1127, "source": "iana", "value": "application/vnd.trueapp", "compressible": false, "charSet": "", "extensions": "tra" }
-            , { "id": 1128, "source": "iana", "value": "application/vnd.truedoc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1129, "source": "iana", "value": "application/vnd.ubisoft.webplayer", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1130, "source": "iana", "value": "application/vnd.ufdl", "compressible": false, "charSet": "", "extensions": "ufd, ufdl" }
-            , { "id": 1131, "source": "iana", "value": "application/vnd.uiq.theme", "compressible": false, "charSet": "", "extensions": "utz" }
-            , { "id": 1132, "source": "iana", "value": "application/vnd.umajin", "compressible": false, "charSet": "", "extensions": "umj" }
-            , { "id": 1133, "source": "iana", "value": "application/vnd.unity", "compressible": false, "charSet": "", "extensions": "unityweb" }
-            , { "id": 1134, "source": "iana", "value": "application/vnd.uoml+xml", "compressible": false, "charSet": "", "extensions": "uoml" }
-            , { "id": 1135, "source": "iana", "value": "application/vnd.uplanet.alert", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1136, "source": "iana", "value": "application/vnd.uplanet.alert-wbxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1137, "source": "iana", "value": "application/vnd.uplanet.bearer-choice", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1138, "source": "iana", "value": "application/vnd.uplanet.bearer-choice-wbxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1139, "source": "iana", "value": "application/vnd.uplanet.cacheop", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1140, "source": "iana", "value": "application/vnd.uplanet.cacheop-wbxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1141, "source": "iana", "value": "application/vnd.uplanet.channel", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1142, "source": "iana", "value": "application/vnd.uplanet.channel-wbxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1143, "source": "iana", "value": "application/vnd.uplanet.list", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1144, "source": "iana", "value": "application/vnd.uplanet.list-wbxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1145, "source": "iana", "value": "application/vnd.uplanet.listcmd", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1146, "source": "iana", "value": "application/vnd.uplanet.listcmd-wbxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1147, "source": "iana", "value": "application/vnd.uplanet.signal", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1148, "source": "iana", "value": "application/vnd.uri-map", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1149, "source": "iana", "value": "application/vnd.valve.source.material", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1150, "source": "iana", "value": "application/vnd.vcx", "compressible": false, "charSet": "", "extensions": "vcx" }
-            , { "id": 1151, "source": "iana", "value": "application/vnd.vd-study", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1152, "source": "iana", "value": "application/vnd.vectorworks", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1153, "source": "iana", "value": "application/vnd.vel+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 1154, "source": "iana", "value": "application/vnd.verimatrix.vcas", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1155, "source": "iana", "value": "application/vnd.vidsoft.vidconference", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1156, "source": "iana", "value": "application/vnd.visio", "compressible": false, "charSet": "", "extensions": "vsd, vst, vss, vsw" }
-            , { "id": 1157, "source": "iana", "value": "application/vnd.visionary", "compressible": false, "charSet": "", "extensions": "vis" }
-            , { "id": 1158, "source": "iana", "value": "application/vnd.vividence.scriptfile", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1159, "source": "iana", "value": "application/vnd.vsf", "compressible": false, "charSet": "", "extensions": "vsf" }
-            , { "id": 1160, "source": "iana", "value": "application/vnd.wap.sic", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1161, "source": "iana", "value": "application/vnd.wap.slc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1162, "source": "iana", "value": "application/vnd.wap.wbxml", "compressible": false, "charSet": "", "extensions": "wbxml" }
-            , { "id": 1163, "source": "iana", "value": "application/vnd.wap.wmlc", "compressible": false, "charSet": "", "extensions": "wmlc" }
-            , { "id": 1164, "source": "iana", "value": "application/vnd.wap.wmlscriptc", "compressible": false, "charSet": "", "extensions": "wmlsc" }
-            , { "id": 1165, "source": "iana", "value": "application/vnd.webturbo", "compressible": false, "charSet": "", "extensions": "wtb" }
-            , { "id": 1166, "source": "iana", "value": "application/vnd.wfa.p2p", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1167, "source": "iana", "value": "application/vnd.wfa.wsc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1168, "source": "iana", "value": "application/vnd.windows.devicepairing", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1169, "source": "iana", "value": "application/vnd.wmc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1170, "source": "iana", "value": "application/vnd.wmf.bootstrap", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1171, "source": "iana", "value": "application/vnd.wolfram.mathematica", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1172, "source": "iana", "value": "application/vnd.wolfram.mathematica.package", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1173, "source": "iana", "value": "application/vnd.wolfram.player", "compressible": false, "charSet": "", "extensions": "nbp" }
-            , { "id": 1174, "source": "iana", "value": "application/vnd.wordperfect", "compressible": false, "charSet": "", "extensions": "wpd" }
-            , { "id": 1175, "source": "iana", "value": "application/vnd.wqd", "compressible": false, "charSet": "", "extensions": "wqd" }
-            , { "id": 1176, "source": "iana", "value": "application/vnd.wrq-hp3000-labelled", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1177, "source": "iana", "value": "application/vnd.wt.stf", "compressible": false, "charSet": "", "extensions": "stf" }
-            , { "id": 1178, "source": "iana", "value": "application/vnd.wv.csp+wbxml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1179, "source": "iana", "value": "application/vnd.wv.csp+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1180, "source": "iana", "value": "application/vnd.wv.ssp+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1181, "source": "iana", "value": "application/vnd.xacml+json", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 1182, "source": "iana", "value": "application/vnd.xara", "compressible": false, "charSet": "", "extensions": "xar" }
-            , { "id": 1183, "source": "iana", "value": "application/vnd.xfdl", "compressible": false, "charSet": "", "extensions": "xfdl" }
-            , { "id": 1184, "source": "iana", "value": "application/vnd.xfdl.webform", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1185, "source": "iana", "value": "application/vnd.xmi+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1186, "source": "iana", "value": "application/vnd.xmpie.cpkg", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1187, "source": "iana", "value": "application/vnd.xmpie.dpkg", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1188, "source": "iana", "value": "application/vnd.xmpie.plan", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1189, "source": "iana", "value": "application/vnd.xmpie.ppkg", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1190, "source": "iana", "value": "application/vnd.xmpie.xlim", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1191, "source": "iana", "value": "application/vnd.yamaha.hv-dic", "compressible": false, "charSet": "", "extensions": "hvd" }
-            , { "id": 1192, "source": "iana", "value": "application/vnd.yamaha.hv-script", "compressible": false, "charSet": "", "extensions": "hvs" }
-            , { "id": 1193, "source": "iana", "value": "application/vnd.yamaha.hv-voice", "compressible": false, "charSet": "", "extensions": "hvp" }
-            , { "id": 1194, "source": "iana", "value": "application/vnd.yamaha.openscoreformat", "compressible": false, "charSet": "", "extensions": "osf" }
-            , { "id": 1195, "source": "iana", "value": "application/vnd.yamaha.openscoreformat.osfpvg+xml", "compressible": false, "charSet": "", "extensions": "osfpvg" }
-            , { "id": 1196, "source": "iana", "value": "application/vnd.yamaha.remote-setup", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1197, "source": "iana", "value": "application/vnd.yamaha.smaf-audio", "compressible": false, "charSet": "", "extensions": "saf" }
-            , { "id": 1198, "source": "iana", "value": "application/vnd.yamaha.smaf-phrase", "compressible": false, "charSet": "", "extensions": "spf" }
-            , { "id": 1199, "source": "iana", "value": "application/vnd.yamaha.through-ngn", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1200, "source": "iana", "value": "application/vnd.yamaha.tunnel-udpencap", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1201, "source": "iana", "value": "application/vnd.yaoweme", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1202, "source": "iana", "value": "application/vnd.yellowriver-custom-menu", "compressible": false, "charSet": "", "extensions": "cmp" }
-            , { "id": 1203, "source": "iana", "value": "application/vnd.zul", "compressible": false, "charSet": "", "extensions": "zir, zirz" }
-            , { "id": 1204, "source": "iana", "value": "application/vnd.zzazz.deck+xml", "compressible": false, "charSet": "", "extensions": "zaz" }
-            , { "id": 1205, "source": "iana", "value": "application/voicexml+xml", "compressible": false, "charSet": "", "extensions": "vxml" }
-            , { "id": 1206, "source": "iana", "value": "application/vq-rtcpxr", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1207, "source": "iana", "value": "application/watcherinfo+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1208, "source": "iana", "value": "application/whoispp-query", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1209, "source": "iana", "value": "application/whoispp-response", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1210, "source": "iana", "value": "application/widget", "compressible": false, "charSet": "", "extensions": "wgt" }
-            , { "id": 1211, "source": "apache", "value": "application/winhlp", "compressible": false, "charSet": "", "extensions": "hlp" }
-            , { "id": 1212, "source": "iana", "value": "application/wita", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1213, "source": "iana", "value": "application/wordperfect5.1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1214, "source": "iana", "value": "application/wsdl+xml", "compressible": false, "charSet": "", "extensions": "wsdl" }
-            , { "id": 1215, "source": "iana", "value": "application/wspolicy+xml", "compressible": false, "charSet": "", "extensions": "wspolicy" }
-            , { "id": 1216, "source": "apache", "value": "application/x-7z-compressed", "compressible": false, "charSet": "", "extensions": "7z" }
-            , { "id": 1217, "source": "apache", "value": "application/x-abiword", "compressible": false, "charSet": "", "extensions": "abw" }
-            , { "id": 1218, "source": "apache", "value": "application/x-ace-compressed", "compressible": false, "charSet": "", "extensions": "ace" }
-            , { "id": 1219, "source": "apache", "value": "application/x-amf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1220, "source": "apache", "value": "application/x-apple-diskimage", "compressible": false, "charSet": "", "extensions": "dmg" }
-            , { "id": 1221, "source": "apache", "value": "application/x-authorware-bin", "compressible": false, "charSet": "", "extensions": "aab, x32, u32, vox" }
-            , { "id": 1222, "source": "apache", "value": "application/x-authorware-map", "compressible": false, "charSet": "", "extensions": "aam" }
-            , { "id": 1223, "source": "apache", "value": "application/x-authorware-seg", "compressible": false, "charSet": "", "extensions": "aas" }
-            , { "id": 1224, "source": "apache", "value": "application/x-bcpio", "compressible": false, "charSet": "", "extensions": "bcpio" }
-            , { "id": 1225, "source": "", "value": "application/x-bdoc", "compressible": false, "charSet": "", "extensions": "bdoc" }
-            , { "id": 1226, "source": "apache", "value": "application/x-bittorrent", "compressible": false, "charSet": "", "extensions": "torrent" }
-            , { "id": 1227, "source": "apache", "value": "application/x-blorb", "compressible": false, "charSet": "", "extensions": "blb, blorb" }
-            , { "id": 1228, "source": "apache", "value": "application/x-bzip", "compressible": false, "charSet": "", "extensions": "bz" }
-            , { "id": 1229, "source": "apache", "value": "application/x-bzip2", "compressible": false, "charSet": "", "extensions": "bz2, boz" }
-            , { "id": 1230, "source": "apache", "value": "application/x-cbr", "compressible": false, "charSet": "", "extensions": "cbr, cba, cbt, cbz, cb7" }
-            , { "id": 1231, "source": "apache", "value": "application/x-cdlink", "compressible": false, "charSet": "", "extensions": "vcd" }
-            , { "id": 1232, "source": "apache", "value": "application/x-cfs-compressed", "compressible": false, "charSet": "", "extensions": "cfs" }
-            , { "id": 1233, "source": "apache", "value": "application/x-chat", "compressible": false, "charSet": "", "extensions": "chat" }
-            , { "id": 1234, "source": "apache", "value": "application/x-chess-pgn", "compressible": false, "charSet": "", "extensions": "pgn" }
-            , { "id": 1235, "source": "", "value": "application/x-chrome-extension", "compressible": false, "charSet": "", "extensions": "crx" }
-            , { "id": 1236, "source": "nginx", "value": "application/x-cocoa", "compressible": false, "charSet": "", "extensions": "cco" }
-            , { "id": 1237, "source": "apache", "value": "application/x-compress", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1238, "source": "apache", "value": "application/x-conference", "compressible": false, "charSet": "", "extensions": "nsc" }
-            , { "id": 1239, "source": "apache", "value": "application/x-cpio", "compressible": false, "charSet": "", "extensions": "cpio" }
-            , { "id": 1240, "source": "apache", "value": "application/x-csh", "compressible": false, "charSet": "", "extensions": "csh" }
-            , { "id": 1241, "source": "", "value": "application/x-deb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1242, "source": "apache", "value": "application/x-debian-package", "compressible": false, "charSet": "", "extensions": "deb, udeb" }
-            , { "id": 1243, "source": "apache", "value": "application/x-dgc-compressed", "compressible": false, "charSet": "", "extensions": "dgc" }
-            , { "id": 1244, "source": "apache", "value": "application/x-director", "compressible": false, "charSet": "", "extensions": "dir, dcr, dxr, cst, cct, cxt, w3d, fgd, swa" }
-            , { "id": 1245, "source": "apache", "value": "application/x-doom", "compressible": false, "charSet": "", "extensions": "wad" }
-            , { "id": 1246, "source": "apache", "value": "application/x-dtbncx+xml", "compressible": false, "charSet": "", "extensions": "ncx" }
-            , { "id": 1247, "source": "apache", "value": "application/x-dtbook+xml", "compressible": false, "charSet": "", "extensions": "dtb" }
-            , { "id": 1248, "source": "apache", "value": "application/x-dtbresource+xml", "compressible": false, "charSet": "", "extensions": "res" }
-            , { "id": 1249, "source": "apache", "value": "application/x-dvi", "compressible": false, "charSet": "", "extensions": "dvi" }
-            , { "id": 1250, "source": "apache", "value": "application/x-envoy", "compressible": false, "charSet": "", "extensions": "evy" }
-            , { "id": 1251, "source": "apache", "value": "application/x-eva", "compressible": false, "charSet": "", "extensions": "eva" }
-            , { "id": 1252, "source": "apache", "value": "application/x-font-bdf", "compressible": false, "charSet": "", "extensions": "bdf" }
-            , { "id": 1253, "source": "apache", "value": "application/x-font-dos", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1254, "source": "apache", "value": "application/x-font-framemaker", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1255, "source": "apache", "value": "application/x-font-ghostscript", "compressible": false, "charSet": "", "extensions": "gsf" }
-            , { "id": 1256, "source": "apache", "value": "application/x-font-libgrx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1257, "source": "apache", "value": "application/x-font-linux-psf", "compressible": false, "charSet": "", "extensions": "psf" }
-            , { "id": 1258, "source": "apache", "value": "application/x-font-otf", "compressible": true, "charSet": "", "extensions": "otf" }
-            , { "id": 1259, "source": "apache", "value": "application/x-font-pcf", "compressible": false, "charSet": "", "extensions": "pcf" }
-            , { "id": 1260, "source": "apache", "value": "application/x-font-snf", "compressible": false, "charSet": "", "extensions": "snf" }
-            , { "id": 1261, "source": "apache", "value": "application/x-font-speedo", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1262, "source": "apache", "value": "application/x-font-sunos-news", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1263, "source": "apache", "value": "application/x-font-ttf", "compressible": true, "charSet": "", "extensions": "ttf, ttc" }
-            , { "id": 1264, "source": "apache", "value": "application/x-font-type1", "compressible": false, "charSet": "", "extensions": "pfa, pfb, pfm, afm" }
-            , { "id": 1265, "source": "apache", "value": "application/x-font-vfont", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1266, "source": "apache", "value": "application/x-freearc", "compressible": false, "charSet": "", "extensions": "arc" }
-            , { "id": 1267, "source": "apache", "value": "application/x-futuresplash", "compressible": false, "charSet": "", "extensions": "spl" }
-            , { "id": 1268, "source": "apache", "value": "application/x-gca-compressed", "compressible": false, "charSet": "", "extensions": "gca" }
-            , { "id": 1269, "source": "apache", "value": "application/x-glulx", "compressible": false, "charSet": "", "extensions": "ulx" }
-            , { "id": 1270, "source": "apache", "value": "application/x-gnumeric", "compressible": false, "charSet": "", "extensions": "gnumeric" }
-            , { "id": 1271, "source": "apache", "value": "application/x-gramps-xml", "compressible": false, "charSet": "", "extensions": "gramps" }
-            , { "id": 1272, "source": "apache", "value": "application/x-gtar", "compressible": false, "charSet": "", "extensions": "gtar" }
-            , { "id": 1273, "source": "apache", "value": "application/x-gzip", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1274, "source": "apache", "value": "application/x-hdf", "compressible": false, "charSet": "", "extensions": "hdf" }
-            , { "id": 1275, "source": "", "value": "application/x-httpd-php", "compressible": true, "charSet": "", "extensions": "php" }
-            , { "id": 1276, "source": "apache", "value": "application/x-install-instructions", "compressible": false, "charSet": "", "extensions": "install" }
-            , { "id": 1277, "source": "apache", "value": "application/x-iso9660-image", "compressible": false, "charSet": "", "extensions": "iso" }
-            , { "id": 1278, "source": "nginx", "value": "application/x-java-archive-diff", "compressible": false, "charSet": "", "extensions": "jardiff" }
-            , { "id": 1279, "source": "apache", "value": "application/x-java-jnlp-file", "compressible": false, "charSet": "", "extensions": "jnlp" }
-            , { "id": 1280, "source": "", "value": "application/x-javascript", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 1281, "source": "apache", "value": "application/x-latex", "compressible": false, "charSet": "", "extensions": "latex" }
-            , { "id": 1282, "source": "", "value": "application/x-lua-bytecode", "compressible": false, "charSet": "", "extensions": "luac" }
-            , { "id": 1283, "source": "apache", "value": "application/x-lzh-compressed", "compressible": false, "charSet": "", "extensions": "lzh, lha" }
-            , { "id": 1284, "source": "nginx", "value": "application/x-makeself", "compressible": false, "charSet": "", "extensions": "run" }
-            , { "id": 1285, "source": "apache", "value": "application/x-mie", "compressible": false, "charSet": "", "extensions": "mie" }
-            , { "id": 1286, "source": "apache", "value": "application/x-mobipocket-ebook", "compressible": false, "charSet": "", "extensions": "prc, mobi" }
-            , { "id": 1287, "source": "", "value": "application/x-mpegurl", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1288, "source": "apache", "value": "application/x-ms-application", "compressible": false, "charSet": "", "extensions": "application" }
-            , { "id": 1289, "source": "apache", "value": "application/x-ms-shortcut", "compressible": false, "charSet": "", "extensions": "lnk" }
-            , { "id": 1290, "source": "apache", "value": "application/x-ms-wmd", "compressible": false, "charSet": "", "extensions": "wmd" }
-            , { "id": 1291, "source": "apache", "value": "application/x-ms-wmz", "compressible": false, "charSet": "", "extensions": "wmz" }
-            , { "id": 1292, "source": "apache", "value": "application/x-ms-xbap", "compressible": false, "charSet": "", "extensions": "xbap" }
-            , { "id": 1293, "source": "apache", "value": "application/x-msaccess", "compressible": false, "charSet": "", "extensions": "mdb" }
-            , { "id": 1294, "source": "apache", "value": "application/x-msbinder", "compressible": false, "charSet": "", "extensions": "obd" }
-            , { "id": 1295, "source": "apache", "value": "application/x-mscardfile", "compressible": false, "charSet": "", "extensions": "crd" }
-            , { "id": 1296, "source": "apache", "value": "application/x-msclip", "compressible": false, "charSet": "", "extensions": "clp" }
-            , { "id": 1297, "source": "", "value": "application/x-msdos-program", "compressible": false, "charSet": "", "extensions": "exe" }
-            , { "id": 1298, "source": "apache", "value": "application/x-msdownload", "compressible": false, "charSet": "", "extensions": "exe, dll, com, bat, msi" }
-            , { "id": 1299, "source": "apache", "value": "application/x-msmediaview", "compressible": false, "charSet": "", "extensions": "mvb, m13, m14" }
-            , { "id": 1300, "source": "apache", "value": "application/x-msmetafile", "compressible": false, "charSet": "", "extensions": "wmf, wmz, emf, emz" }
-            , { "id": 1301, "source": "apache", "value": "application/x-msmoney", "compressible": false, "charSet": "", "extensions": "mny" }
-            , { "id": 1302, "source": "apache", "value": "application/x-mspublisher", "compressible": false, "charSet": "", "extensions": "pub" }
-            , { "id": 1303, "source": "apache", "value": "application/x-msschedule", "compressible": false, "charSet": "", "extensions": "scd" }
-            , { "id": 1304, "source": "apache", "value": "application/x-msterminal", "compressible": false, "charSet": "", "extensions": "trm" }
-            , { "id": 1305, "source": "apache", "value": "application/x-mswrite", "compressible": false, "charSet": "", "extensions": "wri" }
-            , { "id": 1306, "source": "apache", "value": "application/x-netcdf", "compressible": false, "charSet": "", "extensions": "nc, cdf" }
-            , { "id": 1307, "source": "", "value": "application/x-ns-proxy-autoconfig", "compressible": true, "charSet": "", "extensions": "pac" }
-            , { "id": 1308, "source": "apache", "value": "application/x-nzb", "compressible": false, "charSet": "", "extensions": "nzb" }
-            , { "id": 1309, "source": "nginx", "value": "application/x-perl", "compressible": false, "charSet": "", "extensions": "pl, pm" }
-            , { "id": 1310, "source": "nginx", "value": "application/x-pilot", "compressible": false, "charSet": "", "extensions": "prc, pdb" }
-            , { "id": 1311, "source": "apache", "value": "application/x-pkcs12", "compressible": false, "charSet": "", "extensions": "p12, pfx" }
-            , { "id": 1312, "source": "apache", "value": "application/x-pkcs7-certificates", "compressible": false, "charSet": "", "extensions": "p7b, spc" }
-            , { "id": 1313, "source": "apache", "value": "application/x-pkcs7-certreqresp", "compressible": false, "charSet": "", "extensions": "p7r" }
-            , { "id": 1314, "source": "apache", "value": "application/x-rar-compressed", "compressible": false, "charSet": "", "extensions": "rar" }
-            , { "id": 1315, "source": "nginx", "value": "application/x-redhat-package-manager", "compressible": false, "charSet": "", "extensions": "rpm" }
-            , { "id": 1316, "source": "apache", "value": "application/x-research-info-systems", "compressible": false, "charSet": "", "extensions": "ris" }
-            , { "id": 1317, "source": "nginx", "value": "application/x-sea", "compressible": false, "charSet": "", "extensions": "sea" }
-            , { "id": 1318, "source": "apache", "value": "application/x-sh", "compressible": true, "charSet": "", "extensions": "sh" }
-            , { "id": 1319, "source": "apache", "value": "application/x-shar", "compressible": false, "charSet": "", "extensions": "shar" }
-            , { "id": 1320, "source": "apache", "value": "application/x-shockwave-flash", "compressible": false, "charSet": "", "extensions": "swf" }
-            , { "id": 1321, "source": "apache", "value": "application/x-silverlight-app", "compressible": false, "charSet": "", "extensions": "xap" }
-            , { "id": 1322, "source": "apache", "value": "application/x-sql", "compressible": false, "charSet": "", "extensions": "sql" }
-            , { "id": 1323, "source": "apache", "value": "application/x-stuffit", "compressible": false, "charSet": "", "extensions": "sit" }
-            , { "id": 1324, "source": "apache", "value": "application/x-stuffitx", "compressible": false, "charSet": "", "extensions": "sitx" }
-            , { "id": 1325, "source": "apache", "value": "application/x-subrip", "compressible": false, "charSet": "", "extensions": "srt" }
-            , { "id": 1326, "source": "apache", "value": "application/x-sv4cpio", "compressible": false, "charSet": "", "extensions": "sv4cpio" }
-            , { "id": 1327, "source": "apache", "value": "application/x-sv4crc", "compressible": false, "charSet": "", "extensions": "sv4crc" }
-            , { "id": 1328, "source": "apache", "value": "application/x-t3vm-image", "compressible": false, "charSet": "", "extensions": "t3" }
-            , { "id": 1329, "source": "apache", "value": "application/x-tads", "compressible": false, "charSet": "", "extensions": "gam" }
-            , { "id": 1330, "source": "apache", "value": "application/x-tar", "compressible": true, "charSet": "", "extensions": "tar" }
-            , { "id": 1331, "source": "apache", "value": "application/x-tcl", "compressible": false, "charSet": "", "extensions": "tcl, tk" }
-            , { "id": 1332, "source": "apache", "value": "application/x-tex", "compressible": false, "charSet": "", "extensions": "tex" }
-            , { "id": 1333, "source": "apache", "value": "application/x-tex-tfm", "compressible": false, "charSet": "", "extensions": "tfm" }
-            , { "id": 1334, "source": "apache", "value": "application/x-texinfo", "compressible": false, "charSet": "", "extensions": "texinfo, texi" }
-            , { "id": 1335, "source": "apache", "value": "application/x-tgif", "compressible": false, "charSet": "", "extensions": "obj" }
-            , { "id": 1336, "source": "apache", "value": "application/x-ustar", "compressible": false, "charSet": "", "extensions": "ustar" }
-            , { "id": 1337, "source": "apache", "value": "application/x-wais-source", "compressible": false, "charSet": "", "extensions": "src" }
-            , { "id": 1338, "source": "", "value": "application/x-web-app-manifest+json", "compressible": true, "charSet": "", "extensions": "webapp" }
-            , { "id": 1339, "source": "iana", "value": "application/x-www-form-urlencoded", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 1340, "source": "apache", "value": "application/x-x509-ca-cert", "compressible": false, "charSet": "", "extensions": "der, crt, pem" }
-            , { "id": 1341, "source": "apache", "value": "application/x-xfig", "compressible": false, "charSet": "", "extensions": "fig" }
-            , { "id": 1342, "source": "apache", "value": "application/x-xliff+xml", "compressible": false, "charSet": "", "extensions": "xlf" }
-            , { "id": 1343, "source": "apache", "value": "application/x-xpinstall", "compressible": false, "charSet": "", "extensions": "xpi" }
-            , { "id": 1344, "source": "apache", "value": "application/x-xz", "compressible": false, "charSet": "", "extensions": "xz" }
-            , { "id": 1345, "source": "apache", "value": "application/x-zmachine", "compressible": false, "charSet": "", "extensions": "z1, z2, z3, z4, z5, z6, z7, z8" }
-            , { "id": 1346, "source": "iana", "value": "application/x400-bp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1347, "source": "iana", "value": "application/xacml+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1348, "source": "apache", "value": "application/xaml+xml", "compressible": false, "charSet": "", "extensions": "xaml" }
-            , { "id": 1349, "source": "iana", "value": "application/xcap-att+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1350, "source": "iana", "value": "application/xcap-caps+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1351, "source": "iana", "value": "application/xcap-diff+xml", "compressible": false, "charSet": "", "extensions": "xdf" }
-            , { "id": 1352, "source": "iana", "value": "application/xcap-el+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1353, "source": "iana", "value": "application/xcap-error+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1354, "source": "iana", "value": "application/xcap-ns+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1355, "source": "iana", "value": "application/xcon-conference-info+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1356, "source": "iana", "value": "application/xcon-conference-info-diff+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1357, "source": "iana", "value": "application/xenc+xml", "compressible": false, "charSet": "", "extensions": "xenc" }
-            , { "id": 1358, "source": "iana", "value": "application/xhtml+xml", "compressible": true, "charSet": "", "extensions": "xhtml, xht" }
-            , { "id": 1359, "source": "apache", "value": "application/xhtml-voice+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1360, "source": "iana", "value": "application/xml", "compressible": true, "charSet": "", "extensions": "xml, xsl, xsd, rng" }
-            , { "id": 1361, "source": "iana", "value": "application/xml-dtd", "compressible": true, "charSet": "", "extensions": "dtd" }
-            , { "id": 1362, "source": "iana", "value": "application/xml-external-parsed-entity", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1363, "source": "iana", "value": "application/xml-patch+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1364, "source": "iana", "value": "application/xmpp+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1365, "source": "iana", "value": "application/xop+xml", "compressible": true, "charSet": "", "extensions": "xop" }
-            , { "id": 1366, "source": "apache", "value": "application/xproc+xml", "compressible": false, "charSet": "", "extensions": "xpl" }
-            , { "id": 1367, "source": "iana", "value": "application/xslt+xml", "compressible": false, "charSet": "", "extensions": "xslt" }
-            , { "id": 1368, "source": "apache", "value": "application/xspf+xml", "compressible": false, "charSet": "", "extensions": "xspf" }
-            , { "id": 1369, "source": "iana", "value": "application/xv+xml", "compressible": false, "charSet": "", "extensions": "mxml, xhvml, xvml, xvm" }
-            , { "id": 1370, "source": "iana", "value": "application/yang", "compressible": false, "charSet": "", "extensions": "yang" }
-            , { "id": 1371, "source": "iana", "value": "application/yin+xml", "compressible": false, "charSet": "", "extensions": "yin" }
-            , { "id": 1372, "source": "iana", "value": "application/zip", "compressible": false, "charSet": "", "extensions": "zip" }
-            , { "id": 1373, "source": "iana", "value": "application/zlib", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1374, "source": "iana", "value": "audio/1d-interleaved-parityfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1375, "source": "iana", "value": "audio/32kadpcm", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1376, "source": "iana", "value": "audio/3gpp", "compressible": false, "charSet": "", "extensions": "3gpp" }
-            , { "id": 1377, "source": "iana", "value": "audio/3gpp2", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1378, "source": "iana", "value": "audio/ac3", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1379, "source": "apache", "value": "audio/adpcm", "compressible": false, "charSet": "", "extensions": "adp" }
-            , { "id": 1380, "source": "iana", "value": "audio/amr", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1381, "source": "iana", "value": "audio/amr-wb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1382, "source": "iana", "value": "audio/amr-wb+", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1383, "source": "iana", "value": "audio/aptx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1384, "source": "iana", "value": "audio/asc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1385, "source": "iana", "value": "audio/atrac-advanced-lossless", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1386, "source": "iana", "value": "audio/atrac-x", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1387, "source": "iana", "value": "audio/atrac3", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1388, "source": "iana", "value": "audio/basic", "compressible": false, "charSet": "", "extensions": "au, snd" }
-            , { "id": 1389, "source": "iana", "value": "audio/bv16", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1390, "source": "iana", "value": "audio/bv32", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1391, "source": "iana", "value": "audio/clearmode", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1392, "source": "iana", "value": "audio/cn", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1393, "source": "iana", "value": "audio/dat12", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1394, "source": "iana", "value": "audio/dls", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1395, "source": "iana", "value": "audio/dsr-es201108", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1396, "source": "iana", "value": "audio/dsr-es202050", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1397, "source": "iana", "value": "audio/dsr-es202211", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1398, "source": "iana", "value": "audio/dsr-es202212", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1399, "source": "iana", "value": "audio/dv", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1400, "source": "iana", "value": "audio/dvi4", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1401, "source": "iana", "value": "audio/eac3", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1402, "source": "iana", "value": "audio/encaprtp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1403, "source": "iana", "value": "audio/evrc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1404, "source": "iana", "value": "audio/evrc-qcp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1405, "source": "iana", "value": "audio/evrc0", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1406, "source": "iana", "value": "audio/evrc1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1407, "source": "iana", "value": "audio/evrcb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1408, "source": "iana", "value": "audio/evrcb0", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1409, "source": "iana", "value": "audio/evrcb1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1410, "source": "iana", "value": "audio/evrcnw", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1411, "source": "iana", "value": "audio/evrcnw0", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1412, "source": "iana", "value": "audio/evrcnw1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1413, "source": "iana", "value": "audio/evrcwb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1414, "source": "iana", "value": "audio/evrcwb0", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1415, "source": "iana", "value": "audio/evrcwb1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1416, "source": "iana", "value": "audio/evs", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1417, "source": "iana", "value": "audio/fwdred", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1418, "source": "iana", "value": "audio/g711-0", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1419, "source": "iana", "value": "audio/g719", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1420, "source": "iana", "value": "audio/g722", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1421, "source": "iana", "value": "audio/g7221", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1422, "source": "iana", "value": "audio/g723", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1423, "source": "iana", "value": "audio/g726-16", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1424, "source": "iana", "value": "audio/g726-24", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1425, "source": "iana", "value": "audio/g726-32", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1426, "source": "iana", "value": "audio/g726-40", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1427, "source": "iana", "value": "audio/g728", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1428, "source": "iana", "value": "audio/g729", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1429, "source": "iana", "value": "audio/g7291", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1430, "source": "iana", "value": "audio/g729d", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1431, "source": "iana", "value": "audio/g729e", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1432, "source": "iana", "value": "audio/gsm", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1433, "source": "iana", "value": "audio/gsm-efr", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1434, "source": "iana", "value": "audio/gsm-hr-08", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1435, "source": "iana", "value": "audio/ilbc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1436, "source": "iana", "value": "audio/ip-mr_v2.5", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1437, "source": "apache", "value": "audio/isac", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1438, "source": "iana", "value": "audio/l16", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1439, "source": "iana", "value": "audio/l20", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1440, "source": "iana", "value": "audio/l24", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1441, "source": "iana", "value": "audio/l8", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1442, "source": "iana", "value": "audio/lpc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1443, "source": "apache", "value": "audio/midi", "compressible": false, "charSet": "", "extensions": "mid, midi, kar, rmi" }
-            , { "id": 1444, "source": "iana", "value": "audio/mobile-xmf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1445, "source": "iana", "value": "audio/mp4", "compressible": false, "charSet": "", "extensions": "m4a, mp4a" }
-            , { "id": 1446, "source": "iana", "value": "audio/mp4a-latm", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1447, "source": "iana", "value": "audio/mpa", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1448, "source": "iana", "value": "audio/mpa-robust", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1449, "source": "iana", "value": "audio/mpeg", "compressible": false, "charSet": "", "extensions": "mpga, mp2, mp2a, mp3, m2a, m3a" }
-            , { "id": 1450, "source": "iana", "value": "audio/mpeg4-generic", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1451, "source": "apache", "value": "audio/musepack", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1452, "source": "iana", "value": "audio/ogg", "compressible": false, "charSet": "", "extensions": "oga, ogg, spx" }
-            , { "id": 1453, "source": "iana", "value": "audio/opus", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1454, "source": "iana", "value": "audio/parityfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1455, "source": "iana", "value": "audio/pcma", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1456, "source": "iana", "value": "audio/pcma-wb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1457, "source": "iana", "value": "audio/pcmu", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1458, "source": "iana", "value": "audio/pcmu-wb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1459, "source": "iana", "value": "audio/prs.sid", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1460, "source": "iana", "value": "audio/qcelp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1461, "source": "iana", "value": "audio/raptorfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1462, "source": "iana", "value": "audio/red", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1463, "source": "iana", "value": "audio/rtp-enc-aescm128", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1464, "source": "iana", "value": "audio/rtp-midi", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1465, "source": "iana", "value": "audio/rtploopback", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1466, "source": "iana", "value": "audio/rtx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1467, "source": "apache", "value": "audio/s3m", "compressible": false, "charSet": "", "extensions": "s3m" }
-            , { "id": 1468, "source": "apache", "value": "audio/silk", "compressible": false, "charSet": "", "extensions": "sil" }
-            , { "id": 1469, "source": "iana", "value": "audio/smv", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1470, "source": "iana", "value": "audio/smv-qcp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1471, "source": "iana", "value": "audio/smv0", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1472, "source": "iana", "value": "audio/sp-midi", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1473, "source": "iana", "value": "audio/speex", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1474, "source": "iana", "value": "audio/t140c", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1475, "source": "iana", "value": "audio/t38", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1476, "source": "iana", "value": "audio/telephone-event", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1477, "source": "iana", "value": "audio/tone", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1478, "source": "iana", "value": "audio/uemclip", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1479, "source": "iana", "value": "audio/ulpfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1480, "source": "iana", "value": "audio/vdvi", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1481, "source": "iana", "value": "audio/vmr-wb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1482, "source": "iana", "value": "audio/vnd.3gpp.iufp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1483, "source": "iana", "value": "audio/vnd.4sb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1484, "source": "iana", "value": "audio/vnd.audiokoz", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1485, "source": "iana", "value": "audio/vnd.celp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1486, "source": "iana", "value": "audio/vnd.cisco.nse", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1487, "source": "iana", "value": "audio/vnd.cmles.radio-events", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1488, "source": "iana", "value": "audio/vnd.cns.anp1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1489, "source": "iana", "value": "audio/vnd.cns.inf1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1490, "source": "iana", "value": "audio/vnd.dece.audio", "compressible": false, "charSet": "", "extensions": "uva, uvva" }
-            , { "id": 1491, "source": "iana", "value": "audio/vnd.digital-winds", "compressible": false, "charSet": "", "extensions": "eol" }
-            , { "id": 1492, "source": "iana", "value": "audio/vnd.dlna.adts", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1493, "source": "iana", "value": "audio/vnd.dolby.heaac.1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1494, "source": "iana", "value": "audio/vnd.dolby.heaac.2", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1495, "source": "iana", "value": "audio/vnd.dolby.mlp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1496, "source": "iana", "value": "audio/vnd.dolby.mps", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1497, "source": "iana", "value": "audio/vnd.dolby.pl2", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1498, "source": "iana", "value": "audio/vnd.dolby.pl2x", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1499, "source": "iana", "value": "audio/vnd.dolby.pl2z", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1500, "source": "iana", "value": "audio/vnd.dolby.pulse.1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1501, "source": "iana", "value": "audio/vnd.dra", "compressible": false, "charSet": "", "extensions": "dra" }
-            , { "id": 1502, "source": "iana", "value": "audio/vnd.dts", "compressible": false, "charSet": "", "extensions": "dts" }
-            , { "id": 1503, "source": "iana", "value": "audio/vnd.dts.hd", "compressible": false, "charSet": "", "extensions": "dtshd" }
-            , { "id": 1504, "source": "iana", "value": "audio/vnd.dvb.file", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1505, "source": "iana", "value": "audio/vnd.everad.plj", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1506, "source": "iana", "value": "audio/vnd.hns.audio", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1507, "source": "iana", "value": "audio/vnd.lucent.voice", "compressible": false, "charSet": "", "extensions": "lvp" }
-            , { "id": 1508, "source": "iana", "value": "audio/vnd.ms-playready.media.pya", "compressible": false, "charSet": "", "extensions": "pya" }
-            , { "id": 1509, "source": "iana", "value": "audio/vnd.nokia.mobile-xmf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1510, "source": "iana", "value": "audio/vnd.nortel.vbk", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1511, "source": "iana", "value": "audio/vnd.nuera.ecelp4800", "compressible": false, "charSet": "", "extensions": "ecelp4800" }
-            , { "id": 1512, "source": "iana", "value": "audio/vnd.nuera.ecelp7470", "compressible": false, "charSet": "", "extensions": "ecelp7470" }
-            , { "id": 1513, "source": "iana", "value": "audio/vnd.nuera.ecelp9600", "compressible": false, "charSet": "", "extensions": "ecelp9600" }
-            , { "id": 1514, "source": "iana", "value": "audio/vnd.octel.sbc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1515, "source": "iana", "value": "audio/vnd.qcelp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1516, "source": "iana", "value": "audio/vnd.rhetorex.32kadpcm", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1517, "source": "iana", "value": "audio/vnd.rip", "compressible": false, "charSet": "", "extensions": "rip" }
-            , { "id": 1518, "source": "", "value": "audio/vnd.rn-realaudio", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1519, "source": "iana", "value": "audio/vnd.sealedmedia.softseal.mpeg", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1520, "source": "iana", "value": "audio/vnd.vmx.cvsd", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1521, "source": "", "value": "audio/vnd.wave", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1522, "source": "iana", "value": "audio/vorbis", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1523, "source": "iana", "value": "audio/vorbis-config", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1524, "source": "", "value": "audio/wav", "compressible": false, "charSet": "", "extensions": "wav" }
-            , { "id": 1525, "source": "", "value": "audio/wave", "compressible": false, "charSet": "", "extensions": "wav" }
-            , { "id": 1526, "source": "apache", "value": "audio/webm", "compressible": false, "charSet": "", "extensions": "weba" }
-            , { "id": 1527, "source": "apache", "value": "audio/x-aac", "compressible": false, "charSet": "", "extensions": "aac" }
-            , { "id": 1528, "source": "apache", "value": "audio/x-aiff", "compressible": false, "charSet": "", "extensions": "aif, aiff, aifc" }
-            , { "id": 1529, "source": "apache", "value": "audio/x-caf", "compressible": false, "charSet": "", "extensions": "caf" }
-            , { "id": 1530, "source": "apache", "value": "audio/x-flac", "compressible": false, "charSet": "", "extensions": "flac" }
-            , { "id": 1531, "source": "nginx", "value": "audio/x-m4a", "compressible": false, "charSet": "", "extensions": "m4a" }
-            , { "id": 1532, "source": "apache", "value": "audio/x-matroska", "compressible": false, "charSet": "", "extensions": "mka" }
-            , { "id": 1533, "source": "apache", "value": "audio/x-mpegurl", "compressible": false, "charSet": "", "extensions": "m3u" }
-            , { "id": 1534, "source": "apache", "value": "audio/x-ms-wax", "compressible": false, "charSet": "", "extensions": "wax" }
-            , { "id": 1535, "source": "apache", "value": "audio/x-ms-wma", "compressible": false, "charSet": "", "extensions": "wma" }
-            , { "id": 1536, "source": "apache", "value": "audio/x-pn-realaudio", "compressible": false, "charSet": "", "extensions": "ram, ra" }
-            , { "id": 1537, "source": "apache", "value": "audio/x-pn-realaudio-plugin", "compressible": false, "charSet": "", "extensions": "rmp" }
-            , { "id": 1538, "source": "nginx", "value": "audio/x-realaudio", "compressible": false, "charSet": "", "extensions": "ra" }
-            , { "id": 1539, "source": "apache", "value": "audio/x-tta", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1540, "source": "apache", "value": "audio/x-wav", "compressible": false, "charSet": "", "extensions": "wav" }
-            , { "id": 1541, "source": "apache", "value": "audio/xm", "compressible": false, "charSet": "", "extensions": "xm" }
-            , { "id": 1542, "source": "apache", "value": "chemical/x-cdx", "compressible": false, "charSet": "", "extensions": "cdx" }
-            , { "id": 1543, "source": "apache", "value": "chemical/x-cif", "compressible": false, "charSet": "", "extensions": "cif" }
-            , { "id": 1544, "source": "apache", "value": "chemical/x-cmdf", "compressible": false, "charSet": "", "extensions": "cmdf" }
-            , { "id": 1545, "source": "apache", "value": "chemical/x-cml", "compressible": false, "charSet": "", "extensions": "cml" }
-            , { "id": 1546, "source": "apache", "value": "chemical/x-csml", "compressible": false, "charSet": "", "extensions": "csml" }
-            , { "id": 1547, "source": "apache", "value": "chemical/x-pdb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1548, "source": "apache", "value": "chemical/x-xyz", "compressible": false, "charSet": "", "extensions": "xyz" }
-            , { "id": 1549, "source": "", "value": "font/opentype", "compressible": true, "charSet": "", "extensions": "otf" }
-            , { "id": 1550, "source": "apache", "value": "image/bmp", "compressible": true, "charSet": "", "extensions": "bmp" }
-            , { "id": 1551, "source": "iana", "value": "image/cgm", "compressible": false, "charSet": "", "extensions": "cgm" }
-            , { "id": 1552, "source": "iana", "value": "image/fits", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1553, "source": "iana", "value": "image/g3fax", "compressible": false, "charSet": "", "extensions": "g3" }
-            , { "id": 1554, "source": "iana", "value": "image/gif", "compressible": false, "charSet": "", "extensions": "gif" }
-            , { "id": 1555, "source": "iana", "value": "image/ief", "compressible": false, "charSet": "", "extensions": "ief" }
-            , { "id": 1556, "source": "iana", "value": "image/jp2", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1557, "source": "iana", "value": "image/jpeg", "compressible": false, "charSet": "", "extensions": "jpeg, jpg, jpe" }
-            , { "id": 1558, "source": "iana", "value": "image/jpm", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1559, "source": "iana", "value": "image/jpx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1560, "source": "iana", "value": "image/ktx", "compressible": false, "charSet": "", "extensions": "ktx" }
-            , { "id": 1561, "source": "iana", "value": "image/naplps", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1562, "source": "", "value": "image/pjpeg", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1563, "source": "iana", "value": "image/png", "compressible": false, "charSet": "", "extensions": "png" }
-            , { "id": 1564, "source": "iana", "value": "image/prs.btif", "compressible": false, "charSet": "", "extensions": "btif" }
-            , { "id": 1565, "source": "iana", "value": "image/prs.pti", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1566, "source": "iana", "value": "image/pwg-raster", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1567, "source": "apache", "value": "image/sgi", "compressible": false, "charSet": "", "extensions": "sgi" }
-            , { "id": 1568, "source": "iana", "value": "image/svg+xml", "compressible": true, "charSet": "", "extensions": "svg, svgz" }
-            , { "id": 1569, "source": "iana", "value": "image/t38", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1570, "source": "iana", "value": "image/tiff", "compressible": false, "charSet": "", "extensions": "tiff, tif" }
-            , { "id": 1571, "source": "iana", "value": "image/tiff-fx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1572, "source": "iana", "value": "image/vnd.adobe.photoshop", "compressible": true, "charSet": "", "extensions": "psd" }
-            , { "id": 1573, "source": "iana", "value": "image/vnd.airzip.accelerator.azv", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1574, "source": "iana", "value": "image/vnd.cns.inf2", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1575, "source": "iana", "value": "image/vnd.dece.graphic", "compressible": false, "charSet": "", "extensions": "uvi, uvvi, uvg, uvvg" }
-            , { "id": 1576, "source": "iana", "value": "image/vnd.djvu", "compressible": false, "charSet": "", "extensions": "djvu, djv" }
-            , { "id": 1577, "source": "iana", "value": "image/vnd.dvb.subtitle", "compressible": false, "charSet": "", "extensions": "sub" }
-            , { "id": 1578, "source": "iana", "value": "image/vnd.dwg", "compressible": false, "charSet": "", "extensions": "dwg" }
-            , { "id": 1579, "source": "iana", "value": "image/vnd.dxf", "compressible": false, "charSet": "", "extensions": "dxf" }
-            , { "id": 1580, "source": "iana", "value": "image/vnd.fastbidsheet", "compressible": false, "charSet": "", "extensions": "fbs" }
-            , { "id": 1581, "source": "iana", "value": "image/vnd.fpx", "compressible": false, "charSet": "", "extensions": "fpx" }
-            , { "id": 1582, "source": "iana", "value": "image/vnd.fst", "compressible": false, "charSet": "", "extensions": "fst" }
-            , { "id": 1583, "source": "iana", "value": "image/vnd.fujixerox.edmics-mmr", "compressible": false, "charSet": "", "extensions": "mmr" }
-            , { "id": 1584, "source": "iana", "value": "image/vnd.fujixerox.edmics-rlc", "compressible": false, "charSet": "", "extensions": "rlc" }
-            , { "id": 1585, "source": "iana", "value": "image/vnd.globalgraphics.pgb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1586, "source": "iana", "value": "image/vnd.microsoft.icon", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1587, "source": "iana", "value": "image/vnd.mix", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1588, "source": "iana", "value": "image/vnd.mozilla.apng", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1589, "source": "iana", "value": "image/vnd.ms-modi", "compressible": false, "charSet": "", "extensions": "mdi" }
-            , { "id": 1590, "source": "apache", "value": "image/vnd.ms-photo", "compressible": false, "charSet": "", "extensions": "wdp" }
-            , { "id": 1591, "source": "iana", "value": "image/vnd.net-fpx", "compressible": false, "charSet": "", "extensions": "npx" }
-            , { "id": 1592, "source": "iana", "value": "image/vnd.radiance", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1593, "source": "iana", "value": "image/vnd.sealed.png", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1594, "source": "iana", "value": "image/vnd.sealedmedia.softseal.gif", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1595, "source": "iana", "value": "image/vnd.sealedmedia.softseal.jpg", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1596, "source": "iana", "value": "image/vnd.svf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1597, "source": "iana", "value": "image/vnd.tencent.tap", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1598, "source": "iana", "value": "image/vnd.valve.source.texture", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1599, "source": "iana", "value": "image/vnd.wap.wbmp", "compressible": false, "charSet": "", "extensions": "wbmp" }
-            , { "id": 1600, "source": "iana", "value": "image/vnd.xiff", "compressible": false, "charSet": "", "extensions": "xif" }
-            , { "id": 1601, "source": "iana", "value": "image/vnd.zbrush.pcx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1602, "source": "apache", "value": "image/webp", "compressible": false, "charSet": "", "extensions": "webp" }
-            , { "id": 1603, "source": "apache", "value": "image/x-3ds", "compressible": false, "charSet": "", "extensions": "3ds" }
-            , { "id": 1604, "source": "apache", "value": "image/x-cmu-raster", "compressible": false, "charSet": "", "extensions": "ras" }
-            , { "id": 1605, "source": "apache", "value": "image/x-cmx", "compressible": false, "charSet": "", "extensions": "cmx" }
-            , { "id": 1606, "source": "apache", "value": "image/x-freehand", "compressible": false, "charSet": "", "extensions": "fh, fhc, fh4, fh5, fh7" }
-            , { "id": 1607, "source": "apache", "value": "image/x-icon", "compressible": true, "charSet": "", "extensions": "ico" }
-            , { "id": 1608, "source": "nginx", "value": "image/x-jng", "compressible": false, "charSet": "", "extensions": "jng" }
-            , { "id": 1609, "source": "apache", "value": "image/x-mrsid-image", "compressible": false, "charSet": "", "extensions": "sid" }
-            , { "id": 1610, "source": "nginx", "value": "image/x-ms-bmp", "compressible": true, "charSet": "", "extensions": "bmp" }
-            , { "id": 1611, "source": "apache", "value": "image/x-pcx", "compressible": false, "charSet": "", "extensions": "pcx" }
-            , { "id": 1612, "source": "apache", "value": "image/x-pict", "compressible": false, "charSet": "", "extensions": "pic, pct" }
-            , { "id": 1613, "source": "apache", "value": "image/x-portable-anymap", "compressible": false, "charSet": "", "extensions": "pnm" }
-            , { "id": 1614, "source": "apache", "value": "image/x-portable-bitmap", "compressible": false, "charSet": "", "extensions": "pbm" }
-            , { "id": 1615, "source": "apache", "value": "image/x-portable-graymap", "compressible": false, "charSet": "", "extensions": "pgm" }
-            , { "id": 1616, "source": "apache", "value": "image/x-portable-pixmap", "compressible": false, "charSet": "", "extensions": "ppm" }
-            , { "id": 1617, "source": "apache", "value": "image/x-rgb", "compressible": false, "charSet": "", "extensions": "rgb" }
-            , { "id": 1618, "source": "apache", "value": "image/x-tga", "compressible": false, "charSet": "", "extensions": "tga" }
-            , { "id": 1619, "source": "apache", "value": "image/x-xbitmap", "compressible": false, "charSet": "", "extensions": "xbm" }
-            , { "id": 1620, "source": "", "value": "image/x-xcf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1621, "source": "apache", "value": "image/x-xpixmap", "compressible": false, "charSet": "", "extensions": "xpm" }
-            , { "id": 1622, "source": "apache", "value": "image/x-xwindowdump", "compressible": false, "charSet": "", "extensions": "xwd" }
-            , { "id": 1623, "source": "iana", "value": "message/cpim", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1624, "source": "iana", "value": "message/delivery-status", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1625, "source": "iana", "value": "message/disposition-notification", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1626, "source": "iana", "value": "message/external-body", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1627, "source": "iana", "value": "message/feedback-report", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1628, "source": "iana", "value": "message/global", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1629, "source": "iana", "value": "message/global-delivery-status", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1630, "source": "iana", "value": "message/global-disposition-notification", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1631, "source": "iana", "value": "message/global-headers", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1632, "source": "iana", "value": "message/http", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1633, "source": "iana", "value": "message/imdn+xml", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 1634, "source": "iana", "value": "message/news", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1635, "source": "iana", "value": "message/partial", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1636, "source": "iana", "value": "message/rfc822", "compressible": true, "charSet": "", "extensions": "eml, mime" }
-            , { "id": 1637, "source": "iana", "value": "message/s-http", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1638, "source": "iana", "value": "message/sip", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1639, "source": "iana", "value": "message/sipfrag", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1640, "source": "iana", "value": "message/tracking-status", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1641, "source": "iana", "value": "message/vnd.si.simp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1642, "source": "iana", "value": "message/vnd.wfa.wsc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1643, "source": "iana", "value": "model/iges", "compressible": false, "charSet": "", "extensions": "igs, iges" }
-            , { "id": 1644, "source": "iana", "value": "model/mesh", "compressible": false, "charSet": "", "extensions": "msh, mesh, silo" }
-            , { "id": 1645, "source": "iana", "value": "model/vnd.collada+xml", "compressible": false, "charSet": "", "extensions": "dae" }
-            , { "id": 1646, "source": "iana", "value": "model/vnd.dwf", "compressible": false, "charSet": "", "extensions": "dwf" }
-            , { "id": 1647, "source": "iana", "value": "model/vnd.flatland.3dml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1648, "source": "iana", "value": "model/vnd.gdl", "compressible": false, "charSet": "", "extensions": "gdl" }
-            , { "id": 1649, "source": "apache", "value": "model/vnd.gs-gdl", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1650, "source": "iana", "value": "model/vnd.gs.gdl", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1651, "source": "iana", "value": "model/vnd.gtw", "compressible": false, "charSet": "", "extensions": "gtw" }
-            , { "id": 1652, "source": "iana", "value": "model/vnd.moml+xml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1653, "source": "iana", "value": "model/vnd.mts", "compressible": false, "charSet": "", "extensions": "mts" }
-            , { "id": 1654, "source": "iana", "value": "model/vnd.opengex", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1655, "source": "iana", "value": "model/vnd.parasolid.transmit.binary", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1656, "source": "iana", "value": "model/vnd.parasolid.transmit.text", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1657, "source": "iana", "value": "model/vnd.rosette.annotated-data-model", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1658, "source": "iana", "value": "model/vnd.valve.source.compiled-map", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1659, "source": "iana", "value": "model/vnd.vtu", "compressible": false, "charSet": "", "extensions": "vtu" }
-            , { "id": 1660, "source": "iana", "value": "model/vrml", "compressible": false, "charSet": "", "extensions": "wrl, vrml" }
-            , { "id": 1661, "source": "apache", "value": "model/x3d+binary", "compressible": false, "charSet": "", "extensions": "x3db, x3dbz" }
-            , { "id": 1662, "source": "iana", "value": "model/x3d+fastinfoset", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1663, "source": "apache", "value": "model/x3d+vrml", "compressible": false, "charSet": "", "extensions": "x3dv, x3dvz" }
-            , { "id": 1664, "source": "iana", "value": "model/x3d+xml", "compressible": true, "charSet": "", "extensions": "x3d, x3dz" }
-            , { "id": 1665, "source": "iana", "value": "model/x3d-vrml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1666, "source": "iana", "value": "multipart/alternative", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1667, "source": "iana", "value": "multipart/appledouble", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1668, "source": "iana", "value": "multipart/byteranges", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1669, "source": "iana", "value": "multipart/digest", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1670, "source": "iana", "value": "multipart/encrypted", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1671, "source": "iana", "value": "multipart/form-data", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1672, "source": "iana", "value": "multipart/header-set", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1673, "source": "iana", "value": "multipart/mixed", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1674, "source": "iana", "value": "multipart/parallel", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1675, "source": "iana", "value": "multipart/related", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1676, "source": "iana", "value": "multipart/report", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1677, "source": "iana", "value": "multipart/signed", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1678, "source": "iana", "value": "multipart/voice-message", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1679, "source": "iana", "value": "multipart/x-mixed-replace", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1680, "source": "iana", "value": "text/1d-interleaved-parityfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1681, "source": "iana", "value": "text/cache-manifest", "compressible": true, "charSet": "", "extensions": "appcache, manifest" }
-            , { "id": 1682, "source": "iana", "value": "text/calendar", "compressible": false, "charSet": "", "extensions": "ics, ifb" }
-            , { "id": 1683, "source": "", "value": "text/calender", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 1684, "source": "", "value": "text/cmd", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 1685, "source": "", "value": "text/coffeescript", "compressible": false, "charSet": "", "extensions": "coffee, litcoffee" }
-            , { "id": 1686, "source": "iana", "value": "text/css", "compressible": true, "charSet": "", "extensions": "css" }
-            , { "id": 1687, "source": "iana", "value": "text/csv", "compressible": true, "charSet": "", "extensions": "csv" }
-            , { "id": 1688, "source": "iana", "value": "text/csv-schema", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1689, "source": "iana", "value": "text/directory", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1690, "source": "iana", "value": "text/dns", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1691, "source": "iana", "value": "text/ecmascript", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1692, "source": "iana", "value": "text/encaprtp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1693, "source": "iana", "value": "text/enriched", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1694, "source": "iana", "value": "text/fwdred", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1695, "source": "iana", "value": "text/grammar-ref-list", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1696, "source": "", "value": "text/json", "compressible": false, "charSet": "", "extensions": "json" }
-            , { "id": 1697, "source": "iana", "value": "text/html", "compressible": true, "charSet": "", "extensions": "html, htm, shtml" }
-            , { "id": 1698, "source": "", "value": "text/jade", "compressible": false, "charSet": "", "extensions": "jade" }
-            , { "id": 1699, "source": "iana", "value": "text/javascript", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 1700, "source": "iana", "value": "text/jcr-cnd", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1701, "source": "", "value": "text/jsx", "compressible": true, "charSet": "", "extensions": "jsx" }
-            , { "id": 1702, "source": "", "value": "text/less", "compressible": false, "charSet": "", "extensions": "less" }
-            , { "id": 1703, "source": "iana", "value": "text/markdown", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1704, "source": "nginx", "value": "text/mathml", "compressible": false, "charSet": "", "extensions": "mml" }
-            , { "id": 1705, "source": "iana", "value": "text/mizar", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1706, "source": "iana", "value": "text/n3", "compressible": true, "charSet": "", "extensions": "n3" }
-            , { "id": 1707, "source": "iana", "value": "text/parameters", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1708, "source": "iana", "value": "text/parityfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1709, "source": "iana", "value": "text/plain", "compressible": true, "charSet": "", "extensions": "txt, text, conf, def, list, log, in, ini" }
-            , { "id": 1710, "source": "iana", "value": "text/provenance-notation", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1711, "source": "iana", "value": "text/prs.fallenstein.rst", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1712, "source": "iana", "value": "text/prs.lines.tag", "compressible": false, "charSet": "", "extensions": "dsc" }
-            , { "id": 1713, "source": "iana", "value": "text/prs.prop.logic", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1714, "source": "iana", "value": "text/raptorfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1715, "source": "iana", "value": "text/red", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1716, "source": "iana", "value": "text/rfc822-headers", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1717, "source": "iana", "value": "text/richtext", "compressible": true, "charSet": "", "extensions": "rtx" }
-            , { "id": 1718, "source": "iana", "value": "text/rtf", "compressible": true, "charSet": "", "extensions": "rtf" }
-            , { "id": 1719, "source": "iana", "value": "text/rtp-enc-aescm128", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1720, "source": "iana", "value": "text/rtploopback", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1721, "source": "iana", "value": "text/rtx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1722, "source": "iana", "value": "text/sgml", "compressible": false, "charSet": "", "extensions": "sgml, sgm" }
-            , { "id": 1723, "source": "", "value": "text/slim", "compressible": false, "charSet": "", "extensions": "slim, slm" }
-            , { "id": 1724, "source": "", "value": "text/stylus", "compressible": false, "charSet": "", "extensions": "stylus, styl" }
-            , { "id": 1725, "source": "iana", "value": "text/t140", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1726, "source": "iana", "value": "text/tab-separated-values", "compressible": true, "charSet": "", "extensions": "tsv" }
-            , { "id": 1727, "source": "iana", "value": "text/troff", "compressible": false, "charSet": "", "extensions": "t, tr, roff, man, me, ms" }
-            , { "id": 1728, "source": "iana", "value": "text/turtle", "compressible": false, "charSet": "", "extensions": "ttl" }
-            , { "id": 1729, "source": "iana", "value": "text/ulpfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1730, "source": "iana", "value": "text/uri-list", "compressible": true, "charSet": "", "extensions": "uri, uris, urls" }
-            , { "id": 1731, "source": "iana", "value": "text/vcard", "compressible": true, "charSet": "", "extensions": "vcard" }
-            , { "id": 1732, "source": "iana", "value": "text/vnd.a", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1733, "source": "iana", "value": "text/vnd.abc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1734, "source": "iana", "value": "text/vnd.curl", "compressible": false, "charSet": "", "extensions": "curl" }
-            , { "id": 1735, "source": "apache", "value": "text/vnd.curl.dcurl", "compressible": false, "charSet": "", "extensions": "dcurl" }
-            , { "id": 1736, "source": "apache", "value": "text/vnd.curl.mcurl", "compressible": false, "charSet": "", "extensions": "mcurl" }
-            , { "id": 1737, "source": "apache", "value": "text/vnd.curl.scurl", "compressible": false, "charSet": "", "extensions": "scurl" }
-            , { "id": 1738, "source": "iana", "value": "text/vnd.debian.copyright", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1739, "source": "iana", "value": "text/vnd.dmclientscript", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1740, "source": "iana", "value": "text/vnd.dvb.subtitle", "compressible": false, "charSet": "", "extensions": "sub" }
-            , { "id": 1741, "source": "iana", "value": "text/vnd.esmertec.theme-descriptor", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1742, "source": "iana", "value": "text/vnd.fly", "compressible": false, "charSet": "", "extensions": "fly" }
-            , { "id": 1743, "source": "iana", "value": "text/vnd.fmi.flexstor", "compressible": false, "charSet": "", "extensions": "flx" }
-            , { "id": 1744, "source": "iana", "value": "text/vnd.graphviz", "compressible": false, "charSet": "", "extensions": "gv" }
-            , { "id": 1745, "source": "iana", "value": "text/vnd.in3d.3dml", "compressible": false, "charSet": "", "extensions": "3dml" }
-            , { "id": 1746, "source": "iana", "value": "text/vnd.in3d.spot", "compressible": false, "charSet": "", "extensions": "spot" }
-            , { "id": 1747, "source": "iana", "value": "text/vnd.iptc.newsml", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1748, "source": "iana", "value": "text/vnd.iptc.nitf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1749, "source": "iana", "value": "text/vnd.latex-z", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1750, "source": "iana", "value": "text/vnd.motorola.reflex", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1751, "source": "iana", "value": "text/vnd.ms-mediapackage", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1752, "source": "iana", "value": "text/vnd.net2phone.commcenter.command", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1753, "source": "iana", "value": "text/vnd.radisys.msml-basic-layout", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1754, "source": "iana", "value": "text/vnd.si.uricatalogue", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1755, "source": "iana", "value": "text/vnd.sun.j2me.app-descriptor", "compressible": false, "charSet": "", "extensions": "jad" }
-            , { "id": 1756, "source": "iana", "value": "text/vnd.trolltech.linguist", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1757, "source": "iana", "value": "text/vnd.wap.si", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1758, "source": "iana", "value": "text/vnd.wap.sl", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1759, "source": "iana", "value": "text/vnd.wap.wml", "compressible": false, "charSet": "", "extensions": "wml" }
-            , { "id": 1760, "source": "iana", "value": "text/vnd.wap.wmlscript", "compressible": false, "charSet": "", "extensions": "wmls" }
-            , { "id": 1761, "source": "", "value": "text/vtt", "compressible": true, "charSet": "UTF-8", "extensions": "vtt" }
-            , { "id": 1762, "source": "apache", "value": "text/x-asm", "compressible": false, "charSet": "", "extensions": "s, asm" }
-            , { "id": 1763, "source": "apache", "value": "text/x-c", "compressible": false, "charSet": "", "extensions": "c, cc, cxx, cpp, h, hh, dic" }
-            , { "id": 1764, "source": "nginx", "value": "text/x-component", "compressible": false, "charSet": "", "extensions": "htc" }
-            , { "id": 1765, "source": "apache", "value": "text/x-fortran", "compressible": false, "charSet": "", "extensions": "f, for, f77, f90" }
-            , { "id": 1766, "source": "", "value": "text/x-gwt-rpc", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 1767, "source": "", "value": "text/x-handlebars-template", "compressible": false, "charSet": "", "extensions": "hbs" }
-            , { "id": 1768, "source": "apache", "value": "text/x-java-source", "compressible": false, "charSet": "", "extensions": "java" }
-            , { "id": 1769, "source": "", "value": "text/x-jquery-tmpl", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 1770, "source": "", "value": "text/x-lua", "compressible": false, "charSet": "", "extensions": "lua" }
-            , { "id": 1771, "source": "", "value": "text/x-markdown", "compressible": true, "charSet": "", "extensions": "markdown, md, mkd" }
-            , { "id": 1772, "source": "apache", "value": "text/x-nfo", "compressible": false, "charSet": "", "extensions": "nfo" }
-            , { "id": 1773, "source": "apache", "value": "text/x-opml", "compressible": false, "charSet": "", "extensions": "opml" }
-            , { "id": 1774, "source": "apache", "value": "text/x-pascal", "compressible": false, "charSet": "", "extensions": "p, pas" }
-            , { "id": 1775, "source": "", "value": "text/x-processing", "compressible": true, "charSet": "", "extensions": "pde" }
-            , { "id": 1776, "source": "", "value": "text/x-sass", "compressible": false, "charSet": "", "extensions": "sass" }
-            , { "id": 1777, "source": "", "value": "text/x-scss", "compressible": false, "charSet": "", "extensions": "scss" }
-            , { "id": 1778, "source": "apache", "value": "text/x-setext", "compressible": false, "charSet": "", "extensions": "etx" }
-            , { "id": 1779, "source": "apache", "value": "text/x-sfv", "compressible": false, "charSet": "", "extensions": "sfv" }
-            , { "id": 1780, "source": "", "value": "text/x-suse-ymp", "compressible": true, "charSet": "", "extensions": "ymp" }
-            , { "id": 1781, "source": "apache", "value": "text/x-uuencode", "compressible": false, "charSet": "", "extensions": "uu" }
-            , { "id": 1782, "source": "apache", "value": "text/x-vcalendar", "compressible": false, "charSet": "", "extensions": "vcs" }
-            , { "id": 1783, "source": "apache", "value": "text/x-vcard", "compressible": false, "charSet": "", "extensions": "vcf" }
-            , { "id": 1784, "source": "iana", "value": "text/xml", "compressible": true, "charSet": "", "extensions": "xml" }
-            , { "id": 1785, "source": "iana", "value": "text/xml-external-parsed-entity", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1786, "source": "", "value": "text/yaml", "compressible": false, "charSet": "", "extensions": "yaml, yml" }
-            , { "id": 1787, "source": "apache", "value": "video/1d-interleaved-parityfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1788, "source": "apache", "value": "video/3gpp", "compressible": false, "charSet": "", "extensions": "3gp, 3gpp" }
-            , { "id": 1789, "source": "apache", "value": "video/3gpp-tt", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1790, "source": "apache", "value": "video/3gpp2", "compressible": false, "charSet": "", "extensions": "3g2" }
-            , { "id": 1791, "source": "apache", "value": "video/bmpeg", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1792, "source": "apache", "value": "video/bt656", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1793, "source": "apache", "value": "video/celb", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1794, "source": "apache", "value": "video/dv", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1795, "source": "apache", "value": "video/encaprtp", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1796, "source": "apache", "value": "video/h261", "compressible": false, "charSet": "", "extensions": "h261" }
-            , { "id": 1797, "source": "apache", "value": "video/h263", "compressible": false, "charSet": "", "extensions": "h263" }
-            , { "id": 1798, "source": "apache", "value": "video/h263-1998", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1799, "source": "apache", "value": "video/h263-2000", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1800, "source": "apache", "value": "video/h264", "compressible": false, "charSet": "", "extensions": "h264" }
-            , { "id": 1801, "source": "apache", "value": "video/h264-rcdo", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1802, "source": "apache", "value": "video/h264-svc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1803, "source": "apache", "value": "video/h265", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1804, "source": "apache", "value": "video/iso.segment", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1805, "source": "apache", "value": "video/jpeg", "compressible": false, "charSet": "", "extensions": "jpgv" }
-            , { "id": 1806, "source": "apache", "value": "video/jpeg2000", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1807, "source": "apache", "value": "video/jpm", "compressible": false, "charSet": "", "extensions": "jpm, jpgm" }
-            , { "id": 1808, "source": "apache", "value": "video/mj2", "compressible": false, "charSet": "", "extensions": "mj2, mjp2" }
-            , { "id": 1809, "source": "apache", "value": "video/mp1s", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1810, "source": "apache", "value": "video/mp2p", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1811, "source": "apache", "value": "video/mp2t", "compressible": false, "charSet": "", "extensions": "ts" }
-            , { "id": 1812, "source": "apache", "value": "video/mp4", "compressible": false, "charSet": "", "extensions": "mp4, mp4v, mpg4" }
-            , { "id": 1813, "source": "apache", "value": "video/mp4v-es", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1814, "source": "apache", "value": "video/mpeg", "compressible": false, "charSet": "", "extensions": "mpeg, mpg, mpe, m1v, m2v" }
-            , { "id": 1815, "source": "apache", "value": "video/mpeg4-generic", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1816, "source": "apache", "value": "video/mpv", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1817, "source": "apache", "value": "video/nv", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1818, "source": "apache", "value": "video/ogg", "compressible": false, "charSet": "", "extensions": "ogv" }
-            , { "id": 1819, "source": "apache", "value": "video/parityfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1820, "source": "apache", "value": "video/pointer", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1821, "source": "apache", "value": "video/quicktime", "compressible": false, "charSet": "", "extensions": "qt, mov" }
-            , { "id": 1822, "source": "apache", "value": "video/raptorfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1823, "source": "apache", "value": "video/raw", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1824, "source": "apache", "value": "video/rtp-enc-aescm128", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1825, "source": "apache", "value": "video/rtploopback", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1826, "source": "apache", "value": "video/rtx", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1827, "source": "apache", "value": "video/smpte292m", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1828, "source": "apache", "value": "video/ulpfec", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1829, "source": "apache", "value": "video/vc1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1830, "source": "apache", "value": "video/vnd.cctv", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1831, "source": "apache", "value": "video/vnd.dece.hd", "compressible": false, "charSet": "", "extensions": "uvh, uvvh" }
-            , { "id": 1832, "source": "apache", "value": "video/vnd.dece.mobile", "compressible": false, "charSet": "", "extensions": "uvm, uvvm" }
-            , { "id": 1833, "source": "apache", "value": "video/vnd.dece.mp4", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1834, "source": "apache", "value": "video/vnd.dece.pd", "compressible": false, "charSet": "", "extensions": "uvp, uvvp" }
-            , { "id": 1835, "source": "apache", "value": "video/vnd.dece.sd", "compressible": false, "charSet": "", "extensions": "uvs, uvvs" }
-            , { "id": 1836, "source": "apache", "value": "video/vnd.dece.video", "compressible": false, "charSet": "", "extensions": "uvv, uvvv" }
-            , { "id": 1837, "source": "apache", "value": "video/vnd.directv.mpeg", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1838, "source": "apache", "value": "video/vnd.directv.mpeg-tts", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1839, "source": "apache", "value": "video/vnd.dlna.mpeg-tts", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1840, "source": "apache", "value": "video/vnd.dvb.file", "compressible": false, "charSet": "", "extensions": "dvb" }
-            , { "id": 1841, "source": "apache", "value": "video/vnd.fvt", "compressible": false, "charSet": "", "extensions": "fvt" }
-            , { "id": 1842, "source": "apache", "value": "video/vnd.hns.video", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1843, "source": "apache", "value": "video/vnd.iptvforum.1dparityfec-1010", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1844, "source": "apache", "value": "video/vnd.iptvforum.1dparityfec-2005", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1845, "source": "apache", "value": "video/vnd.iptvforum.2dparityfec-1010", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1846, "source": "apache", "value": "video/vnd.iptvforum.2dparityfec-2005", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1847, "source": "apache", "value": "video/vnd.iptvforum.ttsavc", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1848, "source": "apache", "value": "video/vnd.iptvforum.ttsmpeg2", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1849, "source": "apache", "value": "video/vnd.motorola.video", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1850, "source": "apache", "value": "video/vnd.motorola.videop", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1851, "source": "apache", "value": "video/vnd.mpegurl", "compressible": false, "charSet": "", "extensions": "mxu, m4u" }
-            , { "id": 1852, "source": "apache", "value": "video/vnd.ms-playready.media.pyv", "compressible": false, "charSet": "", "extensions": "pyv" }
-            , { "id": 1853, "source": "apache", "value": "video/vnd.nokia.interleaved-multimedia", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1854, "source": "apache", "value": "video/vnd.nokia.videovoip", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1855, "source": "apache", "value": "video/vnd.objectvideo", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1856, "source": "apache", "value": "video/vnd.radgamettools.bink", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1857, "source": "apache", "value": "video/vnd.radgamettools.smacker", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1858, "source": "apache", "value": "video/vnd.sealed.mpeg1", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1859, "source": "apache", "value": "video/vnd.sealed.mpeg4", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1860, "source": "apache", "value": "video/vnd.sealed.swf", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1861, "source": "apache", "value": "video/vnd.sealedmedia.softseal.mov", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1862, "source": "apache", "value": "video/vnd.uvvu.mp4", "compressible": false, "charSet": "", "extensions": "uvu, uvvu" }
-            , { "id": 1863, "source": "apache", "value": "video/vnd.vivo", "compressible": false, "charSet": "", "extensions": "viv" }
-            , { "id": 1864, "source": "apache", "value": "video/vp8", "compressible": false, "charSet": "", "extensions": "" }
-            , { "id": 1865, "source": "apache", "value": "video/webm", "compressible": false, "charSet": "", "extensions": "webm" }
-            , { "id": 1866, "source": "apache", "value": "video/x-f4v", "compressible": false, "charSet": "", "extensions": "f4v" }
-            , { "id": 1867, "source": "apache", "value": "video/x-fli", "compressible": false, "charSet": "", "extensions": "fli" }
-            , { "id": 1868, "source": "apache", "value": "video/x-flv", "compressible": false, "charSet": "", "extensions": "flv" }
-            , { "id": 1869, "source": "apache", "value": "video/x-m4v", "compressible": false, "charSet": "", "extensions": "m4v" }
-            , { "id": 1870, "source": "apache", "value": "video/x-matroska", "compressible": false, "charSet": "", "extensions": "mkv, mk3d, mks" }
-            , { "id": 1871, "source": "apache", "value": "video/x-mng", "compressible": false, "charSet": "", "extensions": "mng" }
-            , { "id": 1872, "source": "apache", "value": "video/x-ms-asf", "compressible": false, "charSet": "", "extensions": "asf, asx" }
-            , { "id": 1873, "source": "apache", "value": "video/x-ms-vob", "compressible": false, "charSet": "", "extensions": "vob" }
-            , { "id": 1874, "source": "apache", "value": "video/x-ms-wm", "compressible": false, "charSet": "", "extensions": "wm" }
-            , { "id": 1875, "source": "apache", "value": "video/x-ms-wmv", "compressible": false, "charSet": "", "extensions": "wmv" }
-            , { "id": 1876, "source": "apache", "value": "video/x-ms-wmx", "compressible": false, "charSet": "", "extensions": "wmx" }
-            , { "id": 1877, "source": "apache", "value": "video/x-ms-wvx", "compressible": false, "charSet": "", "extensions": "wvx" }
-            , { "id": 1878, "source": "apache", "value": "video/x-msvideo", "compressible": false, "charSet": "", "extensions": "avi" }
-            , { "id": 1879, "source": "apache", "value": "video/x-sgi-movie", "compressible": false, "charSet": "", "extensions": "movie" }
-            , { "id": 1880, "source": "apache", "value": "video/x-smv", "compressible": false, "charSet": "", "extensions": "smv" }
-            , { "id": 1881, "source": "apache", "value": "x-conference/x-cooltalk", "compressible": false, "charSet": "", "extensions": "ice" }
-            , { "id": 1882, "source": "", "value": "x-shader/x-fragment", "compressible": true, "charSet": "", "extensions": "" }
-            , { "id": 1883, "source": "", "value": "x-shader/x-vertex", "compressible": true, "charSet": "", "extensions": "" }
-        ]
+        __mimes = [];
+        [
+			 [1,"iana","application/1d-interleaved-parityfec",false,"UTF-8",""]
+			,[2,"iana","application/3gpdash-qoe-report+xml",false,"",""]
+			,[3,"iana","application/3gpp-ims+xml",false,"",""]
+			,[4,"iana","application/a2l",false,"",""]
+			,[5,"iana","application/activemessage",false,"",""]
+			,[6,"iana","application/alto-costmap+json",true,"",""]
+			,[7,"iana","application/alto-costmapfilter+json",true,"",""]
+			,[8,"iana","application/alto-directory+json",true,"",""]
+			,[9,"iana","application/alto-endpointcost+json",true,"",""]
+			,[10,"iana","application/alto-endpointcostparams+json",true,"",""]
+			,[11,"iana","application/alto-endpointprop+json",true,"",""]
+			,[12,"iana","application/alto-endpointpropparams+json",true,"",""]
+			,[13,"iana","application/alto-error+json",true,"",""]
+			,[14,"iana","application/alto-networkmap+json",true,"",""]
+			,[15,"iana","application/alto-networkmapfilter+json",true,"",""]
+			,[16,"iana","application/aml",false,"",""]
+			,[17,"iana","application/andrew-inset",false,"","ez"]
+			,[18,"iana","application/applefile",false,"",""]
+			,[19,"apache","application/applixware",false,"","aw"]
+			,[20,"iana","application/atf",false,"",""]
+			,[21,"iana","application/atfx",false,"",""]
+			,[22,"iana","application/atom+xml",true,"","atom"]
+			,[23,"iana","application/atomcat+xml",false,"","atomcat"]
+			,[24,"iana","application/atomdeleted+xml",false,"",""]
+			,[25,"iana","application/atomicmail",false,"",""]
+			,[26,"iana","application/atomsvc+xml",false,"","atomsvc"]
+			,[27,"iana","application/atxml",false,"",""]
+			,[28,"iana","application/auth-policy+xml",false,"",""]
+			,[29,"iana","application/bacnet-xdd+zip",false,"",""]
+			,[30,"iana","application/batch-smtp",false,"",""]
+			,[31,"","application/bdoc",false,"","bdoc"]
+			,[32,"iana","application/beep+xml",false,"",""]
+			,[33,"iana","application/calendar+json",true,"",""]
+			,[34,"iana","application/calendar+xml",false,"",""]
+			,[35,"iana","application/call-completion",false,"",""]
+			,[36,"iana","application/cals-1840",false,"",""]
+			,[37,"iana","application/cbor",false,"",""]
+			,[38,"iana","application/ccmp+xml",false,"",""]
+			,[39,"iana","application/ccxml+xml",false,"","ccxml"]
+			,[40,"iana","application/cdfx+xml",false,"",""]
+			,[41,"iana","application/cdmi-capability",false,"","cdmia"]
+			,[42,"iana","application/cdmi-container",false,"","cdmic"]
+			,[43,"iana","application/cdmi-domain",false,"","cdmid"]
+			,[44,"iana","application/cdmi-object",false,"","cdmio"]
+			,[45,"iana","application/cdmi-queue",false,"","cdmiq"]
+			,[46,"iana","application/cdni",false,"",""]
+			,[47,"iana","application/cea",false,"",""]
+			,[48,"iana","application/cea-2018+xml",false,"",""]
+			,[49,"iana","application/cellml+xml",false,"",""]
+			,[50,"iana","application/cfw",false,"",""]
+			,[51,"iana","application/cms",false,"",""]
+			,[52,"iana","application/cnrp+xml",false,"",""]
+			,[53,"iana","application/coap-group+json",true,"",""]
+			,[54,"iana","application/commonground",false,"",""]
+			,[55,"iana","application/conference-info+xml",false,"",""]
+			,[56,"iana","application/cpl+xml",false,"",""]
+			,[57,"iana","application/csrattrs",false,"",""]
+			,[58,"iana","application/csta+xml",false,"",""]
+			,[59,"iana","application/cstadata+xml",false,"",""]
+			,[60,"iana","application/csvm+json",true,"",""]
+			,[61,"apache","application/cu-seeme",false,"","cu"]
+			,[62,"iana","application/cybercash",false,"",""]
+			,[63,"","application/dart",true,"",""]
+			,[64,"iana","application/dash+xml",false,"","mpd"]
+			,[65,"iana","application/dashdelta",false,"",""]
+			,[66,"iana","application/davmount+xml",false,"","davmount"]
+			,[67,"iana","application/dca-rft",false,"",""]
+			,[68,"iana","application/dcd",false,"",""]
+			,[69,"iana","application/dec-dx",false,"",""]
+			,[70,"iana","application/dialog-info+xml",false,"",""]
+			,[71,"iana","application/dicom",false,"",""]
+			,[72,"iana","application/dii",false,"",""]
+			,[73,"iana","application/dit",false,"",""]
+			,[74,"iana","application/dns",false,"",""]
+			,[75,"apache","application/docbook+xml",false,"","dbk"]
+			,[76,"iana","application/dskpp+xml",false,"",""]
+			,[77,"iana","application/dssc+der",false,"","dssc"]
+			,[78,"iana","application/dssc+xml",false,"","xdssc"]
+			,[79,"iana","application/dvcs",false,"",""]
+			,[80,"iana","application/ecmascript",true,"","ecma"]
+			,[81,"iana","application/edi-consent",false,"",""]
+			,[82,"iana","application/edi-x12",false,"",""]
+			,[83,"iana","application/edifact",false,"",""]
+			,[84,"iana","application/efi",false,"",""]
+			,[85,"iana","application/emergencycalldata.comment+xml",false,"",""]
+			,[86,"iana","application/emergencycalldata.deviceinfo+xml",false,"",""]
+			,[87,"iana","application/emergencycalldata.providerinfo+xml",false,"",""]
+			,[88,"iana","application/emergencycalldata.serviceinfo+xml",false,"",""]
+			,[89,"iana","application/emergencycalldata.subscriberinfo+xml",false,"",""]
+			,[90,"iana","application/emma+xml",false,"","emma"]
+			,[91,"iana","application/emotionml+xml",false,"",""]
+			,[92,"iana","application/encaprtp",false,"",""]
+			,[93,"iana","application/epp+xml",false,"",""]
+			,[94,"iana","application/epub+zip",false,"","epub"]
+			,[95,"iana","application/eshop",false,"",""]
+			,[96,"iana","application/exi",false,"","exi"]
+			,[97,"iana","application/fastinfoset",false,"",""]
+			,[98,"iana","application/fastsoap",false,"",""]
+			,[99,"iana","application/fdt+xml",false,"",""]
+			,[100,"iana","application/fits",false,"",""]
+			,[101,"iana","application/font-sfnt",false,"",""]
+			,[102,"iana","application/font-tdpfr",false,"","pfr"]
+			,[103,"iana","application/font-woff",false,"","woff"]
+			,[104,"","application/font-woff2",false,"","woff2"]
+			,[105,"iana","application/framework-attributes+xml",false,"",""]
+			,[106,"apache","application/gml+xml",false,"","gml"]
+			,[107,"apache","application/gpx+xml",false,"","gpx"]
+			,[108,"apache","application/gxf",false,"","gxf"]
+			,[109,"iana","application/gzip",false,"",""]
+			,[110,"iana","application/h224",false,"",""]
+			,[111,"iana","application/held+xml",false,"",""]
+			,[112,"iana","application/http",false,"",""]
+			,[113,"iana","application/hyperstudio",false,"","stk"]
+			,[114,"iana","application/ibe-key-request+xml",false,"",""]
+			,[115,"iana","application/ibe-pkg-reply+xml",false,"",""]
+			,[116,"iana","application/ibe-pp-data",false,"",""]
+			,[117,"iana","application/iges",false,"",""]
+			,[118,"iana","application/im-iscomposing+xml",false,"",""]
+			,[119,"iana","application/index",false,"",""]
+			,[120,"iana","application/index.cmd",false,"",""]
+			,[121,"iana","application/index.obj",false,"",""]
+			,[122,"iana","application/index.response",false,"",""]
+			,[123,"iana","application/index.vnd",false,"",""]
+			,[124,"iana","application/inkml+xml",false,"","ink, inkml"]
+			,[125,"iana","application/iotp",false,"",""]
+			,[126,"iana","application/ipfix",false,"","ipfix"]
+			,[127,"iana","application/ipp",false,"",""]
+			,[128,"iana","application/isup",false,"",""]
+			,[129,"iana","application/its+xml",false,"",""]
+			,[130,"apache","application/java-archive",false,"","jar, war, ear"]
+			,[131,"apache","application/java-serialized-object",false,"","ser"]
+			,[132,"apache","application/java-vm",false,"","class"]
+			,[133,"iana","application/javascript",true,"UTF-8","js"]
+			,[134,"iana","application/jose",false,"",""]
+			,[135,"iana","application/jose+json",true,"",""]
+			,[136,"iana","application/jrd+json",true,"",""]
+			,[137,"iana","application/json",true,"UTF-8","json, map"]
+			,[138,"iana","application/json-patch+json",true,"",""]
+			,[139,"iana","application/json-seq",false,"",""]
+			,[140,"","application/json5",false,"","json5"]
+			,[141,"apache","application/jsonml+json",true,"","jsonml"]
+			,[142,"iana","application/jwk+json",true,"",""]
+			,[143,"iana","application/jwk-set+json",true,"",""]
+			,[144,"iana","application/jwt",false,"",""]
+			,[145,"iana","application/kpml-request+xml",false,"",""]
+			,[146,"iana","application/kpml-response+xml",false,"",""]
+			,[147,"iana","application/ld+json",true,"","jsonld"]
+			,[148,"iana","application/link-format",false,"",""]
+			,[149,"iana","application/load-control+xml",false,"",""]
+			,[150,"iana","application/lost+xml",false,"","lostxml"]
+			,[151,"iana","application/lostsync+xml",false,"",""]
+			,[152,"iana","application/lxf",false,"",""]
+			,[153,"iana","application/mac-binhex40",false,"","hqx"]
+			,[154,"apache","application/mac-compactpro",false,"","cpt"]
+			,[155,"iana","application/macwriteii",false,"",""]
+			,[156,"iana","application/mads+xml",false,"","mads"]
+			,[157,"","application/manifest+json",true,"UTF-8","webmanifest"]
+			,[158,"iana","application/marc",false,"","mrc"]
+			,[159,"iana","application/marcxml+xml",false,"","mrcx"]
+			,[160,"iana","application/mathematica",false,"","ma, nb, mb"]
+			,[161,"iana","application/mathml+xml",false,"","mathml"]
+			,[162,"iana","application/mathml-content+xml",false,"",""]
+			,[163,"iana","application/mathml-presentation+xml",false,"",""]
+			,[164,"iana","application/mbms-associated-procedure-description+xml",false,"",""]
+			,[165,"iana","application/mbms-deregister+xml",false,"",""]
+			,[166,"iana","application/mbms-envelope+xml",false,"",""]
+			,[167,"iana","application/mbms-msk+xml",false,"",""]
+			,[168,"iana","application/mbms-msk-response+xml",false,"",""]
+			,[169,"iana","application/mbms-protection-description+xml",false,"",""]
+			,[170,"iana","application/mbms-reception-report+xml",false,"",""]
+			,[171,"iana","application/mbms-register+xml",false,"",""]
+			,[172,"iana","application/mbms-register-response+xml",false,"",""]
+			,[173,"iana","application/mbms-schedule+xml",false,"",""]
+			,[174,"iana","application/mbms-user-service-description+xml",false,"",""]
+			,[175,"iana","application/mbox",false,"","mbox"]
+			,[176,"iana","application/media-policy-dataset+xml",false,"",""]
+			,[177,"iana","application/media_control+xml",false,"",""]
+			,[178,"iana","application/mediaservercontrol+xml",false,"","mscml"]
+			,[179,"iana","application/merge-patch+json",true,"",""]
+			,[180,"apache","application/metalink+xml",false,"","metalink"]
+			,[181,"iana","application/metalink4+xml",false,"","meta4"]
+			,[182,"iana","application/mets+xml",false,"","mets"]
+			,[183,"iana","application/mf4",false,"",""]
+			,[184,"iana","application/mikey",false,"",""]
+			,[185,"iana","application/mods+xml",false,"","mods"]
+			,[186,"iana","application/moss-keys",false,"",""]
+			,[187,"iana","application/moss-signature",false,"",""]
+			,[188,"iana","application/mosskey-data",false,"",""]
+			,[189,"iana","application/mosskey-request",false,"",""]
+			,[190,"iana","application/mp21",false,"","m21, mp21"]
+			,[191,"iana","application/mp4",false,"","mp4s, m4p"]
+			,[192,"iana","application/mpeg4-generic",false,"",""]
+			,[193,"iana","application/mpeg4-iod",false,"",""]
+			,[194,"iana","application/mpeg4-iod-xmt",false,"",""]
+			,[195,"iana","application/mrb-consumer+xml",false,"",""]
+			,[196,"iana","application/mrb-publish+xml",false,"",""]
+			,[197,"iana","application/msc-ivr+xml",false,"",""]
+			,[198,"iana","application/msc-mixer+xml",false,"",""]
+			,[199,"iana","application/msword",false,"","doc, dot"]
+			,[200,"iana","application/mxf",false,"","mxf"]
+			,[201,"iana","application/nasdata",false,"",""]
+			,[202,"iana","application/news-checkgroups",false,"",""]
+			,[203,"iana","application/news-groupinfo",false,"",""]
+			,[204,"iana","application/news-transmission",false,"",""]
+			,[205,"iana","application/nlsml+xml",false,"",""]
+			,[206,"iana","application/nss",false,"",""]
+			,[207,"iana","application/ocsp-request",false,"",""]
+			,[208,"iana","application/ocsp-response",false,"",""]
+			,[209,"iana","application/octet-stream",false,"","bin, dms, lrf, mar, so, dist, distz, pkg, bpk, dump, elc, deploy, exe, dll, deb, dmg, iso, img, msi, msp, msm, buffer"]
+			,[210,"iana","application/oda",false,"","oda"]
+			,[211,"iana","application/odx",false,"",""]
+			,[212,"iana","application/oebps-package+xml",false,"","opf"]
+			,[213,"iana","application/ogg",false,"","ogx"]
+			,[214,"apache","application/omdoc+xml",false,"","omdoc"]
+			,[215,"apache","application/onenote",false,"","onetoc, onetoc2, onetmp, onepkg"]
+			,[216,"iana","application/oxps",false,"","oxps"]
+			,[217,"iana","application/p2p-overlay+xml",false,"",""]
+			,[218,"iana","application/parityfec",false,"",""]
+			,[219,"iana","application/patch-ops-error+xml",false,"","xer"]
+			,[220,"iana","application/pdf",false,"","pdf"]
+			,[221,"iana","application/pdx",false,"",""]
+			,[222,"iana","application/pgp-encrypted",false,"","pgp"]
+			,[223,"iana","application/pgp-keys",false,"",""]
+			,[224,"iana","application/pgp-signature",false,"","asc, sig"]
+			,[225,"apache","application/pics-rules",false,"","prf"]
+			,[226,"iana","application/pidf+xml",false,"",""]
+			,[227,"iana","application/pidf-diff+xml",false,"",""]
+			,[228,"iana","application/pkcs10",false,"","p10"]
+			,[229,"iana","application/pkcs12",false,"",""]
+			,[230,"iana","application/pkcs7-mime",false,"","p7m, p7c"]
+			,[231,"iana","application/pkcs7-signature",false,"","p7s"]
+			,[232,"iana","application/pkcs8",false,"","p8"]
+			,[233,"iana","application/pkix-attr-cert",false,"","ac"]
+			,[234,"iana","application/pkix-cert",false,"","cer"]
+			,[235,"iana","application/pkix-crl",false,"","crl"]
+			,[236,"iana","application/pkix-pkipath",false,"","pkipath"]
+			,[237,"iana","application/pkixcmp",false,"","pki"]
+			,[238,"iana","application/pls+xml",false,"","pls"]
+			,[239,"iana","application/poc-settings+xml",false,"",""]
+			,[240,"iana","application/postscript",true,"","ai, eps, ps"]
+			,[241,"iana","application/ppsp-tracker+json",true,"",""]
+			,[242,"iana","application/problem+json",true,"",""]
+			,[243,"iana","application/problem+xml",false,"",""]
+			,[244,"iana","application/provenance+xml",false,"",""]
+			,[245,"iana","application/prs.alvestrand.titrax-sheet",false,"",""]
+			,[246,"iana","application/prs.cww",false,"","cww"]
+			,[247,"iana","application/prs.hpub+zip",false,"",""]
+			,[248,"iana","application/prs.nprend",false,"",""]
+			,[249,"iana","application/prs.plucker",false,"",""]
+			,[250,"iana","application/prs.rdf-xml-crypt",false,"",""]
+			,[251,"iana","application/prs.xsf+xml",false,"",""]
+			,[252,"iana","application/pskc+xml",false,"","pskcxml"]
+			,[253,"iana","application/qsig",false,"",""]
+			,[254,"iana","application/raptorfec",false,"",""]
+			,[255,"iana","application/rdap+json",true,"",""]
+			,[256,"iana","application/rdf+xml",true,"","rdf"]
+			,[257,"iana","application/reginfo+xml",false,"","rif"]
+			,[258,"iana","application/relax-ng-compact-syntax",false,"","rnc"]
+			,[259,"iana","application/remote-printing",false,"",""]
+			,[260,"iana","application/reputon+json",true,"",""]
+			,[261,"iana","application/resource-lists+xml",false,"","rl"]
+			,[262,"iana","application/resource-lists-diff+xml",false,"","rld"]
+			,[263,"iana","application/rfc+xml",false,"",""]
+			,[264,"iana","application/riscos",false,"",""]
+			,[265,"iana","application/rlmi+xml",false,"",""]
+			,[266,"iana","application/rls-services+xml",false,"","rs"]
+			,[267,"iana","application/rpki-ghostbusters",false,"","gbr"]
+			,[268,"iana","application/rpki-manifest",false,"","mft"]
+			,[269,"iana","application/rpki-roa",false,"","roa"]
+			,[270,"iana","application/rpki-updown",false,"",""]
+			,[271,"apache","application/rsd+xml",false,"","rsd"]
+			,[272,"apache","application/rss+xml",true,"","rss"]
+			,[273,"iana","application/rtf",true,"","rtf"]
+			,[274,"iana","application/rtploopback",false,"",""]
+			,[275,"iana","application/rtx",false,"",""]
+			,[276,"iana","application/samlassertion+xml",false,"",""]
+			,[277,"iana","application/samlmetadata+xml",false,"",""]
+			,[278,"iana","application/sbml+xml",false,"","sbml"]
+			,[279,"iana","application/scaip+xml",false,"",""]
+			,[280,"iana","application/scim+json",true,"",""]
+			,[281,"iana","application/scvp-cv-request",false,"","scq"]
+			,[282,"iana","application/scvp-cv-response",false,"","scs"]
+			,[283,"iana","application/scvp-vp-request",false,"","spq"]
+			,[284,"iana","application/scvp-vp-response",false,"","spp"]
+			,[285,"iana","application/sdp",false,"","sdp"]
+			,[286,"iana","application/sep+xml",false,"",""]
+			,[287,"iana","application/sep-exi",false,"",""]
+			,[288,"iana","application/session-info",false,"",""]
+			,[289,"iana","application/set-payment",false,"",""]
+			,[290,"iana","application/set-payment-initiation",false,"","setpay"]
+			,[291,"iana","application/set-registration",false,"",""]
+			,[292,"iana","application/set-registration-initiation",false,"","setreg"]
+			,[293,"iana","application/sgml",false,"",""]
+			,[294,"iana","application/sgml-open-catalog",false,"",""]
+			,[295,"iana","application/shf+xml",false,"","shf"]
+			,[296,"iana","application/sieve",false,"",""]
+			,[297,"iana","application/simple-filter+xml",false,"",""]
+			,[298,"iana","application/simple-message-summary",false,"",""]
+			,[299,"iana","application/simplesymbolcontainer",false,"",""]
+			,[300,"iana","application/slate",false,"",""]
+			,[301,"iana","application/smil",false,"",""]
+			,[302,"iana","application/smil+xml",false,"","smi, smil"]
+			,[303,"iana","application/smpte336m",false,"",""]
+			,[304,"iana","application/soap+fastinfoset",false,"",""]
+			,[305,"iana","application/soap+xml",true,"",""]
+			,[306,"iana","application/sparql-query",false,"","rq"]
+			,[307,"iana","application/sparql-results+xml",false,"","srx"]
+			,[308,"iana","application/spirits-event+xml",false,"",""]
+			,[309,"iana","application/sql",false,"",""]
+			,[310,"iana","application/srgs",false,"","gram"]
+			,[311,"iana","application/srgs+xml",false,"","grxml"]
+			,[312,"iana","application/sru+xml",false,"","sru"]
+			,[313,"apache","application/ssdl+xml",false,"","ssdl"]
+			,[314,"iana","application/ssml+xml",false,"","ssml"]
+			,[315,"iana","application/tamp-apex-update",false,"",""]
+			,[316,"iana","application/tamp-apex-update-confirm",false,"",""]
+			,[317,"iana","application/tamp-community-update",false,"",""]
+			,[318,"iana","application/tamp-community-update-confirm",false,"",""]
+			,[319,"iana","application/tamp-error",false,"",""]
+			,[320,"iana","application/tamp-sequence-adjust",false,"",""]
+			,[321,"iana","application/tamp-sequence-adjust-confirm",false,"",""]
+			,[322,"iana","application/tamp-status-query",false,"",""]
+			,[323,"iana","application/tamp-status-response",false,"",""]
+			,[324,"iana","application/tamp-update",false,"",""]
+			,[325,"iana","application/tamp-update-confirm",false,"",""]
+			,[326,"","application/tar",true,"",""]
+			,[327,"iana","application/tei+xml",false,"","tei, teicorpus"]
+			,[328,"iana","application/thraud+xml",false,"","tfi"]
+			,[329,"iana","application/timestamp-query",false,"",""]
+			,[330,"iana","application/timestamp-reply",false,"",""]
+			,[331,"iana","application/timestamped-data",false,"","tsd"]
+			,[332,"iana","application/ttml+xml",false,"",""]
+			,[333,"iana","application/tve-trigger",false,"",""]
+			,[334,"iana","application/ulpfec",false,"",""]
+			,[335,"iana","application/urc-grpsheet+xml",false,"",""]
+			,[336,"iana","application/urc-ressheet+xml",false,"",""]
+			,[337,"iana","application/urc-targetdesc+xml",false,"",""]
+			,[338,"iana","application/urc-uisocketdesc+xml",false,"",""]
+			,[339,"iana","application/vcard+json",true,"",""]
+			,[340,"iana","application/vcard+xml",false,"",""]
+			,[341,"iana","application/vemmi",false,"",""]
+			,[342,"apache","application/vividence.scriptfile",false,"",""]
+			,[343,"iana","application/vnd.3gpp-prose+xml",false,"",""]
+			,[344,"iana","application/vnd.3gpp-prose-pc3ch+xml",false,"",""]
+			,[345,"iana","application/vnd.3gpp.access-transfer-events+xml",false,"",""]
+			,[346,"iana","application/vnd.3gpp.bsf+xml",false,"",""]
+			,[347,"iana","application/vnd.3gpp.mid-call+xml",false,"",""]
+			,[348,"iana","application/vnd.3gpp.pic-bw-large",false,"","plb"]
+			,[349,"iana","application/vnd.3gpp.pic-bw-small",false,"","psb"]
+			,[350,"iana","application/vnd.3gpp.pic-bw-var",false,"","pvb"]
+			,[351,"iana","application/vnd.3gpp.sms",false,"",""]
+			,[352,"iana","application/vnd.3gpp.sms+xml",false,"",""]
+			,[353,"iana","application/vnd.3gpp.srvcc-ext+xml",false,"",""]
+			,[354,"iana","application/vnd.3gpp.srvcc-info+xml",false,"",""]
+			,[355,"iana","application/vnd.3gpp.state-and-event-info+xml",false,"",""]
+			,[356,"iana","application/vnd.3gpp.ussd+xml",false,"",""]
+			,[357,"iana","application/vnd.3gpp2.bcmcsinfo+xml",false,"",""]
+			,[358,"iana","application/vnd.3gpp2.sms",false,"",""]
+			,[359,"iana","application/vnd.3gpp2.tcap",false,"","tcap"]
+			,[360,"iana","application/vnd.3lightssoftware.imagescal",false,"",""]
+			,[361,"iana","application/vnd.3m.post-it-notes",false,"","pwn"]
+			,[362,"iana","application/vnd.accpac.simply.aso",false,"","aso"]
+			,[363,"iana","application/vnd.accpac.simply.imp",false,"","imp"]
+			,[364,"iana","application/vnd.acucobol",false,"","acu"]
+			,[365,"iana","application/vnd.acucorp",false,"","atc, acutc"]
+			,[366,"apache","application/vnd.adobe.air-application-installer-package+zip",false,"","air"]
+			,[367,"iana","application/vnd.adobe.flash.movie",false,"",""]
+			,[368,"iana","application/vnd.adobe.formscentral.fcdt",false,"","fcdt"]
+			,[369,"iana","application/vnd.adobe.fxp",false,"","fxp, fxpl"]
+			,[370,"iana","application/vnd.adobe.partial-upload",false,"",""]
+			,[371,"iana","application/vnd.adobe.xdp+xml",false,"","xdp"]
+			,[372,"iana","application/vnd.adobe.xfdf",false,"","xfdf"]
+			,[373,"iana","application/vnd.aether.imp",false,"",""]
+			,[374,"iana","application/vnd.ah-barcode",false,"",""]
+			,[375,"iana","application/vnd.ahead.space",false,"","ahead"]
+			,[376,"iana","application/vnd.airzip.filesecure.azf",false,"","azf"]
+			,[377,"iana","application/vnd.airzip.filesecure.azs",false,"","azs"]
+			,[378,"apache","application/vnd.amazon.ebook",false,"","azw"]
+			,[379,"iana","application/vnd.americandynamics.acc",false,"","acc"]
+			,[380,"iana","application/vnd.amiga.ami",false,"","ami"]
+			,[381,"iana","application/vnd.amundsen.maze+xml",false,"",""]
+			,[382,"apache","application/vnd.android.package-archive",false,"","apk"]
+			,[383,"iana","application/vnd.anki",false,"",""]
+			,[384,"iana","application/vnd.anser-web-certificate-issue-initiation",false,"","cii"]
+			,[385,"apache","application/vnd.anser-web-funds-transfer-initiation",false,"","fti"]
+			,[386,"iana","application/vnd.antix.game-component",false,"","atx"]
+			,[387,"iana","application/vnd.apache.thrift.binary",false,"",""]
+			,[388,"iana","application/vnd.apache.thrift.compact",false,"",""]
+			,[389,"iana","application/vnd.apache.thrift.json",false,"",""]
+			,[390,"iana","application/vnd.api+json",true,"",""]
+			,[391,"iana","application/vnd.apple.installer+xml",false,"","mpkg"]
+			,[392,"iana","application/vnd.apple.mpegurl",false,"","m3u8"]
+			,[393,"","application/vnd.apple.pkpass",false,"","pkpass"]
+			,[394,"iana","application/vnd.arastra.swi",false,"",""]
+			,[395,"iana","application/vnd.aristanetworks.swi",false,"","swi"]
+			,[396,"iana","application/vnd.artsquare",false,"",""]
+			,[397,"iana","application/vnd.astraea-software.iota",false,"","iota"]
+			,[398,"iana","application/vnd.audiograph",false,"","aep"]
+			,[399,"iana","application/vnd.autopackage",false,"",""]
+			,[400,"iana","application/vnd.avistar+xml",false,"",""]
+			,[401,"iana","application/vnd.balsamiq.bmml+xml",false,"",""]
+			,[402,"iana","application/vnd.balsamiq.bmpr",false,"",""]
+			,[403,"iana","application/vnd.bekitzur-stech+json",true,"",""]
+			,[404,"iana","application/vnd.biopax.rdf+xml",false,"",""]
+			,[405,"iana","application/vnd.blueice.multipass",false,"","mpm"]
+			,[406,"iana","application/vnd.bluetooth.ep.oob",false,"",""]
+			,[407,"iana","application/vnd.bluetooth.le.oob",false,"",""]
+			,[408,"iana","application/vnd.bmi",false,"","bmi"]
+			,[409,"iana","application/vnd.businessobjects",false,"","rep"]
+			,[410,"iana","application/vnd.cab-jscript",false,"",""]
+			,[411,"iana","application/vnd.canon-cpdl",false,"",""]
+			,[412,"iana","application/vnd.canon-lips",false,"",""]
+			,[413,"iana","application/vnd.cendio.thinlinc.clientconf",false,"",""]
+			,[414,"iana","application/vnd.century-systems.tcp_stream",false,"",""]
+			,[415,"iana","application/vnd.chemdraw+xml",false,"","cdxml"]
+			,[416,"iana","application/vnd.chipnuts.karaoke-mmd",false,"","mmd"]
+			,[417,"iana","application/vnd.cinderella",false,"","cdy"]
+			,[418,"iana","application/vnd.cirpack.isdn-ext",false,"",""]
+			,[419,"iana","application/vnd.citationstyles.style+xml",false,"",""]
+			,[420,"iana","application/vnd.claymore",false,"","cla"]
+			,[421,"iana","application/vnd.cloanto.rp9",false,"","rp9"]
+			,[422,"iana","application/vnd.clonk.c4group",false,"","c4g, c4d, c4f, c4p, c4u"]
+			,[423,"iana","application/vnd.cluetrust.cartomobile-config",false,"","c11amc"]
+			,[424,"iana","application/vnd.cluetrust.cartomobile-config-pkg",false,"","c11amz"]
+			,[425,"iana","application/vnd.coffeescript",false,"",""]
+			,[426,"iana","application/vnd.collection+json",true,"",""]
+			,[427,"iana","application/vnd.collection.doc+json",true,"",""]
+			,[428,"iana","application/vnd.collection.next+json",true,"",""]
+			,[429,"iana","application/vnd.commerce-battelle",false,"",""]
+			,[430,"iana","application/vnd.commonspace",false,"","csp"]
+			,[431,"iana","application/vnd.contact.cmsg",false,"","cdbcmsg"]
+			,[432,"iana","application/vnd.coreos.ignition+json",true,"",""]
+			,[433,"iana","application/vnd.cosmocaller",false,"","cmc"]
+			,[434,"iana","application/vnd.crick.clicker",false,"","clkx"]
+			,[435,"iana","application/vnd.crick.clicker.keyboard",false,"","clkk"]
+			,[436,"iana","application/vnd.crick.clicker.palette",false,"","clkp"]
+			,[437,"iana","application/vnd.crick.clicker.template",false,"","clkt"]
+			,[438,"iana","application/vnd.crick.clicker.wordbank",false,"","clkw"]
+			,[439,"iana","application/vnd.criticaltools.wbs+xml",false,"","wbs"]
+			,[440,"iana","application/vnd.ctc-posml",false,"","pml"]
+			,[441,"iana","application/vnd.ctct.ws+xml",false,"",""]
+			,[442,"iana","application/vnd.cups-pdf",false,"",""]
+			,[443,"iana","application/vnd.cups-postscript",false,"",""]
+			,[444,"iana","application/vnd.cups-ppd",false,"","ppd"]
+			,[445,"iana","application/vnd.cups-raster",false,"",""]
+			,[446,"iana","application/vnd.cups-raw",false,"",""]
+			,[447,"iana","application/vnd.curl",false,"",""]
+			,[448,"apache","application/vnd.curl.car",false,"","car"]
+			,[449,"apache","application/vnd.curl.pcurl",false,"","pcurl"]
+			,[450,"iana","application/vnd.cyan.dean.root+xml",false,"",""]
+			,[451,"iana","application/vnd.cybank",false,"",""]
+			,[452,"iana","application/vnd.dart",true,"","dart"]
+			,[453,"iana","application/vnd.data-vision.rdz",false,"","rdz"]
+			,[454,"iana","application/vnd.debian.binary-package",false,"",""]
+			,[455,"iana","application/vnd.dece.data",false,"","uvf, uvvf, uvd, uvvd"]
+			,[456,"iana","application/vnd.dece.ttml+xml",false,"","uvt, uvvt"]
+			,[457,"iana","application/vnd.dece.unspecified",false,"","uvx, uvvx"]
+			,[458,"iana","application/vnd.dece.zip",false,"","uvz, uvvz"]
+			,[459,"iana","application/vnd.denovo.fcselayout-link",false,"","fe_launch"]
+			,[460,"iana","application/vnd.desmume-movie",false,"",""]
+			,[461,"apache","application/vnd.desmume.movie",false,"",""]
+			,[462,"iana","application/vnd.dir-bi.plate-dl-nosuffix",false,"",""]
+			,[463,"iana","application/vnd.dm.delegation+xml",false,"",""]
+			,[464,"iana","application/vnd.dna",false,"","dna"]
+			,[465,"iana","application/vnd.document+json",true,"",""]
+			,[466,"apache","application/vnd.dolby.mlp",false,"","mlp"]
+			,[467,"iana","application/vnd.dolby.mobile.1",false,"",""]
+			,[468,"iana","application/vnd.dolby.mobile.2",false,"",""]
+			,[469,"iana","application/vnd.doremir.scorecloud-binary-document",false,"",""]
+			,[470,"iana","application/vnd.dpgraph",false,"","dpg"]
+			,[471,"iana","application/vnd.dreamfactory",false,"","dfac"]
+			,[472,"iana","application/vnd.drive+json",true,"",""]
+			,[473,"apache","application/vnd.ds-keypoint",false,"","kpxx"]
+			,[474,"iana","application/vnd.dtg.local",false,"",""]
+			,[475,"iana","application/vnd.dtg.local.flash",false,"",""]
+			,[476,"iana","application/vnd.dtg.local.html",false,"",""]
+			,[477,"iana","application/vnd.dvb.ait",false,"","ait"]
+			,[478,"iana","application/vnd.dvb.dvbj",false,"",""]
+			,[479,"iana","application/vnd.dvb.esgcontainer",false,"",""]
+			,[480,"iana","application/vnd.dvb.ipdcdftnotifaccess",false,"",""]
+			,[481,"iana","application/vnd.dvb.ipdcesgaccess",false,"",""]
+			,[482,"iana","application/vnd.dvb.ipdcesgaccess2",false,"",""]
+			,[483,"iana","application/vnd.dvb.ipdcesgpdd",false,"",""]
+			,[484,"iana","application/vnd.dvb.ipdcroaming",false,"",""]
+			,[485,"iana","application/vnd.dvb.iptv.alfec-base",false,"",""]
+			,[486,"iana","application/vnd.dvb.iptv.alfec-enhancement",false,"",""]
+			,[487,"iana","application/vnd.dvb.notif-aggregate-root+xml",false,"",""]
+			,[488,"iana","application/vnd.dvb.notif-container+xml",false,"",""]
+			,[489,"iana","application/vnd.dvb.notif-generic+xml",false,"",""]
+			,[490,"iana","application/vnd.dvb.notif-ia-msglist+xml",false,"",""]
+			,[491,"iana","application/vnd.dvb.notif-ia-registration-request+xml",false,"",""]
+			,[492,"iana","application/vnd.dvb.notif-ia-registration-response+xml",false,"",""]
+			,[493,"iana","application/vnd.dvb.notif-init+xml",false,"",""]
+			,[494,"iana","application/vnd.dvb.pfr",false,"",""]
+			,[495,"iana","application/vnd.dvb.service",false,"","svc"]
+			,[496,"iana","application/vnd.dxr",false,"",""]
+			,[497,"iana","application/vnd.dynageo",false,"","geo"]
+			,[498,"iana","application/vnd.dzr",false,"",""]
+			,[499,"iana","application/vnd.easykaraoke.cdgdownload",false,"",""]
+			,[500,"iana","application/vnd.ecdis-update",false,"",""]
+			,[501,"iana","application/vnd.ecowin.chart",false,"","mag"]
+			,[502,"iana","application/vnd.ecowin.filerequest",false,"",""]
+			,[503,"iana","application/vnd.ecowin.fileupdate",false,"",""]
+			,[504,"iana","application/vnd.ecowin.series",false,"",""]
+			,[505,"iana","application/vnd.ecowin.seriesrequest",false,"",""]
+			,[506,"iana","application/vnd.ecowin.seriesupdate",false,"",""]
+			,[507,"iana","application/vnd.emclient.accessrequest+xml",false,"",""]
+			,[508,"iana","application/vnd.enliven",false,"","nml"]
+			,[509,"iana","application/vnd.enphase.envoy",false,"",""]
+			,[510,"iana","application/vnd.eprints.data+xml",false,"",""]
+			,[511,"iana","application/vnd.epson.esf",false,"","esf"]
+			,[512,"iana","application/vnd.epson.msf",false,"","msf"]
+			,[513,"iana","application/vnd.epson.quickanime",false,"","qam"]
+			,[514,"iana","application/vnd.epson.salt",false,"","slt"]
+			,[515,"iana","application/vnd.epson.ssf",false,"","ssf"]
+			,[516,"iana","application/vnd.ericsson.quickcall",false,"",""]
+			,[517,"iana","application/vnd.eszigno3+xml",false,"","es3, et3"]
+			,[518,"iana","application/vnd.etsi.aoc+xml",false,"",""]
+			,[519,"iana","application/vnd.etsi.asic-e+zip",false,"",""]
+			,[520,"iana","application/vnd.etsi.asic-s+zip",false,"",""]
+			,[521,"iana","application/vnd.etsi.cug+xml",false,"",""]
+			,[522,"iana","application/vnd.etsi.iptvcommand+xml",false,"",""]
+			,[523,"iana","application/vnd.etsi.iptvdiscovery+xml",false,"",""]
+			,[524,"iana","application/vnd.etsi.iptvprofile+xml",false,"",""]
+			,[525,"iana","application/vnd.etsi.iptvsad-bc+xml",false,"",""]
+			,[526,"iana","application/vnd.etsi.iptvsad-cod+xml",false,"",""]
+			,[527,"iana","application/vnd.etsi.iptvsad-npvr+xml",false,"",""]
+			,[528,"iana","application/vnd.etsi.iptvservice+xml",false,"",""]
+			,[529,"iana","application/vnd.etsi.iptvsync+xml",false,"",""]
+			,[530,"iana","application/vnd.etsi.iptvueprofile+xml",false,"",""]
+			,[531,"iana","application/vnd.etsi.mcid+xml",false,"",""]
+			,[532,"iana","application/vnd.etsi.mheg5",false,"",""]
+			,[533,"iana","application/vnd.etsi.overload-control-policy-dataset+xml",false,"",""]
+			,[534,"iana","application/vnd.etsi.pstn+xml",false,"",""]
+			,[535,"iana","application/vnd.etsi.sci+xml",false,"",""]
+			,[536,"iana","application/vnd.etsi.simservs+xml",false,"",""]
+			,[537,"iana","application/vnd.etsi.timestamp-token",false,"",""]
+			,[538,"iana","application/vnd.etsi.tsl+xml",false,"",""]
+			,[539,"iana","application/vnd.etsi.tsl.der",false,"",""]
+			,[540,"iana","application/vnd.eudora.data",false,"",""]
+			,[541,"iana","application/vnd.ezpix-album",false,"","ez2"]
+			,[542,"iana","application/vnd.ezpix-package",false,"","ez3"]
+			,[543,"iana","application/vnd.f-secure.mobile",false,"",""]
+			,[544,"iana","application/vnd.fastcopy-disk-image",false,"",""]
+			,[545,"iana","application/vnd.fdf",false,"","fdf"]
+			,[546,"iana","application/vnd.fdsn.mseed",false,"","mseed"]
+			,[547,"iana","application/vnd.fdsn.seed",false,"","seed, dataless"]
+			,[548,"iana","application/vnd.ffsns",false,"",""]
+			,[549,"iana","application/vnd.filmit.zfc",false,"",""]
+			,[550,"iana","application/vnd.fints",false,"",""]
+			,[551,"iana","application/vnd.firemonkeys.cloudcell",false,"",""]
+			,[552,"iana","application/vnd.flographit",false,"","gph"]
+			,[553,"iana","application/vnd.fluxtime.clip",false,"","ftc"]
+			,[554,"iana","application/vnd.font-fontforge-sfd",false,"",""]
+			,[555,"iana","application/vnd.framemaker",false,"","fm, frame, maker, book"]
+			,[556,"iana","application/vnd.frogans.fnc",false,"","fnc"]
+			,[557,"iana","application/vnd.frogans.ltf",false,"","ltf"]
+			,[558,"iana","application/vnd.fsc.weblaunch",false,"","fsc"]
+			,[559,"iana","application/vnd.fujitsu.oasys",false,"","oas"]
+			,[560,"iana","application/vnd.fujitsu.oasys2",false,"","oa2"]
+			,[561,"iana","application/vnd.fujitsu.oasys3",false,"","oa3"]
+			,[562,"iana","application/vnd.fujitsu.oasysgp",false,"","fg5"]
+			,[563,"iana","application/vnd.fujitsu.oasysprs",false,"","bh2"]
+			,[564,"iana","application/vnd.fujixerox.art-ex",false,"",""]
+			,[565,"iana","application/vnd.fujixerox.art4",false,"",""]
+			,[566,"iana","application/vnd.fujixerox.ddd",false,"","ddd"]
+			,[567,"iana","application/vnd.fujixerox.docuworks",false,"","xdw"]
+			,[568,"iana","application/vnd.fujixerox.docuworks.binder",false,"","xbd"]
+			,[569,"iana","application/vnd.fujixerox.docuworks.container",false,"",""]
+			,[570,"iana","application/vnd.fujixerox.hbpl",false,"",""]
+			,[571,"iana","application/vnd.fut-misnet",false,"",""]
+			,[572,"iana","application/vnd.fuzzysheet",false,"","fzs"]
+			,[573,"iana","application/vnd.genomatix.tuxedo",false,"","txd"]
+			,[574,"iana","application/vnd.geo+json",true,"",""]
+			,[575,"iana","application/vnd.geocube+xml",false,"",""]
+			,[576,"iana","application/vnd.geogebra.file",false,"","ggb"]
+			,[577,"iana","application/vnd.geogebra.tool",false,"","ggt"]
+			,[578,"iana","application/vnd.geometry-explorer",false,"","gex, gre"]
+			,[579,"iana","application/vnd.geonext",false,"","gxt"]
+			,[580,"iana","application/vnd.geoplan",false,"","g2w"]
+			,[581,"iana","application/vnd.geospace",false,"","g3w"]
+			,[582,"iana","application/vnd.gerber",false,"",""]
+			,[583,"iana","application/vnd.globalplatform.card-content-mgt",false,"",""]
+			,[584,"iana","application/vnd.globalplatform.card-content-mgt-response",false,"",""]
+			,[585,"iana","application/vnd.gmx",false,"","gmx"]
+			,[586,"","application/vnd.google-apps.document",false,"","gdoc"]
+			,[587,"","application/vnd.google-apps.presentation",false,"","gslides"]
+			,[588,"","application/vnd.google-apps.spreadsheet",false,"","gsheet"]
+			,[589,"iana","application/vnd.google-earth.kml+xml",true,"","kml"]
+			,[590,"iana","application/vnd.google-earth.kmz",false,"","kmz"]
+			,[591,"iana","application/vnd.gov.sk.e-form+xml",false,"",""]
+			,[592,"iana","application/vnd.gov.sk.e-form+zip",false,"",""]
+			,[593,"iana","application/vnd.gov.sk.xmldatacontainer+xml",false,"",""]
+			,[594,"iana","application/vnd.grafeq",false,"","gqf, gqs"]
+			,[595,"iana","application/vnd.gridmp",false,"",""]
+			,[596,"iana","application/vnd.groove-account",false,"","gac"]
+			,[597,"iana","application/vnd.groove-help",false,"","ghf"]
+			,[598,"iana","application/vnd.groove-identity-message",false,"","gim"]
+			,[599,"iana","application/vnd.groove-injector",false,"","grv"]
+			,[600,"iana","application/vnd.groove-tool-message",false,"","gtm"]
+			,[601,"iana","application/vnd.groove-tool-template",false,"","tpl"]
+			,[602,"iana","application/vnd.groove-vcard",false,"","vcg"]
+			,[603,"iana","application/vnd.hal+json",true,"",""]
+			,[604,"iana","application/vnd.hal+xml",false,"","hal"]
+			,[605,"iana","application/vnd.handheld-entertainment+xml",false,"","zmm"]
+			,[606,"iana","application/vnd.hbci",false,"","hbci"]
+			,[607,"iana","application/vnd.hcl-bireports",false,"",""]
+			,[608,"iana","application/vnd.hdt",false,"",""]
+			,[609,"iana","application/vnd.heroku+json",true,"",""]
+			,[610,"iana","application/vnd.hhe.lesson-player",false,"","les"]
+			,[611,"iana","application/vnd.hp-hpgl",false,"","hpgl"]
+			,[612,"iana","application/vnd.hp-hpid",false,"","hpid"]
+			,[613,"iana","application/vnd.hp-hps",false,"","hps"]
+			,[614,"iana","application/vnd.hp-jlyt",false,"","jlt"]
+			,[615,"iana","application/vnd.hp-pcl",false,"","pcl"]
+			,[616,"iana","application/vnd.hp-pclxl",false,"","pclxl"]
+			,[617,"iana","application/vnd.httphone",false,"",""]
+			,[618,"iana","application/vnd.hydrostatix.sof-data",false,"","sfd-hdstx"]
+			,[619,"iana","application/vnd.hyperdrive+json",true,"",""]
+			,[620,"iana","application/vnd.hzn-3d-crossword",false,"",""]
+			,[621,"iana","application/vnd.ibm.afplinedata",false,"",""]
+			,[622,"iana","application/vnd.ibm.electronic-media",false,"",""]
+			,[623,"iana","application/vnd.ibm.minipay",false,"","mpy"]
+			,[624,"iana","application/vnd.ibm.modcap",false,"","afp, listafp, list3820"]
+			,[625,"iana","application/vnd.ibm.rights-management",false,"","irm"]
+			,[626,"iana","application/vnd.ibm.secure-container",false,"","sc"]
+			,[627,"iana","application/vnd.iccprofile",false,"","icc, icm"]
+			,[628,"iana","application/vnd.ieee.1905",false,"",""]
+			,[629,"iana","application/vnd.igloader",false,"","igl"]
+			,[630,"iana","application/vnd.immervision-ivp",false,"","ivp"]
+			,[631,"iana","application/vnd.immervision-ivu",false,"","ivu"]
+			,[632,"iana","application/vnd.ims.imsccv1p1",false,"",""]
+			,[633,"iana","application/vnd.ims.imsccv1p2",false,"",""]
+			,[634,"iana","application/vnd.ims.imsccv1p3",false,"",""]
+			,[635,"iana","application/vnd.ims.lis.v2.result+json",true,"",""]
+			,[636,"iana","application/vnd.ims.lti.v2.toolconsumerprofile+json",true,"",""]
+			,[637,"iana","application/vnd.ims.lti.v2.toolproxy+json",true,"",""]
+			,[638,"iana","application/vnd.ims.lti.v2.toolproxy.id+json",true,"",""]
+			,[639,"iana","application/vnd.ims.lti.v2.toolsettings+json",true,"",""]
+			,[640,"iana","application/vnd.ims.lti.v2.toolsettings.simple+json",true,"",""]
+			,[641,"iana","application/vnd.informedcontrol.rms+xml",false,"",""]
+			,[642,"iana","application/vnd.informix-visionary",false,"",""]
+			,[643,"iana","application/vnd.infotech.project",false,"",""]
+			,[644,"iana","application/vnd.infotech.project+xml",false,"",""]
+			,[645,"iana","application/vnd.innopath.wamp.notification",false,"",""]
+			,[646,"iana","application/vnd.insors.igm",false,"","igm"]
+			,[647,"iana","application/vnd.intercon.formnet",false,"","xpw, xpx"]
+			,[648,"iana","application/vnd.intergeo",false,"","i2g"]
+			,[649,"iana","application/vnd.intertrust.digibox",false,"",""]
+			,[650,"iana","application/vnd.intertrust.nncp",false,"",""]
+			,[651,"iana","application/vnd.intu.qbo",false,"","qbo"]
+			,[652,"iana","application/vnd.intu.qfx",false,"","qfx"]
+			,[653,"iana","application/vnd.iptc.g2.catalogitem+xml",false,"",""]
+			,[654,"iana","application/vnd.iptc.g2.conceptitem+xml",false,"",""]
+			,[655,"iana","application/vnd.iptc.g2.knowledgeitem+xml",false,"",""]
+			,[656,"iana","application/vnd.iptc.g2.newsitem+xml",false,"",""]
+			,[657,"iana","application/vnd.iptc.g2.newsmessage+xml",false,"",""]
+			,[658,"iana","application/vnd.iptc.g2.packageitem+xml",false,"",""]
+			,[659,"iana","application/vnd.iptc.g2.planningitem+xml",false,"",""]
+			,[660,"iana","application/vnd.ipunplugged.rcprofile",false,"","rcprofile"]
+			,[661,"iana","application/vnd.irepository.package+xml",false,"","irp"]
+			,[662,"iana","application/vnd.is-xpr",false,"","xpr"]
+			,[663,"iana","application/vnd.isac.fcs",false,"","fcs"]
+			,[664,"iana","application/vnd.jam",false,"","jam"]
+			,[665,"iana","application/vnd.japannet-directory-service",false,"",""]
+			,[666,"iana","application/vnd.japannet-jpnstore-wakeup",false,"",""]
+			,[667,"iana","application/vnd.japannet-payment-wakeup",false,"",""]
+			,[668,"iana","application/vnd.japannet-registration",false,"",""]
+			,[669,"iana","application/vnd.japannet-registration-wakeup",false,"",""]
+			,[670,"iana","application/vnd.japannet-setstore-wakeup",false,"",""]
+			,[671,"iana","application/vnd.japannet-verification",false,"",""]
+			,[672,"iana","application/vnd.japannet-verification-wakeup",false,"",""]
+			,[673,"iana","application/vnd.jcp.javame.midlet-rms",false,"","rms"]
+			,[674,"iana","application/vnd.jisp",false,"","jisp"]
+			,[675,"iana","application/vnd.joost.joda-archive",false,"","joda"]
+			,[676,"iana","application/vnd.jsk.isdn-ngn",false,"",""]
+			,[677,"iana","application/vnd.kahootz",false,"","ktz, ktr"]
+			,[678,"iana","application/vnd.kde.karbon",false,"","karbon"]
+			,[679,"iana","application/vnd.kde.kchart",false,"","chrt"]
+			,[680,"iana","application/vnd.kde.kformula",false,"","kfo"]
+			,[681,"iana","application/vnd.kde.kivio",false,"","flw"]
+			,[682,"iana","application/vnd.kde.kontour",false,"","kon"]
+			,[683,"iana","application/vnd.kde.kpresenter",false,"","kpr, kpt"]
+			,[684,"iana","application/vnd.kde.kspread",false,"","ksp"]
+			,[685,"iana","application/vnd.kde.kword",false,"","kwd, kwt"]
+			,[686,"iana","application/vnd.kenameaapp",false,"","htke"]
+			,[687,"iana","application/vnd.kidspiration",false,"","kia"]
+			,[688,"iana","application/vnd.kinar",false,"","kne, knp"]
+			,[689,"iana","application/vnd.koan",false,"","skp, skd, skt, skm"]
+			,[690,"iana","application/vnd.kodak-descriptor",false,"","sse"]
+			,[691,"iana","application/vnd.las.las+xml",false,"","lasxml"]
+			,[692,"iana","application/vnd.liberty-request+xml",false,"",""]
+			,[693,"iana","application/vnd.llamagraphics.life-balance.desktop",false,"","lbd"]
+			,[694,"iana","application/vnd.llamagraphics.life-balance.exchange+xml",false,"","lbe"]
+			,[695,"iana","application/vnd.lotus-1-2-3",false,"","123"]
+			,[696,"iana","application/vnd.lotus-approach",false,"","apr"]
+			,[697,"iana","application/vnd.lotus-freelance",false,"","pre"]
+			,[698,"iana","application/vnd.lotus-notes",false,"","nsf"]
+			,[699,"iana","application/vnd.lotus-organizer",false,"","org"]
+			,[700,"iana","application/vnd.lotus-screencam",false,"","scm"]
+			,[701,"iana","application/vnd.lotus-wordpro",false,"","lwp"]
+			,[702,"iana","application/vnd.macports.portpkg",false,"","portpkg"]
+			,[703,"iana","application/vnd.mapbox-vector-tile",false,"",""]
+			,[704,"iana","application/vnd.marlin.drm.actiontoken+xml",false,"",""]
+			,[705,"iana","application/vnd.marlin.drm.conftoken+xml",false,"",""]
+			,[706,"iana","application/vnd.marlin.drm.license+xml",false,"",""]
+			,[707,"iana","application/vnd.marlin.drm.mdcf",false,"",""]
+			,[708,"iana","application/vnd.mason+json",true,"",""]
+			,[709,"iana","application/vnd.maxmind.maxmind-db",false,"",""]
+			,[710,"iana","application/vnd.mcd",false,"","mcd"]
+			,[711,"iana","application/vnd.medcalcdata",false,"","mc1"]
+			,[712,"iana","application/vnd.mediastation.cdkey",false,"","cdkey"]
+			,[713,"iana","application/vnd.meridian-slingshot",false,"",""]
+			,[714,"iana","application/vnd.mfer",false,"","mwf"]
+			,[715,"iana","application/vnd.mfmp",false,"","mfm"]
+			,[716,"iana","application/vnd.micro+json",true,"",""]
+			,[717,"iana","application/vnd.micrografx.flo",false,"","flo"]
+			,[718,"iana","application/vnd.micrografx.igx",false,"","igx"]
+			,[719,"iana","application/vnd.microsoft.portable-executable",false,"",""]
+			,[720,"iana","application/vnd.miele+json",true,"",""]
+			,[721,"iana","application/vnd.mif",false,"","mif"]
+			,[722,"iana","application/vnd.minisoft-hp3000-save",false,"",""]
+			,[723,"iana","application/vnd.mitsubishi.misty-guard.trustweb",false,"",""]
+			,[724,"iana","application/vnd.mobius.daf",false,"","daf"]
+			,[725,"iana","application/vnd.mobius.dis",false,"","dis"]
+			,[726,"iana","application/vnd.mobius.mbk",false,"","mbk"]
+			,[727,"iana","application/vnd.mobius.mqy",false,"","mqy"]
+			,[728,"iana","application/vnd.mobius.msl",false,"","msl"]
+			,[729,"iana","application/vnd.mobius.plc",false,"","plc"]
+			,[730,"iana","application/vnd.mobius.txf",false,"","txf"]
+			,[731,"iana","application/vnd.mophun.application",false,"","mpn"]
+			,[732,"iana","application/vnd.mophun.certificate",false,"","mpc"]
+			,[733,"iana","application/vnd.motorola.flexsuite",false,"",""]
+			,[734,"iana","application/vnd.motorola.flexsuite.adsi",false,"",""]
+			,[735,"iana","application/vnd.motorola.flexsuite.fis",false,"",""]
+			,[736,"iana","application/vnd.motorola.flexsuite.gotap",false,"",""]
+			,[737,"iana","application/vnd.motorola.flexsuite.kmr",false,"",""]
+			,[738,"iana","application/vnd.motorola.flexsuite.ttc",false,"",""]
+			,[739,"iana","application/vnd.motorola.flexsuite.wem",false,"",""]
+			,[740,"iana","application/vnd.motorola.iprm",false,"",""]
+			,[741,"iana","application/vnd.mozilla.xul+xml",true,"","xul"]
+			,[742,"iana","application/vnd.ms-3mfdocument",false,"",""]
+			,[743,"iana","application/vnd.ms-artgalry",false,"","cil"]
+			,[744,"iana","application/vnd.ms-asf",false,"",""]
+			,[745,"iana","application/vnd.ms-cab-compressed",false,"","cab"]
+			,[746,"apache","application/vnd.ms-color.iccprofile",false,"",""]
+			,[747,"iana","application/vnd.ms-excel",false,"","xls, xlm, xla, xlc, xlt, xlw"]
+			,[748,"iana","application/vnd.ms-excel.addin.macroenabled.12",false,"","xlam"]
+			,[749,"iana","application/vnd.ms-excel.sheet.binary.macroenabled.12",false,"","xlsb"]
+			,[750,"iana","application/vnd.ms-excel.sheet.macroenabled.12",false,"","xlsm"]
+			,[751,"iana","application/vnd.ms-excel.template.macroenabled.12",false,"","xltm"]
+			,[752,"iana","application/vnd.ms-fontobject",true,"","eot"]
+			,[753,"iana","application/vnd.ms-htmlhelp",false,"","chm"]
+			,[754,"iana","application/vnd.ms-ims",false,"","ims"]
+			,[755,"iana","application/vnd.ms-lrm",false,"","lrm"]
+			,[756,"iana","application/vnd.ms-office.activex+xml",false,"",""]
+			,[757,"iana","application/vnd.ms-officetheme",false,"","thmx"]
+			,[758,"apache","application/vnd.ms-opentype",true,"",""]
+			,[759,"apache","application/vnd.ms-package.obfuscated-opentype",false,"",""]
+			,[760,"apache","application/vnd.ms-pki.seccat",false,"","cat"]
+			,[761,"apache","application/vnd.ms-pki.stl",false,"","stl"]
+			,[762,"iana","application/vnd.ms-playready.initiator+xml",false,"",""]
+			,[763,"iana","application/vnd.ms-powerpoint",false,"","ppt, pps, pot"]
+			,[764,"iana","application/vnd.ms-powerpoint.addin.macroenabled.12",false,"","ppam"]
+			,[765,"iana","application/vnd.ms-powerpoint.presentation.macroenabled.12",false,"","pptm"]
+			,[766,"iana","application/vnd.ms-powerpoint.slide.macroenabled.12",false,"","sldm"]
+			,[767,"iana","application/vnd.ms-powerpoint.slideshow.macroenabled.12",false,"","ppsm"]
+			,[768,"iana","application/vnd.ms-powerpoint.template.macroenabled.12",false,"","potm"]
+			,[769,"iana","application/vnd.ms-printdevicecapabilities+xml",false,"",""]
+			,[770,"apache","application/vnd.ms-printing.printticket+xml",false,"",""]
+			,[771,"iana","application/vnd.ms-printschematicket+xml",false,"",""]
+			,[772,"iana","application/vnd.ms-project",false,"","mpp, mpt"]
+			,[773,"iana","application/vnd.ms-tnef",false,"",""]
+			,[774,"iana","application/vnd.ms-windows.devicepairing",false,"",""]
+			,[775,"iana","application/vnd.ms-windows.nwprinting.oob",false,"",""]
+			,[776,"iana","application/vnd.ms-windows.printerpairing",false,"",""]
+			,[777,"iana","application/vnd.ms-windows.wsd.oob",false,"",""]
+			,[778,"iana","application/vnd.ms-wmdrm.lic-chlg-req",false,"",""]
+			,[779,"iana","application/vnd.ms-wmdrm.lic-resp",false,"",""]
+			,[780,"iana","application/vnd.ms-wmdrm.meter-chlg-req",false,"",""]
+			,[781,"iana","application/vnd.ms-wmdrm.meter-resp",false,"",""]
+			,[782,"iana","application/vnd.ms-word.document.macroenabled.12",false,"","docm"]
+			,[783,"iana","application/vnd.ms-word.template.macroenabled.12",false,"","dotm"]
+			,[784,"iana","application/vnd.ms-works",false,"","wps, wks, wcm, wdb"]
+			,[785,"iana","application/vnd.ms-wpl",false,"","wpl"]
+			,[786,"iana","application/vnd.ms-xpsdocument",false,"","xps"]
+			,[787,"iana","application/vnd.msa-disk-image",false,"",""]
+			,[788,"iana","application/vnd.mseq",false,"","mseq"]
+			,[789,"iana","application/vnd.msign",false,"",""]
+			,[790,"iana","application/vnd.multiad.creator",false,"",""]
+			,[791,"iana","application/vnd.multiad.creator.cif",false,"",""]
+			,[792,"iana","application/vnd.music-niff",false,"",""]
+			,[793,"iana","application/vnd.musician",false,"","mus"]
+			,[794,"iana","application/vnd.muvee.style",false,"","msty"]
+			,[795,"iana","application/vnd.mynfc",false,"","taglet"]
+			,[796,"iana","application/vnd.ncd.control",false,"",""]
+			,[797,"iana","application/vnd.ncd.reference",false,"",""]
+			,[798,"iana","application/vnd.nervana",false,"",""]
+			,[799,"iana","application/vnd.netfpx",false,"",""]
+			,[800,"iana","application/vnd.neurolanguage.nlu",false,"","nlu"]
+			,[801,"iana","application/vnd.nintendo.nitro.rom",false,"",""]
+			,[802,"iana","application/vnd.nintendo.snes.rom",false,"",""]
+			,[803,"iana","application/vnd.nitf",false,"","ntf, nitf"]
+			,[804,"iana","application/vnd.noblenet-directory",false,"","nnd"]
+			,[805,"iana","application/vnd.noblenet-sealer",false,"","nns"]
+			,[806,"iana","application/vnd.noblenet-web",false,"","nnw"]
+			,[807,"iana","application/vnd.nokia.catalogs",false,"",""]
+			,[808,"iana","application/vnd.nokia.conml+wbxml",false,"",""]
+			,[809,"iana","application/vnd.nokia.conml+xml",false,"",""]
+			,[810,"iana","application/vnd.nokia.iptv.config+xml",false,"",""]
+			,[811,"iana","application/vnd.nokia.isds-radio-presets",false,"",""]
+			,[812,"iana","application/vnd.nokia.landmark+wbxml",false,"",""]
+			,[813,"iana","application/vnd.nokia.landmark+xml",false,"",""]
+			,[814,"iana","application/vnd.nokia.landmarkcollection+xml",false,"",""]
+			,[815,"iana","application/vnd.nokia.n-gage.ac+xml",false,"",""]
+			,[816,"iana","application/vnd.nokia.n-gage.data",false,"","ngdat"]
+			,[817,"iana","application/vnd.nokia.n-gage.symbian.install",false,"","n-gage"]
+			,[818,"iana","application/vnd.nokia.ncd",false,"",""]
+			,[819,"iana","application/vnd.nokia.pcd+wbxml",false,"",""]
+			,[820,"iana","application/vnd.nokia.pcd+xml",false,"",""]
+			,[821,"iana","application/vnd.nokia.radio-preset",false,"","rpst"]
+			,[822,"iana","application/vnd.nokia.radio-presets",false,"","rpss"]
+			,[823,"iana","application/vnd.novadigm.edm",false,"","edm"]
+			,[824,"iana","application/vnd.novadigm.edx",false,"","edx"]
+			,[825,"iana","application/vnd.novadigm.ext",false,"","ext"]
+			,[826,"iana","application/vnd.ntt-local.content-share",false,"",""]
+			,[827,"iana","application/vnd.ntt-local.file-transfer",false,"",""]
+			,[828,"iana","application/vnd.ntt-local.ogw_remote-access",false,"",""]
+			,[829,"iana","application/vnd.ntt-local.sip-ta_remote",false,"",""]
+			,[830,"iana","application/vnd.ntt-local.sip-ta_tcp_stream",false,"",""]
+			,[831,"iana","application/vnd.oasis.opendocument.chart",false,"","odc"]
+			,[832,"iana","application/vnd.oasis.opendocument.chart-template",false,"","otc"]
+			,[833,"iana","application/vnd.oasis.opendocument.database",false,"","odb"]
+			,[834,"iana","application/vnd.oasis.opendocument.formula",false,"","odf"]
+			,[835,"iana","application/vnd.oasis.opendocument.formula-template",false,"","odft"]
+			,[836,"iana","application/vnd.oasis.opendocument.graphics",false,"","odg"]
+			,[837,"iana","application/vnd.oasis.opendocument.graphics-template",false,"","otg"]
+			,[838,"iana","application/vnd.oasis.opendocument.image",false,"","odi"]
+			,[839,"iana","application/vnd.oasis.opendocument.image-template",false,"","oti"]
+			,[840,"iana","application/vnd.oasis.opendocument.presentation",false,"","odp"]
+			,[841,"iana","application/vnd.oasis.opendocument.presentation-template",false,"","otp"]
+			,[842,"iana","application/vnd.oasis.opendocument.spreadsheet",false,"","ods"]
+			,[843,"iana","application/vnd.oasis.opendocument.spreadsheet-template",false,"","ots"]
+			,[844,"iana","application/vnd.oasis.opendocument.text",false,"","odt"]
+			,[845,"iana","application/vnd.oasis.opendocument.text-master",false,"","odm"]
+			,[846,"iana","application/vnd.oasis.opendocument.text-template",false,"","ott"]
+			,[847,"iana","application/vnd.oasis.opendocument.text-web",false,"","oth"]
+			,[848,"iana","application/vnd.obn",false,"",""]
+			,[849,"iana","application/vnd.oftn.l10n+json",true,"",""]
+			,[850,"iana","application/vnd.oipf.contentaccessdownload+xml",false,"",""]
+			,[851,"iana","application/vnd.oipf.contentaccessstreaming+xml",false,"",""]
+			,[852,"iana","application/vnd.oipf.cspg-hexbinary",false,"",""]
+			,[853,"iana","application/vnd.oipf.dae.svg+xml",false,"",""]
+			,[854,"iana","application/vnd.oipf.dae.xhtml+xml",false,"",""]
+			,[855,"iana","application/vnd.oipf.mippvcontrolmessage+xml",false,"",""]
+			,[856,"iana","application/vnd.oipf.pae.gem",false,"",""]
+			,[857,"iana","application/vnd.oipf.spdiscovery+xml",false,"",""]
+			,[858,"iana","application/vnd.oipf.spdlist+xml",false,"",""]
+			,[859,"iana","application/vnd.oipf.ueprofile+xml",false,"",""]
+			,[860,"iana","application/vnd.oipf.userprofile+xml",false,"",""]
+			,[861,"iana","application/vnd.olpc-sugar",false,"","xo"]
+			,[862,"iana","application/vnd.oma-scws-config",false,"",""]
+			,[863,"iana","application/vnd.oma-scws-http-request",false,"",""]
+			,[864,"iana","application/vnd.oma-scws-http-response",false,"",""]
+			,[865,"iana","application/vnd.oma.bcast.associated-procedure-parameter+xml",false,"",""]
+			,[866,"iana","application/vnd.oma.bcast.drm-trigger+xml",false,"",""]
+			,[867,"iana","application/vnd.oma.bcast.imd+xml",false,"",""]
+			,[868,"iana","application/vnd.oma.bcast.ltkm",false,"",""]
+			,[869,"iana","application/vnd.oma.bcast.notification+xml",false,"",""]
+			,[870,"iana","application/vnd.oma.bcast.provisioningtrigger",false,"",""]
+			,[871,"iana","application/vnd.oma.bcast.sgboot",false,"",""]
+			,[872,"iana","application/vnd.oma.bcast.sgdd+xml",false,"",""]
+			,[873,"iana","application/vnd.oma.bcast.sgdu",false,"",""]
+			,[874,"iana","application/vnd.oma.bcast.simple-symbol-container",false,"",""]
+			,[875,"iana","application/vnd.oma.bcast.smartcard-trigger+xml",false,"",""]
+			,[876,"iana","application/vnd.oma.bcast.sprov+xml",false,"",""]
+			,[877,"iana","application/vnd.oma.bcast.stkm",false,"",""]
+			,[878,"iana","application/vnd.oma.cab-address-book+xml",false,"",""]
+			,[879,"iana","application/vnd.oma.cab-feature-handler+xml",false,"",""]
+			,[880,"iana","application/vnd.oma.cab-pcc+xml",false,"",""]
+			,[881,"iana","application/vnd.oma.cab-subs-invite+xml",false,"",""]
+			,[882,"iana","application/vnd.oma.cab-user-prefs+xml",false,"",""]
+			,[883,"iana","application/vnd.oma.dcd",false,"",""]
+			,[884,"iana","application/vnd.oma.dcdc",false,"",""]
+			,[885,"iana","application/vnd.oma.dd2+xml",false,"","dd2"]
+			,[886,"iana","application/vnd.oma.drm.risd+xml",false,"",""]
+			,[887,"iana","application/vnd.oma.group-usage-list+xml",false,"",""]
+			,[888,"iana","application/vnd.oma.pal+xml",false,"",""]
+			,[889,"iana","application/vnd.oma.poc.detailed-progress-report+xml",false,"",""]
+			,[890,"iana","application/vnd.oma.poc.final-report+xml",false,"",""]
+			,[891,"iana","application/vnd.oma.poc.groups+xml",false,"",""]
+			,[892,"iana","application/vnd.oma.poc.invocation-descriptor+xml",false,"",""]
+			,[893,"iana","application/vnd.oma.poc.optimized-progress-report+xml",false,"",""]
+			,[894,"iana","application/vnd.oma.push",false,"",""]
+			,[895,"iana","application/vnd.oma.scidm.messages+xml",false,"",""]
+			,[896,"iana","application/vnd.oma.xcap-directory+xml",false,"",""]
+			,[897,"iana","application/vnd.omads-email+xml",false,"",""]
+			,[898,"iana","application/vnd.omads-file+xml",false,"",""]
+			,[899,"iana","application/vnd.omads-folder+xml",false,"",""]
+			,[900,"iana","application/vnd.omaloc-supl-init",false,"",""]
+			,[901,"iana","application/vnd.onepager",false,"",""]
+			,[902,"iana","application/vnd.openblox.game+xml",false,"",""]
+			,[903,"iana","application/vnd.openblox.game-binary",false,"",""]
+			,[904,"iana","application/vnd.openeye.oeb",false,"",""]
+			,[905,"apache","application/vnd.openofficeorg.extension",false,"","oxt"]
+			,[906,"iana","application/vnd.openxmlformats-officedocument.custom-properties+xml",false,"",""]
+			,[907,"iana","application/vnd.openxmlformats-officedocument.customxmlproperties+xml",false,"",""]
+			,[908,"iana","application/vnd.openxmlformats-officedocument.drawing+xml",false,"",""]
+			,[909,"iana","application/vnd.openxmlformats-officedocument.drawingml.chart+xml",false,"",""]
+			,[910,"iana","application/vnd.openxmlformats-officedocument.drawingml.chartshapes+xml",false,"",""]
+			,[911,"iana","application/vnd.openxmlformats-officedocument.drawingml.diagramcolors+xml",false,"",""]
+			,[912,"iana","application/vnd.openxmlformats-officedocument.drawingml.diagramdata+xml",false,"",""]
+			,[913,"iana","application/vnd.openxmlformats-officedocument.drawingml.diagramlayout+xml",false,"",""]
+			,[914,"iana","application/vnd.openxmlformats-officedocument.drawingml.diagramstyle+xml",false,"",""]
+			,[915,"iana","application/vnd.openxmlformats-officedocument.extended-properties+xml",false,"",""]
+			,[916,"iana","application/vnd.openxmlformats-officedocument.presentationml-template",false,"",""]
+			,[917,"iana","application/vnd.openxmlformats-officedocument.presentationml.commentauthors+xml",false,"",""]
+			,[918,"iana","application/vnd.openxmlformats-officedocument.presentationml.comments+xml",false,"",""]
+			,[919,"iana","application/vnd.openxmlformats-officedocument.presentationml.handoutmaster+xml",false,"",""]
+			,[920,"iana","application/vnd.openxmlformats-officedocument.presentationml.notesmaster+xml",false,"",""]
+			,[921,"iana","application/vnd.openxmlformats-officedocument.presentationml.notesslide+xml",false,"",""]
+			,[922,"iana","application/vnd.openxmlformats-officedocument.presentationml.presentation",false,"","pptx"]
+			,[923,"iana","application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml",false,"",""]
+			,[924,"iana","application/vnd.openxmlformats-officedocument.presentationml.presprops+xml",false,"",""]
+			,[925,"iana","application/vnd.openxmlformats-officedocument.presentationml.slide",false,"","sldx"]
+			,[926,"iana","application/vnd.openxmlformats-officedocument.presentationml.slide+xml",false,"",""]
+			,[927,"iana","application/vnd.openxmlformats-officedocument.presentationml.slidelayout+xml",false,"",""]
+			,[928,"iana","application/vnd.openxmlformats-officedocument.presentationml.slidemaster+xml",false,"",""]
+			,[929,"iana","application/vnd.openxmlformats-officedocument.presentationml.slideshow",false,"","ppsx"]
+			,[930,"iana","application/vnd.openxmlformats-officedocument.presentationml.slideshow.main+xml",false,"",""]
+			,[931,"iana","application/vnd.openxmlformats-officedocument.presentationml.slideupdateinfo+xml",false,"",""]
+			,[932,"iana","application/vnd.openxmlformats-officedocument.presentationml.tablestyles+xml",false,"",""]
+			,[933,"iana","application/vnd.openxmlformats-officedocument.presentationml.tags+xml",false,"",""]
+			,[934,"apache","application/vnd.openxmlformats-officedocument.presentationml.template",false,"","potx"]
+			,[935,"iana","application/vnd.openxmlformats-officedocument.presentationml.template.main+xml",false,"",""]
+			,[936,"iana","application/vnd.openxmlformats-officedocument.presentationml.viewprops+xml",false,"",""]
+			,[937,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml-template",false,"",""]
+			,[938,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.calcchain+xml",false,"",""]
+			,[939,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.chartsheet+xml",false,"",""]
+			,[940,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.comments+xml",false,"",""]
+			,[941,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.connections+xml",false,"",""]
+			,[942,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.dialogsheet+xml",false,"",""]
+			,[943,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.externallink+xml",false,"",""]
+			,[944,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcachedefinition+xml",false,"",""]
+			,[945,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcacherecords+xml",false,"",""]
+			,[946,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.pivottable+xml",false,"",""]
+			,[947,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.querytable+xml",false,"",""]
+			,[948,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.revisionheaders+xml",false,"",""]
+			,[949,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.revisionlog+xml",false,"",""]
+			,[950,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.sharedstrings+xml",false,"",""]
+			,[951,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",false,"","xlsx"]
+			,[952,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml",false,"",""]
+			,[953,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.sheetmetadata+xml",false,"",""]
+			,[954,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml",false,"",""]
+			,[955,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.table+xml",false,"",""]
+			,[956,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.tablesinglecells+xml",false,"",""]
+			,[957,"apache","application/vnd.openxmlformats-officedocument.spreadsheetml.template",false,"","xltx"]
+			,[958,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.template.main+xml",false,"",""]
+			,[959,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.usernames+xml",false,"",""]
+			,[960,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.volatiledependencies+xml",false,"",""]
+			,[961,"iana","application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml",false,"",""]
+			,[962,"iana","application/vnd.openxmlformats-officedocument.theme+xml",false,"",""]
+			,[963,"iana","application/vnd.openxmlformats-officedocument.themeoverride+xml",false,"",""]
+			,[964,"iana","application/vnd.openxmlformats-officedocument.vmldrawing",false,"",""]
+			,[965,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml-template",false,"",""]
+			,[966,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.comments+xml",false,"",""]
+			,[967,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.document",false,"","docx"]
+			,[968,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.document.glossary+xml",false,"",""]
+			,[969,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml",false,"",""]
+			,[970,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.endnotes+xml",false,"",""]
+			,[971,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.fonttable+xml",false,"",""]
+			,[972,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml",false,"",""]
+			,[973,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml",false,"",""]
+			,[974,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml",false,"",""]
+			,[975,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml",false,"",""]
+			,[976,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml",false,"",""]
+			,[977,"apache","application/vnd.openxmlformats-officedocument.wordprocessingml.template",false,"","dotx"]
+			,[978,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml",false,"",""]
+			,[979,"iana","application/vnd.openxmlformats-officedocument.wordprocessingml.websettings+xml",false,"",""]
+			,[980,"iana","application/vnd.openxmlformats-package.core-properties+xml",false,"",""]
+			,[981,"iana","application/vnd.openxmlformats-package.digital-signature-xmlsignature+xml",false,"",""]
+			,[982,"iana","application/vnd.openxmlformats-package.relationships+xml",false,"",""]
+			,[983,"iana","application/vnd.oracle.resource+json",true,"",""]
+			,[984,"iana","application/vnd.orange.indata",false,"",""]
+			,[985,"iana","application/vnd.osa.netdeploy",false,"",""]
+			,[986,"iana","application/vnd.osgeo.mapguide.package",false,"","mgp"]
+			,[987,"iana","application/vnd.osgi.bundle",false,"",""]
+			,[988,"iana","application/vnd.osgi.dp",false,"","dp"]
+			,[989,"iana","application/vnd.osgi.subsystem",false,"","esa"]
+			,[990,"iana","application/vnd.otps.ct-kip+xml",false,"",""]
+			,[991,"iana","application/vnd.oxli.countgraph",false,"",""]
+			,[992,"iana","application/vnd.pagerduty+json",true,"",""]
+			,[993,"iana","application/vnd.palm",false,"","pdb, pqa, oprc"]
+			,[994,"iana","application/vnd.panoply",false,"",""]
+			,[995,"iana","application/vnd.paos+xml",false,"",""]
+			,[996,"apache","application/vnd.paos.xml",false,"",""]
+			,[997,"iana","application/vnd.pawaafile",false,"","paw"]
+			,[998,"iana","application/vnd.pcos",false,"",""]
+			,[999,"iana","application/vnd.pg.format",false,"","str"]
+			,[1000,"iana","application/vnd.pg.osasli",false,"","ei6"]
+			,[1001,"iana","application/vnd.piaccess.application-licence",false,"",""]
+			,[1002,"iana","application/vnd.picsel",false,"","efif"]
+			,[1003,"iana","application/vnd.pmi.widget",false,"","wg"]
+			,[1004,"iana","application/vnd.poc.group-advertisement+xml",false,"",""]
+			,[1005,"iana","application/vnd.pocketlearn",false,"","plf"]
+			,[1006,"iana","application/vnd.powerbuilder6",false,"","pbd"]
+			,[1007,"iana","application/vnd.powerbuilder6-s",false,"",""]
+			,[1008,"iana","application/vnd.powerbuilder7",false,"",""]
+			,[1009,"iana","application/vnd.powerbuilder7-s",false,"",""]
+			,[1010,"iana","application/vnd.powerbuilder75",false,"",""]
+			,[1011,"iana","application/vnd.powerbuilder75-s",false,"",""]
+			,[1012,"iana","application/vnd.preminet",false,"",""]
+			,[1013,"iana","application/vnd.previewsystems.box",false,"","box"]
+			,[1014,"iana","application/vnd.proteus.magazine",false,"","mgz"]
+			,[1015,"iana","application/vnd.publishare-delta-tree",false,"","qps"]
+			,[1016,"iana","application/vnd.pvi.ptid1",false,"","ptid"]
+			,[1017,"iana","application/vnd.pwg-multiplexed",false,"",""]
+			,[1018,"iana","application/vnd.pwg-xhtml-print+xml",false,"",""]
+			,[1019,"iana","application/vnd.qualcomm.brew-app-res",false,"",""]
+			,[1020,"iana","application/vnd.quark.quarkxpress",false,"","qxd, qxt, qwd, qwt, qxl, qxb"]
+			,[1021,"iana","application/vnd.quobject-quoxdocument",false,"",""]
+			,[1022,"iana","application/vnd.radisys.moml+xml",false,"",""]
+			,[1023,"iana","application/vnd.radisys.msml+xml",false,"",""]
+			,[1024,"iana","application/vnd.radisys.msml-audit+xml",false,"",""]
+			,[1025,"iana","application/vnd.radisys.msml-audit-conf+xml",false,"",""]
+			,[1026,"iana","application/vnd.radisys.msml-audit-conn+xml",false,"",""]
+			,[1027,"iana","application/vnd.radisys.msml-audit-dialog+xml",false,"",""]
+			,[1028,"iana","application/vnd.radisys.msml-audit-stream+xml",false,"",""]
+			,[1029,"iana","application/vnd.radisys.msml-conf+xml",false,"",""]
+			,[1030,"iana","application/vnd.radisys.msml-dialog+xml",false,"",""]
+			,[1031,"iana","application/vnd.radisys.msml-dialog-base+xml",false,"",""]
+			,[1032,"iana","application/vnd.radisys.msml-dialog-fax-detect+xml",false,"",""]
+			,[1033,"iana","application/vnd.radisys.msml-dialog-fax-sendrecv+xml",false,"",""]
+			,[1034,"iana","application/vnd.radisys.msml-dialog-group+xml",false,"",""]
+			,[1035,"iana","application/vnd.radisys.msml-dialog-speech+xml",false,"",""]
+			,[1036,"iana","application/vnd.radisys.msml-dialog-transform+xml",false,"",""]
+			,[1037,"iana","application/vnd.rainstor.data",false,"",""]
+			,[1038,"iana","application/vnd.rapid",false,"",""]
+			,[1039,"iana","application/vnd.realvnc.bed",false,"","bed"]
+			,[1040,"iana","application/vnd.recordare.musicxml",false,"","mxl"]
+			,[1041,"iana","application/vnd.recordare.musicxml+xml",false,"","musicxml"]
+			,[1042,"iana","application/vnd.renlearn.rlprint",false,"",""]
+			,[1043,"iana","application/vnd.rig.cryptonote",false,"","cryptonote"]
+			,[1044,"apache","application/vnd.rim.cod",false,"","cod"]
+			,[1045,"apache","application/vnd.rn-realmedia",false,"","rm"]
+			,[1046,"apache","application/vnd.rn-realmedia-vbr",false,"","rmvb"]
+			,[1047,"iana","application/vnd.route66.link66+xml",false,"","link66"]
+			,[1048,"iana","application/vnd.rs-274x",false,"",""]
+			,[1049,"iana","application/vnd.ruckus.download",false,"",""]
+			,[1050,"iana","application/vnd.s3sms",false,"",""]
+			,[1051,"iana","application/vnd.sailingtracker.track",false,"","st"]
+			,[1052,"iana","application/vnd.sbm.cid",false,"",""]
+			,[1053,"iana","application/vnd.sbm.mid2",false,"",""]
+			,[1054,"iana","application/vnd.scribus",false,"",""]
+			,[1055,"iana","application/vnd.sealed.3df",false,"",""]
+			,[1056,"iana","application/vnd.sealed.csf",false,"",""]
+			,[1057,"iana","application/vnd.sealed.doc",false,"",""]
+			,[1058,"iana","application/vnd.sealed.eml",false,"",""]
+			,[1059,"iana","application/vnd.sealed.mht",false,"",""]
+			,[1060,"iana","application/vnd.sealed.net",false,"",""]
+			,[1061,"iana","application/vnd.sealed.ppt",false,"",""]
+			,[1062,"iana","application/vnd.sealed.tiff",false,"",""]
+			,[1063,"iana","application/vnd.sealed.xls",false,"",""]
+			,[1064,"iana","application/vnd.sealedmedia.softseal.html",false,"",""]
+			,[1065,"iana","application/vnd.sealedmedia.softseal.pdf",false,"",""]
+			,[1066,"iana","application/vnd.seemail",false,"","see"]
+			,[1067,"iana","application/vnd.sema",false,"","sema"]
+			,[1068,"iana","application/vnd.semd",false,"","semd"]
+			,[1069,"iana","application/vnd.semf",false,"","semf"]
+			,[1070,"iana","application/vnd.shana.informed.formdata",false,"","ifm"]
+			,[1071,"iana","application/vnd.shana.informed.formtemplate",false,"","itp"]
+			,[1072,"iana","application/vnd.shana.informed.interchange",false,"","iif"]
+			,[1073,"iana","application/vnd.shana.informed.package",false,"","ipk"]
+			,[1074,"iana","application/vnd.simtech-mindmapper",false,"","twd, twds"]
+			,[1075,"iana","application/vnd.siren+json",true,"",""]
+			,[1076,"iana","application/vnd.smaf",false,"","mmf"]
+			,[1077,"iana","application/vnd.smart.notebook",false,"",""]
+			,[1078,"iana","application/vnd.smart.teacher",false,"","teacher"]
+			,[1079,"iana","application/vnd.software602.filler.form+xml",false,"",""]
+			,[1080,"iana","application/vnd.software602.filler.form-xml-zip",false,"",""]
+			,[1081,"iana","application/vnd.solent.sdkm+xml",false,"","sdkm, sdkd"]
+			,[1082,"iana","application/vnd.spotfire.dxp",false,"","dxp"]
+			,[1083,"iana","application/vnd.spotfire.sfs",false,"","sfs"]
+			,[1084,"iana","application/vnd.sss-cod",false,"",""]
+			,[1085,"iana","application/vnd.sss-dtf",false,"",""]
+			,[1086,"iana","application/vnd.sss-ntf",false,"",""]
+			,[1087,"apache","application/vnd.stardivision.calc",false,"","sdc"]
+			,[1088,"apache","application/vnd.stardivision.draw",false,"","sda"]
+			,[1089,"apache","application/vnd.stardivision.impress",false,"","sdd"]
+			,[1090,"apache","application/vnd.stardivision.math",false,"","smf"]
+			,[1091,"apache","application/vnd.stardivision.writer",false,"","sdw, vor"]
+			,[1092,"apache","application/vnd.stardivision.writer-global",false,"","sgl"]
+			,[1093,"iana","application/vnd.stepmania.package",false,"","smzip"]
+			,[1094,"iana","application/vnd.stepmania.stepchart",false,"","sm"]
+			,[1095,"iana","application/vnd.street-stream",false,"",""]
+			,[1096,"iana","application/vnd.sun.wadl+xml",false,"",""]
+			,[1097,"apache","application/vnd.sun.xml.calc",false,"","sxc"]
+			,[1098,"apache","application/vnd.sun.xml.calc.template",false,"","stc"]
+			,[1099,"apache","application/vnd.sun.xml.draw",false,"","sxd"]
+			,[1100,"apache","application/vnd.sun.xml.draw.template",false,"","std"]
+			,[1101,"apache","application/vnd.sun.xml.impress",false,"","sxi"]
+			,[1102,"apache","application/vnd.sun.xml.impress.template",false,"","sti"]
+			,[1103,"apache","application/vnd.sun.xml.math",false,"","sxm"]
+			,[1104,"apache","application/vnd.sun.xml.writer",false,"","sxw"]
+			,[1105,"apache","application/vnd.sun.xml.writer.global",false,"","sxg"]
+			,[1106,"apache","application/vnd.sun.xml.writer.template",false,"","stw"]
+			,[1107,"iana","application/vnd.sus-calendar",false,"","sus, susp"]
+			,[1108,"iana","application/vnd.svd",false,"","svd"]
+			,[1109,"iana","application/vnd.swiftview-ics",false,"",""]
+			,[1110,"apache","application/vnd.symbian.install",false,"","sis, sisx"]
+			,[1111,"iana","application/vnd.syncml+xml",false,"","xsm"]
+			,[1112,"iana","application/vnd.syncml.dm+wbxml",false,"","bdm"]
+			,[1113,"iana","application/vnd.syncml.dm+xml",false,"","xdm"]
+			,[1114,"iana","application/vnd.syncml.dm.notification",false,"",""]
+			,[1115,"iana","application/vnd.syncml.dmddf+wbxml",false,"",""]
+			,[1116,"iana","application/vnd.syncml.dmddf+xml",false,"",""]
+			,[1117,"iana","application/vnd.syncml.dmtnds+wbxml",false,"",""]
+			,[1118,"iana","application/vnd.syncml.dmtnds+xml",false,"",""]
+			,[1119,"iana","application/vnd.syncml.ds.notification",false,"",""]
+			,[1120,"iana","application/vnd.tao.intent-module-archive",false,"","tao"]
+			,[1121,"iana","application/vnd.tcpdump.pcap",false,"","pcap, cap, dmp"]
+			,[1122,"iana","application/vnd.tmd.mediaflex.api+xml",false,"",""]
+			,[1123,"iana","application/vnd.tml",false,"",""]
+			,[1124,"iana","application/vnd.tmobile-livetv",false,"","tmo"]
+			,[1125,"iana","application/vnd.trid.tpt",false,"","tpt"]
+			,[1126,"iana","application/vnd.triscape.mxs",false,"","mxs"]
+			,[1127,"iana","application/vnd.trueapp",false,"","tra"]
+			,[1128,"iana","application/vnd.truedoc",false,"",""]
+			,[1129,"iana","application/vnd.ubisoft.webplayer",false,"",""]
+			,[1130,"iana","application/vnd.ufdl",false,"","ufd, ufdl"]
+			,[1131,"iana","application/vnd.uiq.theme",false,"","utz"]
+			,[1132,"iana","application/vnd.umajin",false,"","umj"]
+			,[1133,"iana","application/vnd.unity",false,"","unityweb"]
+			,[1134,"iana","application/vnd.uoml+xml",false,"","uoml"]
+			,[1135,"iana","application/vnd.uplanet.alert",false,"",""]
+			,[1136,"iana","application/vnd.uplanet.alert-wbxml",false,"",""]
+			,[1137,"iana","application/vnd.uplanet.bearer-choice",false,"",""]
+			,[1138,"iana","application/vnd.uplanet.bearer-choice-wbxml",false,"",""]
+			,[1139,"iana","application/vnd.uplanet.cacheop",false,"",""]
+			,[1140,"iana","application/vnd.uplanet.cacheop-wbxml",false,"",""]
+			,[1141,"iana","application/vnd.uplanet.channel",false,"",""]
+			,[1142,"iana","application/vnd.uplanet.channel-wbxml",false,"",""]
+			,[1143,"iana","application/vnd.uplanet.list",false,"",""]
+			,[1144,"iana","application/vnd.uplanet.list-wbxml",false,"",""]
+			,[1145,"iana","application/vnd.uplanet.listcmd",false,"",""]
+			,[1146,"iana","application/vnd.uplanet.listcmd-wbxml",false,"",""]
+			,[1147,"iana","application/vnd.uplanet.signal",false,"",""]
+			,[1148,"iana","application/vnd.uri-map",false,"",""]
+			,[1149,"iana","application/vnd.valve.source.material",false,"",""]
+			,[1150,"iana","application/vnd.vcx",false,"","vcx"]
+			,[1151,"iana","application/vnd.vd-study",false,"",""]
+			,[1152,"iana","application/vnd.vectorworks",false,"",""]
+			,[1153,"iana","application/vnd.vel+json",true,"",""]
+			,[1154,"iana","application/vnd.verimatrix.vcas",false,"",""]
+			,[1155,"iana","application/vnd.vidsoft.vidconference",false,"",""]
+			,[1156,"iana","application/vnd.visio",false,"","vsd, vst, vss, vsw"]
+			,[1157,"iana","application/vnd.visionary",false,"","vis"]
+			,[1158,"iana","application/vnd.vividence.scriptfile",false,"",""]
+			,[1159,"iana","application/vnd.vsf",false,"","vsf"]
+			,[1160,"iana","application/vnd.wap.sic",false,"",""]
+			,[1161,"iana","application/vnd.wap.slc",false,"",""]
+			,[1162,"iana","application/vnd.wap.wbxml",false,"","wbxml"]
+			,[1163,"iana","application/vnd.wap.wmlc",false,"","wmlc"]
+			,[1164,"iana","application/vnd.wap.wmlscriptc",false,"","wmlsc"]
+			,[1165,"iana","application/vnd.webturbo",false,"","wtb"]
+			,[1166,"iana","application/vnd.wfa.p2p",false,"",""]
+			,[1167,"iana","application/vnd.wfa.wsc",false,"",""]
+			,[1168,"iana","application/vnd.windows.devicepairing",false,"",""]
+			,[1169,"iana","application/vnd.wmc",false,"",""]
+			,[1170,"iana","application/vnd.wmf.bootstrap",false,"",""]
+			,[1171,"iana","application/vnd.wolfram.mathematica",false,"",""]
+			,[1172,"iana","application/vnd.wolfram.mathematica.package",false,"",""]
+			,[1173,"iana","application/vnd.wolfram.player",false,"","nbp"]
+			,[1174,"iana","application/vnd.wordperfect",false,"","wpd"]
+			,[1175,"iana","application/vnd.wqd",false,"","wqd"]
+			,[1176,"iana","application/vnd.wrq-hp3000-labelled",false,"",""]
+			,[1177,"iana","application/vnd.wt.stf",false,"","stf"]
+			,[1178,"iana","application/vnd.wv.csp+wbxml",false,"",""]
+			,[1179,"iana","application/vnd.wv.csp+xml",false,"",""]
+			,[1180,"iana","application/vnd.wv.ssp+xml",false,"",""]
+			,[1181,"iana","application/vnd.xacml+json",true,"",""]
+			,[1182,"iana","application/vnd.xara",false,"","xar"]
+			,[1183,"iana","application/vnd.xfdl",false,"","xfdl"]
+			,[1184,"iana","application/vnd.xfdl.webform",false,"",""]
+			,[1185,"iana","application/vnd.xmi+xml",false,"",""]
+			,[1186,"iana","application/vnd.xmpie.cpkg",false,"",""]
+			,[1187,"iana","application/vnd.xmpie.dpkg",false,"",""]
+			,[1188,"iana","application/vnd.xmpie.plan",false,"",""]
+			,[1189,"iana","application/vnd.xmpie.ppkg",false,"",""]
+			,[1190,"iana","application/vnd.xmpie.xlim",false,"",""]
+			,[1191,"iana","application/vnd.yamaha.hv-dic",false,"","hvd"]
+			,[1192,"iana","application/vnd.yamaha.hv-script",false,"","hvs"]
+			,[1193,"iana","application/vnd.yamaha.hv-voice",false,"","hvp"]
+			,[1194,"iana","application/vnd.yamaha.openscoreformat",false,"","osf"]
+			,[1195,"iana","application/vnd.yamaha.openscoreformat.osfpvg+xml",false,"","osfpvg"]
+			,[1196,"iana","application/vnd.yamaha.remote-setup",false,"",""]
+			,[1197,"iana","application/vnd.yamaha.smaf-audio",false,"","saf"]
+			,[1198,"iana","application/vnd.yamaha.smaf-phrase",false,"","spf"]
+			,[1199,"iana","application/vnd.yamaha.through-ngn",false,"",""]
+			,[1200,"iana","application/vnd.yamaha.tunnel-udpencap",false,"",""]
+			,[1201,"iana","application/vnd.yaoweme",false,"",""]
+			,[1202,"iana","application/vnd.yellowriver-custom-menu",false,"","cmp"]
+			,[1203,"iana","application/vnd.zul",false,"","zir, zirz"]
+			,[1204,"iana","application/vnd.zzazz.deck+xml",false,"","zaz"]
+			,[1205,"iana","application/voicexml+xml",false,"","vxml"]
+			,[1206,"iana","application/vq-rtcpxr",false,"",""]
+			,[1207,"iana","application/watcherinfo+xml",false,"",""]
+			,[1208,"iana","application/whoispp-query",false,"",""]
+			,[1209,"iana","application/whoispp-response",false,"",""]
+			,[1210,"iana","application/widget",false,"","wgt"]
+			,[1211,"apache","application/winhlp",false,"","hlp"]
+			,[1212,"iana","application/wita",false,"",""]
+			,[1213,"iana","application/wordperfect5.1",false,"",""]
+			,[1214,"iana","application/wsdl+xml",false,"","wsdl"]
+			,[1215,"iana","application/wspolicy+xml",false,"","wspolicy"]
+			,[1216,"apache","application/x-7z-compressed",false,"","7z"]
+			,[1217,"apache","application/x-abiword",false,"","abw"]
+			,[1218,"apache","application/x-ace-compressed",false,"","ace"]
+			,[1219,"apache","application/x-amf",false,"",""]
+			,[1220,"apache","application/x-apple-diskimage",false,"","dmg"]
+			,[1221,"apache","application/x-authorware-bin",false,"","aab, x32, u32, vox"]
+			,[1222,"apache","application/x-authorware-map",false,"","aam"]
+			,[1223,"apache","application/x-authorware-seg",false,"","aas"]
+			,[1224,"apache","application/x-bcpio",false,"","bcpio"]
+			,[1225,"","application/x-bdoc",false,"","bdoc"]
+			,[1226,"apache","application/x-bittorrent",false,"","torrent"]
+			,[1227,"apache","application/x-blorb",false,"","blb, blorb"]
+			,[1228,"apache","application/x-bzip",false,"","bz"]
+			,[1229,"apache","application/x-bzip2",false,"","bz2, boz"]
+			,[1230,"apache","application/x-cbr",false,"","cbr, cba, cbt, cbz, cb7"]
+			,[1231,"apache","application/x-cdlink",false,"","vcd"]
+			,[1232,"apache","application/x-cfs-compressed",false,"","cfs"]
+			,[1233,"apache","application/x-chat",false,"","chat"]
+			,[1234,"apache","application/x-chess-pgn",false,"","pgn"]
+			,[1235,"","application/x-chrome-extension",false,"","crx"]
+			,[1236,"nginx","application/x-cocoa",false,"","cco"]
+			,[1237,"apache","application/x-compress",false,"",""]
+			,[1238,"apache","application/x-conference",false,"","nsc"]
+			,[1239,"apache","application/x-cpio",false,"","cpio"]
+			,[1240,"apache","application/x-csh",false,"","csh"]
+			,[1241,"","application/x-deb",false,"",""]
+			,[1242,"apache","application/x-debian-package",false,"","deb, udeb"]
+			,[1243,"apache","application/x-dgc-compressed",false,"","dgc"]
+			,[1244,"apache","application/x-director",false,"","dir, dcr, dxr, cst, cct, cxt, w3d, fgd, swa"]
+			,[1245,"apache","application/x-doom",false,"","wad"]
+			,[1246,"apache","application/x-dtbncx+xml",false,"","ncx"]
+			,[1247,"apache","application/x-dtbook+xml",false,"","dtb"]
+			,[1248,"apache","application/x-dtbresource+xml",false,"","res"]
+			,[1249,"apache","application/x-dvi",false,"","dvi"]
+			,[1250,"apache","application/x-envoy",false,"","evy"]
+			,[1251,"apache","application/x-eva",false,"","eva"]
+			,[1252,"apache","application/x-font-bdf",false,"","bdf"]
+			,[1253,"apache","application/x-font-dos",false,"",""]
+			,[1254,"apache","application/x-font-framemaker",false,"",""]
+			,[1255,"apache","application/x-font-ghostscript",false,"","gsf"]
+			,[1256,"apache","application/x-font-libgrx",false,"",""]
+			,[1257,"apache","application/x-font-linux-psf",false,"","psf"]
+			,[1258,"apache","application/x-font-otf",true,"","otf"]
+			,[1259,"apache","application/x-font-pcf",false,"","pcf"]
+			,[1260,"apache","application/x-font-snf",false,"","snf"]
+			,[1261,"apache","application/x-font-speedo",false,"",""]
+			,[1262,"apache","application/x-font-sunos-news",false,"",""]
+			,[1263,"apache","application/x-font-ttf",true,"","ttf, ttc"]
+			,[1264,"apache","application/x-font-type1",false,"","pfa, pfb, pfm, afm"]
+			,[1265,"apache","application/x-font-vfont",false,"",""]
+			,[1266,"apache","application/x-freearc",false,"","arc"]
+			,[1267,"apache","application/x-futuresplash",false,"","spl"]
+			,[1268,"apache","application/x-gca-compressed",false,"","gca"]
+			,[1269,"apache","application/x-glulx",false,"","ulx"]
+			,[1270,"apache","application/x-gnumeric",false,"","gnumeric"]
+			,[1271,"apache","application/x-gramps-xml",false,"","gramps"]
+			,[1272,"apache","application/x-gtar",false,"","gtar"]
+			,[1273,"apache","application/x-gzip",false,"",""]
+			,[1274,"apache","application/x-hdf",false,"","hdf"]
+			,[1275,"","application/x-httpd-php",true,"","php"]
+			,[1276,"apache","application/x-install-instructions",false,"","install"]
+			,[1277,"apache","application/x-iso9660-image",false,"","iso"]
+			,[1278,"nginx","application/x-java-archive-diff",false,"","jardiff"]
+			,[1279,"apache","application/x-java-jnlp-file",false,"","jnlp"]
+			,[1280,"","application/x-javascript",true,"",""]
+			,[1281,"apache","application/x-latex",false,"","latex"]
+			,[1282,"","application/x-lua-bytecode",false,"","luac"]
+			,[1283,"apache","application/x-lzh-compressed",false,"","lzh, lha"]
+			,[1284,"nginx","application/x-makeself",false,"","run"]
+			,[1285,"apache","application/x-mie",false,"","mie"]
+			,[1286,"apache","application/x-mobipocket-ebook",false,"","prc, mobi"]
+			,[1287,"","application/x-mpegurl",false,"",""]
+			,[1288,"apache","application/x-ms-application",false,"","application"]
+			,[1289,"apache","application/x-ms-shortcut",false,"","lnk"]
+			,[1290,"apache","application/x-ms-wmd",false,"","wmd"]
+			,[1291,"apache","application/x-ms-wmz",false,"","wmz"]
+			,[1292,"apache","application/x-ms-xbap",false,"","xbap"]
+			,[1293,"apache","application/x-msaccess",false,"","mdb"]
+			,[1294,"apache","application/x-msbinder",false,"","obd"]
+			,[1295,"apache","application/x-mscardfile",false,"","crd"]
+			,[1296,"apache","application/x-msclip",false,"","clp"]
+			,[1297,"","application/x-msdos-program",false,"","exe"]
+			,[1298,"apache","application/x-msdownload",false,"","exe, dll, com, bat, msi"]
+			,[1299,"apache","application/x-msmediaview",false,"","mvb, m13, m14"]
+			,[1300,"apache","application/x-msmetafile",false,"","wmf, wmz, emf, emz"]
+			,[1301,"apache","application/x-msmoney",false,"","mny"]
+			,[1302,"apache","application/x-mspublisher",false,"","pub"]
+			,[1303,"apache","application/x-msschedule",false,"","scd"]
+			,[1304,"apache","application/x-msterminal",false,"","trm"]
+			,[1305,"apache","application/x-mswrite",false,"","wri"]
+			,[1306,"apache","application/x-netcdf",false,"","nc, cdf"]
+			,[1307,"","application/x-ns-proxy-autoconfig",true,"","pac"]
+			,[1308,"apache","application/x-nzb",false,"","nzb"]
+			,[1309,"nginx","application/x-perl",false,"","pl, pm"]
+			,[1310,"nginx","application/x-pilot",false,"","prc, pdb"]
+			,[1311,"apache","application/x-pkcs12",false,"","p12, pfx"]
+			,[1312,"apache","application/x-pkcs7-certificates",false,"","p7b, spc"]
+			,[1313,"apache","application/x-pkcs7-certreqresp",false,"","p7r"]
+			,[1314,"apache","application/x-rar-compressed",false,"","rar"]
+			,[1315,"nginx","application/x-redhat-package-manager",false,"","rpm"]
+			,[1316,"apache","application/x-research-info-systems",false,"","ris"]
+			,[1317,"nginx","application/x-sea",false,"","sea"]
+			,[1318,"apache","application/x-sh",true,"","sh"]
+			,[1319,"apache","application/x-shar",false,"","shar"]
+			,[1320,"apache","application/x-shockwave-flash",false,"","swf"]
+			,[1321,"apache","application/x-silverlight-app",false,"","xap"]
+			,[1322,"apache","application/x-sql",false,"","sql"]
+			,[1323,"apache","application/x-stuffit",false,"","sit"]
+			,[1324,"apache","application/x-stuffitx",false,"","sitx"]
+			,[1325,"apache","application/x-subrip",false,"","srt"]
+			,[1326,"apache","application/x-sv4cpio",false,"","sv4cpio"]
+			,[1327,"apache","application/x-sv4crc",false,"","sv4crc"]
+			,[1328,"apache","application/x-t3vm-image",false,"","t3"]
+			,[1329,"apache","application/x-tads",false,"","gam"]
+			,[1330,"apache","application/x-tar",true,"","tar"]
+			,[1331,"apache","application/x-tcl",false,"","tcl, tk"]
+			,[1332,"apache","application/x-tex",false,"","tex"]
+			,[1333,"apache","application/x-tex-tfm",false,"","tfm"]
+			,[1334,"apache","application/x-texinfo",false,"","texinfo, texi"]
+			,[1335,"apache","application/x-tgif",false,"","obj"]
+			,[1336,"apache","application/x-ustar",false,"","ustar"]
+			,[1337,"apache","application/x-wais-source",false,"","src"]
+			,[1338,"","application/x-web-app-manifest+json",true,"","webapp"]
+			,[1339,"iana","application/x-www-form-urlencoded",true,"",""]
+			,[1340,"apache","application/x-x509-ca-cert",false,"","der, crt, pem"]
+			,[1341,"apache","application/x-xfig",false,"","fig"]
+			,[1342,"apache","application/x-xliff+xml",false,"","xlf"]
+			,[1343,"apache","application/x-xpinstall",false,"","xpi"]
+			,[1344,"apache","application/x-xz",false,"","xz"]
+			,[1345,"apache","application/x-zmachine",false,"","z1, z2, z3, z4, z5, z6, z7, z8"]
+			,[1346,"iana","application/x400-bp",false,"",""]
+			,[1347,"iana","application/xacml+xml",false,"",""]
+			,[1348,"apache","application/xaml+xml",false,"","xaml"]
+			,[1349,"iana","application/xcap-att+xml",false,"",""]
+			,[1350,"iana","application/xcap-caps+xml",false,"",""]
+			,[1351,"iana","application/xcap-diff+xml",false,"","xdf"]
+			,[1352,"iana","application/xcap-el+xml",false,"",""]
+			,[1353,"iana","application/xcap-error+xml",false,"",""]
+			,[1354,"iana","application/xcap-ns+xml",false,"",""]
+			,[1355,"iana","application/xcon-conference-info+xml",false,"",""]
+			,[1356,"iana","application/xcon-conference-info-diff+xml",false,"",""]
+			,[1357,"iana","application/xenc+xml",false,"","xenc"]
+			,[1358,"iana","application/xhtml+xml",true,"","xhtml, xht"]
+			,[1359,"apache","application/xhtml-voice+xml",false,"",""]
+			,[1360,"iana","application/xml",true,"","xml, xsl, xsd, rng"]
+			,[1361,"iana","application/xml-dtd",true,"","dtd"]
+			,[1362,"iana","application/xml-external-parsed-entity",false,"",""]
+			,[1363,"iana","application/xml-patch+xml",false,"",""]
+			,[1364,"iana","application/xmpp+xml",false,"",""]
+			,[1365,"iana","application/xop+xml",true,"","xop"]
+			,[1366,"apache","application/xproc+xml",false,"","xpl"]
+			,[1367,"iana","application/xslt+xml",false,"","xslt"]
+			,[1368,"apache","application/xspf+xml",false,"","xspf"]
+			,[1369,"iana","application/xv+xml",false,"","mxml, xhvml, xvml, xvm"]
+			,[1370,"iana","application/yang",false,"","yang"]
+			,[1371,"iana","application/yin+xml",false,"","yin"]
+			,[1372,"iana","application/zip",false,"","zip"]
+			,[1373,"iana","application/zlib",false,"",""]
+			,[1374,"iana","audio/1d-interleaved-parityfec",false,"",""]
+			,[1375,"iana","audio/32kadpcm",false,"",""]
+			,[1376,"iana","audio/3gpp",false,"","3gpp"]
+			,[1377,"iana","audio/3gpp2",false,"",""]
+			,[1378,"iana","audio/ac3",false,"",""]
+			,[1379,"apache","audio/adpcm",false,"","adp"]
+			,[1380,"iana","audio/amr",false,"",""]
+			,[1381,"iana","audio/amr-wb",false,"",""]
+			,[1382,"iana","audio/amr-wb+",false,"",""]
+			,[1383,"iana","audio/aptx",false,"",""]
+			,[1384,"iana","audio/asc",false,"",""]
+			,[1385,"iana","audio/atrac-advanced-lossless",false,"",""]
+			,[1386,"iana","audio/atrac-x",false,"",""]
+			,[1387,"iana","audio/atrac3",false,"",""]
+			,[1388,"iana","audio/basic",false,"","au, snd"]
+			,[1389,"iana","audio/bv16",false,"",""]
+			,[1390,"iana","audio/bv32",false,"",""]
+			,[1391,"iana","audio/clearmode",false,"",""]
+			,[1392,"iana","audio/cn",false,"",""]
+			,[1393,"iana","audio/dat12",false,"",""]
+			,[1394,"iana","audio/dls",false,"",""]
+			,[1395,"iana","audio/dsr-es201108",false,"",""]
+			,[1396,"iana","audio/dsr-es202050",false,"",""]
+			,[1397,"iana","audio/dsr-es202211",false,"",""]
+			,[1398,"iana","audio/dsr-es202212",false,"",""]
+			,[1399,"iana","audio/dv",false,"",""]
+			,[1400,"iana","audio/dvi4",false,"",""]
+			,[1401,"iana","audio/eac3",false,"",""]
+			,[1402,"iana","audio/encaprtp",false,"",""]
+			,[1403,"iana","audio/evrc",false,"",""]
+			,[1404,"iana","audio/evrc-qcp",false,"",""]
+			,[1405,"iana","audio/evrc0",false,"",""]
+			,[1406,"iana","audio/evrc1",false,"",""]
+			,[1407,"iana","audio/evrcb",false,"",""]
+			,[1408,"iana","audio/evrcb0",false,"",""]
+			,[1409,"iana","audio/evrcb1",false,"",""]
+			,[1410,"iana","audio/evrcnw",false,"",""]
+			,[1411,"iana","audio/evrcnw0",false,"",""]
+			,[1412,"iana","audio/evrcnw1",false,"",""]
+			,[1413,"iana","audio/evrcwb",false,"",""]
+			,[1414,"iana","audio/evrcwb0",false,"",""]
+			,[1415,"iana","audio/evrcwb1",false,"",""]
+			,[1416,"iana","audio/evs",false,"",""]
+			,[1417,"iana","audio/fwdred",false,"",""]
+			,[1418,"iana","audio/g711-0",false,"",""]
+			,[1419,"iana","audio/g719",false,"",""]
+			,[1420,"iana","audio/g722",false,"",""]
+			,[1421,"iana","audio/g7221",false,"",""]
+			,[1422,"iana","audio/g723",false,"",""]
+			,[1423,"iana","audio/g726-16",false,"",""]
+			,[1424,"iana","audio/g726-24",false,"",""]
+			,[1425,"iana","audio/g726-32",false,"",""]
+			,[1426,"iana","audio/g726-40",false,"",""]
+			,[1427,"iana","audio/g728",false,"",""]
+			,[1428,"iana","audio/g729",false,"",""]
+			,[1429,"iana","audio/g7291",false,"",""]
+			,[1430,"iana","audio/g729d",false,"",""]
+			,[1431,"iana","audio/g729e",false,"",""]
+			,[1432,"iana","audio/gsm",false,"",""]
+			,[1433,"iana","audio/gsm-efr",false,"",""]
+			,[1434,"iana","audio/gsm-hr-08",false,"",""]
+			,[1435,"iana","audio/ilbc",false,"",""]
+			,[1436,"iana","audio/ip-mr_v2.5",false,"",""]
+			,[1437,"apache","audio/isac",false,"",""]
+			,[1438,"iana","audio/l16",false,"",""]
+			,[1439,"iana","audio/l20",false,"",""]
+			,[1440,"iana","audio/l24",false,"",""]
+			,[1441,"iana","audio/l8",false,"",""]
+			,[1442,"iana","audio/lpc",false,"",""]
+			,[1443,"apache","audio/midi",false,"","mid, midi, kar, rmi"]
+			,[1444,"iana","audio/mobile-xmf",false,"",""]
+			,[1445,"iana","audio/mp4",false,"","m4a, mp4a"]
+			,[1446,"iana","audio/mp4a-latm",false,"",""]
+			,[1447,"iana","audio/mpa",false,"",""]
+			,[1448,"iana","audio/mpa-robust",false,"",""]
+			,[1449,"iana","audio/mpeg",false,"","mpga, mp2, mp2a, mp3, m2a, m3a"]
+			,[1450,"iana","audio/mpeg4-generic",false,"",""]
+			,[1451,"apache","audio/musepack",false,"",""]
+			,[1452,"iana","audio/ogg",false,"","oga, ogg, spx"]
+			,[1453,"iana","audio/opus",false,"",""]
+			,[1454,"iana","audio/parityfec",false,"",""]
+			,[1455,"iana","audio/pcma",false,"",""]
+			,[1456,"iana","audio/pcma-wb",false,"",""]
+			,[1457,"iana","audio/pcmu",false,"",""]
+			,[1458,"iana","audio/pcmu-wb",false,"",""]
+			,[1459,"iana","audio/prs.sid",false,"",""]
+			,[1460,"iana","audio/qcelp",false,"",""]
+			,[1461,"iana","audio/raptorfec",false,"",""]
+			,[1462,"iana","audio/red",false,"",""]
+			,[1463,"iana","audio/rtp-enc-aescm128",false,"",""]
+			,[1464,"iana","audio/rtp-midi",false,"",""]
+			,[1465,"iana","audio/rtploopback",false,"",""]
+			,[1466,"iana","audio/rtx",false,"",""]
+			,[1467,"apache","audio/s3m",false,"","s3m"]
+			,[1468,"apache","audio/silk",false,"","sil"]
+			,[1469,"iana","audio/smv",false,"",""]
+			,[1470,"iana","audio/smv-qcp",false,"",""]
+			,[1471,"iana","audio/smv0",false,"",""]
+			,[1472,"iana","audio/sp-midi",false,"",""]
+			,[1473,"iana","audio/speex",false,"",""]
+			,[1474,"iana","audio/t140c",false,"",""]
+			,[1475,"iana","audio/t38",false,"",""]
+			,[1476,"iana","audio/telephone-event",false,"",""]
+			,[1477,"iana","audio/tone",false,"",""]
+			,[1478,"iana","audio/uemclip",false,"",""]
+			,[1479,"iana","audio/ulpfec",false,"",""]
+			,[1480,"iana","audio/vdvi",false,"",""]
+			,[1481,"iana","audio/vmr-wb",false,"",""]
+			,[1482,"iana","audio/vnd.3gpp.iufp",false,"",""]
+			,[1483,"iana","audio/vnd.4sb",false,"",""]
+			,[1484,"iana","audio/vnd.audiokoz",false,"",""]
+			,[1485,"iana","audio/vnd.celp",false,"",""]
+			,[1486,"iana","audio/vnd.cisco.nse",false,"",""]
+			,[1487,"iana","audio/vnd.cmles.radio-events",false,"",""]
+			,[1488,"iana","audio/vnd.cns.anp1",false,"",""]
+			,[1489,"iana","audio/vnd.cns.inf1",false,"",""]
+			,[1490,"iana","audio/vnd.dece.audio",false,"","uva, uvva"]
+			,[1491,"iana","audio/vnd.digital-winds",false,"","eol"]
+			,[1492,"iana","audio/vnd.dlna.adts",false,"",""]
+			,[1493,"iana","audio/vnd.dolby.heaac.1",false,"",""]
+			,[1494,"iana","audio/vnd.dolby.heaac.2",false,"",""]
+			,[1495,"iana","audio/vnd.dolby.mlp",false,"",""]
+			,[1496,"iana","audio/vnd.dolby.mps",false,"",""]
+			,[1497,"iana","audio/vnd.dolby.pl2",false,"",""]
+			,[1498,"iana","audio/vnd.dolby.pl2x",false,"",""]
+			,[1499,"iana","audio/vnd.dolby.pl2z",false,"",""]
+			,[1500,"iana","audio/vnd.dolby.pulse.1",false,"",""]
+			,[1501,"iana","audio/vnd.dra",false,"","dra"]
+			,[1502,"iana","audio/vnd.dts",false,"","dts"]
+			,[1503,"iana","audio/vnd.dts.hd",false,"","dtshd"]
+			,[1504,"iana","audio/vnd.dvb.file",false,"",""]
+			,[1505,"iana","audio/vnd.everad.plj",false,"",""]
+			,[1506,"iana","audio/vnd.hns.audio",false,"",""]
+			,[1507,"iana","audio/vnd.lucent.voice",false,"","lvp"]
+			,[1508,"iana","audio/vnd.ms-playready.media.pya",false,"","pya"]
+			,[1509,"iana","audio/vnd.nokia.mobile-xmf",false,"",""]
+			,[1510,"iana","audio/vnd.nortel.vbk",false,"",""]
+			,[1511,"iana","audio/vnd.nuera.ecelp4800",false,"","ecelp4800"]
+			,[1512,"iana","audio/vnd.nuera.ecelp7470",false,"","ecelp7470"]
+			,[1513,"iana","audio/vnd.nuera.ecelp9600",false,"","ecelp9600"]
+			,[1514,"iana","audio/vnd.octel.sbc",false,"",""]
+			,[1515,"iana","audio/vnd.qcelp",false,"",""]
+			,[1516,"iana","audio/vnd.rhetorex.32kadpcm",false,"",""]
+			,[1517,"iana","audio/vnd.rip",false,"","rip"]
+			,[1518,"","audio/vnd.rn-realaudio",false,"",""]
+			,[1519,"iana","audio/vnd.sealedmedia.softseal.mpeg",false,"",""]
+			,[1520,"iana","audio/vnd.vmx.cvsd",false,"",""]
+			,[1521,"","audio/vnd.wave",false,"",""]
+			,[1522,"iana","audio/vorbis",false,"",""]
+			,[1523,"iana","audio/vorbis-config",false,"",""]
+			,[1524,"","audio/wav",false,"","wav"]
+			,[1525,"","audio/wave",false,"","wav"]
+			,[1526,"apache","audio/webm",false,"","weba"]
+			,[1527,"apache","audio/x-aac",false,"","aac"]
+			,[1528,"apache","audio/x-aiff",false,"","aif, aiff, aifc"]
+			,[1529,"apache","audio/x-caf",false,"","caf"]
+			,[1530,"apache","audio/x-flac",false,"","flac"]
+			,[1531,"nginx","audio/x-m4a",false,"","m4a"]
+			,[1532,"apache","audio/x-matroska",false,"","mka"]
+			,[1533,"apache","audio/x-mpegurl",false,"","m3u"]
+			,[1534,"apache","audio/x-ms-wax",false,"","wax"]
+			,[1535,"apache","audio/x-ms-wma",false,"","wma"]
+			,[1536,"apache","audio/x-pn-realaudio",false,"","ram, ra"]
+			,[1537,"apache","audio/x-pn-realaudio-plugin",false,"","rmp"]
+			,[1538,"nginx","audio/x-realaudio",false,"","ra"]
+			,[1539,"apache","audio/x-tta",false,"",""]
+			,[1540,"apache","audio/x-wav",false,"","wav"]
+			,[1541,"apache","audio/xm",false,"","xm"]
+			,[1542,"apache","chemical/x-cdx",false,"","cdx"]
+			,[1543,"apache","chemical/x-cif",false,"","cif"]
+			,[1544,"apache","chemical/x-cmdf",false,"","cmdf"]
+			,[1545,"apache","chemical/x-cml",false,"","cml"]
+			,[1546,"apache","chemical/x-csml",false,"","csml"]
+			,[1547,"apache","chemical/x-pdb",false,"",""]
+			,[1548,"apache","chemical/x-xyz",false,"","xyz"]
+			,[1549,"","font/opentype",true,"","otf"]
+			,[1550,"apache","image/bmp",true,"","bmp"]
+			,[1551,"iana","image/cgm",false,"","cgm"]
+			,[1552,"iana","image/fits",false,"",""]
+			,[1553,"iana","image/g3fax",false,"","g3"]
+			,[1554,"iana","image/gif",false,"","gif"]
+			,[1555,"iana","image/ief",false,"","ief"]
+			,[1556,"iana","image/jp2",false,"",""]
+			,[1557,"iana","image/jpeg",false,"","jpeg, jpg, jpe"]
+			,[1558,"iana","image/jpm",false,"",""]
+			,[1559,"iana","image/jpx",false,"",""]
+			,[1560,"iana","image/ktx",false,"","ktx"]
+			,[1561,"iana","image/naplps",false,"",""]
+			,[1562,"","image/pjpeg",false,"",""]
+			,[1563,"iana","image/png",false,"","png"]
+			,[1564,"iana","image/prs.btif",false,"","btif"]
+			,[1565,"iana","image/prs.pti",false,"",""]
+			,[1566,"iana","image/pwg-raster",false,"",""]
+			,[1567,"apache","image/sgi",false,"","sgi"]
+			,[1568,"iana","image/svg+xml",true,"","svg, svgz"]
+			,[1569,"iana","image/t38",false,"",""]
+			,[1570,"iana","image/tiff",false,"","tiff, tif"]
+			,[1571,"iana","image/tiff-fx",false,"",""]
+			,[1572,"iana","image/vnd.adobe.photoshop",true,"","psd"]
+			,[1573,"iana","image/vnd.airzip.accelerator.azv",false,"",""]
+			,[1574,"iana","image/vnd.cns.inf2",false,"",""]
+			,[1575,"iana","image/vnd.dece.graphic",false,"","uvi, uvvi, uvg, uvvg"]
+			,[1576,"iana","image/vnd.djvu",false,"","djvu, djv"]
+			,[1577,"iana","image/vnd.dvb.subtitle",false,"","sub"]
+			,[1578,"iana","image/vnd.dwg",false,"","dwg"]
+			,[1579,"iana","image/vnd.dxf",false,"","dxf"]
+			,[1580,"iana","image/vnd.fastbidsheet",false,"","fbs"]
+			,[1581,"iana","image/vnd.fpx",false,"","fpx"]
+			,[1582,"iana","image/vnd.fst",false,"","fst"]
+			,[1583,"iana","image/vnd.fujixerox.edmics-mmr",false,"","mmr"]
+			,[1584,"iana","image/vnd.fujixerox.edmics-rlc",false,"","rlc"]
+			,[1585,"iana","image/vnd.globalgraphics.pgb",false,"",""]
+			,[1586,"iana","image/vnd.microsoft.icon",false,"",""]
+			,[1587,"iana","image/vnd.mix",false,"",""]
+			,[1588,"iana","image/vnd.mozilla.apng",false,"",""]
+			,[1589,"iana","image/vnd.ms-modi",false,"","mdi"]
+			,[1590,"apache","image/vnd.ms-photo",false,"","wdp"]
+			,[1591,"iana","image/vnd.net-fpx",false,"","npx"]
+			,[1592,"iana","image/vnd.radiance",false,"",""]
+			,[1593,"iana","image/vnd.sealed.png",false,"",""]
+			,[1594,"iana","image/vnd.sealedmedia.softseal.gif",false,"",""]
+			,[1595,"iana","image/vnd.sealedmedia.softseal.jpg",false,"",""]
+			,[1596,"iana","image/vnd.svf",false,"",""]
+			,[1597,"iana","image/vnd.tencent.tap",false,"",""]
+			,[1598,"iana","image/vnd.valve.source.texture",false,"",""]
+			,[1599,"iana","image/vnd.wap.wbmp",false,"","wbmp"]
+			,[1600,"iana","image/vnd.xiff",false,"","xif"]
+			,[1601,"iana","image/vnd.zbrush.pcx",false,"",""]
+			,[1602,"apache","image/webp",false,"","webp"]
+			,[1603,"apache","image/x-3ds",false,"","3ds"]
+			,[1604,"apache","image/x-cmu-raster",false,"","ras"]
+			,[1605,"apache","image/x-cmx",false,"","cmx"]
+			,[1606,"apache","image/x-freehand",false,"","fh, fhc, fh4, fh5, fh7"]
+			,[1607,"apache","image/x-icon",true,"","ico"]
+			,[1608,"nginx","image/x-jng",false,"","jng"]
+			,[1609,"apache","image/x-mrsid-image",false,"","sid"]
+			,[1610,"nginx","image/x-ms-bmp",true,"","bmp"]
+			,[1611,"apache","image/x-pcx",false,"","pcx"]
+			,[1612,"apache","image/x-pict",false,"","pic, pct"]
+			,[1613,"apache","image/x-portable-anymap",false,"","pnm"]
+			,[1614,"apache","image/x-portable-bitmap",false,"","pbm"]
+			,[1615,"apache","image/x-portable-graymap",false,"","pgm"]
+			,[1616,"apache","image/x-portable-pixmap",false,"","ppm"]
+			,[1617,"apache","image/x-rgb",false,"","rgb"]
+			,[1618,"apache","image/x-tga",false,"","tga"]
+			,[1619,"apache","image/x-xbitmap",false,"","xbm"]
+			,[1620,"","image/x-xcf",false,"",""]
+			,[1621,"apache","image/x-xpixmap",false,"","xpm"]
+			,[1622,"apache","image/x-xwindowdump",false,"","xwd"]
+			,[1623,"iana","message/cpim",false,"",""]
+			,[1624,"iana","message/delivery-status",false,"",""]
+			,[1625,"iana","message/disposition-notification",false,"",""]
+			,[1626,"iana","message/external-body",false,"",""]
+			,[1627,"iana","message/feedback-report",false,"",""]
+			,[1628,"iana","message/global",false,"",""]
+			,[1629,"iana","message/global-delivery-status",false,"",""]
+			,[1630,"iana","message/global-disposition-notification",false,"",""]
+			,[1631,"iana","message/global-headers",false,"",""]
+			,[1632,"iana","message/http",false,"",""]
+			,[1633,"iana","message/imdn+xml",true,"",""]
+			,[1634,"iana","message/news",false,"",""]
+			,[1635,"iana","message/partial",false,"",""]
+			,[1636,"iana","message/rfc822",true,"","eml, mime"]
+			,[1637,"iana","message/s-http",false,"",""]
+			,[1638,"iana","message/sip",false,"",""]
+			,[1639,"iana","message/sipfrag",false,"",""]
+			,[1640,"iana","message/tracking-status",false,"",""]
+			,[1641,"iana","message/vnd.si.simp",false,"",""]
+			,[1642,"iana","message/vnd.wfa.wsc",false,"",""]
+			,[1643,"iana","model/iges",false,"","igs, iges"]
+			,[1644,"iana","model/mesh",false,"","msh, mesh, silo"]
+			,[1645,"iana","model/vnd.collada+xml",false,"","dae"]
+			,[1646,"iana","model/vnd.dwf",false,"","dwf"]
+			,[1647,"iana","model/vnd.flatland.3dml",false,"",""]
+			,[1648,"iana","model/vnd.gdl",false,"","gdl"]
+			,[1649,"apache","model/vnd.gs-gdl",false,"",""]
+			,[1650,"iana","model/vnd.gs.gdl",false,"",""]
+			,[1651,"iana","model/vnd.gtw",false,"","gtw"]
+			,[1652,"iana","model/vnd.moml+xml",false,"",""]
+			,[1653,"iana","model/vnd.mts",false,"","mts"]
+			,[1654,"iana","model/vnd.opengex",false,"",""]
+			,[1655,"iana","model/vnd.parasolid.transmit.binary",false,"",""]
+			,[1656,"iana","model/vnd.parasolid.transmit.text",false,"",""]
+			,[1657,"iana","model/vnd.rosette.annotated-data-model",false,"",""]
+			,[1658,"iana","model/vnd.valve.source.compiled-map",false,"",""]
+			,[1659,"iana","model/vnd.vtu",false,"","vtu"]
+			,[1660,"iana","model/vrml",false,"","wrl, vrml"]
+			,[1661,"apache","model/x3d+binary",false,"","x3db, x3dbz"]
+			,[1662,"iana","model/x3d+fastinfoset",false,"",""]
+			,[1663,"apache","model/x3d+vrml",false,"","x3dv, x3dvz"]
+			,[1664,"iana","model/x3d+xml",true,"","x3d, x3dz"]
+			,[1665,"iana","model/x3d-vrml",false,"",""]
+			,[1666,"iana","multipart/alternative",false,"",""]
+			,[1667,"iana","multipart/appledouble",false,"",""]
+			,[1668,"iana","multipart/byteranges",false,"",""]
+			,[1669,"iana","multipart/digest",false,"",""]
+			,[1670,"iana","multipart/encrypted",false,"",""]
+			,[1671,"iana","multipart/form-data",false,"",""]
+			,[1672,"iana","multipart/header-set",false,"",""]
+			,[1673,"iana","multipart/mixed",false,"",""]
+			,[1674,"iana","multipart/parallel",false,"",""]
+			,[1675,"iana","multipart/related",false,"",""]
+			,[1676,"iana","multipart/report",false,"",""]
+			,[1677,"iana","multipart/signed",false,"",""]
+			,[1678,"iana","multipart/voice-message",false,"",""]
+			,[1679,"iana","multipart/x-mixed-replace",false,"",""]
+			,[1680,"iana","text/1d-interleaved-parityfec",false,"",""]
+			,[1681,"iana","text/cache-manifest",true,"","appcache, manifest"]
+			,[1682,"iana","text/calendar",false,"","ics, ifb"]
+			,[1683,"","text/calender",true,"",""]
+			,[1684,"","text/cmd",true,"",""]
+			,[1685,"","text/coffeescript",false,"","coffee, litcoffee"]
+			,[1686,"iana","text/css",true,"","css"]
+			,[1687,"iana","text/csv",true,"","csv"]
+			,[1688,"iana","text/csv-schema",false,"",""]
+			,[1689,"iana","text/directory",false,"",""]
+			,[1690,"iana","text/dns",false,"",""]
+			,[1691,"iana","text/ecmascript",false,"",""]
+			,[1692,"iana","text/encaprtp",false,"",""]
+			,[1693,"iana","text/enriched",false,"",""]
+			,[1694,"iana","text/fwdred",false,"",""]
+			,[1695,"iana","text/grammar-ref-list",false,"",""]
+			,[1696,"","text/json",false,"","json"]
+			,[1697,"iana","text/html",true,"","html, htm, shtml"]
+			,[1698,"","text/jade",false,"","jade"]
+			,[1699,"iana","text/javascript",true,"",""]
+			,[1700,"iana","text/jcr-cnd",false,"",""]
+			,[1701,"","text/jsx",true,"","jsx"]
+			,[1702,"","text/less",false,"","less"]
+			,[1703,"iana","text/markdown",false,"",""]
+			,[1704,"nginx","text/mathml",false,"","mml"]
+			,[1705,"iana","text/mizar",false,"",""]
+			,[1706,"iana","text/n3",true,"","n3"]
+			,[1707,"iana","text/parameters",false,"",""]
+			,[1708,"iana","text/parityfec",false,"",""]
+			,[1709,"iana","text/plain",true,"","txt, text, conf, def, list, log, in, ini"]
+			,[1710,"iana","text/provenance-notation",false,"",""]
+			,[1711,"iana","text/prs.fallenstein.rst",false,"",""]
+			,[1712,"iana","text/prs.lines.tag",false,"","dsc"]
+			,[1713,"iana","text/prs.prop.logic",false,"",""]
+			,[1714,"iana","text/raptorfec",false,"",""]
+			,[1715,"iana","text/red",false,"",""]
+			,[1716,"iana","text/rfc822-headers",false,"",""]
+			,[1717,"iana","text/richtext",true,"","rtx"]
+			,[1718,"iana","text/rtf",true,"","rtf"]
+			,[1719,"iana","text/rtp-enc-aescm128",false,"",""]
+			,[1720,"iana","text/rtploopback",false,"",""]
+			,[1721,"iana","text/rtx",false,"",""]
+			,[1722,"iana","text/sgml",false,"","sgml, sgm"]
+			,[1723,"","text/slim",false,"","slim, slm"]
+			,[1724,"","text/stylus",false,"","stylus, styl"]
+			,[1725,"iana","text/t140",false,"",""]
+			,[1726,"iana","text/tab-separated-values",true,"","tsv"]
+			,[1727,"iana","text/troff",false,"","t, tr, roff, man, me, ms"]
+			,[1728,"iana","text/turtle",false,"","ttl"]
+			,[1729,"iana","text/ulpfec",false,"",""]
+			,[1730,"iana","text/uri-list",true,"","uri, uris, urls"]
+			,[1731,"iana","text/vcard",true,"","vcard"]
+			,[1732,"iana","text/vnd.a",false,"",""]
+			,[1733,"iana","text/vnd.abc",false,"",""]
+			,[1734,"iana","text/vnd.curl",false,"","curl"]
+			,[1735,"apache","text/vnd.curl.dcurl",false,"","dcurl"]
+			,[1736,"apache","text/vnd.curl.mcurl",false,"","mcurl"]
+			,[1737,"apache","text/vnd.curl.scurl",false,"","scurl"]
+			,[1738,"iana","text/vnd.debian.copyright",false,"",""]
+			,[1739,"iana","text/vnd.dmclientscript",false,"",""]
+			,[1740,"iana","text/vnd.dvb.subtitle",false,"","sub"]
+			,[1741,"iana","text/vnd.esmertec.theme-descriptor",false,"",""]
+			,[1742,"iana","text/vnd.fly",false,"","fly"]
+			,[1743,"iana","text/vnd.fmi.flexstor",false,"","flx"]
+			,[1744,"iana","text/vnd.graphviz",false,"","gv"]
+			,[1745,"iana","text/vnd.in3d.3dml",false,"","3dml"]
+			,[1746,"iana","text/vnd.in3d.spot",false,"","spot"]
+			,[1747,"iana","text/vnd.iptc.newsml",false,"",""]
+			,[1748,"iana","text/vnd.iptc.nitf",false,"",""]
+			,[1749,"iana","text/vnd.latex-z",false,"",""]
+			,[1750,"iana","text/vnd.motorola.reflex",false,"",""]
+			,[1751,"iana","text/vnd.ms-mediapackage",false,"",""]
+			,[1752,"iana","text/vnd.net2phone.commcenter.command",false,"",""]
+			,[1753,"iana","text/vnd.radisys.msml-basic-layout",false,"",""]
+			,[1754,"iana","text/vnd.si.uricatalogue",false,"",""]
+			,[1755,"iana","text/vnd.sun.j2me.app-descriptor",false,"","jad"]
+			,[1756,"iana","text/vnd.trolltech.linguist",false,"",""]
+			,[1757,"iana","text/vnd.wap.si",false,"",""]
+			,[1758,"iana","text/vnd.wap.sl",false,"",""]
+			,[1759,"iana","text/vnd.wap.wml",false,"","wml"]
+			,[1760,"iana","text/vnd.wap.wmlscript",false,"","wmls"]
+			,[1761,"","text/vtt",true,"UTF-8","vtt"]
+			,[1762,"apache","text/x-asm",false,"","s, asm"]
+			,[1763,"apache","text/x-c",false,"","c, cc, cxx, cpp, h, hh, dic"]
+			,[1764,"nginx","text/x-component",false,"","htc"]
+			,[1765,"apache","text/x-fortran",false,"","f, for, f77, f90"]
+			,[1766,"","text/x-gwt-rpc",true,"",""]
+			,[1767,"","text/x-handlebars-template",false,"","hbs"]
+			,[1768,"apache","text/x-java-source",false,"","java"]
+			,[1769,"","text/x-jquery-tmpl",true,"",""]
+			,[1770,"","text/x-lua",false,"","lua"]
+			,[1771,"","text/x-markdown",true,"","markdown, md, mkd"]
+			,[1772,"apache","text/x-nfo",false,"","nfo"]
+			,[1773,"apache","text/x-opml",false,"","opml"]
+			,[1774,"apache","text/x-pascal",false,"","p, pas"]
+			,[1775,"","text/x-processing",true,"","pde"]
+			,[1776,"","text/x-sass",false,"","sass"]
+			,[1777,"","text/x-scss",false,"","scss"]
+			,[1778,"apache","text/x-setext",false,"","etx"]
+			,[1779,"apache","text/x-sfv",false,"","sfv"]
+			,[1780,"","text/x-suse-ymp",true,"","ymp"]
+			,[1781,"apache","text/x-uuencode",false,"","uu"]
+			,[1782,"apache","text/x-vcalendar",false,"","vcs"]
+			,[1783,"apache","text/x-vcard",false,"","vcf"]
+			,[1784,"iana","text/xml",true,"","xml"]
+			,[1785,"iana","text/xml-external-parsed-entity",false,"",""]
+			,[1786,"","text/yaml",false,"","yaml, yml"]
+			,[1787,"apache","video/1d-interleaved-parityfec",false,"",""]
+			,[1788,"apache","video/3gpp",false,"","3gp, 3gpp"]
+			,[1789,"apache","video/3gpp-tt",false,"",""]
+			,[1790,"apache","video/3gpp2",false,"","3g2"]
+			,[1791,"apache","video/bmpeg",false,"",""]
+			,[1792,"apache","video/bt656",false,"",""]
+			,[1793,"apache","video/celb",false,"",""]
+			,[1794,"apache","video/dv",false,"",""]
+			,[1795,"apache","video/encaprtp",false,"",""]
+			,[1796,"apache","video/h261",false,"","h261"]
+			,[1797,"apache","video/h263",false,"","h263"]
+			,[1798,"apache","video/h263-1998",false,"",""]
+			,[1799,"apache","video/h263-2000",false,"",""]
+			,[1800,"apache","video/h264",false,"","h264"]
+			,[1801,"apache","video/h264-rcdo",false,"",""]
+			,[1802,"apache","video/h264-svc",false,"",""]
+			,[1803,"apache","video/h265",false,"",""]
+			,[1804,"apache","video/iso.segment",false,"",""]
+			,[1805,"apache","video/jpeg",false,"","jpgv"]
+			,[1806,"apache","video/jpeg2000",false,"",""]
+			,[1807,"apache","video/jpm",false,"","jpm, jpgm"]
+			,[1808,"apache","video/mj2",false,"","mj2, mjp2"]
+			,[1809,"apache","video/mp1s",false,"",""]
+			,[1810,"apache","video/mp2p",false,"",""]
+			,[1811,"apache","video/mp2t",false,"","ts"]
+			,[1812,"apache","video/mp4",false,"","mp4, mp4v, mpg4"]
+			,[1813,"apache","video/mp4v-es",false,"",""]
+			,[1814,"apache","video/mpeg",false,"","mpeg, mpg, mpe, m1v, m2v"]
+			,[1815,"apache","video/mpeg4-generic",false,"",""]
+			,[1816,"apache","video/mpv",false,"",""]
+			,[1817,"apache","video/nv",false,"",""]
+			,[1818,"apache","video/ogg",false,"","ogv"]
+			,[1819,"apache","video/parityfec",false,"",""]
+			,[1820,"apache","video/pointer",false,"",""]
+			,[1821,"apache","video/quicktime",false,"","qt, mov"]
+			,[1822,"apache","video/raptorfec",false,"",""]
+			,[1823,"apache","video/raw",false,"",""]
+			,[1824,"apache","video/rtp-enc-aescm128",false,"",""]
+			,[1825,"apache","video/rtploopback",false,"",""]
+			,[1826,"apache","video/rtx",false,"",""]
+			,[1827,"apache","video/smpte292m",false,"",""]
+			,[1828,"apache","video/ulpfec",false,"",""]
+			,[1829,"apache","video/vc1",false,"",""]
+			,[1830,"apache","video/vnd.cctv",false,"",""]
+			,[1831,"apache","video/vnd.dece.hd",false,"","uvh, uvvh"]
+			,[1832,"apache","video/vnd.dece.mobile",false,"","uvm, uvvm"]
+			,[1833,"apache","video/vnd.dece.mp4",false,"",""]
+			,[1834,"apache","video/vnd.dece.pd",false,"","uvp, uvvp"]
+			,[1835,"apache","video/vnd.dece.sd",false,"","uvs, uvvs"]
+			,[1836,"apache","video/vnd.dece.video",false,"","uvv, uvvv"]
+			,[1837,"apache","video/vnd.directv.mpeg",false,"",""]
+			,[1838,"apache","video/vnd.directv.mpeg-tts",false,"",""]
+			,[1839,"apache","video/vnd.dlna.mpeg-tts",false,"",""]
+			,[1840,"apache","video/vnd.dvb.file",false,"","dvb"]
+			,[1841,"apache","video/vnd.fvt",false,"","fvt"]
+			,[1842,"apache","video/vnd.hns.video",false,"",""]
+			,[1843,"apache","video/vnd.iptvforum.1dparityfec-1010",false,"",""]
+			,[1844,"apache","video/vnd.iptvforum.1dparityfec-2005",false,"",""]
+			,[1845,"apache","video/vnd.iptvforum.2dparityfec-1010",false,"",""]
+			,[1846,"apache","video/vnd.iptvforum.2dparityfec-2005",false,"",""]
+			,[1847,"apache","video/vnd.iptvforum.ttsavc",false,"",""]
+			,[1848,"apache","video/vnd.iptvforum.ttsmpeg2",false,"",""]
+			,[1849,"apache","video/vnd.motorola.video",false,"",""]
+			,[1850,"apache","video/vnd.motorola.videop",false,"",""]
+			,[1851,"apache","video/vnd.mpegurl",false,"","mxu, m4u"]
+			,[1852,"apache","video/vnd.ms-playready.media.pyv",false,"","pyv"]
+			,[1853,"apache","video/vnd.nokia.interleaved-multimedia",false,"",""]
+			,[1854,"apache","video/vnd.nokia.videovoip",false,"",""]
+			,[1855,"apache","video/vnd.objectvideo",false,"",""]
+			,[1856,"apache","video/vnd.radgamettools.bink",false,"",""]
+			,[1857,"apache","video/vnd.radgamettools.smacker",false,"",""]
+			,[1858,"apache","video/vnd.sealed.mpeg1",false,"",""]
+			,[1859,"apache","video/vnd.sealed.mpeg4",false,"",""]
+			,[1860,"apache","video/vnd.sealed.swf",false,"",""]
+			,[1861,"apache","video/vnd.sealedmedia.softseal.mov",false,"",""]
+			,[1862,"apache","video/vnd.uvvu.mp4",false,"","uvu, uvvu"]
+			,[1863,"apache","video/vnd.vivo",false,"","viv"]
+			,[1864,"apache","video/vp8",false,"",""]
+			,[1865,"apache","video/webm",false,"","webm"]
+			,[1866,"apache","video/x-f4v",false,"","f4v"]
+			,[1867,"apache","video/x-fli",false,"","fli"]
+			,[1868,"apache","video/x-flv",false,"","flv"]
+			,[1869,"apache","video/x-m4v",false,"","m4v"]
+			,[1870,"apache","video/x-matroska",false,"","mkv, mk3d, mks"]
+			,[1871,"apache","video/x-mng",false,"","mng"]
+			,[1872,"apache","video/x-ms-asf",false,"","asf, asx"]
+			,[1873,"apache","video/x-ms-vob",false,"","vob"]
+			,[1874,"apache","video/x-ms-wm",false,"","wm"]
+			,[1875,"apache","video/x-ms-wmv",false,"","wmv"]
+			,[1876,"apache","video/x-ms-wmx",false,"","wmx"]
+			,[1877,"apache","video/x-ms-wvx",false,"","wvx"]
+			,[1878,"apache","video/x-msvideo",false,"","avi"]
+			,[1879,"apache","video/x-sgi-movie",false,"","movie"]
+			,[1880,"apache","video/x-smv",false,"","smv"]
+			,[1881,"apache","x-conference/x-cooltalk",false,"","ice"]
+			,[1882,"","x-shader/x-fragment",true,"",""]
+			,[1883,"","x-shader/x-vertex",true,"",""]
+		].forEach(function(x) {
+			__mimes.push({"id": x[0], "source": x[1], "value": x[2], "compressible": x[3], "charSet": x[4], "extensions": x[5] });
+		});
     }
     function _initMimeTypes() {
-        __mimeTypes = [
-            { "mimeId": 17, "extension": "ez", "isDefault": true },
-            { "mimeId": 19, "extension": "aw", "isDefault": true },
-            { "mimeId": 22, "extension": "atom", "isDefault": true },
-            { "mimeId": 23, "extension": "atomcat", "isDefault": true },
-            { "mimeId": 26, "extension": "atomsvc", "isDefault": true },
-            { "mimeId": 31, "extension": "bdoc", "isDefault": true },
-            { "mimeId": 39, "extension": "ccxml", "isDefault": true },
-            { "mimeId": 41, "extension": "cdmia", "isDefault": true },
-            { "mimeId": 42, "extension": "cdmic", "isDefault": true },
-            { "mimeId": 43, "extension": "cdmid", "isDefault": true },
-            { "mimeId": 44, "extension": "cdmio", "isDefault": true },
-            { "mimeId": 45, "extension": "cdmiq", "isDefault": true },
-            { "mimeId": 61, "extension": "cu", "isDefault": true },
-            { "mimeId": 64, "extension": "mpd", "isDefault": true },
-            { "mimeId": 66, "extension": "davmount", "isDefault": true },
-            { "mimeId": 75, "extension": "dbk", "isDefault": true },
-            { "mimeId": 77, "extension": "dssc", "isDefault": true },
-            { "mimeId": 78, "extension": "xdssc", "isDefault": true },
-            { "mimeId": 80, "extension": "ecma", "isDefault": true },
-            { "mimeId": 90, "extension": "emma", "isDefault": true },
-            { "mimeId": 94, "extension": "epub", "isDefault": true },
-            { "mimeId": 96, "extension": "exi", "isDefault": true },
-            { "mimeId": 102, "extension": "pfr", "isDefault": true },
-            { "mimeId": 103, "extension": "woff", "isDefault": true },
-            { "mimeId": 104, "extension": "woff2", "isDefault": true },
-            { "mimeId": 106, "extension": "gml", "isDefault": true },
-            { "mimeId": 107, "extension": "gpx", "isDefault": true },
-            { "mimeId": 108, "extension": "gxf", "isDefault": true },
-            { "mimeId": 113, "extension": "stk", "isDefault": true },
-            { "mimeId": 124, "extension": "ink", "isDefault": true },
-            { "mimeId": 124, "extension": "inkml", "isDefault": true },
-            { "mimeId": 126, "extension": "ipfix", "isDefault": true },
-            { "mimeId": 130, "extension": "ear", "isDefault": true },
-            { "mimeId": 130, "extension": "jar", "isDefault": true },
-            { "mimeId": 130, "extension": "war", "isDefault": true },
-            { "mimeId": 131, "extension": "ser", "isDefault": true },
-            { "mimeId": 132, "extension": "class", "isDefault": true },
-            { "mimeId": 133, "extension": "js", "isDefault": true },
-            { "mimeId": 137, "extension": "json", "isDefault": true },
-            { "mimeId": 137, "extension": "map", "isDefault": true },
-            { "mimeId": 140, "extension": "json5", "isDefault": true },
-            { "mimeId": 141, "extension": "jsonml", "isDefault": true },
-            { "mimeId": 147, "extension": "jsonld", "isDefault": true },
-            { "mimeId": 150, "extension": "lostxml", "isDefault": true },
-            { "mimeId": 153, "extension": "hqx", "isDefault": true },
-            { "mimeId": 154, "extension": "cpt", "isDefault": true },
-            { "mimeId": 156, "extension": "mads", "isDefault": true },
-            { "mimeId": 157, "extension": "webmanifest", "isDefault": true },
-            { "mimeId": 158, "extension": "mrc", "isDefault": true },
-            { "mimeId": 159, "extension": "mrcx", "isDefault": true },
-            { "mimeId": 160, "extension": "ma", "isDefault": true },
-            { "mimeId": 160, "extension": "mb", "isDefault": true },
-            { "mimeId": 160, "extension": "nb", "isDefault": true },
-            { "mimeId": 161, "extension": "mathml", "isDefault": true },
-            { "mimeId": 175, "extension": "mbox", "isDefault": true },
-            { "mimeId": 178, "extension": "mscml", "isDefault": true },
-            { "mimeId": 180, "extension": "metalink", "isDefault": true },
-            { "mimeId": 181, "extension": "meta4", "isDefault": true },
-            { "mimeId": 182, "extension": "mets", "isDefault": true },
-            { "mimeId": 185, "extension": "mods", "isDefault": true },
-            { "mimeId": 190, "extension": "m21", "isDefault": true },
-            { "mimeId": 190, "extension": "mp21", "isDefault": true },
-            { "mimeId": 191, "extension": "m4p", "isDefault": true },
-            { "mimeId": 191, "extension": "mp4s", "isDefault": true },
-            { "mimeId": 199, "extension": "doc", "isDefault": true },
-            { "mimeId": 199, "extension": "dot", "isDefault": true },
-            { "mimeId": 200, "extension": "mxf", "isDefault": true },
-            { "mimeId": 209, "extension": "bin", "isDefault": true },
-            { "mimeId": 209, "extension": "bpk", "isDefault": true },
-            { "mimeId": 209, "extension": "buffer", "isDefault": true },
-            { "mimeId": 209, "extension": "deb", "isDefault": false },
-            { "mimeId": 209, "extension": "deploy", "isDefault": true },
-            { "mimeId": 209, "extension": "dist", "isDefault": true },
-            { "mimeId": 209, "extension": "distz", "isDefault": true },
-            { "mimeId": 209, "extension": "dll", "isDefault": true },
-            { "mimeId": 209, "extension": "dmg", "isDefault": false },
-            { "mimeId": 209, "extension": "dms", "isDefault": true },
-            { "mimeId": 209, "extension": "dump", "isDefault": true },
-            { "mimeId": 209, "extension": "elc", "isDefault": true },
-            { "mimeId": 209, "extension": "exe", "isDefault": true },
-            { "mimeId": 209, "extension": "img", "isDefault": true },
-            { "mimeId": 209, "extension": "iso", "isDefault": false },
-            { "mimeId": 209, "extension": "lrf", "isDefault": true },
-            { "mimeId": 209, "extension": "mar", "isDefault": true },
-            { "mimeId": 209, "extension": "msi", "isDefault": true },
-            { "mimeId": 209, "extension": "msm", "isDefault": true },
-            { "mimeId": 209, "extension": "msp", "isDefault": true },
-            { "mimeId": 209, "extension": "pkg", "isDefault": true },
-            { "mimeId": 209, "extension": "so", "isDefault": true },
-            { "mimeId": 210, "extension": "oda", "isDefault": true },
-            { "mimeId": 212, "extension": "opf", "isDefault": true },
-            { "mimeId": 213, "extension": "ogx", "isDefault": true },
-            { "mimeId": 214, "extension": "omdoc", "isDefault": true },
-            { "mimeId": 215, "extension": "onepkg", "isDefault": true },
-            { "mimeId": 215, "extension": "onetmp", "isDefault": true },
-            { "mimeId": 215, "extension": "onetoc", "isDefault": true },
-            { "mimeId": 215, "extension": "onetoc2", "isDefault": true },
-            { "mimeId": 216, "extension": "oxps", "isDefault": true },
-            { "mimeId": 219, "extension": "xer", "isDefault": true },
-            { "mimeId": 220, "extension": "pdf", "isDefault": true },
-            { "mimeId": 222, "extension": "pgp", "isDefault": true },
-            { "mimeId": 224, "extension": "asc", "isDefault": true },
-            { "mimeId": 224, "extension": "sig", "isDefault": true },
-            { "mimeId": 225, "extension": "prf", "isDefault": true },
-            { "mimeId": 228, "extension": "p10", "isDefault": true },
-            { "mimeId": 230, "extension": "p7c", "isDefault": true },
-            { "mimeId": 230, "extension": "p7m", "isDefault": true },
-            { "mimeId": 231, "extension": "p7s", "isDefault": true },
-            { "mimeId": 232, "extension": "p8", "isDefault": true },
-            { "mimeId": 233, "extension": "ac", "isDefault": true },
-            { "mimeId": 234, "extension": "cer", "isDefault": true },
-            { "mimeId": 235, "extension": "crl", "isDefault": true },
-            { "mimeId": 236, "extension": "pkipath", "isDefault": true },
-            { "mimeId": 237, "extension": "pki", "isDefault": true },
-            { "mimeId": 238, "extension": "pls", "isDefault": true },
-            { "mimeId": 240, "extension": "ai", "isDefault": true },
-            { "mimeId": 240, "extension": "eps", "isDefault": true },
-            { "mimeId": 240, "extension": "ps", "isDefault": true },
-            { "mimeId": 246, "extension": "cww", "isDefault": true },
-            { "mimeId": 252, "extension": "pskcxml", "isDefault": true },
-            { "mimeId": 256, "extension": "rdf", "isDefault": true },
-            { "mimeId": 257, "extension": "rif", "isDefault": true },
-            { "mimeId": 258, "extension": "rnc", "isDefault": true },
-            { "mimeId": 261, "extension": "rl", "isDefault": true },
-            { "mimeId": 262, "extension": "rld", "isDefault": true },
-            { "mimeId": 266, "extension": "rs", "isDefault": true },
-            { "mimeId": 267, "extension": "gbr", "isDefault": true },
-            { "mimeId": 268, "extension": "mft", "isDefault": true },
-            { "mimeId": 269, "extension": "roa", "isDefault": true },
-            { "mimeId": 271, "extension": "rsd", "isDefault": true },
-            { "mimeId": 272, "extension": "rss", "isDefault": true },
-            { "mimeId": 273, "extension": "rtf", "isDefault": true },
-            { "mimeId": 278, "extension": "sbml", "isDefault": true },
-            { "mimeId": 281, "extension": "scq", "isDefault": true },
-            { "mimeId": 282, "extension": "scs", "isDefault": true },
-            { "mimeId": 283, "extension": "spq", "isDefault": true },
-            { "mimeId": 284, "extension": "spp", "isDefault": true },
-            { "mimeId": 285, "extension": "sdp", "isDefault": true },
-            { "mimeId": 290, "extension": "setpay", "isDefault": true },
-            { "mimeId": 292, "extension": "setreg", "isDefault": true },
-            { "mimeId": 295, "extension": "shf", "isDefault": true },
-            { "mimeId": 302, "extension": "smi", "isDefault": true },
-            { "mimeId": 302, "extension": "smil", "isDefault": true },
-            { "mimeId": 306, "extension": "rq", "isDefault": true },
-            { "mimeId": 307, "extension": "srx", "isDefault": true },
-            { "mimeId": 310, "extension": "gram", "isDefault": true },
-            { "mimeId": 311, "extension": "grxml", "isDefault": true },
-            { "mimeId": 312, "extension": "sru", "isDefault": true },
-            { "mimeId": 313, "extension": "ssdl", "isDefault": true },
-            { "mimeId": 314, "extension": "ssml", "isDefault": true },
-            { "mimeId": 327, "extension": "tei", "isDefault": true },
-            { "mimeId": 327, "extension": "teicorpus", "isDefault": true },
-            { "mimeId": 328, "extension": "tfi", "isDefault": true },
-            { "mimeId": 331, "extension": "tsd", "isDefault": true },
-            { "mimeId": 348, "extension": "plb", "isDefault": true },
-            { "mimeId": 349, "extension": "psb", "isDefault": true },
-            { "mimeId": 350, "extension": "pvb", "isDefault": true },
-            { "mimeId": 359, "extension": "tcap", "isDefault": true },
-            { "mimeId": 361, "extension": "pwn", "isDefault": true },
-            { "mimeId": 362, "extension": "aso", "isDefault": true },
-            { "mimeId": 363, "extension": "imp", "isDefault": true },
-            { "mimeId": 364, "extension": "acu", "isDefault": true },
-            { "mimeId": 365, "extension": "acutc", "isDefault": true },
-            { "mimeId": 365, "extension": "atc", "isDefault": true },
-            { "mimeId": 366, "extension": "air", "isDefault": true },
-            { "mimeId": 368, "extension": "fcdt", "isDefault": true },
-            { "mimeId": 369, "extension": "fxp", "isDefault": true },
-            { "mimeId": 369, "extension": "fxpl", "isDefault": true },
-            { "mimeId": 371, "extension": "xdp", "isDefault": true },
-            { "mimeId": 372, "extension": "xfdf", "isDefault": true },
-            { "mimeId": 375, "extension": "ahead", "isDefault": true },
-            { "mimeId": 376, "extension": "azf", "isDefault": true },
-            { "mimeId": 377, "extension": "azs", "isDefault": true },
-            { "mimeId": 378, "extension": "azw", "isDefault": true },
-            { "mimeId": 379, "extension": "acc", "isDefault": true },
-            { "mimeId": 380, "extension": "ami", "isDefault": true },
-            { "mimeId": 382, "extension": "apk", "isDefault": true },
-            { "mimeId": 384, "extension": "cii", "isDefault": true },
-            { "mimeId": 385, "extension": "fti", "isDefault": true },
-            { "mimeId": 386, "extension": "atx", "isDefault": true },
-            { "mimeId": 391, "extension": "mpkg", "isDefault": true },
-            { "mimeId": 392, "extension": "m3u8", "isDefault": true },
-            { "mimeId": 393, "extension": "pkpass", "isDefault": true },
-            { "mimeId": 395, "extension": "swi", "isDefault": true },
-            { "mimeId": 397, "extension": "iota", "isDefault": true },
-            { "mimeId": 398, "extension": "aep", "isDefault": true },
-            { "mimeId": 405, "extension": "mpm", "isDefault": true },
-            { "mimeId": 408, "extension": "bmi", "isDefault": true },
-            { "mimeId": 409, "extension": "rep", "isDefault": true },
-            { "mimeId": 415, "extension": "cdxml", "isDefault": true },
-            { "mimeId": 416, "extension": "mmd", "isDefault": true },
-            { "mimeId": 417, "extension": "cdy", "isDefault": true },
-            { "mimeId": 420, "extension": "cla", "isDefault": true },
-            { "mimeId": 421, "extension": "rp9", "isDefault": true },
-            { "mimeId": 422, "extension": "c4d", "isDefault": true },
-            { "mimeId": 422, "extension": "c4f", "isDefault": true },
-            { "mimeId": 422, "extension": "c4g", "isDefault": true },
-            { "mimeId": 422, "extension": "c4p", "isDefault": true },
-            { "mimeId": 422, "extension": "c4u", "isDefault": true },
-            { "mimeId": 423, "extension": "c11amc", "isDefault": true },
-            { "mimeId": 424, "extension": "c11amz", "isDefault": true },
-            { "mimeId": 430, "extension": "csp", "isDefault": true },
-            { "mimeId": 431, "extension": "cdbcmsg", "isDefault": true },
-            { "mimeId": 433, "extension": "cmc", "isDefault": true },
-            { "mimeId": 434, "extension": "clkx", "isDefault": true },
-            { "mimeId": 435, "extension": "clkk", "isDefault": true },
-            { "mimeId": 436, "extension": "clkp", "isDefault": true },
-            { "mimeId": 437, "extension": "clkt", "isDefault": true },
-            { "mimeId": 438, "extension": "clkw", "isDefault": true },
-            { "mimeId": 439, "extension": "wbs", "isDefault": true },
-            { "mimeId": 440, "extension": "pml", "isDefault": true },
-            { "mimeId": 444, "extension": "ppd", "isDefault": true },
-            { "mimeId": 448, "extension": "car", "isDefault": true },
-            { "mimeId": 449, "extension": "pcurl", "isDefault": true },
-            { "mimeId": 452, "extension": "dart", "isDefault": true },
-            { "mimeId": 453, "extension": "rdz", "isDefault": true },
-            { "mimeId": 455, "extension": "uvd", "isDefault": true },
-            { "mimeId": 455, "extension": "uvf", "isDefault": true },
-            { "mimeId": 455, "extension": "uvvd", "isDefault": true },
-            { "mimeId": 455, "extension": "uvvf", "isDefault": true },
-            { "mimeId": 456, "extension": "uvt", "isDefault": true },
-            { "mimeId": 456, "extension": "uvvt", "isDefault": true },
-            { "mimeId": 457, "extension": "uvvx", "isDefault": true },
-            { "mimeId": 457, "extension": "uvx", "isDefault": true },
-            { "mimeId": 458, "extension": "uvvz", "isDefault": true },
-            { "mimeId": 458, "extension": "uvz", "isDefault": true },
-            { "mimeId": 459, "extension": "fe_launch", "isDefault": true },
-            { "mimeId": 464, "extension": "dna", "isDefault": true },
-            { "mimeId": 466, "extension": "mlp", "isDefault": true },
-            { "mimeId": 470, "extension": "dpg", "isDefault": true },
-            { "mimeId": 471, "extension": "dfac", "isDefault": true },
-            { "mimeId": 473, "extension": "kpxx", "isDefault": true },
-            { "mimeId": 477, "extension": "ait", "isDefault": true },
-            { "mimeId": 495, "extension": "svc", "isDefault": true },
-            { "mimeId": 497, "extension": "geo", "isDefault": true },
-            { "mimeId": 501, "extension": "mag", "isDefault": true },
-            { "mimeId": 508, "extension": "nml", "isDefault": true },
-            { "mimeId": 511, "extension": "esf", "isDefault": true },
-            { "mimeId": 512, "extension": "msf", "isDefault": true },
-            { "mimeId": 513, "extension": "qam", "isDefault": true },
-            { "mimeId": 514, "extension": "slt", "isDefault": true },
-            { "mimeId": 515, "extension": "ssf", "isDefault": true },
-            { "mimeId": 517, "extension": "es3", "isDefault": true },
-            { "mimeId": 517, "extension": "et3", "isDefault": true },
-            { "mimeId": 541, "extension": "ez2", "isDefault": true },
-            { "mimeId": 542, "extension": "ez3", "isDefault": true },
-            { "mimeId": 545, "extension": "fdf", "isDefault": true },
-            { "mimeId": 546, "extension": "mseed", "isDefault": true },
-            { "mimeId": 547, "extension": "dataless", "isDefault": true },
-            { "mimeId": 547, "extension": "seed", "isDefault": true },
-            { "mimeId": 552, "extension": "gph", "isDefault": true },
-            { "mimeId": 553, "extension": "ftc", "isDefault": true },
-            { "mimeId": 555, "extension": "book", "isDefault": true },
-            { "mimeId": 555, "extension": "fm", "isDefault": true },
-            { "mimeId": 555, "extension": "frame", "isDefault": true },
-            { "mimeId": 555, "extension": "maker", "isDefault": true },
-            { "mimeId": 556, "extension": "fnc", "isDefault": true },
-            { "mimeId": 557, "extension": "ltf", "isDefault": true },
-            { "mimeId": 558, "extension": "fsc", "isDefault": true },
-            { "mimeId": 559, "extension": "oas", "isDefault": true },
-            { "mimeId": 560, "extension": "oa2", "isDefault": true },
-            { "mimeId": 561, "extension": "oa3", "isDefault": true },
-            { "mimeId": 562, "extension": "fg5", "isDefault": true },
-            { "mimeId": 563, "extension": "bh2", "isDefault": true },
-            { "mimeId": 566, "extension": "ddd", "isDefault": true },
-            { "mimeId": 567, "extension": "xdw", "isDefault": true },
-            { "mimeId": 568, "extension": "xbd", "isDefault": true },
-            { "mimeId": 572, "extension": "fzs", "isDefault": true },
-            { "mimeId": 573, "extension": "txd", "isDefault": true },
-            { "mimeId": 576, "extension": "ggb", "isDefault": true },
-            { "mimeId": 577, "extension": "ggt", "isDefault": true },
-            { "mimeId": 578, "extension": "gex", "isDefault": true },
-            { "mimeId": 578, "extension": "gre", "isDefault": true },
-            { "mimeId": 579, "extension": "gxt", "isDefault": true },
-            { "mimeId": 580, "extension": "g2w", "isDefault": true },
-            { "mimeId": 581, "extension": "g3w", "isDefault": true },
-            { "mimeId": 585, "extension": "gmx", "isDefault": true },
-            { "mimeId": 586, "extension": "gdoc", "isDefault": true },
-            { "mimeId": 587, "extension": "gslides", "isDefault": true },
-            { "mimeId": 588, "extension": "gsheet", "isDefault": true },
-            { "mimeId": 589, "extension": "kml", "isDefault": true },
-            { "mimeId": 590, "extension": "kmz", "isDefault": true },
-            { "mimeId": 594, "extension": "gqf", "isDefault": true },
-            { "mimeId": 594, "extension": "gqs", "isDefault": true },
-            { "mimeId": 596, "extension": "gac", "isDefault": true },
-            { "mimeId": 597, "extension": "ghf", "isDefault": true },
-            { "mimeId": 598, "extension": "gim", "isDefault": true },
-            { "mimeId": 599, "extension": "grv", "isDefault": true },
-            { "mimeId": 600, "extension": "gtm", "isDefault": true },
-            { "mimeId": 601, "extension": "tpl", "isDefault": true },
-            { "mimeId": 602, "extension": "vcg", "isDefault": true },
-            { "mimeId": 604, "extension": "hal", "isDefault": true },
-            { "mimeId": 605, "extension": "zmm", "isDefault": true },
-            { "mimeId": 606, "extension": "hbci", "isDefault": true },
-            { "mimeId": 610, "extension": "les", "isDefault": true },
-            { "mimeId": 611, "extension": "hpgl", "isDefault": true },
-            { "mimeId": 612, "extension": "hpid", "isDefault": true },
-            { "mimeId": 613, "extension": "hps", "isDefault": true },
-            { "mimeId": 614, "extension": "jlt", "isDefault": true },
-            { "mimeId": 615, "extension": "pcl", "isDefault": true },
-            { "mimeId": 616, "extension": "pclxl", "isDefault": true },
-            { "mimeId": 618, "extension": "sfd-hdstx", "isDefault": true },
-            { "mimeId": 623, "extension": "mpy", "isDefault": true },
-            { "mimeId": 624, "extension": "afp", "isDefault": true },
-            { "mimeId": 624, "extension": "list3820", "isDefault": true },
-            { "mimeId": 624, "extension": "listafp", "isDefault": true },
-            { "mimeId": 625, "extension": "irm", "isDefault": true },
-            { "mimeId": 626, "extension": "sc", "isDefault": true },
-            { "mimeId": 627, "extension": "icc", "isDefault": true },
-            { "mimeId": 627, "extension": "icm", "isDefault": true },
-            { "mimeId": 629, "extension": "igl", "isDefault": true },
-            { "mimeId": 630, "extension": "ivp", "isDefault": true },
-            { "mimeId": 631, "extension": "ivu", "isDefault": true },
-            { "mimeId": 646, "extension": "igm", "isDefault": true },
-            { "mimeId": 647, "extension": "xpw", "isDefault": true },
-            { "mimeId": 647, "extension": "xpx", "isDefault": true },
-            { "mimeId": 648, "extension": "i2g", "isDefault": true },
-            { "mimeId": 651, "extension": "qbo", "isDefault": true },
-            { "mimeId": 652, "extension": "qfx", "isDefault": true },
-            { "mimeId": 660, "extension": "rcprofile", "isDefault": true },
-            { "mimeId": 661, "extension": "irp", "isDefault": true },
-            { "mimeId": 662, "extension": "xpr", "isDefault": true },
-            { "mimeId": 663, "extension": "fcs", "isDefault": true },
-            { "mimeId": 664, "extension": "jam", "isDefault": true },
-            { "mimeId": 673, "extension": "rms", "isDefault": true },
-            { "mimeId": 674, "extension": "jisp", "isDefault": true },
-            { "mimeId": 675, "extension": "joda", "isDefault": true },
-            { "mimeId": 677, "extension": "ktr", "isDefault": true },
-            { "mimeId": 677, "extension": "ktz", "isDefault": true },
-            { "mimeId": 678, "extension": "karbon", "isDefault": true },
-            { "mimeId": 679, "extension": "chrt", "isDefault": true },
-            { "mimeId": 680, "extension": "kfo", "isDefault": true },
-            { "mimeId": 681, "extension": "flw", "isDefault": true },
-            { "mimeId": 682, "extension": "kon", "isDefault": true },
-            { "mimeId": 683, "extension": "kpr", "isDefault": true },
-            { "mimeId": 683, "extension": "kpt", "isDefault": true },
-            { "mimeId": 684, "extension": "ksp", "isDefault": true },
-            { "mimeId": 685, "extension": "kwd", "isDefault": true },
-            { "mimeId": 685, "extension": "kwt", "isDefault": true },
-            { "mimeId": 686, "extension": "htke", "isDefault": true },
-            { "mimeId": 687, "extension": "kia", "isDefault": true },
-            { "mimeId": 688, "extension": "kne", "isDefault": true },
-            { "mimeId": 688, "extension": "knp", "isDefault": true },
-            { "mimeId": 689, "extension": "skd", "isDefault": true },
-            { "mimeId": 689, "extension": "skm", "isDefault": true },
-            { "mimeId": 689, "extension": "skp", "isDefault": true },
-            { "mimeId": 689, "extension": "skt", "isDefault": true },
-            { "mimeId": 690, "extension": "sse", "isDefault": true },
-            { "mimeId": 691, "extension": "lasxml", "isDefault": true },
-            { "mimeId": 693, "extension": "lbd", "isDefault": true },
-            { "mimeId": 694, "extension": "lbe", "isDefault": true },
-            { "mimeId": 695, "extension": "123", "isDefault": true },
-            { "mimeId": 696, "extension": "apr", "isDefault": true },
-            { "mimeId": 697, "extension": "pre", "isDefault": true },
-            { "mimeId": 698, "extension": "nsf", "isDefault": true },
-            { "mimeId": 699, "extension": "org", "isDefault": true },
-            { "mimeId": 700, "extension": "scm", "isDefault": true },
-            { "mimeId": 701, "extension": "lwp", "isDefault": true },
-            { "mimeId": 702, "extension": "portpkg", "isDefault": true },
-            { "mimeId": 710, "extension": "mcd", "isDefault": true },
-            { "mimeId": 711, "extension": "mc1", "isDefault": true },
-            { "mimeId": 712, "extension": "cdkey", "isDefault": true },
-            { "mimeId": 714, "extension": "mwf", "isDefault": true },
-            { "mimeId": 715, "extension": "mfm", "isDefault": true },
-            { "mimeId": 717, "extension": "flo", "isDefault": true },
-            { "mimeId": 718, "extension": "igx", "isDefault": true },
-            { "mimeId": 721, "extension": "mif", "isDefault": true },
-            { "mimeId": 724, "extension": "daf", "isDefault": true },
-            { "mimeId": 725, "extension": "dis", "isDefault": true },
-            { "mimeId": 726, "extension": "mbk", "isDefault": true },
-            { "mimeId": 727, "extension": "mqy", "isDefault": true },
-            { "mimeId": 728, "extension": "msl", "isDefault": true },
-            { "mimeId": 729, "extension": "plc", "isDefault": true },
-            { "mimeId": 730, "extension": "txf", "isDefault": true },
-            { "mimeId": 731, "extension": "mpn", "isDefault": true },
-            { "mimeId": 732, "extension": "mpc", "isDefault": true },
-            { "mimeId": 741, "extension": "xul", "isDefault": true },
-            { "mimeId": 743, "extension": "cil", "isDefault": true },
-            { "mimeId": 745, "extension": "cab", "isDefault": true },
-            { "mimeId": 747, "extension": "xla", "isDefault": true },
-            { "mimeId": 747, "extension": "xlc", "isDefault": true },
-            { "mimeId": 747, "extension": "xlm", "isDefault": true },
-            { "mimeId": 747, "extension": "xls", "isDefault": true },
-            { "mimeId": 747, "extension": "xlt", "isDefault": true },
-            { "mimeId": 747, "extension": "xlw", "isDefault": true },
-            { "mimeId": 748, "extension": "xlam", "isDefault": true },
-            { "mimeId": 749, "extension": "xlsb", "isDefault": true },
-            { "mimeId": 750, "extension": "xlsm", "isDefault": true },
-            { "mimeId": 751, "extension": "xltm", "isDefault": true },
-            { "mimeId": 752, "extension": "eot", "isDefault": true },
-            { "mimeId": 753, "extension": "chm", "isDefault": true },
-            { "mimeId": 754, "extension": "ims", "isDefault": true },
-            { "mimeId": 755, "extension": "lrm", "isDefault": true },
-            { "mimeId": 757, "extension": "thmx", "isDefault": true },
-            { "mimeId": 760, "extension": "cat", "isDefault": true },
-            { "mimeId": 761, "extension": "stl", "isDefault": true },
-            { "mimeId": 763, "extension": "pot", "isDefault": true },
-            { "mimeId": 763, "extension": "pps", "isDefault": true },
-            { "mimeId": 763, "extension": "ppt", "isDefault": true },
-            { "mimeId": 764, "extension": "ppam", "isDefault": true },
-            { "mimeId": 765, "extension": "pptm", "isDefault": true },
-            { "mimeId": 766, "extension": "sldm", "isDefault": true },
-            { "mimeId": 767, "extension": "ppsm", "isDefault": true },
-            { "mimeId": 768, "extension": "potm", "isDefault": true },
-            { "mimeId": 772, "extension": "mpp", "isDefault": true },
-            { "mimeId": 772, "extension": "mpt", "isDefault": true },
-            { "mimeId": 782, "extension": "docm", "isDefault": true },
-            { "mimeId": 783, "extension": "dotm", "isDefault": true },
-            { "mimeId": 784, "extension": "wcm", "isDefault": true },
-            { "mimeId": 784, "extension": "wdb", "isDefault": true },
-            { "mimeId": 784, "extension": "wks", "isDefault": true },
-            { "mimeId": 784, "extension": "wps", "isDefault": true },
-            { "mimeId": 785, "extension": "wpl", "isDefault": true },
-            { "mimeId": 786, "extension": "xps", "isDefault": true },
-            { "mimeId": 788, "extension": "mseq", "isDefault": true },
-            { "mimeId": 793, "extension": "mus", "isDefault": true },
-            { "mimeId": 794, "extension": "msty", "isDefault": true },
-            { "mimeId": 795, "extension": "taglet", "isDefault": true },
-            { "mimeId": 800, "extension": "nlu", "isDefault": true },
-            { "mimeId": 803, "extension": "nitf", "isDefault": true },
-            { "mimeId": 803, "extension": "ntf", "isDefault": true },
-            { "mimeId": 804, "extension": "nnd", "isDefault": true },
-            { "mimeId": 805, "extension": "nns", "isDefault": true },
-            { "mimeId": 806, "extension": "nnw", "isDefault": true },
-            { "mimeId": 816, "extension": "ngdat", "isDefault": true },
-            { "mimeId": 817, "extension": "n-gage", "isDefault": true },
-            { "mimeId": 821, "extension": "rpst", "isDefault": true },
-            { "mimeId": 822, "extension": "rpss", "isDefault": true },
-            { "mimeId": 823, "extension": "edm", "isDefault": true },
-            { "mimeId": 824, "extension": "edx", "isDefault": true },
-            { "mimeId": 825, "extension": "ext", "isDefault": true },
-            { "mimeId": 831, "extension": "odc", "isDefault": true },
-            { "mimeId": 832, "extension": "otc", "isDefault": true },
-            { "mimeId": 833, "extension": "odb", "isDefault": true },
-            { "mimeId": 834, "extension": "odf", "isDefault": true },
-            { "mimeId": 835, "extension": "odft", "isDefault": true },
-            { "mimeId": 836, "extension": "odg", "isDefault": true },
-            { "mimeId": 837, "extension": "otg", "isDefault": true },
-            { "mimeId": 838, "extension": "odi", "isDefault": true },
-            { "mimeId": 839, "extension": "oti", "isDefault": true },
-            { "mimeId": 840, "extension": "odp", "isDefault": true },
-            { "mimeId": 841, "extension": "otp", "isDefault": true },
-            { "mimeId": 842, "extension": "ods", "isDefault": true },
-            { "mimeId": 843, "extension": "ots", "isDefault": true },
-            { "mimeId": 844, "extension": "odt", "isDefault": true },
-            { "mimeId": 845, "extension": "odm", "isDefault": true },
-            { "mimeId": 846, "extension": "ott", "isDefault": true },
-            { "mimeId": 847, "extension": "oth", "isDefault": true },
-            { "mimeId": 861, "extension": "xo", "isDefault": true },
-            { "mimeId": 885, "extension": "dd2", "isDefault": true },
-            { "mimeId": 905, "extension": "oxt", "isDefault": true },
-            { "mimeId": 922, "extension": "pptx", "isDefault": true },
-            { "mimeId": 925, "extension": "sldx", "isDefault": true },
-            { "mimeId": 929, "extension": "ppsx", "isDefault": true },
-            { "mimeId": 934, "extension": "potx", "isDefault": true },
-            { "mimeId": 951, "extension": "xlsx", "isDefault": true },
-            { "mimeId": 957, "extension": "xltx", "isDefault": true },
-            { "mimeId": 967, "extension": "docx", "isDefault": true },
-            { "mimeId": 977, "extension": "dotx", "isDefault": true },
-            { "mimeId": 986, "extension": "mgp", "isDefault": true },
-            { "mimeId": 988, "extension": "dp", "isDefault": true },
-            { "mimeId": 989, "extension": "esa", "isDefault": true },
-            { "mimeId": 993, "extension": "oprc", "isDefault": true },
-            { "mimeId": 993, "extension": "pdb", "isDefault": true },
-            { "mimeId": 993, "extension": "pqa", "isDefault": true },
-            { "mimeId": 997, "extension": "paw", "isDefault": true },
-            { "mimeId": 999, "extension": "str", "isDefault": true },
-            { "mimeId": 1000, "extension": "ei6", "isDefault": true },
-            { "mimeId": 1002, "extension": "efif", "isDefault": true },
-            { "mimeId": 1003, "extension": "wg", "isDefault": true },
-            { "mimeId": 1005, "extension": "plf", "isDefault": true },
-            { "mimeId": 1006, "extension": "pbd", "isDefault": true },
-            { "mimeId": 1013, "extension": "box", "isDefault": true },
-            { "mimeId": 1014, "extension": "mgz", "isDefault": true },
-            { "mimeId": 1015, "extension": "qps", "isDefault": true },
-            { "mimeId": 1016, "extension": "ptid", "isDefault": true },
-            { "mimeId": 1020, "extension": "qwd", "isDefault": true },
-            { "mimeId": 1020, "extension": "qwt", "isDefault": true },
-            { "mimeId": 1020, "extension": "qxb", "isDefault": true },
-            { "mimeId": 1020, "extension": "qxd", "isDefault": true },
-            { "mimeId": 1020, "extension": "qxl", "isDefault": true },
-            { "mimeId": 1020, "extension": "qxt", "isDefault": true },
-            { "mimeId": 1039, "extension": "bed", "isDefault": true },
-            { "mimeId": 1040, "extension": "mxl", "isDefault": true },
-            { "mimeId": 1041, "extension": "musicxml", "isDefault": true },
-            { "mimeId": 1043, "extension": "cryptonote", "isDefault": true },
-            { "mimeId": 1044, "extension": "cod", "isDefault": true },
-            { "mimeId": 1045, "extension": "rm", "isDefault": true },
-            { "mimeId": 1046, "extension": "rmvb", "isDefault": true },
-            { "mimeId": 1047, "extension": "link66", "isDefault": true },
-            { "mimeId": 1051, "extension": "st", "isDefault": true },
-            { "mimeId": 1066, "extension": "see", "isDefault": true },
-            { "mimeId": 1067, "extension": "sema", "isDefault": true },
-            { "mimeId": 1068, "extension": "semd", "isDefault": true },
-            { "mimeId": 1069, "extension": "semf", "isDefault": true },
-            { "mimeId": 1070, "extension": "ifm", "isDefault": true },
-            { "mimeId": 1071, "extension": "itp", "isDefault": true },
-            { "mimeId": 1072, "extension": "iif", "isDefault": true },
-            { "mimeId": 1073, "extension": "ipk", "isDefault": true },
-            { "mimeId": 1074, "extension": "twd", "isDefault": true },
-            { "mimeId": 1074, "extension": "twds", "isDefault": true },
-            { "mimeId": 1076, "extension": "mmf", "isDefault": true },
-            { "mimeId": 1078, "extension": "teacher", "isDefault": true },
-            { "mimeId": 1081, "extension": "sdkd", "isDefault": true },
-            { "mimeId": 1081, "extension": "sdkm", "isDefault": true },
-            { "mimeId": 1082, "extension": "dxp", "isDefault": true },
-            { "mimeId": 1083, "extension": "sfs", "isDefault": true },
-            { "mimeId": 1087, "extension": "sdc", "isDefault": true },
-            { "mimeId": 1088, "extension": "sda", "isDefault": true },
-            { "mimeId": 1089, "extension": "sdd", "isDefault": true },
-            { "mimeId": 1090, "extension": "smf", "isDefault": true },
-            { "mimeId": 1091, "extension": "sdw", "isDefault": true },
-            { "mimeId": 1091, "extension": "vor", "isDefault": true },
-            { "mimeId": 1092, "extension": "sgl", "isDefault": true },
-            { "mimeId": 1093, "extension": "smzip", "isDefault": true },
-            { "mimeId": 1094, "extension": "sm", "isDefault": true },
-            { "mimeId": 1097, "extension": "sxc", "isDefault": true },
-            { "mimeId": 1098, "extension": "stc", "isDefault": true },
-            { "mimeId": 1099, "extension": "sxd", "isDefault": true },
-            { "mimeId": 1100, "extension": "std", "isDefault": true },
-            { "mimeId": 1101, "extension": "sxi", "isDefault": true },
-            { "mimeId": 1102, "extension": "sti", "isDefault": true },
-            { "mimeId": 1103, "extension": "sxm", "isDefault": true },
-            { "mimeId": 1104, "extension": "sxw", "isDefault": true },
-            { "mimeId": 1105, "extension": "sxg", "isDefault": true },
-            { "mimeId": 1106, "extension": "stw", "isDefault": true },
-            { "mimeId": 1107, "extension": "sus", "isDefault": true },
-            { "mimeId": 1107, "extension": "susp", "isDefault": true },
-            { "mimeId": 1108, "extension": "svd", "isDefault": true },
-            { "mimeId": 1110, "extension": "sis", "isDefault": true },
-            { "mimeId": 1110, "extension": "sisx", "isDefault": true },
-            { "mimeId": 1111, "extension": "xsm", "isDefault": true },
-            { "mimeId": 1112, "extension": "bdm", "isDefault": true },
-            { "mimeId": 1113, "extension": "xdm", "isDefault": true },
-            { "mimeId": 1120, "extension": "tao", "isDefault": true },
-            { "mimeId": 1121, "extension": "cap", "isDefault": true },
-            { "mimeId": 1121, "extension": "dmp", "isDefault": true },
-            { "mimeId": 1121, "extension": "pcap", "isDefault": true },
-            { "mimeId": 1124, "extension": "tmo", "isDefault": true },
-            { "mimeId": 1125, "extension": "tpt", "isDefault": true },
-            { "mimeId": 1126, "extension": "mxs", "isDefault": true },
-            { "mimeId": 1127, "extension": "tra", "isDefault": true },
-            { "mimeId": 1130, "extension": "ufd", "isDefault": true },
-            { "mimeId": 1130, "extension": "ufdl", "isDefault": true },
-            { "mimeId": 1131, "extension": "utz", "isDefault": true },
-            { "mimeId": 1132, "extension": "umj", "isDefault": true },
-            { "mimeId": 1133, "extension": "unityweb", "isDefault": true },
-            { "mimeId": 1134, "extension": "uoml", "isDefault": true },
-            { "mimeId": 1150, "extension": "vcx", "isDefault": true },
-            { "mimeId": 1156, "extension": "vsd", "isDefault": true },
-            { "mimeId": 1156, "extension": "vss", "isDefault": true },
-            { "mimeId": 1156, "extension": "vst", "isDefault": true },
-            { "mimeId": 1156, "extension": "vsw", "isDefault": true },
-            { "mimeId": 1157, "extension": "vis", "isDefault": true },
-            { "mimeId": 1159, "extension": "vsf", "isDefault": true },
-            { "mimeId": 1162, "extension": "wbxml", "isDefault": true },
-            { "mimeId": 1163, "extension": "wmlc", "isDefault": true },
-            { "mimeId": 1164, "extension": "wmlsc", "isDefault": true },
-            { "mimeId": 1165, "extension": "wtb", "isDefault": true },
-            { "mimeId": 1173, "extension": "nbp", "isDefault": true },
-            { "mimeId": 1174, "extension": "wpd", "isDefault": true },
-            { "mimeId": 1175, "extension": "wqd", "isDefault": true },
-            { "mimeId": 1177, "extension": "stf", "isDefault": true },
-            { "mimeId": 1182, "extension": "xar", "isDefault": true },
-            { "mimeId": 1183, "extension": "xfdl", "isDefault": true },
-            { "mimeId": 1191, "extension": "hvd", "isDefault": true },
-            { "mimeId": 1192, "extension": "hvs", "isDefault": true },
-            { "mimeId": 1193, "extension": "hvp", "isDefault": true },
-            { "mimeId": 1194, "extension": "osf", "isDefault": true },
-            { "mimeId": 1195, "extension": "osfpvg", "isDefault": true },
-            { "mimeId": 1197, "extension": "saf", "isDefault": true },
-            { "mimeId": 1198, "extension": "spf", "isDefault": true },
-            { "mimeId": 1202, "extension": "cmp", "isDefault": true },
-            { "mimeId": 1203, "extension": "zir", "isDefault": true },
-            { "mimeId": 1203, "extension": "zirz", "isDefault": true },
-            { "mimeId": 1204, "extension": "zaz", "isDefault": true },
-            { "mimeId": 1205, "extension": "vxml", "isDefault": true },
-            { "mimeId": 1210, "extension": "wgt", "isDefault": true },
-            { "mimeId": 1211, "extension": "hlp", "isDefault": true },
-            { "mimeId": 1214, "extension": "wsdl", "isDefault": true },
-            { "mimeId": 1215, "extension": "wspolicy", "isDefault": true },
-            { "mimeId": 1216, "extension": "7z", "isDefault": true },
-            { "mimeId": 1217, "extension": "abw", "isDefault": true },
-            { "mimeId": 1218, "extension": "ace", "isDefault": true },
-            { "mimeId": 1220, "extension": "dmg", "isDefault": true },
-            { "mimeId": 1221, "extension": "aab", "isDefault": true },
-            { "mimeId": 1221, "extension": "u32", "isDefault": true },
-            { "mimeId": 1221, "extension": "vox", "isDefault": true },
-            { "mimeId": 1221, "extension": "x32", "isDefault": true },
-            { "mimeId": 1222, "extension": "aam", "isDefault": true },
-            { "mimeId": 1223, "extension": "aas", "isDefault": true },
-            { "mimeId": 1224, "extension": "bcpio", "isDefault": true },
-            { "mimeId": 1225, "extension": "bdoc", "isDefault": false },
-            { "mimeId": 1226, "extension": "torrent", "isDefault": true },
-            { "mimeId": 1227, "extension": "blb", "isDefault": true },
-            { "mimeId": 1227, "extension": "blorb", "isDefault": true },
-            { "mimeId": 1228, "extension": "bz", "isDefault": true },
-            { "mimeId": 1229, "extension": "boz", "isDefault": true },
-            { "mimeId": 1229, "extension": "bz2", "isDefault": true },
-            { "mimeId": 1230, "extension": "cb7", "isDefault": true },
-            { "mimeId": 1230, "extension": "cba", "isDefault": true },
-            { "mimeId": 1230, "extension": "cbr", "isDefault": true },
-            { "mimeId": 1230, "extension": "cbt", "isDefault": true },
-            { "mimeId": 1230, "extension": "cbz", "isDefault": true },
-            { "mimeId": 1231, "extension": "vcd", "isDefault": true },
-            { "mimeId": 1232, "extension": "cfs", "isDefault": true },
-            { "mimeId": 1233, "extension": "chat", "isDefault": true },
-            { "mimeId": 1234, "extension": "pgn", "isDefault": true },
-            { "mimeId": 1235, "extension": "crx", "isDefault": true },
-            { "mimeId": 1236, "extension": "cco", "isDefault": true },
-            { "mimeId": 1238, "extension": "nsc", "isDefault": true },
-            { "mimeId": 1239, "extension": "cpio", "isDefault": true },
-            { "mimeId": 1240, "extension": "csh", "isDefault": true },
-            { "mimeId": 1242, "extension": "deb", "isDefault": true },
-            { "mimeId": 1242, "extension": "udeb", "isDefault": true },
-            { "mimeId": 1243, "extension": "dgc", "isDefault": true },
-            { "mimeId": 1244, "extension": "cct", "isDefault": true },
-            { "mimeId": 1244, "extension": "cst", "isDefault": true },
-            { "mimeId": 1244, "extension": "cxt", "isDefault": true },
-            { "mimeId": 1244, "extension": "dcr", "isDefault": true },
-            { "mimeId": 1244, "extension": "dir", "isDefault": true },
-            { "mimeId": 1244, "extension": "dxr", "isDefault": true },
-            { "mimeId": 1244, "extension": "fgd", "isDefault": true },
-            { "mimeId": 1244, "extension": "swa", "isDefault": true },
-            { "mimeId": 1244, "extension": "w3d", "isDefault": true },
-            { "mimeId": 1245, "extension": "wad", "isDefault": true },
-            { "mimeId": 1246, "extension": "ncx", "isDefault": true },
-            { "mimeId": 1247, "extension": "dtb", "isDefault": true },
-            { "mimeId": 1248, "extension": "res", "isDefault": true },
-            { "mimeId": 1249, "extension": "dvi", "isDefault": true },
-            { "mimeId": 1250, "extension": "evy", "isDefault": true },
-            { "mimeId": 1251, "extension": "eva", "isDefault": true },
-            { "mimeId": 1252, "extension": "bdf", "isDefault": true },
-            { "mimeId": 1255, "extension": "gsf", "isDefault": true },
-            { "mimeId": 1257, "extension": "psf", "isDefault": true },
-            { "mimeId": 1258, "extension": "otf", "isDefault": true },
-            { "mimeId": 1259, "extension": "pcf", "isDefault": true },
-            { "mimeId": 1260, "extension": "snf", "isDefault": true },
-            { "mimeId": 1263, "extension": "ttc", "isDefault": true },
-            { "mimeId": 1263, "extension": "ttf", "isDefault": true },
-            { "mimeId": 1264, "extension": "afm", "isDefault": true },
-            { "mimeId": 1264, "extension": "pfa", "isDefault": true },
-            { "mimeId": 1264, "extension": "pfb", "isDefault": true },
-            { "mimeId": 1264, "extension": "pfm", "isDefault": true },
-            { "mimeId": 1266, "extension": "arc", "isDefault": true },
-            { "mimeId": 1267, "extension": "spl", "isDefault": true },
-            { "mimeId": 1268, "extension": "gca", "isDefault": true },
-            { "mimeId": 1269, "extension": "ulx", "isDefault": true },
-            { "mimeId": 1270, "extension": "gnumeric", "isDefault": true },
-            { "mimeId": 1271, "extension": "gramps", "isDefault": true },
-            { "mimeId": 1272, "extension": "gtar", "isDefault": true },
-            { "mimeId": 1274, "extension": "hdf", "isDefault": true },
-            { "mimeId": 1275, "extension": "php", "isDefault": true },
-            { "mimeId": 1276, "extension": "install", "isDefault": true },
-            { "mimeId": 1277, "extension": "iso", "isDefault": true },
-            { "mimeId": 1278, "extension": "jardiff", "isDefault": true },
-            { "mimeId": 1279, "extension": "jnlp", "isDefault": true },
-            { "mimeId": 1281, "extension": "latex", "isDefault": true },
-            { "mimeId": 1282, "extension": "luac", "isDefault": true },
-            { "mimeId": 1283, "extension": "lha", "isDefault": true },
-            { "mimeId": 1283, "extension": "lzh", "isDefault": true },
-            { "mimeId": 1284, "extension": "run", "isDefault": true },
-            { "mimeId": 1285, "extension": "mie", "isDefault": true },
-            { "mimeId": 1286, "extension": "mobi", "isDefault": true },
-            { "mimeId": 1286, "extension": "prc", "isDefault": true },
-            { "mimeId": 1288, "extension": "application", "isDefault": true },
-            { "mimeId": 1289, "extension": "lnk", "isDefault": true },
-            { "mimeId": 1290, "extension": "wmd", "isDefault": true },
-            { "mimeId": 1291, "extension": "wmz", "isDefault": true },
-            { "mimeId": 1292, "extension": "xbap", "isDefault": true },
-            { "mimeId": 1293, "extension": "mdb", "isDefault": true },
-            { "mimeId": 1294, "extension": "obd", "isDefault": true },
-            { "mimeId": 1295, "extension": "crd", "isDefault": true },
-            { "mimeId": 1296, "extension": "clp", "isDefault": true },
-            { "mimeId": 1297, "extension": "exe", "isDefault": false },
-            { "mimeId": 1298, "extension": "bat", "isDefault": true },
-            { "mimeId": 1298, "extension": "com", "isDefault": true },
-            { "mimeId": 1298, "extension": "dll", "isDefault": false },
-            { "mimeId": 1298, "extension": "exe", "isDefault": false },
-            { "mimeId": 1298, "extension": "msi", "isDefault": false },
-            { "mimeId": 1299, "extension": "m13", "isDefault": true },
-            { "mimeId": 1299, "extension": "m14", "isDefault": true },
-            { "mimeId": 1299, "extension": "mvb", "isDefault": true },
-            { "mimeId": 1300, "extension": "emf", "isDefault": true },
-            { "mimeId": 1300, "extension": "emz", "isDefault": true },
-            { "mimeId": 1300, "extension": "wmf", "isDefault": true },
-            { "mimeId": 1300, "extension": "wmz", "isDefault": false },
-            { "mimeId": 1301, "extension": "mny", "isDefault": true },
-            { "mimeId": 1302, "extension": "pub", "isDefault": true },
-            { "mimeId": 1303, "extension": "scd", "isDefault": true },
-            { "mimeId": 1304, "extension": "trm", "isDefault": true },
-            { "mimeId": 1305, "extension": "wri", "isDefault": true },
-            { "mimeId": 1306, "extension": "cdf", "isDefault": true },
-            { "mimeId": 1306, "extension": "nc", "isDefault": true },
-            { "mimeId": 1307, "extension": "pac", "isDefault": true },
-            { "mimeId": 1308, "extension": "nzb", "isDefault": true },
-            { "mimeId": 1309, "extension": "pl", "isDefault": true },
-            { "mimeId": 1309, "extension": "pm", "isDefault": true },
-            { "mimeId": 1310, "extension": "pdb", "isDefault": false },
-            { "mimeId": 1310, "extension": "prc", "isDefault": false },
-            { "mimeId": 1311, "extension": "p12", "isDefault": true },
-            { "mimeId": 1311, "extension": "pfx", "isDefault": true },
-            { "mimeId": 1312, "extension": "p7b", "isDefault": true },
-            { "mimeId": 1312, "extension": "spc", "isDefault": true },
-            { "mimeId": 1313, "extension": "p7r", "isDefault": true },
-            { "mimeId": 1314, "extension": "rar", "isDefault": true },
-            { "mimeId": 1315, "extension": "rpm", "isDefault": true },
-            { "mimeId": 1316, "extension": "ris", "isDefault": true },
-            { "mimeId": 1317, "extension": "sea", "isDefault": true },
-            { "mimeId": 1318, "extension": "sh", "isDefault": true },
-            { "mimeId": 1319, "extension": "shar", "isDefault": true },
-            { "mimeId": 1320, "extension": "swf", "isDefault": true },
-            { "mimeId": 1321, "extension": "xap", "isDefault": true },
-            { "mimeId": 1322, "extension": "sql", "isDefault": true },
-            { "mimeId": 1323, "extension": "sit", "isDefault": true },
-            { "mimeId": 1324, "extension": "sitx", "isDefault": true },
-            { "mimeId": 1325, "extension": "srt", "isDefault": true },
-            { "mimeId": 1326, "extension": "sv4cpio", "isDefault": true },
-            { "mimeId": 1327, "extension": "sv4crc", "isDefault": true },
-            { "mimeId": 1328, "extension": "t3", "isDefault": true },
-            { "mimeId": 1329, "extension": "gam", "isDefault": true },
-            { "mimeId": 1330, "extension": "tar", "isDefault": true },
-            { "mimeId": 1331, "extension": "tcl", "isDefault": true },
-            { "mimeId": 1331, "extension": "tk", "isDefault": true },
-            { "mimeId": 1332, "extension": "tex", "isDefault": true },
-            { "mimeId": 1333, "extension": "tfm", "isDefault": true },
-            { "mimeId": 1334, "extension": "texi", "isDefault": true },
-            { "mimeId": 1334, "extension": "texinfo", "isDefault": true },
-            { "mimeId": 1335, "extension": "obj", "isDefault": true },
-            { "mimeId": 1336, "extension": "ustar", "isDefault": true },
-            { "mimeId": 1337, "extension": "src", "isDefault": true },
-            { "mimeId": 1338, "extension": "webapp", "isDefault": true },
-            { "mimeId": 1340, "extension": "crt", "isDefault": true },
-            { "mimeId": 1340, "extension": "der", "isDefault": true },
-            { "mimeId": 1340, "extension": "pem", "isDefault": true },
-            { "mimeId": 1341, "extension": "fig", "isDefault": true },
-            { "mimeId": 1342, "extension": "xlf", "isDefault": true },
-            { "mimeId": 1343, "extension": "xpi", "isDefault": true },
-            { "mimeId": 1344, "extension": "xz", "isDefault": true },
-            { "mimeId": 1345, "extension": "z1", "isDefault": true },
-            { "mimeId": 1345, "extension": "z2", "isDefault": true },
-            { "mimeId": 1345, "extension": "z3", "isDefault": true },
-            { "mimeId": 1345, "extension": "z4", "isDefault": true },
-            { "mimeId": 1345, "extension": "z5", "isDefault": true },
-            { "mimeId": 1345, "extension": "z6", "isDefault": true },
-            { "mimeId": 1345, "extension": "z7", "isDefault": true },
-            { "mimeId": 1345, "extension": "z8", "isDefault": true },
-            { "mimeId": 1348, "extension": "xaml", "isDefault": true },
-            { "mimeId": 1351, "extension": "xdf", "isDefault": true },
-            { "mimeId": 1357, "extension": "xenc", "isDefault": true },
-            { "mimeId": 1358, "extension": "xht", "isDefault": true },
-            { "mimeId": 1358, "extension": "xhtml", "isDefault": true },
-            { "mimeId": 1360, "extension": "rng", "isDefault": true },
-            { "mimeId": 1360, "extension": "xml", "isDefault": true },
-            { "mimeId": 1360, "extension": "xsd", "isDefault": true },
-            { "mimeId": 1360, "extension": "xsl", "isDefault": true },
-            { "mimeId": 1361, "extension": "dtd", "isDefault": true },
-            { "mimeId": 1365, "extension": "xop", "isDefault": true },
-            { "mimeId": 1366, "extension": "xpl", "isDefault": true },
-            { "mimeId": 1367, "extension": "xslt", "isDefault": true },
-            { "mimeId": 1368, "extension": "xspf", "isDefault": true },
-            { "mimeId": 1369, "extension": "mxml", "isDefault": true },
-            { "mimeId": 1369, "extension": "xhvml", "isDefault": true },
-            { "mimeId": 1369, "extension": "xvm", "isDefault": true },
-            { "mimeId": 1369, "extension": "xvml", "isDefault": true },
-            { "mimeId": 1370, "extension": "yang", "isDefault": true },
-            { "mimeId": 1371, "extension": "yin", "isDefault": true },
-            { "mimeId": 1372, "extension": "zip", "isDefault": true },
-            { "mimeId": 1376, "extension": "3gpp", "isDefault": false },
-            { "mimeId": 1379, "extension": "adp", "isDefault": true },
-            { "mimeId": 1388, "extension": "au", "isDefault": true },
-            { "mimeId": 1388, "extension": "snd", "isDefault": true },
-            { "mimeId": 1443, "extension": "kar", "isDefault": true },
-            { "mimeId": 1443, "extension": "mid", "isDefault": true },
-            { "mimeId": 1443, "extension": "midi", "isDefault": true },
-            { "mimeId": 1443, "extension": "rmi", "isDefault": true },
-            { "mimeId": 1445, "extension": "m4a", "isDefault": false },
-            { "mimeId": 1445, "extension": "mp4a", "isDefault": true },
-            { "mimeId": 1449, "extension": "m2a", "isDefault": true },
-            { "mimeId": 1449, "extension": "m3a", "isDefault": true },
-            { "mimeId": 1449, "extension": "mp2", "isDefault": true },
-            { "mimeId": 1449, "extension": "mp2a", "isDefault": true },
-            { "mimeId": 1449, "extension": "mp3", "isDefault": true },
-            { "mimeId": 1449, "extension": "mpga", "isDefault": true },
-            { "mimeId": 1452, "extension": "oga", "isDefault": true },
-            { "mimeId": 1452, "extension": "ogg", "isDefault": true },
-            { "mimeId": 1452, "extension": "spx", "isDefault": true },
-            { "mimeId": 1467, "extension": "s3m", "isDefault": true },
-            { "mimeId": 1468, "extension": "sil", "isDefault": true },
-            { "mimeId": 1490, "extension": "uva", "isDefault": true },
-            { "mimeId": 1490, "extension": "uvva", "isDefault": true },
-            { "mimeId": 1491, "extension": "eol", "isDefault": true },
-            { "mimeId": 1501, "extension": "dra", "isDefault": true },
-            { "mimeId": 1502, "extension": "dts", "isDefault": true },
-            { "mimeId": 1503, "extension": "dtshd", "isDefault": true },
-            { "mimeId": 1507, "extension": "lvp", "isDefault": true },
-            { "mimeId": 1508, "extension": "pya", "isDefault": true },
-            { "mimeId": 1511, "extension": "ecelp4800", "isDefault": true },
-            { "mimeId": 1512, "extension": "ecelp7470", "isDefault": true },
-            { "mimeId": 1513, "extension": "ecelp9600", "isDefault": true },
-            { "mimeId": 1517, "extension": "rip", "isDefault": true },
-            { "mimeId": 1524, "extension": "wav", "isDefault": false },
-            { "mimeId": 1525, "extension": "wav", "isDefault": true },
-            { "mimeId": 1526, "extension": "weba", "isDefault": true },
-            { "mimeId": 1527, "extension": "aac", "isDefault": true },
-            { "mimeId": 1528, "extension": "aif", "isDefault": true },
-            { "mimeId": 1528, "extension": "aifc", "isDefault": true },
-            { "mimeId": 1528, "extension": "aiff", "isDefault": true },
-            { "mimeId": 1529, "extension": "caf", "isDefault": true },
-            { "mimeId": 1530, "extension": "flac", "isDefault": true },
-            { "mimeId": 1531, "extension": "m4a", "isDefault": true },
-            { "mimeId": 1532, "extension": "mka", "isDefault": true },
-            { "mimeId": 1533, "extension": "m3u", "isDefault": true },
-            { "mimeId": 1534, "extension": "wax", "isDefault": true },
-            { "mimeId": 1535, "extension": "wma", "isDefault": true },
-            { "mimeId": 1536, "extension": "ra", "isDefault": false },
-            { "mimeId": 1536, "extension": "ram", "isDefault": true },
-            { "mimeId": 1537, "extension": "rmp", "isDefault": true },
-            { "mimeId": 1538, "extension": "ra", "isDefault": true },
-            { "mimeId": 1540, "extension": "wav", "isDefault": false },
-            { "mimeId": 1541, "extension": "xm", "isDefault": true },
-            { "mimeId": 1542, "extension": "cdx", "isDefault": true },
-            { "mimeId": 1543, "extension": "cif", "isDefault": true },
-            { "mimeId": 1544, "extension": "cmdf", "isDefault": true },
-            { "mimeId": 1545, "extension": "cml", "isDefault": true },
-            { "mimeId": 1546, "extension": "csml", "isDefault": true },
-            { "mimeId": 1548, "extension": "xyz", "isDefault": true },
-            { "mimeId": 1549, "extension": "otf", "isDefault": false },
-            { "mimeId": 1550, "extension": "bmp", "isDefault": true },
-            { "mimeId": 1551, "extension": "cgm", "isDefault": true },
-            { "mimeId": 1553, "extension": "g3", "isDefault": true },
-            { "mimeId": 1554, "extension": "gif", "isDefault": true },
-            { "mimeId": 1555, "extension": "ief", "isDefault": true },
-            { "mimeId": 1557, "extension": "jpe", "isDefault": true },
-            { "mimeId": 1557, "extension": "jpeg", "isDefault": true },
-            { "mimeId": 1557, "extension": "jpg", "isDefault": true },
-            { "mimeId": 1560, "extension": "ktx", "isDefault": true },
-            { "mimeId": 1563, "extension": "png", "isDefault": true },
-            { "mimeId": 1564, "extension": "btif", "isDefault": true },
-            { "mimeId": 1567, "extension": "sgi", "isDefault": true },
-            { "mimeId": 1568, "extension": "svg", "isDefault": true },
-            { "mimeId": 1568, "extension": "svgz", "isDefault": true },
-            { "mimeId": 1570, "extension": "tif", "isDefault": true },
-            { "mimeId": 1570, "extension": "tiff", "isDefault": true },
-            { "mimeId": 1572, "extension": "psd", "isDefault": true },
-            { "mimeId": 1575, "extension": "uvg", "isDefault": true },
-            { "mimeId": 1575, "extension": "uvi", "isDefault": true },
-            { "mimeId": 1575, "extension": "uvvg", "isDefault": true },
-            { "mimeId": 1575, "extension": "uvvi", "isDefault": true },
-            { "mimeId": 1576, "extension": "djv", "isDefault": true },
-            { "mimeId": 1576, "extension": "djvu", "isDefault": true },
-            { "mimeId": 1577, "extension": "sub", "isDefault": false },
-            { "mimeId": 1578, "extension": "dwg", "isDefault": true },
-            { "mimeId": 1579, "extension": "dxf", "isDefault": true },
-            { "mimeId": 1580, "extension": "fbs", "isDefault": true },
-            { "mimeId": 1581, "extension": "fpx", "isDefault": true },
-            { "mimeId": 1582, "extension": "fst", "isDefault": true },
-            { "mimeId": 1583, "extension": "mmr", "isDefault": true },
-            { "mimeId": 1584, "extension": "rlc", "isDefault": true },
-            { "mimeId": 1589, "extension": "mdi", "isDefault": true },
-            { "mimeId": 1590, "extension": "wdp", "isDefault": true },
-            { "mimeId": 1591, "extension": "npx", "isDefault": true },
-            { "mimeId": 1599, "extension": "wbmp", "isDefault": true },
-            { "mimeId": 1600, "extension": "xif", "isDefault": true },
-            { "mimeId": 1602, "extension": "webp", "isDefault": true },
-            { "mimeId": 1603, "extension": "3ds", "isDefault": true },
-            { "mimeId": 1604, "extension": "ras", "isDefault": true },
-            { "mimeId": 1605, "extension": "cmx", "isDefault": true },
-            { "mimeId": 1606, "extension": "fh", "isDefault": true },
-            { "mimeId": 1606, "extension": "fh4", "isDefault": true },
-            { "mimeId": 1606, "extension": "fh5", "isDefault": true },
-            { "mimeId": 1606, "extension": "fh7", "isDefault": true },
-            { "mimeId": 1606, "extension": "fhc", "isDefault": true },
-            { "mimeId": 1607, "extension": "ico", "isDefault": true },
-            { "mimeId": 1608, "extension": "jng", "isDefault": true },
-            { "mimeId": 1609, "extension": "sid", "isDefault": true },
-            { "mimeId": 1610, "extension": "bmp", "isDefault": false },
-            { "mimeId": 1611, "extension": "pcx", "isDefault": true },
-            { "mimeId": 1612, "extension": "pct", "isDefault": true },
-            { "mimeId": 1612, "extension": "pic", "isDefault": true },
-            { "mimeId": 1613, "extension": "pnm", "isDefault": true },
-            { "mimeId": 1614, "extension": "pbm", "isDefault": true },
-            { "mimeId": 1615, "extension": "pgm", "isDefault": true },
-            { "mimeId": 1616, "extension": "ppm", "isDefault": true },
-            { "mimeId": 1617, "extension": "rgb", "isDefault": true },
-            { "mimeId": 1618, "extension": "tga", "isDefault": true },
-            { "mimeId": 1619, "extension": "xbm", "isDefault": true },
-            { "mimeId": 1621, "extension": "xpm", "isDefault": true },
-            { "mimeId": 1622, "extension": "xwd", "isDefault": true },
-            { "mimeId": 1636, "extension": "eml", "isDefault": true },
-            { "mimeId": 1636, "extension": "mime", "isDefault": true },
-            { "mimeId": 1643, "extension": "iges", "isDefault": true },
-            { "mimeId": 1643, "extension": "igs", "isDefault": true },
-            { "mimeId": 1644, "extension": "mesh", "isDefault": true },
-            { "mimeId": 1644, "extension": "msh", "isDefault": true },
-            { "mimeId": 1644, "extension": "silo", "isDefault": true },
-            { "mimeId": 1645, "extension": "dae", "isDefault": true },
-            { "mimeId": 1646, "extension": "dwf", "isDefault": true },
-            { "mimeId": 1648, "extension": "gdl", "isDefault": true },
-            { "mimeId": 1651, "extension": "gtw", "isDefault": true },
-            { "mimeId": 1653, "extension": "mts", "isDefault": true },
-            { "mimeId": 1659, "extension": "vtu", "isDefault": true },
-            { "mimeId": 1660, "extension": "vrml", "isDefault": true },
-            { "mimeId": 1660, "extension": "wrl", "isDefault": true },
-            { "mimeId": 1661, "extension": "x3db", "isDefault": true },
-            { "mimeId": 1661, "extension": "x3dbz", "isDefault": true },
-            { "mimeId": 1663, "extension": "x3dv", "isDefault": true },
-            { "mimeId": 1663, "extension": "x3dvz", "isDefault": true },
-            { "mimeId": 1664, "extension": "x3d", "isDefault": true },
-            { "mimeId": 1664, "extension": "x3dz", "isDefault": true },
-            { "mimeId": 1681, "extension": "appcache", "isDefault": true },
-            { "mimeId": 1681, "extension": "manifest", "isDefault": true },
-            { "mimeId": 1682, "extension": "ics", "isDefault": true },
-            { "mimeId": 1682, "extension": "ifb", "isDefault": true },
-            { "mimeId": 1685, "extension": "coffee", "isDefault": true },
-            { "mimeId": 1685, "extension": "litcoffee", "isDefault": true },
-            { "mimeId": 1686, "extension": "css", "isDefault": true },
-            { "mimeId": 1687, "extension": "csv", "isDefault": true },
-            { "mimeId": 1696, "extension": "hjson", "isDefault": true },
-            { "mimeId": 1697, "extension": "htm", "isDefault": true },
-            { "mimeId": 1697, "extension": "html", "isDefault": true },
-            { "mimeId": 1697, "extension": "shtml", "isDefault": true },
-            { "mimeId": 1698, "extension": "jade", "isDefault": true },
-            { "mimeId": 1701, "extension": "jsx", "isDefault": true },
-            { "mimeId": 1702, "extension": "less", "isDefault": true },
-            { "mimeId": 1704, "extension": "mml", "isDefault": true },
-            { "mimeId": 1706, "extension": "n3", "isDefault": true },
-            { "mimeId": 1709, "extension": "conf", "isDefault": true },
-            { "mimeId": 1709, "extension": "def", "isDefault": true },
-            { "mimeId": 1709, "extension": "in", "isDefault": true },
-            { "mimeId": 1709, "extension": "ini", "isDefault": true },
-            { "mimeId": 1709, "extension": "list", "isDefault": true },
-            { "mimeId": 1709, "extension": "log", "isDefault": true },
-            { "mimeId": 1709, "extension": "text", "isDefault": true },
-            { "mimeId": 1709, "extension": "txt", "isDefault": true },
-            { "mimeId": 1712, "extension": "dsc", "isDefault": true },
-            { "mimeId": 1717, "extension": "rtx", "isDefault": true },
-            { "mimeId": 1718, "extension": "rtf", "isDefault": false },
-            { "mimeId": 1722, "extension": "sgm", "isDefault": true },
-            { "mimeId": 1722, "extension": "sgml", "isDefault": true },
-            { "mimeId": 1723, "extension": "slim", "isDefault": true },
-            { "mimeId": 1723, "extension": "slm", "isDefault": true },
-            { "mimeId": 1724, "extension": "styl", "isDefault": true },
-            { "mimeId": 1724, "extension": "stylus", "isDefault": true },
-            { "mimeId": 1726, "extension": "tsv", "isDefault": true },
-            { "mimeId": 1727, "extension": "man", "isDefault": true },
-            { "mimeId": 1727, "extension": "me", "isDefault": true },
-            { "mimeId": 1727, "extension": "ms", "isDefault": true },
-            { "mimeId": 1727, "extension": "roff", "isDefault": true },
-            { "mimeId": 1727, "extension": "t", "isDefault": true },
-            { "mimeId": 1727, "extension": "tr", "isDefault": true },
-            { "mimeId": 1728, "extension": "ttl", "isDefault": true },
-            { "mimeId": 1730, "extension": "uri", "isDefault": true },
-            { "mimeId": 1730, "extension": "uris", "isDefault": true },
-            { "mimeId": 1730, "extension": "urls", "isDefault": true },
-            { "mimeId": 1731, "extension": "vcard", "isDefault": true },
-            { "mimeId": 1734, "extension": "curl", "isDefault": true },
-            { "mimeId": 1735, "extension": "dcurl", "isDefault": true },
-            { "mimeId": 1736, "extension": "mcurl", "isDefault": true },
-            { "mimeId": 1737, "extension": "scurl", "isDefault": true },
-            { "mimeId": 1740, "extension": "sub", "isDefault": true },
-            { "mimeId": 1742, "extension": "fly", "isDefault": true },
-            { "mimeId": 1743, "extension": "flx", "isDefault": true },
-            { "mimeId": 1744, "extension": "gv", "isDefault": true },
-            { "mimeId": 1745, "extension": "3dml", "isDefault": true },
-            { "mimeId": 1746, "extension": "spot", "isDefault": true },
-            { "mimeId": 1755, "extension": "jad", "isDefault": true },
-            { "mimeId": 1759, "extension": "wml", "isDefault": true },
-            { "mimeId": 1760, "extension": "wmls", "isDefault": true },
-            { "mimeId": 1761, "extension": "vtt", "isDefault": true },
-            { "mimeId": 1762, "extension": "asm", "isDefault": true },
-            { "mimeId": 1762, "extension": "s", "isDefault": true },
-            { "mimeId": 1763, "extension": "c", "isDefault": true },
-            { "mimeId": 1763, "extension": "cc", "isDefault": true },
-            { "mimeId": 1763, "extension": "cpp", "isDefault": true },
-            { "mimeId": 1763, "extension": "cxx", "isDefault": true },
-            { "mimeId": 1763, "extension": "dic", "isDefault": true },
-            { "mimeId": 1763, "extension": "h", "isDefault": true },
-            { "mimeId": 1763, "extension": "hh", "isDefault": true },
-            { "mimeId": 1764, "extension": "htc", "isDefault": true },
-            { "mimeId": 1765, "extension": "f", "isDefault": true },
-            { "mimeId": 1765, "extension": "f77", "isDefault": true },
-            { "mimeId": 1765, "extension": "f90", "isDefault": true },
-            { "mimeId": 1765, "extension": "for", "isDefault": true },
-            { "mimeId": 1767, "extension": "hbs", "isDefault": true },
-            { "mimeId": 1768, "extension": "java", "isDefault": true },
-            { "mimeId": 1770, "extension": "lua", "isDefault": true },
-            { "mimeId": 1771, "extension": "markdown", "isDefault": true },
-            { "mimeId": 1771, "extension": "md", "isDefault": true },
-            { "mimeId": 1771, "extension": "mkd", "isDefault": true },
-            { "mimeId": 1772, "extension": "nfo", "isDefault": true },
-            { "mimeId": 1773, "extension": "opml", "isDefault": true },
-            { "mimeId": 1774, "extension": "p", "isDefault": true },
-            { "mimeId": 1774, "extension": "pas", "isDefault": true },
-            { "mimeId": 1775, "extension": "pde", "isDefault": true },
-            { "mimeId": 1776, "extension": "sass", "isDefault": true },
-            { "mimeId": 1777, "extension": "scss", "isDefault": true },
-            { "mimeId": 1778, "extension": "etx", "isDefault": true },
-            { "mimeId": 1779, "extension": "sfv", "isDefault": true },
-            { "mimeId": 1780, "extension": "ymp", "isDefault": true },
-            { "mimeId": 1781, "extension": "uu", "isDefault": true },
-            { "mimeId": 1782, "extension": "vcs", "isDefault": true },
-            { "mimeId": 1783, "extension": "vcf", "isDefault": true },
-            { "mimeId": 1784, "extension": "xml", "isDefault": false },
-            { "mimeId": 1786, "extension": "yaml", "isDefault": true },
-            { "mimeId": 1786, "extension": "yml", "isDefault": true },
-            { "mimeId": 1788, "extension": "3gp", "isDefault": true },
-            { "mimeId": 1788, "extension": "3gpp", "isDefault": true },
-            { "mimeId": 1790, "extension": "3g2", "isDefault": true },
-            { "mimeId": 1796, "extension": "h261", "isDefault": true },
-            { "mimeId": 1797, "extension": "h263", "isDefault": true },
-            { "mimeId": 1800, "extension": "h264", "isDefault": true },
-            { "mimeId": 1805, "extension": "jpgv", "isDefault": true },
-            { "mimeId": 1807, "extension": "jpgm", "isDefault": true },
-            { "mimeId": 1807, "extension": "jpm", "isDefault": true },
-            { "mimeId": 1808, "extension": "mj2", "isDefault": true },
-            { "mimeId": 1808, "extension": "mjp2", "isDefault": true },
-            { "mimeId": 1811, "extension": "ts", "isDefault": true },
-            { "mimeId": 1812, "extension": "mp4", "isDefault": true },
-            { "mimeId": 1812, "extension": "mp4v", "isDefault": true },
-            { "mimeId": 1812, "extension": "mpg4", "isDefault": true },
-            { "mimeId": 1814, "extension": "m1v", "isDefault": true },
-            { "mimeId": 1814, "extension": "m2v", "isDefault": true },
-            { "mimeId": 1814, "extension": "mpe", "isDefault": true },
-            { "mimeId": 1814, "extension": "mpeg", "isDefault": true },
-            { "mimeId": 1814, "extension": "mpg", "isDefault": true },
-            { "mimeId": 1818, "extension": "ogv", "isDefault": true },
-            { "mimeId": 1821, "extension": "mov", "isDefault": true },
-            { "mimeId": 1821, "extension": "qt", "isDefault": true },
-            { "mimeId": 1831, "extension": "uvh", "isDefault": true },
-            { "mimeId": 1831, "extension": "uvvh", "isDefault": true },
-            { "mimeId": 1832, "extension": "uvm", "isDefault": true },
-            { "mimeId": 1832, "extension": "uvvm", "isDefault": true },
-            { "mimeId": 1834, "extension": "uvp", "isDefault": true },
-            { "mimeId": 1834, "extension": "uvvp", "isDefault": true },
-            { "mimeId": 1835, "extension": "uvs", "isDefault": true },
-            { "mimeId": 1835, "extension": "uvvs", "isDefault": true },
-            { "mimeId": 1836, "extension": "uvv", "isDefault": true },
-            { "mimeId": 1836, "extension": "uvvv", "isDefault": true },
-            { "mimeId": 1840, "extension": "dvb", "isDefault": true },
-            { "mimeId": 1841, "extension": "fvt", "isDefault": true },
-            { "mimeId": 1851, "extension": "m4u", "isDefault": true },
-            { "mimeId": 1851, "extension": "mxu", "isDefault": true },
-            { "mimeId": 1852, "extension": "pyv", "isDefault": true },
-            { "mimeId": 1862, "extension": "uvu", "isDefault": true },
-            { "mimeId": 1862, "extension": "uvvu", "isDefault": true },
-            { "mimeId": 1863, "extension": "viv", "isDefault": true },
-            { "mimeId": 1865, "extension": "webm", "isDefault": true },
-            { "mimeId": 1866, "extension": "f4v", "isDefault": true },
-            { "mimeId": 1867, "extension": "fli", "isDefault": true },
-            { "mimeId": 1868, "extension": "flv", "isDefault": true },
-            { "mimeId": 1869, "extension": "m4v", "isDefault": true },
-            { "mimeId": 1870, "extension": "mk3d", "isDefault": true },
-            { "mimeId": 1870, "extension": "mks", "isDefault": true },
-            { "mimeId": 1870, "extension": "mkv", "isDefault": true },
-            { "mimeId": 1871, "extension": "mng", "isDefault": true },
-            { "mimeId": 1872, "extension": "asf", "isDefault": true },
-            { "mimeId": 1872, "extension": "asx", "isDefault": true },
-            { "mimeId": 1873, "extension": "vob", "isDefault": true },
-            { "mimeId": 1874, "extension": "wm", "isDefault": true },
-            { "mimeId": 1875, "extension": "wmv", "isDefault": true },
-            { "mimeId": 1876, "extension": "wmx", "isDefault": true },
-            { "mimeId": 1877, "extension": "wvx", "isDefault": true },
-            { "mimeId": 1878, "extension": "avi", "isDefault": true },
-            { "mimeId": 1879, "extension": "movie", "isDefault": true },
-            { "mimeId": 1880, "extension": "smv", "isDefault": true },
-            { "mimeId": 1881, "extension": "ice", "isDefault": true },
-            { "mimeId": 1696, "extension": "json", "isDefault": false }
-        ];
+        __mimeTypes = [];
+		[
+			 [695,"123",true]
+			,[1745,"3dml",true]
+			,[1603,"3ds",true]
+			,[1790,"3g2",true]
+			,[1788,"3gp",true]
+			,[1788,"3gpp",true]
+			,[1376,"3gpp",false]
+			,[1216,"7z",true]
+			,[1221,"aab",true]
+			,[1527,"aac",true]
+			,[1222,"aam",true]
+			,[1223,"aas",true]
+			,[1217,"abw",true]
+			,[233,"ac",true]
+			,[379,"acc",true]
+			,[1218,"ace",true]
+			,[364,"acu",true]
+			,[365,"acutc",true]
+			,[1379,"adp",true]
+			,[398,"aep",true]
+			,[1264,"afm",true]
+			,[624,"afp",true]
+			,[375,"ahead",true]
+			,[240,"ai",true]
+			,[1528,"aif",true]
+			,[1528,"aifc",true]
+			,[1528,"aiff",true]
+			,[366,"air",true]
+			,[477,"ait",true]
+			,[380,"ami",true]
+			,[382,"apk",true]
+			,[1681,"appcache",true]
+			,[1288,"application",true]
+			,[696,"apr",true]
+			,[1266,"arc",true]
+			,[224,"asc",true]
+			,[1872,"asf",true]
+			,[1762,"asm",true]
+			,[362,"aso",true]
+			,[1872,"asx",true]
+			,[365,"atc",true]
+			,[22,"atom",true]
+			,[23,"atomcat",true]
+			,[26,"atomsvc",true]
+			,[386,"atx",true]
+			,[1388,"au",true]
+			,[1878,"avi",true]
+			,[19,"aw",true]
+			,[376,"azf",true]
+			,[377,"azs",true]
+			,[378,"azw",true]
+			,[1298,"bat",true]
+			,[1224,"bcpio",true]
+			,[1252,"bdf",true]
+			,[1112,"bdm",true]
+			,[1225,"bdoc",false]
+			,[31,"bdoc",true]
+			,[1039,"bed",true]
+			,[563,"bh2",true]
+			,[209,"bin",true]
+			,[1227,"blb",true]
+			,[1227,"blorb",true]
+			,[408,"bmi",true]
+			,[1610,"bmp",false]
+			,[1550,"bmp",true]
+			,[555,"book",true]
+			,[1013,"box",true]
+			,[1229,"boz",true]
+			,[209,"bpk",true]
+			,[1564,"btif",true]
+			,[209,"buffer",true]
+			,[1228,"bz",true]
+			,[1229,"bz2",true]
+			,[1763,"c",true]
+			,[423,"c11amc",true]
+			,[424,"c11amz",true]
+			,[422,"c4d",true]
+			,[422,"c4f",true]
+			,[422,"c4g",true]
+			,[422,"c4p",true]
+			,[422,"c4u",true]
+			,[745,"cab",true]
+			,[1529,"caf",true]
+			,[1121,"cap",true]
+			,[448,"car",true]
+			,[760,"cat",true]
+			,[1230,"cb7",true]
+			,[1230,"cba",true]
+			,[1230,"cbr",true]
+			,[1230,"cbt",true]
+			,[1230,"cbz",true]
+			,[1763,"cc",true]
+			,[1236,"cco",true]
+			,[1244,"cct",true]
+			,[39,"ccxml",true]
+			,[431,"cdbcmsg",true]
+			,[1306,"cdf",true]
+			,[712,"cdkey",true]
+			,[41,"cdmia",true]
+			,[42,"cdmic",true]
+			,[43,"cdmid",true]
+			,[44,"cdmio",true]
+			,[45,"cdmiq",true]
+			,[1542,"cdx",true]
+			,[415,"cdxml",true]
+			,[417,"cdy",true]
+			,[234,"cer",true]
+			,[1232,"cfs",true]
+			,[1551,"cgm",true]
+			,[1233,"chat",true]
+			,[753,"chm",true]
+			,[679,"chrt",true]
+			,[1543,"cif",true]
+			,[384,"cii",true]
+			,[743,"cil",true]
+			,[420,"cla",true]
+			,[132,"class",true]
+			,[435,"clkk",true]
+			,[436,"clkp",true]
+			,[437,"clkt",true]
+			,[438,"clkw",true]
+			,[434,"clkx",true]
+			,[1296,"clp",true]
+			,[433,"cmc",true]
+			,[1544,"cmdf",true]
+			,[1545,"cml",true]
+			,[1202,"cmp",true]
+			,[1605,"cmx",true]
+			,[1044,"cod",true]
+			,[1685,"coffee",true]
+			,[1298,"com",true]
+			,[1709,"conf",true]
+			,[1239,"cpio",true]
+			,[1763,"cpp",true]
+			,[154,"cpt",true]
+			,[1295,"crd",true]
+			,[235,"crl",true]
+			,[1340,"crt",true]
+			,[1235,"crx",true]
+			,[1043,"cryptonote",true]
+			,[1240,"csh",true]
+			,[1546,"csml",true]
+			,[430,"csp",true]
+			,[1686,"css",true]
+			,[1244,"cst",true]
+			,[1687,"csv",true]
+			,[61,"cu",true]
+			,[1734,"curl",true]
+			,[246,"cww",true]
+			,[1244,"cxt",true]
+			,[1763,"cxx",true]
+			,[1645,"dae",true]
+			,[724,"daf",true]
+			,[452,"dart",true]
+			,[547,"dataless",true]
+			,[66,"davmount",true]
+			,[75,"dbk",true]
+			,[1244,"dcr",true]
+			,[1735,"dcurl",true]
+			,[885,"dd2",true]
+			,[566,"ddd",true]
+			,[209,"deb",false]
+			,[1242,"deb",true]
+			,[1709,"def",true]
+			,[209,"deploy",true]
+			,[1340,"der",true]
+			,[471,"dfac",true]
+			,[1243,"dgc",true]
+			,[1763,"dic",true]
+			,[1244,"dir",true]
+			,[725,"dis",true]
+			,[209,"dist",true]
+			,[209,"distz",true]
+			,[1576,"djv",true]
+			,[1576,"djvu",true]
+			,[1298,"dll",false]
+			,[209,"dll",true]
+			,[209,"dmg",false]
+			,[1220,"dmg",true]
+			,[1121,"dmp",true]
+			,[209,"dms",true]
+			,[464,"dna",true]
+			,[199,"doc",true]
+			,[782,"docm",true]
+			,[967,"docx",true]
+			,[199,"dot",true]
+			,[783,"dotm",true]
+			,[977,"dotx",true]
+			,[988,"dp",true]
+			,[470,"dpg",true]
+			,[1501,"dra",true]
+			,[1712,"dsc",true]
+			,[77,"dssc",true]
+			,[1247,"dtb",true]
+			,[1361,"dtd",true]
+			,[1502,"dts",true]
+			,[1503,"dtshd",true]
+			,[209,"dump",true]
+			,[1840,"dvb",true]
+			,[1249,"dvi",true]
+			,[1646,"dwf",true]
+			,[1578,"dwg",true]
+			,[1579,"dxf",true]
+			,[1082,"dxp",true]
+			,[1244,"dxr",true]
+			,[130,"ear",true]
+			,[1511,"ecelp4800",true]
+			,[1512,"ecelp7470",true]
+			,[1513,"ecelp9600",true]
+			,[80,"ecma",true]
+			,[823,"edm",true]
+			,[824,"edx",true]
+			,[1002,"efif",true]
+			,[1000,"ei6",true]
+			,[209,"elc",true]
+			,[1300,"emf",true]
+			,[1636,"eml",true]
+			,[90,"emma",true]
+			,[1300,"emz",true]
+			,[1491,"eol",true]
+			,[752,"eot",true]
+			,[240,"eps",true]
+			,[94,"epub",true]
+			,[517,"es3",true]
+			,[989,"esa",true]
+			,[511,"esf",true]
+			,[517,"et3",true]
+			,[1778,"etx",true]
+			,[1251,"eva",true]
+			,[1250,"evy",true]
+			,[1298,"exe",false]
+			,[1297,"exe",false]
+			,[209,"exe",true]
+			,[96,"exi",true]
+			,[825,"ext",true]
+			,[17,"ez",true]
+			,[541,"ez2",true]
+			,[542,"ez3",true]
+			,[1765,"f",true]
+			,[1866,"f4v",true]
+			,[1765,"f77",true]
+			,[1765,"f90",true]
+			,[1580,"fbs",true]
+			,[368,"fcdt",true]
+			,[663,"fcs",true]
+			,[545,"fdf",true]
+			,[459,"fe_launch",true]
+			,[562,"fg5",true]
+			,[1244,"fgd",true]
+			,[1606,"fh",true]
+			,[1606,"fh4",true]
+			,[1606,"fh5",true]
+			,[1606,"fh7",true]
+			,[1606,"fhc",true]
+			,[1341,"fig",true]
+			,[1530,"flac",true]
+			,[1867,"fli",true]
+			,[717,"flo",true]
+			,[1868,"flv",true]
+			,[681,"flw",true]
+			,[1743,"flx",true]
+			,[1742,"fly",true]
+			,[555,"fm",true]
+			,[556,"fnc",true]
+			,[1765,"for",true]
+			,[1581,"fpx",true]
+			,[555,"frame",true]
+			,[558,"fsc",true]
+			,[1582,"fst",true]
+			,[553,"ftc",true]
+			,[385,"fti",true]
+			,[1841,"fvt",true]
+			,[369,"fxp",true]
+			,[369,"fxpl",true]
+			,[572,"fzs",true]
+			,[580,"g2w",true]
+			,[1553,"g3",true]
+			,[581,"g3w",true]
+			,[596,"gac",true]
+			,[1329,"gam",true]
+			,[267,"gbr",true]
+			,[1268,"gca",true]
+			,[1648,"gdl",true]
+			,[586,"gdoc",true]
+			,[497,"geo",true]
+			,[578,"gex",true]
+			,[576,"ggb",true]
+			,[577,"ggt",true]
+			,[597,"ghf",true]
+			,[1554,"gif",true]
+			,[598,"gim",true]
+			,[106,"gml",true]
+			,[585,"gmx",true]
+			,[1270,"gnumeric",true]
+			,[552,"gph",true]
+			,[107,"gpx",true]
+			,[594,"gqf",true]
+			,[594,"gqs",true]
+			,[310,"gram",true]
+			,[1271,"gramps",true]
+			,[578,"gre",true]
+			,[599,"grv",true]
+			,[311,"grxml",true]
+			,[1255,"gsf",true]
+			,[588,"gsheet",true]
+			,[587,"gslides",true]
+			,[1272,"gtar",true]
+			,[600,"gtm",true]
+			,[1651,"gtw",true]
+			,[1744,"gv",true]
+			,[108,"gxf",true]
+			,[579,"gxt",true]
+			,[1763,"h",true]
+			,[1796,"h261",true]
+			,[1797,"h263",true]
+			,[1800,"h264",true]
+			,[604,"hal",true]
+			,[606,"hbci",true]
+			,[1767,"hbs",true]
+			,[1274,"hdf",true]
+			,[1763,"hh",true]
+			,[1696,"hjson",true]
+			,[1211,"hlp",true]
+			,[611,"hpgl",true]
+			,[612,"hpid",true]
+			,[613,"hps",true]
+			,[153,"hqx",true]
+			,[1764,"htc",true]
+			,[686,"htke",true]
+			,[1697,"htm",true]
+			,[1697,"html",true]
+			,[1191,"hvd",true]
+			,[1193,"hvp",true]
+			,[1192,"hvs",true]
+			,[648,"i2g",true]
+			,[627,"icc",true]
+			,[1881,"ice",true]
+			,[627,"icm",true]
+			,[1607,"ico",true]
+			,[1682,"ics",true]
+			,[1555,"ief",true]
+			,[1682,"ifb",true]
+			,[1070,"ifm",true]
+			,[1643,"iges",true]
+			,[629,"igl",true]
+			,[646,"igm",true]
+			,[1643,"igs",true]
+			,[718,"igx",true]
+			,[1072,"iif",true]
+			,[209,"img",true]
+			,[363,"imp",true]
+			,[754,"ims",true]
+			,[1709,"in",true]
+			,[1709,"ini",true]
+			,[124,"ink",true]
+			,[124,"inkml",true]
+			,[1276,"install",true]
+			,[397,"iota",true]
+			,[126,"ipfix",true]
+			,[1073,"ipk",true]
+			,[625,"irm",true]
+			,[661,"irp",true]
+			,[209,"iso",false]
+			,[1277,"iso",true]
+			,[1071,"itp",true]
+			,[630,"ivp",true]
+			,[631,"ivu",true]
+			,[1755,"jad",true]
+			,[1698,"jade",true]
+			,[664,"jam",true]
+			,[130,"jar",true]
+			,[1278,"jardiff",true]
+			,[1768,"java",true]
+			,[674,"jisp",true]
+			,[614,"jlt",true]
+			,[1608,"jng",true]
+			,[1279,"jnlp",true]
+			,[675,"joda",true]
+			,[1557,"jpe",true]
+			,[1557,"jpeg",true]
+			,[1557,"jpg",true]
+			,[1807,"jpgm",true]
+			,[1805,"jpgv",true]
+			,[1807,"jpm",true]
+			,[133,"js",true]
+			,[137,"json",true]
+			,[1696,"json",false]
+			,[140,"json5",true]
+			,[147,"jsonld",true]
+			,[141,"jsonml",true]
+			,[1701,"jsx",true]
+			,[1443,"kar",true]
+			,[678,"karbon",true]
+			,[680,"kfo",true]
+			,[687,"kia",true]
+			,[589,"kml",true]
+			,[590,"kmz",true]
+			,[688,"kne",true]
+			,[688,"knp",true]
+			,[682,"kon",true]
+			,[683,"kpr",true]
+			,[683,"kpt",true]
+			,[473,"kpxx",true]
+			,[684,"ksp",true]
+			,[677,"ktr",true]
+			,[1560,"ktx",true]
+			,[677,"ktz",true]
+			,[685,"kwd",true]
+			,[685,"kwt",true]
+			,[691,"lasxml",true]
+			,[1281,"latex",true]
+			,[693,"lbd",true]
+			,[694,"lbe",true]
+			,[610,"les",true]
+			,[1702,"less",true]
+			,[1283,"lha",true]
+			,[1047,"link66",true]
+			,[1709,"list",true]
+			,[624,"list3820",true]
+			,[624,"listafp",true]
+			,[1685,"litcoffee",true]
+			,[1289,"lnk",true]
+			,[1709,"log",true]
+			,[150,"lostxml",true]
+			,[209,"lrf",true]
+			,[755,"lrm",true]
+			,[557,"ltf",true]
+			,[1770,"lua",true]
+			,[1282,"luac",true]
+			,[1507,"lvp",true]
+			,[701,"lwp",true]
+			,[1283,"lzh",true]
+			,[1299,"m13",true]
+			,[1299,"m14",true]
+			,[1814,"m1v",true]
+			,[190,"m21",true]
+			,[1449,"m2a",true]
+			,[1814,"m2v",true]
+			,[1449,"m3a",true]
+			,[1533,"m3u",true]
+			,[392,"m3u8",true]
+			,[1445,"m4a",false]
+			,[1531,"m4a",true]
+			,[191,"m4p",true]
+			,[1851,"m4u",true]
+			,[1869,"m4v",true]
+			,[160,"ma",true]
+			,[156,"mads",true]
+			,[501,"mag",true]
+			,[555,"maker",true]
+			,[1727,"man",true]
+			,[1681,"manifest",true]
+			,[137,"map",true]
+			,[209,"mar",true]
+			,[1771,"markdown",true]
+			,[161,"mathml",true]
+			,[160,"mb",true]
+			,[726,"mbk",true]
+			,[175,"mbox",true]
+			,[711,"mc1",true]
+			,[710,"mcd",true]
+			,[1736,"mcurl",true]
+			,[1771,"md",true]
+			,[1293,"mdb",true]
+			,[1589,"mdi",true]
+			,[1727,"me",true]
+			,[1644,"mesh",true]
+			,[181,"meta4",true]
+			,[180,"metalink",true]
+			,[182,"mets",true]
+			,[715,"mfm",true]
+			,[268,"mft",true]
+			,[986,"mgp",true]
+			,[1014,"mgz",true]
+			,[1443,"mid",true]
+			,[1443,"midi",true]
+			,[1285,"mie",true]
+			,[721,"mif",true]
+			,[1636,"mime",true]
+			,[1808,"mj2",true]
+			,[1808,"mjp2",true]
+			,[1870,"mk3d",true]
+			,[1532,"mka",true]
+			,[1771,"mkd",true]
+			,[1870,"mks",true]
+			,[1870,"mkv",true]
+			,[466,"mlp",true]
+			,[416,"mmd",true]
+			,[1076,"mmf",true]
+			,[1704,"mml",true]
+			,[1583,"mmr",true]
+			,[1871,"mng",true]
+			,[1301,"mny",true]
+			,[1286,"mobi",true]
+			,[185,"mods",true]
+			,[1821,"mov",true]
+			,[1879,"movie",true]
+			,[1449,"mp2",true]
+			,[190,"mp21",true]
+			,[1449,"mp2a",true]
+			,[1449,"mp3",true]
+			,[1812,"mp4",true]
+			,[1445,"mp4a",true]
+			,[191,"mp4s",true]
+			,[1812,"mp4v",true]
+			,[732,"mpc",true]
+			,[64,"mpd",true]
+			,[1814,"mpe",true]
+			,[1814,"mpeg",true]
+			,[1814,"mpg",true]
+			,[1812,"mpg4",true]
+			,[1449,"mpga",true]
+			,[391,"mpkg",true]
+			,[405,"mpm",true]
+			,[731,"mpn",true]
+			,[772,"mpp",true]
+			,[772,"mpt",true]
+			,[623,"mpy",true]
+			,[727,"mqy",true]
+			,[158,"mrc",true]
+			,[159,"mrcx",true]
+			,[1727,"ms",true]
+			,[178,"mscml",true]
+			,[546,"mseed",true]
+			,[788,"mseq",true]
+			,[512,"msf",true]
+			,[1644,"msh",true]
+			,[1298,"msi",false]
+			,[209,"msi",true]
+			,[728,"msl",true]
+			,[209,"msm",true]
+			,[209,"msp",true]
+			,[794,"msty",true]
+			,[1653,"mts",true]
+			,[793,"mus",true]
+			,[1041,"musicxml",true]
+			,[1299,"mvb",true]
+			,[714,"mwf",true]
+			,[200,"mxf",true]
+			,[1040,"mxl",true]
+			,[1369,"mxml",true]
+			,[1126,"mxs",true]
+			,[1851,"mxu",true]
+			,[817,"n-gage",true]
+			,[1706,"n3",true]
+			,[160,"nb",true]
+			,[1173,"nbp",true]
+			,[1306,"nc",true]
+			,[1246,"ncx",true]
+			,[1772,"nfo",true]
+			,[816,"ngdat",true]
+			,[803,"nitf",true]
+			,[800,"nlu",true]
+			,[508,"nml",true]
+			,[804,"nnd",true]
+			,[805,"nns",true]
+			,[806,"nnw",true]
+			,[1591,"npx",true]
+			,[1238,"nsc",true]
+			,[698,"nsf",true]
+			,[803,"ntf",true]
+			,[1308,"nzb",true]
+			,[560,"oa2",true]
+			,[561,"oa3",true]
+			,[559,"oas",true]
+			,[1294,"obd",true]
+			,[1335,"obj",true]
+			,[210,"oda",true]
+			,[833,"odb",true]
+			,[831,"odc",true]
+			,[834,"odf",true]
+			,[835,"odft",true]
+			,[836,"odg",true]
+			,[838,"odi",true]
+			,[845,"odm",true]
+			,[840,"odp",true]
+			,[842,"ods",true]
+			,[844,"odt",true]
+			,[1452,"oga",true]
+			,[1452,"ogg",true]
+			,[1818,"ogv",true]
+			,[213,"ogx",true]
+			,[214,"omdoc",true]
+			,[215,"onepkg",true]
+			,[215,"onetmp",true]
+			,[215,"onetoc",true]
+			,[215,"onetoc2",true]
+			,[212,"opf",true]
+			,[1773,"opml",true]
+			,[993,"oprc",true]
+			,[699,"org",true]
+			,[1194,"osf",true]
+			,[1195,"osfpvg",true]
+			,[832,"otc",true]
+			,[1549,"otf",false]
+			,[1258,"otf",true]
+			,[837,"otg",true]
+			,[847,"oth",true]
+			,[839,"oti",true]
+			,[841,"otp",true]
+			,[843,"ots",true]
+			,[846,"ott",true]
+			,[216,"oxps",true]
+			,[905,"oxt",true]
+			,[1774,"p",true]
+			,[228,"p10",true]
+			,[1311,"p12",true]
+			,[1312,"p7b",true]
+			,[230,"p7c",true]
+			,[230,"p7m",true]
+			,[1313,"p7r",true]
+			,[231,"p7s",true]
+			,[232,"p8",true]
+			,[1307,"pac",true]
+			,[1774,"pas",true]
+			,[997,"paw",true]
+			,[1006,"pbd",true]
+			,[1614,"pbm",true]
+			,[1121,"pcap",true]
+			,[1259,"pcf",true]
+			,[615,"pcl",true]
+			,[616,"pclxl",true]
+			,[1612,"pct",true]
+			,[449,"pcurl",true]
+			,[1611,"pcx",true]
+			,[1310,"pdb",false]
+			,[993,"pdb",true]
+			,[1775,"pde",true]
+			,[220,"pdf",true]
+			,[1340,"pem",true]
+			,[1264,"pfa",true]
+			,[1264,"pfb",true]
+			,[1264,"pfm",true]
+			,[102,"pfr",true]
+			,[1311,"pfx",true]
+			,[1615,"pgm",true]
+			,[1234,"pgn",true]
+			,[222,"pgp",true]
+			,[1275,"php",true]
+			,[1612,"pic",true]
+			,[209,"pkg",true]
+			,[237,"pki",true]
+			,[236,"pkipath",true]
+			,[393,"pkpass",true]
+			,[1309,"pl",true]
+			,[348,"plb",true]
+			,[729,"plc",true]
+			,[1005,"plf",true]
+			,[238,"pls",true]
+			,[1309,"pm",true]
+			,[440,"pml",true]
+			,[1563,"png",true]
+			,[1613,"pnm",true]
+			,[702,"portpkg",true]
+			,[763,"pot",true]
+			,[768,"potm",true]
+			,[934,"potx",true]
+			,[764,"ppam",true]
+			,[444,"ppd",true]
+			,[1616,"ppm",true]
+			,[763,"pps",true]
+			,[767,"ppsm",true]
+			,[929,"ppsx",true]
+			,[763,"ppt",true]
+			,[765,"pptm",true]
+			,[922,"pptx",true]
+			,[993,"pqa",true]
+			,[1310,"prc",false]
+			,[1286,"prc",true]
+			,[697,"pre",true]
+			,[225,"prf",true]
+			,[240,"ps",true]
+			,[349,"psb",true]
+			,[1572,"psd",true]
+			,[1257,"psf",true]
+			,[252,"pskcxml",true]
+			,[1016,"ptid",true]
+			,[1302,"pub",true]
+			,[350,"pvb",true]
+			,[361,"pwn",true]
+			,[1508,"pya",true]
+			,[1852,"pyv",true]
+			,[513,"qam",true]
+			,[651,"qbo",true]
+			,[652,"qfx",true]
+			,[1015,"qps",true]
+			,[1821,"qt",true]
+			,[1020,"qwd",true]
+			,[1020,"qwt",true]
+			,[1020,"qxb",true]
+			,[1020,"qxd",true]
+			,[1020,"qxl",true]
+			,[1020,"qxt",true]
+			,[1536,"ra",false]
+			,[1538,"ra",true]
+			,[1536,"ram",true]
+			,[1314,"rar",true]
+			,[1604,"ras",true]
+			,[660,"rcprofile",true]
+			,[256,"rdf",true]
+			,[453,"rdz",true]
+			,[409,"rep",true]
+			,[1248,"res",true]
+			,[1617,"rgb",true]
+			,[257,"rif",true]
+			,[1517,"rip",true]
+			,[1316,"ris",true]
+			,[261,"rl",true]
+			,[1584,"rlc",true]
+			,[262,"rld",true]
+			,[1045,"rm",true]
+			,[1443,"rmi",true]
+			,[1537,"rmp",true]
+			,[673,"rms",true]
+			,[1046,"rmvb",true]
+			,[258,"rnc",true]
+			,[1360,"rng",true]
+			,[269,"roa",true]
+			,[1727,"roff",true]
+			,[421,"rp9",true]
+			,[1315,"rpm",true]
+			,[822,"rpss",true]
+			,[821,"rpst",true]
+			,[306,"rq",true]
+			,[266,"rs",true]
+			,[271,"rsd",true]
+			,[272,"rss",true]
+			,[273,"rtf",true]
+			,[1718,"rtf",false]
+			,[1717,"rtx",true]
+			,[1284,"run",true]
+			,[1762,"s",true]
+			,[1467,"s3m",true]
+			,[1197,"saf",true]
+			,[1776,"sass",true]
+			,[278,"sbml",true]
+			,[626,"sc",true]
+			,[1303,"scd",true]
+			,[700,"scm",true]
+			,[281,"scq",true]
+			,[282,"scs",true]
+			,[1777,"scss",true]
+			,[1737,"scurl",true]
+			,[1088,"sda",true]
+			,[1087,"sdc",true]
+			,[1089,"sdd",true]
+			,[1081,"sdkd",true]
+			,[1081,"sdkm",true]
+			,[285,"sdp",true]
+			,[1091,"sdw",true]
+			,[1317,"sea",true]
+			,[1066,"see",true]
+			,[547,"seed",true]
+			,[1067,"sema",true]
+			,[1068,"semd",true]
+			,[1069,"semf",true]
+			,[131,"ser",true]
+			,[290,"setpay",true]
+			,[292,"setreg",true]
+			,[618,"sfd-hdstx",true]
+			,[1083,"sfs",true]
+			,[1779,"sfv",true]
+			,[1567,"sgi",true]
+			,[1092,"sgl",true]
+			,[1722,"sgm",true]
+			,[1722,"sgml",true]
+			,[1318,"sh",true]
+			,[1319,"shar",true]
+			,[295,"shf",true]
+			,[1697,"shtml",true]
+			,[1609,"sid",true]
+			,[224,"sig",true]
+			,[1468,"sil",true]
+			,[1644,"silo",true]
+			,[1110,"sis",true]
+			,[1110,"sisx",true]
+			,[1323,"sit",true]
+			,[1324,"sitx",true]
+			,[689,"skd",true]
+			,[689,"skm",true]
+			,[689,"skp",true]
+			,[689,"skt",true]
+			,[766,"sldm",true]
+			,[925,"sldx",true]
+			,[1723,"slim",true]
+			,[1723,"slm",true]
+			,[514,"slt",true]
+			,[1094,"sm",true]
+			,[1090,"smf",true]
+			,[302,"smi",true]
+			,[302,"smil",true]
+			,[1880,"smv",true]
+			,[1093,"smzip",true]
+			,[1388,"snd",true]
+			,[1260,"snf",true]
+			,[209,"so",true]
+			,[1312,"spc",true]
+			,[1198,"spf",true]
+			,[1267,"spl",true]
+			,[1746,"spot",true]
+			,[284,"spp",true]
+			,[283,"spq",true]
+			,[1452,"spx",true]
+			,[1322,"sql",true]
+			,[1337,"src",true]
+			,[1325,"srt",true]
+			,[312,"sru",true]
+			,[307,"srx",true]
+			,[313,"ssdl",true]
+			,[690,"sse",true]
+			,[515,"ssf",true]
+			,[314,"ssml",true]
+			,[1051,"st",true]
+			,[1098,"stc",true]
+			,[1100,"std",true]
+			,[1177,"stf",true]
+			,[1102,"sti",true]
+			,[113,"stk",true]
+			,[761,"stl",true]
+			,[999,"str",true]
+			,[1106,"stw",true]
+			,[1724,"styl",true]
+			,[1724,"stylus",true]
+			,[1740,"sub",true]
+			,[1577,"sub",false]
+			,[1107,"sus",true]
+			,[1107,"susp",true]
+			,[1326,"sv4cpio",true]
+			,[1327,"sv4crc",true]
+			,[495,"svc",true]
+			,[1108,"svd",true]
+			,[1568,"svg",true]
+			,[1568,"svgz",true]
+			,[1244,"swa",true]
+			,[1320,"swf",true]
+			,[395,"swi",true]
+			,[1097,"sxc",true]
+			,[1099,"sxd",true]
+			,[1105,"sxg",true]
+			,[1101,"sxi",true]
+			,[1103,"sxm",true]
+			,[1104,"sxw",true]
+			,[1727,"t",true]
+			,[1328,"t3",true]
+			,[795,"taglet",true]
+			,[1120,"tao",true]
+			,[1330,"tar",true]
+			,[359,"tcap",true]
+			,[1331,"tcl",true]
+			,[1078,"teacher",true]
+			,[327,"tei",true]
+			,[327,"teicorpus",true]
+			,[1332,"tex",true]
+			,[1334,"texi",true]
+			,[1334,"texinfo",true]
+			,[1709,"text",true]
+			,[328,"tfi",true]
+			,[1333,"tfm",true]
+			,[1618,"tga",true]
+			,[757,"thmx",true]
+			,[1570,"tif",true]
+			,[1570,"tiff",true]
+			,[1331,"tk",true]
+			,[1124,"tmo",true]
+			,[1226,"torrent",true]
+			,[601,"tpl",true]
+			,[1125,"tpt",true]
+			,[1727,"tr",true]
+			,[1127,"tra",true]
+			,[1304,"trm",true]
+			,[1811,"ts",true]
+			,[331,"tsd",true]
+			,[1726,"tsv",true]
+			,[1263,"ttc",true]
+			,[1263,"ttf",true]
+			,[1728,"ttl",true]
+			,[1074,"twd",true]
+			,[1074,"twds",true]
+			,[573,"txd",true]
+			,[730,"txf",true]
+			,[1709,"txt",true]
+			,[1221,"u32",true]
+			,[1242,"udeb",true]
+			,[1130,"ufd",true]
+			,[1130,"ufdl",true]
+			,[1269,"ulx",true]
+			,[1132,"umj",true]
+			,[1133,"unityweb",true]
+			,[1134,"uoml",true]
+			,[1730,"uri",true]
+			,[1730,"uris",true]
+			,[1730,"urls",true]
+			,[1336,"ustar",true]
+			,[1131,"utz",true]
+			,[1781,"uu",true]
+			,[1490,"uva",true]
+			,[455,"uvd",true]
+			,[455,"uvf",true]
+			,[1575,"uvg",true]
+			,[1831,"uvh",true]
+			,[1575,"uvi",true]
+			,[1832,"uvm",true]
+			,[1834,"uvp",true]
+			,[1835,"uvs",true]
+			,[456,"uvt",true]
+			,[1862,"uvu",true]
+			,[1836,"uvv",true]
+			,[1490,"uvva",true]
+			,[455,"uvvd",true]
+			,[455,"uvvf",true]
+			,[1575,"uvvg",true]
+			,[1831,"uvvh",true]
+			,[1575,"uvvi",true]
+			,[1832,"uvvm",true]
+			,[1834,"uvvp",true]
+			,[1835,"uvvs",true]
+			,[456,"uvvt",true]
+			,[1862,"uvvu",true]
+			,[1836,"uvvv",true]
+			,[457,"uvvx",true]
+			,[458,"uvvz",true]
+			,[457,"uvx",true]
+			,[458,"uvz",true]
+			,[1731,"vcard",true]
+			,[1231,"vcd",true]
+			,[1783,"vcf",true]
+			,[602,"vcg",true]
+			,[1782,"vcs",true]
+			,[1150,"vcx",true]
+			,[1157,"vis",true]
+			,[1863,"viv",true]
+			,[1873,"vob",true]
+			,[1091,"vor",true]
+			,[1221,"vox",true]
+			,[1660,"vrml",true]
+			,[1156,"vsd",true]
+			,[1159,"vsf",true]
+			,[1156,"vss",true]
+			,[1156,"vst",true]
+			,[1156,"vsw",true]
+			,[1761,"vtt",true]
+			,[1659,"vtu",true]
+			,[1205,"vxml",true]
+			,[1244,"w3d",true]
+			,[1245,"wad",true]
+			,[130,"war",true]
+			,[1540,"wav",false]
+			,[1524,"wav",false]
+			,[1525,"wav",true]
+			,[1534,"wax",true]
+			,[1599,"wbmp",true]
+			,[439,"wbs",true]
+			,[1162,"wbxml",true]
+			,[784,"wcm",true]
+			,[784,"wdb",true]
+			,[1590,"wdp",true]
+			,[1526,"weba",true]
+			,[1338,"webapp",true]
+			,[1865,"webm",true]
+			,[157,"webmanifest",true]
+			,[1602,"webp",true]
+			,[1003,"wg",true]
+			,[1210,"wgt",true]
+			,[784,"wks",true]
+			,[1874,"wm",true]
+			,[1535,"wma",true]
+			,[1290,"wmd",true]
+			,[1300,"wmf",true]
+			,[1759,"wml",true]
+			,[1163,"wmlc",true]
+			,[1760,"wmls",true]
+			,[1164,"wmlsc",true]
+			,[1875,"wmv",true]
+			,[1876,"wmx",true]
+			,[1300,"wmz",false]
+			,[1291,"wmz",true]
+			,[103,"woff",true]
+			,[104,"woff2",true]
+			,[1174,"wpd",true]
+			,[785,"wpl",true]
+			,[784,"wps",true]
+			,[1175,"wqd",true]
+			,[1305,"wri",true]
+			,[1660,"wrl",true]
+			,[1214,"wsdl",true]
+			,[1215,"wspolicy",true]
+			,[1165,"wtb",true]
+			,[1877,"wvx",true]
+			,[1221,"x32",true]
+			,[1664,"x3d",true]
+			,[1661,"x3db",true]
+			,[1661,"x3dbz",true]
+			,[1663,"x3dv",true]
+			,[1663,"x3dvz",true]
+			,[1664,"x3dz",true]
+			,[1348,"xaml",true]
+			,[1321,"xap",true]
+			,[1182,"xar",true]
+			,[1292,"xbap",true]
+			,[568,"xbd",true]
+			,[1619,"xbm",true]
+			,[1351,"xdf",true]
+			,[1113,"xdm",true]
+			,[371,"xdp",true]
+			,[78,"xdssc",true]
+			,[567,"xdw",true]
+			,[1357,"xenc",true]
+			,[219,"xer",true]
+			,[372,"xfdf",true]
+			,[1183,"xfdl",true]
+			,[1358,"xht",true]
+			,[1358,"xhtml",true]
+			,[1369,"xhvml",true]
+			,[1600,"xif",true]
+			,[747,"xla",true]
+			,[748,"xlam",true]
+			,[747,"xlc",true]
+			,[1342,"xlf",true]
+			,[747,"xlm",true]
+			,[747,"xls",true]
+			,[749,"xlsb",true]
+			,[750,"xlsm",true]
+			,[951,"xlsx",true]
+			,[747,"xlt",true]
+			,[751,"xltm",true]
+			,[957,"xltx",true]
+			,[747,"xlw",true]
+			,[1541,"xm",true]
+			,[1360,"xml",true]
+			,[1784,"xml",false]
+			,[861,"xo",true]
+			,[1365,"xop",true]
+			,[1343,"xpi",true]
+			,[1366,"xpl",true]
+			,[1621,"xpm",true]
+			,[662,"xpr",true]
+			,[786,"xps",true]
+			,[647,"xpw",true]
+			,[647,"xpx",true]
+			,[1360,"xsd",true]
+			,[1360,"xsl",true]
+			,[1367,"xslt",true]
+			,[1111,"xsm",true]
+			,[1368,"xspf",true]
+			,[741,"xul",true]
+			,[1369,"xvm",true]
+			,[1369,"xvml",true]
+			,[1622,"xwd",true]
+			,[1548,"xyz",true]
+			,[1344,"xz",true]
+			,[1786,"yaml",true]
+			,[1370,"yang",true]
+			,[1371,"yin",true]
+			,[1786,"yml",true]
+			,[1780,"ymp",true]
+			,[1345,"z1",true]
+			,[1345,"z2",true]
+			,[1345,"z3",true]
+			,[1345,"z4",true]
+			,[1345,"z5",true]
+			,[1345,"z6",true]
+			,[1345,"z7",true]
+			,[1345,"z8",true]
+			,[1204,"zaz",true]
+			,[1372,"zip",true]
+			,[1203,"zir",true]
+			,[1203,"zirz",true]
+			,[605,"zmm",true]
+		].forEach(function(x){
+			__mimeTypes.push({ "mimeId": x[0], "extension": x[1], "isDefault": x[2] });
+		});
     }
 
 	if (!w.Locust.Mime) {
