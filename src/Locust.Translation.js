@@ -184,7 +184,10 @@
 				}
 				
 				if (searchKey) {
+					searchKey = searchKey.toLowerCase();
+					
 					var item = _texts.find(function(x) { return x.key == searchKey; });
+					
 					if (item) {
 						result = item.values;
 					}
@@ -286,7 +289,7 @@
 							if (items) {
 								for (var __key in items) {
 									if (__key == searchKey) {
-										return items[key];
+										return items[__key];
 									}
 								}
 							}

@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.2.4";
+        w.Locust.Version = "1.2.5";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -5205,7 +5205,10 @@ var __warnings = true;
 				}
 				
 				if (searchKey) {
+					searchKey = searchKey.toLowerCase();
+					
 					var item = _texts.find(function(x) { return x.key == searchKey; });
+					
 					if (item) {
 						result = item.values;
 					}
@@ -5307,7 +5310,7 @@ var __warnings = true;
 							if (items) {
 								for (var __key in items) {
 									if (__key == searchKey) {
-										return items[key];
+										return items[__key];
 									}
 								}
 							}
