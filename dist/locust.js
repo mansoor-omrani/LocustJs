@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.2.5";
+        w.Locust.Version = "1.2.6";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -5242,38 +5242,58 @@ var __warnings = true;
             var _store = new Locust.Storage.LocalDataStore({ name: _config.name, useCompression: true });
             
             var loadTexts = function(storenames, type) {
-				w.jQuery(storenames).each(function (i, storename) {
-					var hash = "";
-					var item = _store.getByKey(storename);
-					
-					if (item && item.value) {
-						hash = item.value.hash;
-					}
-					
-                    var file = _config.basePath + "/" + type + "/" + storename;
-					
-                    w.jQuery.post(file,{hash:hash}).done(function (r) {
-						try {
-							var result = JSON.parse(r);
-							if (result) {
-								if (!hash || (result.Hash != "" && hash != result.Hash)) {
-									_store.addOrUpdate(storename, { hash: result.Hash, items: result.Data });
-								}
-							} else {
-								_config.logger.alert("Locust.Translation.loadTexts", "no response: " + file + ", type: " + type);
-							}
-						} catch (e) {
-							_config.logger.fail("Locust.Translation.loadTexts", "processing server response failed: " + file + ", type: " + type + ", error = " + e);
+				var d = w.jQuery.Deffered();
+				
+				if (!storenames || !storenames.length) {
+					d.resolve();
+				} else {
+					w.jQuery(storenames).each(function (i, storename) {
+						var hash = "";
+						var item = _store.getByKey(storename);
+						
+						if (item && item.value) {
+							hash = item.value.hash;
 						}
-                    }).fail(function (xhr, text, msg) {
-                        _config.logger.fail("Locust.Translation.loadTexts", "calling /localization api failed: " + file + ", type: " + type);
-                    });
-                });
+						
+						var file = _config.basePath + "/" + type + "/" + storename;
+						
+						w.jQuery.post(file,{hash:hash}).done(function (r) {
+							try {
+								var result = JSON.parse(r);
+								if (result) {
+									if (!hash || (result.Hash != "" && hash != result.Hash)) {
+										_store.addOrUpdate(storename, { hash: result.Hash, items: result.Data });
+									}
+								} else {
+									_config.logger.alert("Locust.Translation.loadTexts", "no response: " + file + ", type: " + type);
+								}
+							} catch (e) {
+								_config.logger.fail("Locust.Translation.loadTexts", "processing server response failed: " + file + ", type: " + type + ", error = " + e);
+							}
+						}).fail(function (xhr, text, msg) {
+							_config.logger.fail("Locust.Translation.loadTexts", "calling /localization api failed: " + file + ", type: " + type);
+						}).always(function() {
+							if (i == storenames.length - 1) {
+								d.resolve();
+							}
+						});
+					});
+				}
+				
+				return d.promise();
 			};
 			
 			_self.load = function () {
-				loadTexts(_config.cit, "cit");
-				loadTexts(_config.cdt, "cdt");
+				var d = w.jQuery.Deffered();
+				
+				var d1 = loadTexts(_config.cit, "cit");
+				var d2 = loadTexts(_config.cdt, "cdt");
+				
+				w.jQuery.when(d1, d2).done(function(){
+					d.resolve();
+				});
+				
+				return d.promise();
             };
 			_self.get = function(key, value1, value2, lang) {
 				var _lang;
