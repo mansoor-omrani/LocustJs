@@ -1,5 +1,5 @@
 # committer
-.bat
+*.bat
 
 #  bower
 bower_components/
