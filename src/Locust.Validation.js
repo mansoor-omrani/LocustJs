@@ -26,4 +26,7 @@
         var RegExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         return RegExp.test(email);
     }
+	if (w.$v == undefined) {
+		w.$v = w.Locust.Validation;
+	}
 })(__locustMainContext);

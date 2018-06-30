@@ -292,5 +292,8 @@
             save();
         };
     };
+	if (w.$s == undefined) {
+		w.$s = w.Locust.Storage;
+	}
 })(__locustMainContext);
 

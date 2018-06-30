@@ -78,7 +78,7 @@
                         delete postData["url"];
                     }
                     if (url) {
-                        Locust.Form.post(url, postData);
+                        w.Locust.Form.Post(url, postData);
                     }
                 }
             }

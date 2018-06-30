@@ -333,4 +333,7 @@
 			}
         }
     }
+	if (w.$t == undefined) {
+		w.$t = w.Locust.Translation;
+	}
 })(__locustMainContext);

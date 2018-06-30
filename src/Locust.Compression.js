@@ -53,4 +53,7 @@
             return pako.inflate(compressedStr, { to: 'string' });
         }
     }
+	if (w.$cm == undefined) {
+		w.$cm = w.Locust.Compression;
+	}
 })(__locustMainContext);

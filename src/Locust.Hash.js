@@ -104,4 +104,12 @@
     }
 
     w.Locust.Page.Hash = new w.Locust.Page.HashClass();
+	
+	if (w.$h == undefined) {
+		w.$h = w.Locust.Page.Hash;
+	}
+	
+	if (w.$p == undefined) {
+		w.$p = w.Locust.Page;
+	}
 })(__locustMainContext);

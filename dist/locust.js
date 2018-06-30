@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.2.7";
+        w.Locust.Version = "1.3.0";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -51,10 +51,14 @@ var __warnings = true;
 		__error("Locust.Convert: Locust namespace not found (use 'Locust.Base.js')");
 		return;
     }
+	if (!w.jQuery) {
+        __error("Locust.Convert: jQuery library not found");
+        return;
+    }
     if (!w.Locust.Convert) {
         w.Locust.Convert = {};
     }
-    Locust.Convert.TryParseInt = function (str, defaultValue) {
+    w.Locust.Convert.TryParseInt = function (str, defaultValue) {
         // source: http://pietschsoft.com/post/2008/01/14/JavaScript-intTryParse-Equivalent
         var result = defaultValue;
 		
@@ -68,6 +72,126 @@ var __warnings = true;
 		
         return result;
     }
+	if (!w.Locust.Convert.ToArrayBuffer) {
+        w.Locust.Convert.ToArrayBuffer = function (buf) {
+            var ab = new ArrayBuffer(buf.length);
+            var view = new Uint8Array(ab);
+			
+            for (var i = 0; i < buf.length; ++i) {
+                view[i] = buf[i];
+            }
+			
+            return ab;
+        }
+    }
+    if (!w.Locust.Convert.BytesToString) {
+        w.Locust.Convert.BytesToString = function (bytes, utf8) {
+            utf8 = !!utf8;
+
+            var len = bytes.length,
+                chars = new Array(len);
+
+            for (var i = 0, j = 0; i < len; i++) {
+                var b = bytes[i];
+                if (!utf8 || b < 128) {
+                    chars[j++] = b;
+                } else if (b >= 192 && b < 224 && i + 1 < len) {
+                    chars[j++] = ((b & 0x1f) << 6) | (bytes[++i] & 0x3f);
+                } else if (b >= 224 && b < 240 && i + 2 < len) {
+                    chars[j++] = ((b & 0xf) << 12) | ((bytes[++i] & 0x3f) << 6) | (bytes[++i] & 0x3f);
+                } else if (b >= 240 && b < 248 && i + 3 < len) {
+                    var c = ((b & 7) << 18) |
+                        ((bytes[++i] & 0x3f) << 12) |
+                        ((bytes[++i] & 0x3f) << 6) |
+                        (bytes[++i] & 0x3f);
+                    if (c <= 0xffff) {
+                        chars[j++] = c;
+                    } else {
+                        c ^= 0x10000;
+                        chars[j++] = 0xd800 | (c >> 10);
+                        chars[j++] = 0xdc00 | (c & 0x3ff);
+                    }
+                } else {
+                    throw new Error("Malformed UTF8 character at byte offset " + i);
+                }
+            }
+
+            var str = '',
+                bs = 16384;
+            for (var i = 0; i < j; i += bs) {
+                str += String.fromCharCode.apply(String, chars.slice(i, i + bs <= j ? i + bs : j));
+            }
+
+            return str;
+        }
+    }
+    if (!w.Locust.Convert.StringToBytes) {
+        w.Locust.Convert.StringToBytes = function (str, utf8) {
+            utf8 = !!utf8;
+
+            var len = str.length,
+                bytes = new Uint8Array(utf8 ? 4 * len : len);
+
+            for (var i = 0, j = 0; i < len; i++) {
+                var c = str.charCodeAt(i);
+
+                if (utf8 && 0xd800 <= c && c <= 0xdbff) {
+                    if (++i >= len) throw new Error("Malformed string, low surrogate expected at position " + i);
+                    c = ((c ^ 0xd800) << 10) | 0x10000 | (str.charCodeAt(i) ^ 0xdc00);
+                } else if (!utf8 && c >>> 8) {
+                    throw new Error("Wide characters are not allowed.");
+                }
+
+                if (!utf8 || c <= 0x7f) {
+                    bytes[j++] = c;
+                } else if (c <= 0x7ff) {
+                    bytes[j++] = 0xc0 | (c >> 6);
+                    bytes[j++] = 0x80 | (c & 0x3f);
+                } else if (c <= 0xffff) {
+                    bytes[j++] = 0xe0 | (c >> 12);
+                    bytes[j++] = 0x80 | (c >> 6 & 0x3f);
+                    bytes[j++] = 0x80 | (c & 0x3f);
+                } else {
+                    bytes[j++] = 0xf0 | (c >> 18);
+                    bytes[j++] = 0x80 | (c >> 12 & 0x3f);
+                    bytes[j++] = 0x80 | (c >> 6 & 0x3f);
+                    bytes[j++] = 0x80 | (c & 0x3f);
+                }
+            }
+
+            return bytes.subarray(0, j);
+        }
+    }
+    if (!w.Locust.Convert.BytesToBase64String) {
+        w.Locust.Convert.BytesToBase64String = function (arr) {
+            return btoa(w.Locust.Convert.BytesToString(arr));
+        }
+    }
+    if (!w.Locust.Convert.Base64StringToBytes) {
+        w.Locust.Convert.Base64StringToBytes = function (str) {
+            return w.Locust.Convert.StringToBytes(atob(str));
+        }
+    }
+	if (!w.Locust.ToXml) {
+        w.Locust.ToXml = function (json) {
+            var doc = w.jQuery.parseXML("<xml/>");
+            var xml = doc.getElementsByTagName("xml")[0];
+            var key, elem;
+
+            for (key in json) {
+                if (key && json.hasOwnProperty(key)) {
+                    elem = doc.createElement(key);
+                    w.jQuery(elem).text(json[key]);
+                    xml.appendChild(elem);
+                }
+            }
+
+            return xml;
+        }
+    }
+	if (w.$c == undefined) {
+		w.$c = w.Locust.Convert;
+	}
 })(__locustMainContext);
 
 //================================= Locust.Logging =================================
@@ -128,18 +252,18 @@ var __warnings = true;
 		type = type ? type.toLowerCase() : "";
 		
 		switch (type) {
-			case "primary": _self.primary(category, message); break;
-			case "secondary": _self.secondary(category, message); break;
-			case "success": _self.success(category, message); break;
-			case "warning": _self.warning(category, message); break;
-			case "alert": _self.alert(category, message); break;
-			case "fail": _self.fail(category, message); break;
-			case "danger": _self.danger(category, message); break;
-			case "abort": _self.abort(category, message); break;
-			case "cancel": _self.cancel(category, message); break;
-			case "suggest": _self.suggest(category, message); break;
-			case "trace": _self.trace(category, message); break;
-			default: _self.info(category, message);
+			case "primary": this.primary(category, message); break;
+			case "secondary": this.secondary(category, message); break;
+			case "success": this.success(category, message); break;
+			case "warning": this.warning(category, message); break;
+			case "alert": this.alert(category, message); break;
+			case "fail": this.fail(category, message); break;
+			case "danger": this.danger(category, message); break;
+			case "abort": this.abort(category, message); break;
+			case "cancel": this.cancel(category, message); break;
+			case "suggest": this.suggest(category, message); break;
+			case "trace": this.trace(category, message); break;
+			default: this.info(category, message);
 		}
 	};
 	
@@ -312,6 +436,10 @@ var __warnings = true;
 			
 		return result;
 	};
+	
+	if (w.$lg == undefined) {
+		w.$lg = w.Locust.Logging;
+	}
 })(__locustMainContext);
 
 //================================= Locust.Extensions.Array =================================
@@ -985,7 +1113,7 @@ var __warnings = true;
     // ------------ fix multiple modals ----------------
 	// solution 1
     // source:	https://www.bootply.com/elez9J62fk
-    w.jQuery(document).on('show.bs.modal', '.modal', function () {
+    w.jQuery(w.document).on('show.bs.modal', '.modal', function () {
         var zIndex = calculateZIndex();
 
         w.jQuery(this).css('z-index', zIndex);
@@ -994,16 +1122,19 @@ var __warnings = true;
             w.jQuery('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
         }, 0);
     })
-    w.jQuery(document).on('hidden.bs.modal', '.modal', function () {
-        w.jQuery('.modal:visible').length && w.jQuery(document.body).addClass('modal-open');
+    w.jQuery(w.document).on('hidden.bs.modal', '.modal', function () {
+        w.jQuery('.modal:visible').length && w.jQuery(w.document.body).addClass('modal-open');
     })
     function calculateZIndex() {
-        var zIndex = Math.max.apply(null, Array.prototype.map.call(document.querySelectorAll('*'), function (el) {
-            return +el.style.zIndex;
+        var zIndex = w.Math.max.apply(null, Array.prototype.map.call(w.document.querySelectorAll('*'), function (el) {
+            return + el.style.zIndex;
         })) + 10;
 
         return zIndex;
     }
+	if (w.$bs == undefined) {
+		w.$bs = w.Locust.Bootstrap;
+	}
 })(__locustMainContext);
 
 //================================= Locust.Compression =================================
@@ -1061,6 +1192,9 @@ var __warnings = true;
             return pako.inflate(compressedStr, { to: 'string' });
         }
     }
+	if (w.$cm == undefined) {
+		w.$cm = w.Locust.Compression;
+	}
 })(__locustMainContext);
 
 //================================= Locust.Cryptography =================================
@@ -1136,6 +1270,542 @@ var __warnings = true;
             return result;
         }
     }
+	if (w.$cr == undefined) {
+		w.$cr = w.Locust.Cryptography;
+	}
+})(__locustMainContext);
+
+//================================= Locust.Conversion =================================
+(function (w) {
+    function __error(msg) {
+		if (w.console && w.console.error) {
+			w.console.error(msg);
+		} else {
+			throw msg;
+		}
+	}
+	if (!w) {
+        throw "Locust.Cookie: no context given (use 'Locust.Base.js')";
+    }
+    if (!w.Locust) {
+		__error("Locust.Cookie: Locust namespace not found (use 'Locust.Base.js')");
+		return;
+    }
+	if (!w.jQuery) {
+        __error("Locust.Cookie: jQuery library not found");
+        return;
+    }
+    if (!w.Locust.Cookie) {
+        w.Locust.Cookie = {
+			DefaultEncoder: function(x){
+				return JSON.stringify(x);
+			},
+			DefaultDecoder: function(x){
+				try {
+					return JSON.parse(x);
+				} catch (e) {
+					return x;
+				}
+			},
+			Set: function (config) {
+				var _config = w.jQuery.extend({
+					name: "",
+					value: "",
+					expireDays: 0,
+					path: "/",
+					encode: null,
+					logger: null
+				}, config);
+				
+				_config.logger = w.Locust.getLogger(_config.logger);
+				
+				if (!w.document) {
+					_config.logger.abort("Locust.Cookie.Set", "no document found");
+					return;
+				}
+				
+				if (!w.document.cookie) {
+					_config.logger.abort("Locust.Cookie.Set", "document does not support cookies");
+					return;
+				}
+				
+				if (!_config.name) {
+					throw "no name is specified for the cookie";
+				}
+				
+				var expires;
+				var days = w.Locust.Convert.TryParseInt(_config.expireDays, 0);
+				
+				if (days) {
+				    var date = new Date();
+					
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+					
+                    expires = "; expires=" + date.toGMTString();
+					_config.logger.info("Locust.Cookie.Set", _config.name + ": " + expires);
+                } else {
+                    expires = "";
+					_config.logger.info("Locust.Cookie.Set", _config.name + ": no expireDays is set");
+                }
+				
+				var _value = _config.value;
+				
+				if (w.jQuery.isFunction(_config.encode)) {
+					_value = _config.encode(_value);
+					_config.logger.debug("Locust.Cookie", _config.name + ": encoded value = " + _value);
+				}
+				
+				var _path = _config.path || "/";
+				
+                w.document.cookie = encodeURIComponent(_config.name) + "=" + encodeURIComponent(_value) + expires + "; path=" + _path;
+				
+				return _value;
+            },
+            Get: function (name) {
+				var _config = {
+					name: "",
+					decode: null,
+					logger: null
+				};
+				
+				if (typeof name == "string") {
+					_config.name = config;
+				} else {
+					_config = w.jQuery.extend(_config, config);
+				}
+				_config.logger = w.Locust.getLogger(_config.logger);
+				
+				if (!w.document) {
+					_config.logger.abort("Locust.Cookie.Get", "no document found");
+					return;
+				}
+				
+				if (!w.document.cookie) {
+					_config.logger.abort("Locust.Cookie.Get", "document does not support cookies");
+					return;
+				}
+				
+				if (!_config.name) {
+					throw "no cookie name is specified";
+				}
+				
+				var result = null;
+                var nameAndEqualSign = encodeURIComponent(name) + "=";
+                var cookies = w.document.cookie.splitString(';', w.StringSplitOptions.TrimAndRemoveEmptyEntries);
+				
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i];
+					
+                    if (cookie.indexOf(nameAndEqualSign) == 0) {
+						result = decodeURIComponent(cookie.substring(nameAndEqualSign.length, cookie.length));
+						
+						_config.logger.debug("Locust.Cookie.Get", _config.name + ": found. [" + result + "]");
+						
+						if (w.jQuery.isFunction(_config.decode)) {
+							result = _config.decode(_value);
+							_config.logger.debug("Locust.Cookie.Get", _config.name + ": decoded value = " + result);
+						}
+						
+						break;
+					}
+                }
+				
+                return result;
+            },
+			GetAll: function (config) {
+				var _config = w.jQuery.extend({
+					decode: null,
+					logger: null
+				}, config);
+				
+				_config.logger = w.Locust.getLogger(_config.logger);
+				
+				if (!w.document) {
+					_config.logger.abort("Locust.Cookie.GetAll", "no document found");
+					return;
+				}
+				
+				if (!w.document.cookie) {
+					_config.logger.abort("Locust.Cookie.GetAll", "document does not support cookies");
+					return;
+				}
+				
+				var result = [];
+				var cookies = w.document.cookie.splitString(';', w.StringSplitOptions.TrimAndRemoveEmptyEntries);
+				
+				for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i];
+					var equalSignIndex = cookie.indexOf("=");
+					
+                    if (equalSignIndex > 0) {
+						var value = cookie.substr(equalSignIndex + 1);
+						if (w.jQuery.isFunction(_config.decode)) {
+							value = _config.decode(value);
+						}
+						result.push({ name: cookie.substr(0, equalSignIndex), value: value });
+					}
+                }
+				
+                return result;
+			},
+			GetOrSet: function (config) {
+				var result = w.Locust.Cookie.Get(config);
+				
+				if (result == null) {
+					result = w.Locust.Cookie.Set(config);
+				}
+				
+				return result;
+			},
+            Remove: function (name, path) {
+                w.Locust.Cookie.Set(name, "", -1, path);
+            }
+		};
+    }
+    
+	if (w.$k == undefined) {
+		w.$k = w.Locust.Cookie;
+	}
+})(__locustMainContext);
+
+//================================= Locust.DOM =================================
+(function (w) {
+    function __error(msg) {
+		if (w.console && w.console.error) {
+			w.console.error(msg);
+		} else {
+			throw msg;
+		}
+	}
+	if (!w) {
+        throw "Locust.DOM: no context given (use 'Locust.Base.js')";
+    }
+    if (!w.Locust) {
+		__error("Locust.DOM: Locust namespace not found (use 'Locust.Base.js')");
+		return;
+    }
+	if (!w.Locust.Logging) {
+		__error("Locust.DOM: Locust.Logging namespace not found (use 'Locust.Logging.js')");
+		return;
+	}
+	if (!w.jQuery) {
+        __error("Locust.DOM: jQuery library not found");
+        return;
+    }
+    if (!w.Locust.DOM) {
+        w.Locust.DOM = {};
+    }
+    if (!w.Locust.DOM.AppendScript) {
+        w.Locust.DOM.AppendScript = function (src) {
+			if (!w.document) return;
+			
+            var _script = w.document.createElement('script');
+
+            _script.setAttribute('src', src);
+
+            w.document.body.appendChild(_script);
+        }
+    }
+    if (!w.Locust.DOM.AppendStyle) {
+        w.Locust.DOM.AppendStyle = function (href) {
+			if (!w.document) return;
+			
+            var _link = w.document.createElement('link');
+
+            _link.setAttribute('href', href);
+            _link.setAttribute('rel', 'stylesheet');
+
+            w.document.head.appendChild(_link);
+        }
+    }
+	
+	w.Locust.DOM.__events = ["click","dblclick","keydown","keyup","keypress","focus","blur","focusin","focusout","contextmenu","select","mouseover","mouseout","mouseenter","mouseleave","mouseup","mousedown","mousemove","load","unload","change","submit","hover", "change","resize","scroll"];
+	
+	if (!w.Locust.DOM.CreateElement) {
+        w.Locust.DOM.CreateElement = function (tag, config) {
+			var result;
+			
+			if (tag && tag.length) {
+				if (tag[0] != '<') {
+					tag = '<' + tag + '>';
+				}
+				
+				result = w.jQuery(tag);
+				
+				if (config) {
+					if (typeof config == "string") {
+						result.html(config);
+					} else {
+						for (var key in config) {
+							if (config.hasOwnProperty(key)) {
+								var _key = key.toLowerCase();
+								switch (_key) {
+									case "style":
+										if (typeof config.style == "string") {
+											result.attr("style", config.style);
+										} else {
+											for (var key in config.style) {
+												if (config.style.hasOwnProperty(key)) {
+													result.css(key, config.style[key]);
+												}
+											}
+										}
+										break;
+									case "data":
+										for (var key in config.data) {
+											if (config.data.hasOwnProperty(key)) {
+												result.data(key, config.data[key]);
+											}
+										}
+										break;
+									case "value":
+										result.val(config.value);
+										break;
+									case "text":
+										result.text(config.text);
+										break;
+									case "children":
+										result.append(config.children);
+										break;
+									case "html":
+										result.html(config.html);
+										break;
+									default:
+										if (w.jQuery.isFunction(config[key])) {
+											var _eventIndex = w.Locust.DOM.__events.indexOf(_key);
+											
+											if (_eventIndex >= 0) {
+												result[w.Locust.DOM.__events[_eventIndex]](config[key]);
+											}
+										} else {
+											if (w.Locust.isEmpty(config[key])) {
+												result.attr(key, config[key]);
+											}
+										}
+										break;
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			return result;
+        }
+    }
+	if (!w.Locust.DOM.CreateOption) {
+        w.Locust.DOM.CreateOption = function (config) {
+			if (typeof config != "object") {
+				config = { text: config, value: config };
+			}
+            var result = w.Locust.DOM.CreateElement("<option>", config);
+			
+			return result;
+        }
+    }
+	if (!w.Locust.DOM.AppendOptions) {
+        w.Locust.DOM.AppendOptions = function (parentElement, config) {
+			if (parentElement) {
+				var _options = (config && config.options) || config;
+				
+				if (w.jQuery.isArray(_options)) {
+					_options.forEach(function(x) {
+						var _option = w.Locust.DOM.CreateOption(x);
+						parentElement.append(_option);
+					});
+				}
+			}
+			
+			return parentElement;
+		}
+	}
+	if (!w.Locust.DOM.CreateSelect) {
+        w.Locust.DOM.CreateSelect = function (config) {
+            var result = w.Locust.DOM.CreateElement("<select>", config);
+			
+			w.Locust.DOM.AppendOptions(result, config);
+			
+			return result;
+        }
+    }
+	if (!w.Locust.DOM.CreateItem) {
+        w.Locust.DOM.CreateItem = function (config) {
+			if (typeof config != "object") {
+				config = { html: config };
+			}
+            var result = w.Locust.DOM.CreateElement("<li>", config);
+			
+			return result;
+        }
+    }
+	if (!w.Locust.DOM.AppendItems) {
+        w.Locust.DOM.AppendItems = function (parentElement, config) {
+			if (parentElement) {
+				var _items = (config && config.items) || config;
+				
+				if (w.jQuery.isArray(_items)) {
+					_items.forEach(function(x) {
+						var _item = w.Locust.DOM.CreateItem(x);
+						parentElement.append(_item);
+					});
+				}
+			}
+			
+			return parentElement;
+		}
+	}
+	if (!w.Locust.DOM.CreateList) {
+        w.Locust.DOM.CreateList = function (config) {
+			var tag = "<ul>";
+			if (config && config.type != undefined) {
+				tag = "<ol>";
+			}
+            var result = w.Locust.DOM.CreateElement(tag, config);
+			
+			w.Locust.DOM.AppendItems(result, config);
+			
+			return result;
+        }
+    }
+	if (!w.Locust.DOM.CreateTableCell) {
+        w.Locust.DOM.CreateTableCell = function (config, tag) {
+			var result;
+			var _tag = "<td>";
+			
+			if (tag) {
+				tag = tag.toString().toLowerCase();
+				if (tag == "th" || tag == "<th>") {
+					_tag = "<th>";
+				}
+			}
+			if (w.Locust.isEmpty(config)) {
+				result = w.jQuery(_tag).html(config);
+			} else {
+				result = w.Locust.DOM.CreateElement(_tag, config);
+			}
+			
+			return result;
+		}
+	}
+	if (!w.Locust.DOM.CreateTableRow) {
+        w.Locust.DOM.CreateTableRow = function (config) {
+            var result;
+
+			if (w.jQuery.isArray(config)) {
+				result = w.jQuery("<tr>");
+				config.forEach(function(x) {
+					var td = w.Locust.DOM.CreateTableCell(x);
+					result.append(td);
+				});
+			} else {
+				result = w.Locust.DOM.CreateElement("<tr>", config);
+			
+				if (w.jQuery.isArray(config.cols)) {
+					config.cols.forEach(function(x) {
+						var td = w.Locust.DOM.CreateTableCell(x);
+						result.append(td);
+					});
+				}
+			}
+			
+			return result;
+        }
+    }
+	if (!w.Locust.DOM.AppendTableCells) {
+        w.Locust.DOM.AppendTableCells = function (parentElement, config, tag) {
+			if (parentElement) {
+				var _cells = (config && config.cols) || (config && config.cells) || config;
+				
+				if (w.jQuery.isArray(_cells)) {
+					_cells.forEach(function(x) {
+						var td = w.Locust.DOM.CreateTableCell(x, tag);
+						parentElement.append(td);
+					});
+				}
+			}
+			
+			return parentElement;
+		}
+	}
+	if (!w.Locust.DOM.AppendTableRows) {
+        w.Locust.DOM.AppendTableRows = function (parentElement, config) {
+			if (parentElement) {
+				var _rows = (config && config.rows) || config;
+				
+				if (w.jQuery.isArray(_rows)) {
+					_rows.forEach(function(x) {
+						var tr = w.Locust.DOM.CreateTableRow(x);
+						parentElement.append(tr);
+					});
+				}
+			}
+			return parentElement;
+		}
+	}
+	if (!w.Locust.DOM.CreateTableHead) {
+        w.Locust.DOM.CreateTableHead = function (config) {
+            var result = w.Locust.DOM.CreateElement("<thead>", config);
+			
+			if (config && config.cells) {
+				w.Locust.DOM.AppendTableCells(result, config.cells, "th");
+			}
+			
+			return result;
+        }
+    }
+	if (!w.Locust.DOM.CreateTableFoot) {
+        w.Locust.DOM.CreateTableFoot = function (config) {
+            var result = w.Locust.DOM.CreateElement("<tfoot>", config);
+			
+			if (config && config.cells) {
+				w.Locust.DOM.AppendTableCells(result, config.cells);
+			}
+			
+			return result;
+        }
+    }
+	if (!w.Locust.DOM.CreateTableBody) {
+        w.Locust.DOM.CreateTableBody = function (config) {
+            var result = w.Locust.DOM.CreateElement("<tbody>", config);
+			
+			w.Locust.DOM.AppendTableRows(result, config);
+			
+			return result;
+        }
+    }
+	if (!w.Locust.DOM.CreateTable) {
+        w.Locust.DOM.CreateTable = function (config) {
+            var result = w.Locust.DOM.CreateElement("<table>", config);
+			
+			if (config && config.caption) {
+				var caption = w.Locust.DOM.CreateElement("<caption>", config.caption);
+				result.append(caption);
+			}
+			
+			if (config && config.head) {
+				var head = w.Locust.DOM.CreateTableHead(config.head);
+				result.append(head);
+			}
+			
+			if (config && config.body) {
+				var body = w.Locust.DOM.CreateTableBody(config.body);
+				result.append(body);
+			}
+			else {
+				w.Locust.DOM.AppendTableRows(result, config);
+			}
+			
+			if (config && config.foot) {
+				var foot = w.Locust.DOM.CreateTableFoot(config.foot);
+				result.append(foot);
+			}
+			
+			return result;
+        }
+    }
+	if (w.$d == undefined) {
+		w.$d = w.Locust.DOM;
+	}
 })(__locustMainContext);
 
 //================================= Locust.Form =================================
@@ -1165,13 +1835,217 @@ var __warnings = true;
     if (!w.Locust.Form) {
         w.Locust.Form = {};
     }
-    Locust.Form.post = function (url, args) {
-        var f = w.jQuery("form").attr('method', 'POST').attr('action', url).insertAfter(w.jQuery("body"));
+    w.Locust.Form.Post = function (url, args) {
+        var f = w.jQuery("<form>").attr('method', 'POST').attr('action', url).insertAfter(w.jQuery("body"));
+		
         w.jQuery.each(args, function (propName, propValue) {
             w.jQuery('<input>').attr('type', 'hidden').attr('name', propName).val(propValue).appendTo(f);
         });
+		
         f.submit();
     }
+	
+	//Form Element Types:
+    // 		"text"
+    // 		"email"
+    // 		"password"
+    // 		"tel"
+    // 		"color"
+    // 		"date"
+    // 		"datetime"
+    // 		"datetime-local"
+    // 		"month"
+    // 		"number"
+    // 		"range"
+    // 		"search"
+    // 		"time"
+    // 		"textarea"
+    // 		"radio"
+    // 		"file"
+    // 		"select-one"
+    // 		"select-multiple"
+    // 		"url"
+    // 		"week"
+    // 		"hidden"
+	if (!w.Locust.Form.DefaultExclude) {
+        w.Locust.DefaultExclude = function (e) {
+			var tag = e.tagName.toLowerCase();
+			var type = e.type.toLowerCase();
+
+			return tag == "button" || (tag == "input" && (type == "image" || type == "button" || type == "submit" || type == "reset"));
+		}
+	}
+	if (!w.Locust.Form.Each) {
+        w.Locust.Form.Each = function (selector, fnProcess, excludes) {
+            w.jQuery(selector).each(function (index, frm) {
+                if (w.jQuery(frm).prop("tagName").toLowerCase() == 'form') {
+                    var elems = frm.elements;
+					
+                    if (elems && w.jQuery.isFunction(fnProcess)) {
+						var _exclude;
+						
+						if (!w.jQuery.isFunction(excludes)) {
+							_exclude = w.Locust.Form.DefaultExclude;
+						} else {
+							_exclude = excludes;
+						};
+						
+                        for (var i = 0; i < elems.length; i++) {
+                            var e = elems[i];
+							
+                            if (!_exclude(e, i, frm, index))) {
+                                fnProcess(e, i, frm, index);
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+	if (!w.Locust.Form.ToJson) {
+        w.Locust.Form.ToJson = function (formSelector, excludes) {
+			var lastForm;
+            var json = {};
+			var result = [];
+			var frmCnt = 0;
+			
+            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+				if (lastForm == undefined) {
+					lastForm = frm;
+				}
+				if (lastForm != frm) {
+					result.push({ "index": frmIndex, "form": frm, "data": json });
+					json = {};
+					lastForm = frm;
+					frmCnt++;
+				}
+				var value = w.jQuery(e).val();
+				var key = e.name || e.id;
+				
+				if (key) {
+					if (json.hasOwnProperty(key)) {
+						if (w.jQuery.isArray(json[key])) {
+							json[key].push(value);
+						} else {
+							json[key] = new Array(json[key]);
+						}
+					} else {
+						if (w.jQuery(e).attr("value") != undefined) {
+							json[key] = value;
+						} else {
+							if (e.checked) {
+								json[key] = e.checked;
+							} else {
+								json[key] = "";
+							}
+						}
+					}
+				}
+            }, excludes);
+			
+			if (frmCnt < w.jQuery(selector).length) {
+				result.push({ "index": frmCnt, "form": lastForm, "data": json });
+			}
+			
+			if (result.length == 0)
+				return {};
+			if (result.length == 1)
+				return result[0].data;
+            
+			return result;
+        }
+    }
+	if (!w.Locust.Form.LoadJson) {
+        w.Locust.Form.LoadJson = function (formSelector, data, excludes) {
+			var lastForm;
+            var json;
+			
+			w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+				if (lastForm != frm || json == undefined) {
+					lastForm = frm;
+					
+					if (w.jQuery.isArray(data)) {
+						if (data.length > frmIndex) {
+							if (data[frmIndex].data != undefined) {
+								json = data[frmIndex].data;
+							} else {
+								json = data[frmIndex];
+							}
+						} else {
+							json = undefined;
+						}
+					} else {
+						json = data;
+					}
+				}
+				
+				if (json != undefined) {
+					var key = e.name || e.id;
+					
+					if (e.type == "checkbox" || e.type == "radio") {
+						if (w.jQuery.isArray(json[key])) {
+							w.jQuery(e).prop('checked', json[key].indexOf(w.jQuery(e).val()) >= 0);
+						} else {
+							w.jQuery(e).prop('checked', json[key]);
+						}
+					} else {
+						w.jQuery(e).val(json[key]);
+					}
+				}
+            }, excludes);
+		}
+	}
+	if (!w.Locust.Form.Reset) {
+        w.Locust.Form.Reset = function (formSelector, excludes) {
+            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+				if (e.type == "checkbox" || e.type == "radio") {
+					w.jQuery(e).prop('checked', false);
+				} else if (e.type == "select") {
+					w.jQuery(e).html('');
+				} else {
+					w.jQuery(e).val('');
+				}
+            }, excludes);
+        }
+    }
+	if (!w.Locust.Form.Disable) {
+        w.Locust.Form.Disable = function (formSelector, excludes) {
+            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+                w.jQuery(e).prop('disabled', 'disabled');
+            }, excludes);
+        }
+    }
+    if (!w.Locust.Form.Enable) {
+        w.Locust.Form.Enable = function (formSelector, excludes) {
+            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+                w.jQuery(e).removeAttr('disabled');
+            }, excludes);
+        }
+    }
+	if (!w.Locust.Form.MvcArray) {
+        w.Locust.Form.MvcArray = function (array, name) {
+			var result = [];
+			
+			if (w.jQuery.isArray(array)) {
+				array.forEach(function(x, i){
+					var json = {};
+					
+					for (var key in x) {
+						if (x.hasOwnProperty(key)) {
+							json[name + "[" + i + "]." + key] = x[key];
+						}
+					}
+					
+					result.push(json);
+				});
+			}
+			
+			return result;
+		}
+	}
+	if (w.$f == undefined) {
+		w.$f = w.Locust.Form;
+	}
 })(__locustMainContext);
 
 //================================= Locust.Hash =================================
@@ -1280,6 +2154,14 @@ var __warnings = true;
     }
 
     w.Locust.Page.Hash = new w.Locust.Page.HashClass();
+	
+	if (w.$h == undefined) {
+		w.$h = w.Locust.Page.Hash;
+	}
+	
+	if (w.$p == undefined) {
+		w.$p = w.Locust.Page;
+	}
 })(__locustMainContext);
 
 //================================= Locust.Mime =================================
@@ -4338,6 +5220,9 @@ var __warnings = true;
 			}
 		};
     }
+	if (w.$mm == undefined) {
+		w.$mm = w.Locust.Mime;
+	}
 })(__locustMainContext);
 
 //================================= Locust.IO =================================
@@ -4479,6 +5364,9 @@ var __warnings = true;
             }
         }
     }
+	if (w.$i == undefined) {
+		w.$i = w.Locust.IO;
+	}
 })(__locustMainContext);
 
 //================================= Locust.jQuery.Extend =================================
@@ -4561,7 +5449,7 @@ var __warnings = true;
                         delete postData["url"];
                     }
                     if (url) {
-                        Locust.Form.post(url, postData);
+                        w.Locust.Form.Post(url, postData);
                     }
                 }
             }
@@ -5016,6 +5904,9 @@ var __warnings = true;
             save();
         };
     };
+	if (w.$s == undefined) {
+		w.$s = w.Locust.Storage;
+	}
 })(__locustMainContext);
 
 
@@ -5354,6 +6245,9 @@ var __warnings = true;
 			}
         }
     }
+	if (w.$t == undefined) {
+		w.$t = w.Locust.Translation;
+	}
 })(__locustMainContext);
 
 //================================= Locust.Validation =================================
@@ -5384,4 +6278,7 @@ var __warnings = true;
         var RegExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         return RegExp.test(email);
     }
+	if (w.$v == undefined) {
+		w.$v = w.Locust.Validation;
+	}
 })(__locustMainContext);

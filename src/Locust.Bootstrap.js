@@ -255,7 +255,7 @@
     // ------------ fix multiple modals ----------------
 	// solution 1
     // source:	https://www.bootply.com/elez9J62fk
-    w.jQuery(document).on('show.bs.modal', '.modal', function () {
+    w.jQuery(w.document).on('show.bs.modal', '.modal', function () {
         var zIndex = calculateZIndex();
 
         w.jQuery(this).css('z-index', zIndex);
@@ -264,14 +264,17 @@
             w.jQuery('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
         }, 0);
     })
-    w.jQuery(document).on('hidden.bs.modal', '.modal', function () {
-        w.jQuery('.modal:visible').length && w.jQuery(document.body).addClass('modal-open');
+    w.jQuery(w.document).on('hidden.bs.modal', '.modal', function () {
+        w.jQuery('.modal:visible').length && w.jQuery(w.document.body).addClass('modal-open');
     })
     function calculateZIndex() {
-        var zIndex = Math.max.apply(null, Array.prototype.map.call(document.querySelectorAll('*'), function (el) {
-            return +el.style.zIndex;
+        var zIndex = w.Math.max.apply(null, Array.prototype.map.call(w.document.querySelectorAll('*'), function (el) {
+            return + el.style.zIndex;
         })) + 10;
 
         return zIndex;
     }
+	if (w.$bs == undefined) {
+		w.$bs = w.Locust.Bootstrap;
+	}
 })(__locustMainContext);

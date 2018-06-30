@@ -56,18 +56,18 @@
 		type = type ? type.toLowerCase() : "";
 		
 		switch (type) {
-			case "primary": _self.primary(category, message); break;
-			case "secondary": _self.secondary(category, message); break;
-			case "success": _self.success(category, message); break;
-			case "warning": _self.warning(category, message); break;
-			case "alert": _self.alert(category, message); break;
-			case "fail": _self.fail(category, message); break;
-			case "danger": _self.danger(category, message); break;
-			case "abort": _self.abort(category, message); break;
-			case "cancel": _self.cancel(category, message); break;
-			case "suggest": _self.suggest(category, message); break;
-			case "trace": _self.trace(category, message); break;
-			default: _self.info(category, message);
+			case "primary": this.primary(category, message); break;
+			case "secondary": this.secondary(category, message); break;
+			case "success": this.success(category, message); break;
+			case "warning": this.warning(category, message); break;
+			case "alert": this.alert(category, message); break;
+			case "fail": this.fail(category, message); break;
+			case "danger": this.danger(category, message); break;
+			case "abort": this.abort(category, message); break;
+			case "cancel": this.cancel(category, message); break;
+			case "suggest": this.suggest(category, message); break;
+			case "trace": this.trace(category, message); break;
+			default: this.info(category, message);
 		}
 	};
 	
@@ -240,4 +240,8 @@
 			
 		return result;
 	};
+	
+	if (w.$lg == undefined) {
+		w.$lg = w.Locust.Logging;
+	}
 })(__locustMainContext);

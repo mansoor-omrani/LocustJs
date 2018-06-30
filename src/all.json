@@ -10,6 +10,8 @@
 	"src/Locust.Bootstrap.js",
 	"src/Locust.Compression.js",
 	"src/Locust.Cryptography.js",
+	"src/Locust.Cookie.js",
+	"src/Locust.DOM.js",
 	"src/Locust.Form.js",
 	"src/Locust.Hash.js",
 	"src/Locust.Mime.js",

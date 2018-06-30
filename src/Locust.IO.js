@@ -137,4 +137,7 @@
             }
         }
     }
+	if (w.$i == undefined) {
+		w.$i = w.Locust.IO;
+	}
 })(__locustMainContext);

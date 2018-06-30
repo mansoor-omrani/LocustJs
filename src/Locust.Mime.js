@@ -3054,4 +3054,7 @@
 			}
 		};
     }
+	if (w.$mm == undefined) {
+		w.$mm = w.Locust.Mime;
+	}
 })(__locustMainContext);

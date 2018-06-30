@@ -71,4 +71,7 @@
             return result;
         }
     }
+	if (w.$cr == undefined) {
+		w.$cr = w.Locust.Cryptography;
+	}
 })(__locustMainContext);
