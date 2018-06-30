@@ -1893,7 +1893,7 @@ var __warnings = true;
                         for (var i = 0; i < elems.length; i++) {
                             var e = elems[i];
 							
-                            if (!_exclude(e, i, frm, index))) {
+                            if (!_exclude(e, i, frm, index)) {
                                 fnProcess(e, i, frm, index);
                             }
                         }
