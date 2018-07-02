@@ -91,7 +91,7 @@
 							i++;
 						})
 					} else if (typeof values == "string") {
-						s = s.replaceAll("{0}", values[key]);
+						s = s.replaceAll("{0}", values);
 					} else {
 						for (var key in Object.keys(values)) {
 							s = s.replaceAll("{" + key + "}", values[key]);

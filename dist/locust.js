@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.0";
+        w.Locust.Version = "1.4.1";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -781,7 +781,7 @@ var __warnings = true;
 							i++;
 						})
 					} else if (typeof values == "string") {
-						s = s.replaceAll("{0}", values[key]);
+						s = s.replaceAll("{0}", values);
 					} else {
 						for (var key in Object.keys(values)) {
 							s = s.replaceAll("{" + key + "}", values[key]);
@@ -2046,7 +2046,7 @@ var __warnings = true;
     // 		"week"
     // 		"hidden"
 	if (!w.Locust.Form.DefaultExclude) {
-        w.Locust.DefaultExclude = function (e) {
+        w.Locust.Form.DefaultExclude = function (e) {
 			var tag = e.tagName.toLowerCase();
 			var type = e.type.toLowerCase();
 
@@ -2105,7 +2105,7 @@ var __warnings = true;
 						if (w.jQuery.isArray(json[key])) {
 							json[key].push(value);
 						} else {
-							json[key] = new Array(json[key]);
+							json[key] = new Array(json[key], value);
 						}
 					} else {
 						if (w.jQuery(e).attr("value") != undefined) {
@@ -2114,14 +2114,14 @@ var __warnings = true;
 							if (e.checked) {
 								json[key] = e.checked;
 							} else {
-								json[key] = "";
+								json[key] = value;
 							}
 						}
 					}
 				}
             }, excludes);
 			
-			if (frmCnt < w.jQuery(selector).length) {
+			if (frmCnt < w.jQuery(formSelector).length) {
 				result.push({ "index": frmCnt, "form": lastForm, "data": json });
 			}
 			
