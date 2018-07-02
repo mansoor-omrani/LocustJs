@@ -66,7 +66,7 @@
 					if (typeof config == "string") {
 						result.html(config);
 					} else {
-						for (var key in config) {
+						for (var key in Object.keys(config)) {
 							if (config.hasOwnProperty(key)) {
 								var _key = key.toLowerCase();
 								switch (_key) {
@@ -74,7 +74,7 @@
 										if (typeof config.style == "string") {
 											result.attr("style", config.style);
 										} else {
-											for (var key in config.style) {
+											for (var key in Object.keys(config.style)) {
 												if (config.style.hasOwnProperty(key)) {
 													result.css(key, config.style[key]);
 												}
@@ -82,7 +82,7 @@
 										}
 										break;
 									case "data":
-										for (var key in config.data) {
+										for (var key in Object.keys(config.data)) {
 											if (config.data.hasOwnProperty(key)) {
 												result.data(key, config.data[key]);
 											}

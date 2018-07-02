@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.3.0";
+        w.Locust.Version = "1.4.0";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -178,7 +178,7 @@ var __warnings = true;
             var xml = doc.getElementsByTagName("xml")[0];
             var key, elem;
 
-            for (key in json) {
+            for (key in Object.keys(json)) {
                 if (key && json.hasOwnProperty(key)) {
                     elem = doc.createElement(key);
                     w.jQuery(elem).text(json[key]);
@@ -544,6 +544,108 @@ var __warnings = true;
 	} else {
 		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.any already declared.");
 	}
+	if (!w.Array.prototype.Objectify) {
+		/*	this method has close relation with String.prototype.nestedSplit in Locust.Extensions.String
+			examples
+			input:
+			[
+				["a", 1],
+				["b", "ali"]
+			]
+			output: { "a": 1, "b": "ali" }
+			
+			input:
+				[
+					[ ["a",1],["b", "ali"] ],
+					[ ["a",2],["b", "reza"],["c", true] ],
+					[ ["a",3],["b"],["c", false] ],
+					[ ["b", "saeed"],["c", true] ]
+				]
+			output:
+				[
+					{ "a": 1, "b": "ali" },
+					{ "a": 2, "b": "reza" , "c": true },
+					{ "a": 3, "b": null, "c": false },
+					{ "b": "saeed", "c": true}
+				]
+		*/
+		
+		w.Array.prototype.Objectify = function () {
+			var result;
+			var arr = this;
+			
+			if (!w.jQuery.isArray(arr)) {
+				result = {};
+				result[arr.toString()] = null;
+				
+				return result;
+			}
+			if (arr.length == 0)
+				return null;
+			if (arr.length == 1) {
+				result = {};
+				result[arr[0].toString()] = null;
+				
+				return result;
+			}
+			
+			for (var i = 0; i < arr.length; i += 2) {
+				var key = arr[i];
+				var value = (i + 1 < arr.length) ? arr[i + 1]: null;
+
+				if (i == 0) {
+					result = (w.jQuery.isArray(key))?[]:{};
+				}
+				
+				if (w.jQuery.isArray(key)) {
+					var temp1 = key.Objectify();
+					var temp2;
+					var temp = {};
+					
+					if (value) {
+						if (w.jQuery.isArray(value))
+							temp2 = value.Objectify();
+						else
+							temp2 = value;
+					}
+					
+					if (!w.jQuery.isArray(temp1)) {
+						temp = w.jQuery.extend(temp, temp1, temp2);
+						
+						if (Object.keys(temp).length == (temp1 ? Object.keys(temp1).length : 0) + (temp2 ? Object.keys(temp2).length: 0)) {
+							if (w.jQuery.isArray(result)) {
+								result = temp;
+								continue;
+							}
+						}
+					}
+					
+					if (w.jQuery.isArray(result)) {
+						result.push(temp1);
+						
+						if (temp2)
+							result.push(temp2);
+					} else {
+						w.jQuery.extend(result, temp1);
+						w.jQuery.extend(result, temp2);
+					}
+				} else {
+					if (w.jQuery.isArray(value))
+						result[key] = value.Objectify();
+					else
+						result[key] = value;
+				}
+			}
+			
+			if (w.jQuery.isArray(result) && result.length == 1) {
+				result = result[0];
+			}
+			
+			return result;
+		}
+	} else {
+		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.removeAt already declared.");
+	}
 })(__locustMainContext);
 //================================= Locust.Extensions.Math =================================
 (function(w) {
@@ -666,21 +768,30 @@ var __warnings = true;
 	}
 	
 	if (!w.String.prototype.format) {
-		w.String.prototype.format = function (values) {
+		w.String.prototype.format = function () {
 			var s = this;
-
-			if (w.Array.isArray(values)) {
-				var i = 0;
-				values.forEach(function (value) {
-					s = s.replaceAll("{" + i + "}", value);
-					i++;
-				})
-			} else {
-				for (var key in values) {
-					s = s.replaceAll("{" + key + "}", values[key]);
+			if (arguments.length > 0) {
+				if (arguments.length == 1) {
+					var values = arguments[0];
+					
+					if (w.Array.isArray(values)) {
+						var i = 0;
+						values.forEach(function (value) {
+							s = s.replaceAll("{" + i + "}", value);
+							i++;
+						})
+					} else if (typeof values == "string") {
+						s = s.replaceAll("{0}", values[key]);
+					} else {
+						for (var key in Object.keys(values)) {
+							s = s.replaceAll("{" + key + "}", values[key]);
+						}
+					}
+				} else {
+					s = this.replace(/{(\d+)}/g, function (match, number) { return args[number] != undefined ? args[number] : match; });
 				}
 			}
-
+			
 			return s;
 		}
 	} else {
@@ -855,6 +966,73 @@ var __warnings = true;
 	} else {
 		_logger.warning("Locust.Extensions.String", "String.prototype.splitString already declared.");
 	}
+	
+	if (!w.String.prototype.nestedSplit) {
+		/* examples
+			input: "a=1&b=ali"
+			output:
+			[
+				["a",1],
+				["b","ali"]
+			]
+			
+			input: "a=1:b=ali&a=2:b=reza:c=true&a=3:b=:c=false&b=saeed:c=true"
+			output:
+				[
+					[ ["a",1],["b", "ali"] ],
+					[ ["a",2],["b", "reza"],["c", true] ],
+					[ ["a",3],["b"],["c", false] ],
+					[ ["b", "saeed"],["c", true] ]
+				]
+		*/
+		w.String.prototype.nestedSplit = function () {
+			var result = [];
+			
+			if (arguments.length > 0) {
+				var splitOptions = w.StringSplitOptions.None;
+				var separatorsCount = arguments.length;
+				
+				if (arguments.length > 1) {
+					splitOptions = arguments[arguments.length - 1];
+					if (splitOptions == w.StringSplitOptions.RemoveEmptyEntries ||
+						splitOptions == w.StringSplitOptions.TrimEntries ||
+						splitOptions == w.StringSplitOptions.TrimAndRemoveEmptyEntries ||
+						splitOptions == w.StringSplitOptions.ToLowerEntries ||
+						splitOptions == w.StringSplitOptions.TrimToLowerAndRemoveEmptyEntries ||
+						splitOptions == w.StringSplitOptions.ToUpperEntries ||
+						splitOptions == w.StringSplitOptions.TrimToUpperAndRemoveEmptyEntries) {
+						separatorsCount--;
+					} else {
+					  splitOptions = w.StringSplitOptions.None;
+					}
+				}
+				
+				function splitStringArray(arr, separators, options, i) {
+					var _result = [];
+					
+					if (i < separatorsCount) {
+						for (var index in Object.keys(arr)) {
+							if (typeof arr[index] == "string") {
+								var tempArr = arr[index].splitString(separators[i], options);
+								var tempItem = splitStringArray(tempArr, separators, options, i + 1);
+								_result.push(tempItem);
+							}
+						}
+					} else {
+						_result = arr;
+					}
+					
+					return _result;
+				}
+				
+				result = splitStringArray([this.toString()], arguments, splitOptions, 0)[0];
+			}
+			
+			return result;
+		}
+	} else {
+		_logger.warning("Locust.Extensions.String", "String.prototype.nestedSplit already declared.");
+	}
 })(__locustMainContext);
 //================================= Locust.Bootstrap =================================
 (function (w) {
@@ -932,7 +1110,7 @@ var __warnings = true;
 
         var _other_attributes = "";
 
-        for (var key in _config) {
+        for (var key in Object.keys(_config)) {
             if (_config.hasOwnProperty(key)) {
                 _other_attributes += key + "=\"" + _config[key] + "\"";
             }
@@ -1536,7 +1714,7 @@ var __warnings = true;
 					if (typeof config == "string") {
 						result.html(config);
 					} else {
-						for (var key in config) {
+						for (var key in Object.keys(config)) {
 							if (config.hasOwnProperty(key)) {
 								var _key = key.toLowerCase();
 								switch (_key) {
@@ -1544,7 +1722,7 @@ var __warnings = true;
 										if (typeof config.style == "string") {
 											result.attr("style", config.style);
 										} else {
-											for (var key in config.style) {
+											for (var key in Object.keys(config.style)) {
 												if (config.style.hasOwnProperty(key)) {
 													result.css(key, config.style[key]);
 												}
@@ -1552,7 +1730,7 @@ var __warnings = true;
 										}
 										break;
 									case "data":
-										for (var key in config.data) {
+										for (var key in Object.keys(config.data)) {
 											if (config.data.hasOwnProperty(key)) {
 												result.data(key, config.data[key]);
 											}
@@ -1872,7 +2050,7 @@ var __warnings = true;
 			var tag = e.tagName.toLowerCase();
 			var type = e.type.toLowerCase();
 
-			return tag == "button" || (tag == "input" && (type == "image" || type == "button" || type == "submit" || type == "reset"));
+			return w.jQuery(e).hasClass("exclude") || tag == "button" || (tag == "input" && (type == "image" || type == "button" || type == "submit" || type == "reset"));
 		}
 	}
 	if (!w.Locust.Form.Each) {
@@ -2022,6 +2200,70 @@ var __warnings = true;
             }, excludes);
         }
     }
+	/*
+		This methods is created especially to use in ASP.NET MVC applications.
+		
+		In ASP.NET MVC when sending object models containing collections to the server,
+		they must be in a specific format. For example to send an array of Persons to the server,
+		in order for the MVC's model binder to be able to distinguish person objects, each property must
+		have a prefix in {object}[index].{property} format like "person[0].name", "person[0].age".
+		
+		MVC Html Helpers in MVC views already produce approriate output for object models.
+		For example in the following view ...
+		
+		@model List<Person>
+		@for (var i = 0; i < Model.Count; i++)
+		{
+			@Html.TextBoxFor(p => p[i].Name);
+			@Html.TextBoxFor(p => p[i].Age);
+		}
+		
+		... MVC generates the following output:
+		
+		<form method="post" action="/Book/Authors">
+
+			<input type="text" name="[0].Name" value="Curious George" />
+			<input type="text" name="[0].Age" value="24" />
+			
+			<input type="text" name="[1].Name" value="Steve McConnell" />
+			<input type="text" name="[1].Age" value="25" />
+			
+			<input type="text" name="[2].Name" value="JRR Tolkien" />
+			<input type="text" name="[2].Age" value="26" />
+			
+			<input type="submit" />
+		</form>
+		
+		But if you plan to send form data using ajax to the server you need to format your array of data
+		to be in MVC shape so that the MVC model binder can extract them out of the request and create a List<> object.
+		
+		In such situation this MvcArray() utility method will be helpful. This is especially useful when you are using a javascript Grid.
+		
+		example:
+			MvcArray([
+						{ name: "ali", age: 24 },
+						{ name: "reza", age: 25 },
+						{ name: "saeed", age: 26 },
+					 ],"")
+			output: [
+						{ "[0].name": "ali",   "[0].age": 24 },
+						{ "[1].name": "reza",  "[1].age": 25 },
+						{ "[2].name": "saeed", "[2].age": 26 }
+					]
+			
+			if you specify a value for the "name" argument, it will be added to each preprty.
+			
+			MvcArray([
+						{ name: "ali", age: 24 },
+						{ name: "reza", age: 25 },
+						{ name: "saeed", age: 26 },
+					 ],"person")
+			output: [
+						{ "person[0].name": "ali",   "person[0].age": 24 },
+						{ "person[1].name": "reza",  "person[1].age": 25 },
+						{ "person[2].name": "saeed", "person[2].age": 26 }
+					]
+	*/
 	if (!w.Locust.Form.MvcArray) {
         w.Locust.Form.MvcArray = function (array, name) {
 			var result = [];
@@ -2030,7 +2272,7 @@ var __warnings = true;
 				array.forEach(function(x, i){
 					var json = {};
 					
-					for (var key in x) {
+					for (var key in Object.keys(x)) {
 						if (x.hasOwnProperty(key)) {
 							json[name + "[" + i + "]." + key] = x[key];
 						}
@@ -2073,7 +2315,7 @@ var __warnings = true;
         var hash = {};
         var generateHash = function (arg) {
             var result = "";
-            for (var property in arg) {
+            for (var property in Object.keys(arg)) {
                 if (arg.hasOwnProperty(property)) {
                     result += paramSeparator + property + keyValueSeparator + arg[property];
                 }
@@ -2116,7 +2358,7 @@ var __warnings = true;
             }
             if (typeof arg == 'number') {
                 var i = 0;
-                for (var property in hash) {
+                for (var property in Object.keys(hash)) {
                     if (hash.hasOwnProperty(property)) {
                         if (arg == i++) {
                             return hash[property];
@@ -6219,7 +6461,7 @@ var __warnings = true;
 							var items = item.value.items;
 							
 							if (items) {
-								for (var __key in items) {
+								for (var __key in Object.keys(items)) {
 									if (__key == searchKey) {
 										return items[__key];
 									}

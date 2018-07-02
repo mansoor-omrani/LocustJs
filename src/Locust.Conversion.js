@@ -141,7 +141,7 @@
             var xml = doc.getElementsByTagName("xml")[0];
             var key, elem;
 
-            for (key in json) {
+            for (key in Object.keys(json)) {
                 if (key && json.hasOwnProperty(key)) {
                     elem = doc.createElement(key);
                     w.jQuery(elem).text(json[key]);

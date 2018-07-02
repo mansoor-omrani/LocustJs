@@ -74,7 +74,7 @@
 
         var _other_attributes = "";
 
-        for (var key in _config) {
+        for (var key in Object.keys(_config)) {
             if (_config.hasOwnProperty(key)) {
                 _other_attributes += key + "=\"" + _config[key] + "\"";
             }

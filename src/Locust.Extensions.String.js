@@ -78,21 +78,30 @@
 	}
 	
 	if (!w.String.prototype.format) {
-		w.String.prototype.format = function (values) {
+		w.String.prototype.format = function () {
 			var s = this;
-
-			if (w.Array.isArray(values)) {
-				var i = 0;
-				values.forEach(function (value) {
-					s = s.replaceAll("{" + i + "}", value);
-					i++;
-				})
-			} else {
-				for (var key in values) {
-					s = s.replaceAll("{" + key + "}", values[key]);
+			if (arguments.length > 0) {
+				if (arguments.length == 1) {
+					var values = arguments[0];
+					
+					if (w.Array.isArray(values)) {
+						var i = 0;
+						values.forEach(function (value) {
+							s = s.replaceAll("{" + i + "}", value);
+							i++;
+						})
+					} else if (typeof values == "string") {
+						s = s.replaceAll("{0}", values[key]);
+					} else {
+						for (var key in Object.keys(values)) {
+							s = s.replaceAll("{" + key + "}", values[key]);
+						}
+					}
+				} else {
+					s = this.replace(/{(\d+)}/g, function (match, number) { return args[number] != undefined ? args[number] : match; });
 				}
 			}
-
+			
 			return s;
 		}
 	} else {
@@ -266,5 +275,72 @@
 		}
 	} else {
 		_logger.warning("Locust.Extensions.String", "String.prototype.splitString already declared.");
+	}
+	
+	if (!w.String.prototype.nestedSplit) {
+		/* examples
+			input: "a=1&b=ali"
+			output:
+			[
+				["a",1],
+				["b","ali"]
+			]
+			
+			input: "a=1:b=ali&a=2:b=reza:c=true&a=3:b=:c=false&b=saeed:c=true"
+			output:
+				[
+					[ ["a",1],["b", "ali"] ],
+					[ ["a",2],["b", "reza"],["c", true] ],
+					[ ["a",3],["b"],["c", false] ],
+					[ ["b", "saeed"],["c", true] ]
+				]
+		*/
+		w.String.prototype.nestedSplit = function () {
+			var result = [];
+			
+			if (arguments.length > 0) {
+				var splitOptions = w.StringSplitOptions.None;
+				var separatorsCount = arguments.length;
+				
+				if (arguments.length > 1) {
+					splitOptions = arguments[arguments.length - 1];
+					if (splitOptions == w.StringSplitOptions.RemoveEmptyEntries ||
+						splitOptions == w.StringSplitOptions.TrimEntries ||
+						splitOptions == w.StringSplitOptions.TrimAndRemoveEmptyEntries ||
+						splitOptions == w.StringSplitOptions.ToLowerEntries ||
+						splitOptions == w.StringSplitOptions.TrimToLowerAndRemoveEmptyEntries ||
+						splitOptions == w.StringSplitOptions.ToUpperEntries ||
+						splitOptions == w.StringSplitOptions.TrimToUpperAndRemoveEmptyEntries) {
+						separatorsCount--;
+					} else {
+					  splitOptions = w.StringSplitOptions.None;
+					}
+				}
+				
+				function splitStringArray(arr, separators, options, i) {
+					var _result = [];
+					
+					if (i < separatorsCount) {
+						for (var index in Object.keys(arr)) {
+							if (typeof arr[index] == "string") {
+								var tempArr = arr[index].splitString(separators[i], options);
+								var tempItem = splitStringArray(tempArr, separators, options, i + 1);
+								_result.push(tempItem);
+							}
+						}
+					} else {
+						_result = arr;
+					}
+					
+					return _result;
+				}
+				
+				result = splitStringArray([this.toString()], arguments, splitOptions, 0)[0];
+			}
+			
+			return result;
+		}
+	} else {
+		_logger.warning("Locust.Extensions.String", "String.prototype.nestedSplit already declared.");
 	}
 })(__locustMainContext);

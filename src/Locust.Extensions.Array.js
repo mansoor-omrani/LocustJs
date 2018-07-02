@@ -100,4 +100,106 @@
 	} else {
 		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.any already declared.");
 	}
+	if (!w.Array.prototype.Objectify) {
+		/*	this method has close relation with String.prototype.nestedSplit in Locust.Extensions.String
+			examples
+			input:
+			[
+				["a", 1],
+				["b", "ali"]
+			]
+			output: { "a": 1, "b": "ali" }
+			
+			input:
+				[
+					[ ["a",1],["b", "ali"] ],
+					[ ["a",2],["b", "reza"],["c", true] ],
+					[ ["a",3],["b"],["c", false] ],
+					[ ["b", "saeed"],["c", true] ]
+				]
+			output:
+				[
+					{ "a": 1, "b": "ali" },
+					{ "a": 2, "b": "reza" , "c": true },
+					{ "a": 3, "b": null, "c": false },
+					{ "b": "saeed", "c": true}
+				]
+		*/
+		
+		w.Array.prototype.Objectify = function () {
+			var result;
+			var arr = this;
+			
+			if (!w.jQuery.isArray(arr)) {
+				result = {};
+				result[arr.toString()] = null;
+				
+				return result;
+			}
+			if (arr.length == 0)
+				return null;
+			if (arr.length == 1) {
+				result = {};
+				result[arr[0].toString()] = null;
+				
+				return result;
+			}
+			
+			for (var i = 0; i < arr.length; i += 2) {
+				var key = arr[i];
+				var value = (i + 1 < arr.length) ? arr[i + 1]: null;
+
+				if (i == 0) {
+					result = (w.jQuery.isArray(key))?[]:{};
+				}
+				
+				if (w.jQuery.isArray(key)) {
+					var temp1 = key.Objectify();
+					var temp2;
+					var temp = {};
+					
+					if (value) {
+						if (w.jQuery.isArray(value))
+							temp2 = value.Objectify();
+						else
+							temp2 = value;
+					}
+					
+					if (!w.jQuery.isArray(temp1)) {
+						temp = w.jQuery.extend(temp, temp1, temp2);
+						
+						if (Object.keys(temp).length == (temp1 ? Object.keys(temp1).length : 0) + (temp2 ? Object.keys(temp2).length: 0)) {
+							if (w.jQuery.isArray(result)) {
+								result = temp;
+								continue;
+							}
+						}
+					}
+					
+					if (w.jQuery.isArray(result)) {
+						result.push(temp1);
+						
+						if (temp2)
+							result.push(temp2);
+					} else {
+						w.jQuery.extend(result, temp1);
+						w.jQuery.extend(result, temp2);
+					}
+				} else {
+					if (w.jQuery.isArray(value))
+						result[key] = value.Objectify();
+					else
+						result[key] = value;
+				}
+			}
+			
+			if (w.jQuery.isArray(result) && result.length == 1) {
+				result = result[0];
+			}
+			
+			return result;
+		}
+	} else {
+		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.removeAt already declared.");
+	}
 })(__locustMainContext);

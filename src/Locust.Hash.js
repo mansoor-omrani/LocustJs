@@ -23,7 +23,7 @@
         var hash = {};
         var generateHash = function (arg) {
             var result = "";
-            for (var property in arg) {
+            for (var property in Object.keys(arg)) {
                 if (arg.hasOwnProperty(property)) {
                     result += paramSeparator + property + keyValueSeparator + arg[property];
                 }
@@ -66,7 +66,7 @@
             }
             if (typeof arg == 'number') {
                 var i = 0;
-                for (var property in hash) {
+                for (var property in Object.keys(hash)) {
                     if (hash.hasOwnProperty(property)) {
                         if (arg == i++) {
                             return hash[property];

@@ -307,7 +307,7 @@
 							var items = item.value.items;
 							
 							if (items) {
-								for (var __key in items) {
+								for (var __key in Object.keys(items)) {
 									if (__key == searchKey) {
 										return items[__key];
 									}

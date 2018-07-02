@@ -62,7 +62,7 @@
 			var tag = e.tagName.toLowerCase();
 			var type = e.type.toLowerCase();
 
-			return tag == "button" || (tag == "input" && (type == "image" || type == "button" || type == "submit" || type == "reset"));
+			return w.jQuery(e).hasClass("exclude") || tag == "button" || (tag == "input" && (type == "image" || type == "button" || type == "submit" || type == "reset"));
 		}
 	}
 	if (!w.Locust.Form.Each) {
@@ -212,6 +212,70 @@
             }, excludes);
         }
     }
+	/*
+		This methods is created especially to use in ASP.NET MVC applications.
+		
+		In ASP.NET MVC when sending object models containing collections to the server,
+		they must be in a specific format. For example to send an array of Persons to the server,
+		in order for the MVC's model binder to be able to distinguish person objects, each property must
+		have a prefix in {object}[index].{property} format like "person[0].name", "person[0].age".
+		
+		MVC Html Helpers in MVC views already produce approriate output for object models.
+		For example in the following view ...
+		
+		@model List<Person>
+		@for (var i = 0; i < Model.Count; i++)
+		{
+			@Html.TextBoxFor(p => p[i].Name);
+			@Html.TextBoxFor(p => p[i].Age);
+		}
+		
+		... MVC generates the following output:
+		
+		<form method="post" action="/Book/Authors">
+
+			<input type="text" name="[0].Name" value="Curious George" />
+			<input type="text" name="[0].Age" value="24" />
+			
+			<input type="text" name="[1].Name" value="Steve McConnell" />
+			<input type="text" name="[1].Age" value="25" />
+			
+			<input type="text" name="[2].Name" value="JRR Tolkien" />
+			<input type="text" name="[2].Age" value="26" />
+			
+			<input type="submit" />
+		</form>
+		
+		But if you plan to send form data using ajax to the server you need to format your array of data
+		to be in MVC shape so that the MVC model binder can extract them out of the request and create a List<> object.
+		
+		In such situation this MvcArray() utility method will be helpful. This is especially useful when you are using a javascript Grid.
+		
+		example:
+			MvcArray([
+						{ name: "ali", age: 24 },
+						{ name: "reza", age: 25 },
+						{ name: "saeed", age: 26 },
+					 ],"")
+			output: [
+						{ "[0].name": "ali",   "[0].age": 24 },
+						{ "[1].name": "reza",  "[1].age": 25 },
+						{ "[2].name": "saeed", "[2].age": 26 }
+					]
+			
+			if you specify a value for the "name" argument, it will be added to each preprty.
+			
+			MvcArray([
+						{ name: "ali", age: 24 },
+						{ name: "reza", age: 25 },
+						{ name: "saeed", age: 26 },
+					 ],"person")
+			output: [
+						{ "person[0].name": "ali",   "person[0].age": 24 },
+						{ "person[1].name": "reza",  "person[1].age": 25 },
+						{ "person[2].name": "saeed", "person[2].age": 26 }
+					]
+	*/
 	if (!w.Locust.Form.MvcArray) {
         w.Locust.Form.MvcArray = function (array, name) {
 			var result = [];
@@ -220,7 +284,7 @@
 				array.forEach(function(x, i){
 					var json = {};
 					
-					for (var key in x) {
+					for (var key in Object.keys(x)) {
 						if (x.hasOwnProperty(key)) {
 							json[name + "[" + i + "]." + key] = x[key];
 						}
