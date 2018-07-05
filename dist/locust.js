@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.1";
+        w.Locust.Version = "1.4.2";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -2024,6 +2024,7 @@ var __warnings = true;
     }
 	
 	//Form Element Types:
+	// 		"fieldset"
     // 		"text"
     // 		"email"
     // 		"password"
@@ -2050,7 +2051,7 @@ var __warnings = true;
 			var tag = e.tagName.toLowerCase();
 			var type = e.type.toLowerCase();
 
-			return w.jQuery(e).hasClass("exclude") || tag == "button" || (tag == "input" && (type == "image" || type == "button" || type == "submit" || type == "reset"));
+			return w.jQuery(e).hasClass("exclude") || tag == "fieldset" || tag == "button" || (tag == "input" && (type == "image" || type == "button" || type == "submit" || type == "reset"));
 		}
 	}
 	if (!w.Locust.Form.Each) {
@@ -2101,20 +2102,38 @@ var __warnings = true;
 				var key = e.name || e.id;
 				
 				if (key) {
-					if (json.hasOwnProperty(key)) {
-						if (w.jQuery.isArray(json[key])) {
-							json[key].push(value);
-						} else {
-							json[key] = new Array(json[key], value);
+					if (e.type == "radio") {
+						if (e.checked) {
+							if (w.jQuery(e).attr("value") != undefined) {
+								json[key] = value;
+							} else {
+								json[key] = "on";
+							}
 						}
 					} else {
-						if (w.jQuery(e).attr("value") != undefined) {
-							json[key] = value;
-						} else {
-							if (e.checked) {
-								json[key] = e.checked;
+						if (json.hasOwnProperty(key)) {
+							if (w.jQuery.isArray(json[key])) {
+								json[key].push(value);
 							} else {
-								json[key] = value;
+								json[key] = new Array(json[key], value);
+							}
+						} else {
+							if (w.jQuery(e).attr("value") != undefined) {
+								if (e.type == "checkbox") {
+									if (e.checked) {
+										json[key] = value;
+									}
+								} else {
+									json[key] = value;
+								}
+							} else {
+								if (e.type == "checkbox") {
+									if (e.checked) {
+										json[key] = "on";
+									}
+								} else {
+									json[key] = value;
+								}
 							}
 						}
 					}
@@ -2133,6 +2152,9 @@ var __warnings = true;
 			return result;
         }
     }
+	// if more than one form is going to be loaded using data, the data is expected to be an array of objects
+	// in { "index": number, "data": { ... } } format.
+	// 
 	if (!w.Locust.Form.LoadJson) {
         w.Locust.Form.LoadJson = function (formSelector, data, excludes) {
 			var lastForm;
@@ -2143,14 +2165,10 @@ var __warnings = true;
 					lastForm = frm;
 					
 					if (w.jQuery.isArray(data)) {
-						if (data.length > frmIndex) {
-							if (data[frmIndex].data != undefined) {
-								json = data[frmIndex].data;
-							} else {
-								json = data[frmIndex];
-							}
-						} else {
-							json = undefined;
+						var _form = data.find(function(f){ return f.index == frmIndex; });
+						
+						if (_form && _form.data != undefined) {
+							json = _form.data;
 						}
 					} else {
 						json = data;
@@ -2160,14 +2178,22 @@ var __warnings = true;
 				if (json != undefined) {
 					var key = e.name || e.id;
 					
-					if (e.type == "checkbox" || e.type == "radio") {
-						if (w.jQuery.isArray(json[key])) {
-							w.jQuery(e).prop('checked', json[key].indexOf(w.jQuery(e).val()) >= 0);
+					if (json[key] != undefined) {
+						if (e.type == "checkbox" || e.type == "radio") {
+							if (w.jQuery.isArray(json[key])) {
+								w.jQuery(e).prop('checked', json[key].indexOf(w.jQuery(e).val()) >= 0);
+							} else {
+								if (w.jQuery(e).attr("value") != undefined) {
+									if (w.jQuery(e).val() == (json[key] == undefined || json[key] == null ? "" : json[key].toString())) {
+										w.jQuery(e).prop('checked', true);
+									}
+								} else {
+									w.jQuery(e).prop('checked', json[key] == "on");
+								}
+							}
 						} else {
-							w.jQuery(e).prop('checked', json[key]);
+							w.jQuery(e).val(json[key]);
 						}
-					} else {
-						w.jQuery(e).val(json[key]);
 					}
 				}
             }, excludes);
@@ -2197,6 +2223,13 @@ var __warnings = true;
         w.Locust.Form.Enable = function (formSelector, excludes) {
             w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
                 w.jQuery(e).removeAttr('disabled');
+            }, excludes);
+        }
+    }
+	if (!w.Locust.Form.ReadOnly) {
+        w.Locust.Form.ReadOnly = function (formSelector, value, excludes) {
+            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+                w.jQuery(e).prop('readonly', value);
             }, excludes);
         }
     }
