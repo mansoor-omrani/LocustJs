@@ -10,7 +10,7 @@
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.2";
+        w.Locust.Version = "1.4.3";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -28,5 +28,24 @@
         };
     }
     
+	w.Locust.eachKey = function (obj, callback) {
+		var _keys = Object.keys(obj);
+		var result;
+		
+		if (typeof callback == "function") {
+			for (var i = 0; i < _keys.length; i++) {
+				var r = callback(_keys[i], i);
+				
+				if (r != undefined && r != null && r.toString() != "") {
+					result = r;
+					
+					break;
+				}
+			}
+		}
+		
+		return result;
+	}
+	
 	w.$$ = w.Locust;
 })(__locustMainContext);

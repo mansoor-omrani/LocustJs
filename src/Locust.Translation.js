@@ -307,11 +307,11 @@
 							var items = item.value.items;
 							
 							if (items) {
-								for (var __key in Object.keys(items)) {
-									if (__key == searchKey) {
-										return items[__key];
+								return w.Locust.eachKey(items, function(key) {
+									if (key == searchKey) {
+										return items[key];
 									}
-								}
+								});
 							}
 						}
 					} catch (e) {

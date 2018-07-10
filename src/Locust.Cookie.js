@@ -20,17 +20,17 @@
     }
     if (!w.Locust.Cookie) {
         w.Locust.Cookie = {
-			DefaultEncoder: function(x){
+			defaultEncoder: function(x){
 				return JSON.stringify(x);
 			},
-			DefaultDecoder: function(x){
+			defaultDecoder: function(x){
 				try {
 					return JSON.parse(x);
 				} catch (e) {
 					return x;
 				}
 			},
-			Set: function (config) {
+			set: function (config) {
 				var _config = w.jQuery.extend({
 					name: "",
 					value: "",
@@ -43,12 +43,12 @@
 				_config.logger = w.Locust.getLogger(_config.logger);
 				
 				if (!w.document) {
-					_config.logger.abort("Locust.Cookie.Set", "no document found");
+					_config.logger.abort("Locust.Cookie.set", "no document found");
 					return;
 				}
 				
 				if (!w.document.cookie) {
-					_config.logger.abort("Locust.Cookie.Set", "document does not support cookies");
+					_config.logger.abort("Locust.Cookie.set", "document does not support cookies");
 					return;
 				}
 				
@@ -65,10 +65,10 @@
                     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
 					
                     expires = "; expires=" + date.toGMTString();
-					_config.logger.info("Locust.Cookie.Set", _config.name + ": " + expires);
+					_config.logger.info("Locust.Cookie.set", _config.name + ": " + expires);
                 } else {
                     expires = "";
-					_config.logger.info("Locust.Cookie.Set", _config.name + ": no expireDays is set");
+					_config.logger.info("Locust.Cookie.set", _config.name + ": no expireDays is set");
                 }
 				
 				var _value = _config.value;
@@ -84,7 +84,7 @@
 				
 				return _value;
             },
-            Get: function (name) {
+            get: function (name) {
 				var _config = {
 					name: "",
 					decode: null,
@@ -99,12 +99,12 @@
 				_config.logger = w.Locust.getLogger(_config.logger);
 				
 				if (!w.document) {
-					_config.logger.abort("Locust.Cookie.Get", "no document found");
+					_config.logger.abort("Locust.Cookie.get", "no document found");
 					return;
 				}
 				
 				if (!w.document.cookie) {
-					_config.logger.abort("Locust.Cookie.Get", "document does not support cookies");
+					_config.logger.abort("Locust.Cookie.get", "document does not support cookies");
 					return;
 				}
 				
@@ -122,11 +122,11 @@
                     if (cookie.indexOf(nameAndEqualSign) == 0) {
 						result = decodeURIComponent(cookie.substring(nameAndEqualSign.length, cookie.length));
 						
-						_config.logger.debug("Locust.Cookie.Get", _config.name + ": found. [" + result + "]");
+						_config.logger.debug("Locust.Cookie.get", _config.name + ": found. [" + result + "]");
 						
 						if (w.jQuery.isFunction(_config.decode)) {
 							result = _config.decode(_value);
-							_config.logger.debug("Locust.Cookie.Get", _config.name + ": decoded value = " + result);
+							_config.logger.debug("Locust.Cookie.get", _config.name + ": decoded value = " + result);
 						}
 						
 						break;
@@ -171,17 +171,17 @@
 				
                 return result;
 			},
-			GetOrSet: function (config) {
-				var result = w.Locust.Cookie.Get(config);
+			getOrSet: function (config) {
+				var result = w.Locust.Cookie.get(config);
 				
 				if (result == null) {
-					result = w.Locust.Cookie.Set(config);
+					result = w.Locust.Cookie.set(config);
 				}
 				
 				return result;
 			},
-            Remove: function (name, path) {
-                w.Locust.Cookie.Set(name, "", -1, path);
+            remove: function (name, path) {
+                w.Locust.Cookie.set(name, "", -1, path);
             }
 		};
     }

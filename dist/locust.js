@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.2";
+        w.Locust.Version = "1.4.3";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -32,6 +32,25 @@ var __warnings = true;
         };
     }
     
+	w.Locust.eachKey = function (obj, callback) {
+		var _keys = Object.keys(obj);
+		var result;
+		
+		if (typeof callback == "function") {
+			for (var i = 0; i < _keys.length; i++) {
+				var r = callback(_keys[i], i);
+				
+				if (r != undefined && r != null && r.toString() != "") {
+					result = r;
+					
+					break;
+				}
+			}
+		}
+		
+		return result;
+	}
+	
 	w.$$ = w.Locust;
 })(__locustMainContext);
 
@@ -58,11 +77,13 @@ var __warnings = true;
     if (!w.Locust.Convert) {
         w.Locust.Convert = {};
     }
-    w.Locust.Convert.TryParseInt = function (str, defaultValue) {
+    w.Locust.Convert.tryParseInt = function (str, defaultValue) {
         // source: http://pietschsoft.com/post/2008/01/14/JavaScript-intTryParse-Equivalent
         var result = defaultValue;
 		
-        if (str !== null) {
+        if (!(str == null || str == undefined)) {
+			str = str.toString();
+			
             if (str.length > 0) {
                 if (!w.isNaN(str)) {
                     result = w.parseInt(str);
@@ -72,8 +93,8 @@ var __warnings = true;
 		
         return result;
     }
-	if (!w.Locust.Convert.ToArrayBuffer) {
-        w.Locust.Convert.ToArrayBuffer = function (buf) {
+	if (!w.Locust.Convert.toArrayBuffer) {
+        w.Locust.Convert.toArrayBuffer = function (buf) {
             var ab = new ArrayBuffer(buf.length);
             var view = new Uint8Array(ab);
 			
@@ -84,8 +105,8 @@ var __warnings = true;
             return ab;
         }
     }
-    if (!w.Locust.Convert.BytesToString) {
-        w.Locust.Convert.BytesToString = function (bytes, utf8) {
+    if (!w.Locust.Convert.bytesToString) {
+        w.Locust.Convert.bytesToString = function (bytes, utf8) {
             utf8 = !!utf8;
 
             var len = bytes.length,
@@ -125,8 +146,8 @@ var __warnings = true;
             return str;
         }
     }
-    if (!w.Locust.Convert.StringToBytes) {
-        w.Locust.Convert.StringToBytes = function (str, utf8) {
+    if (!w.Locust.Convert.stringToBytes) {
+        w.Locust.Convert.stringToBytes = function (str, utf8) {
             utf8 = !!utf8;
 
             var len = str.length,
@@ -162,30 +183,28 @@ var __warnings = true;
             return bytes.subarray(0, j);
         }
     }
-    if (!w.Locust.Convert.BytesToBase64String) {
-        w.Locust.Convert.BytesToBase64String = function (arr) {
-            return btoa(w.Locust.Convert.BytesToString(arr));
+    if (!w.Locust.Convert.bytesToBase64String) {
+        w.Locust.Convert.bytesToBase64String = function (arr) {
+            return btoa(w.Locust.Convert.bytesToString(arr));
         }
     }
-    if (!w.Locust.Convert.Base64StringToBytes) {
-        w.Locust.Convert.Base64StringToBytes = function (str) {
-            return w.Locust.Convert.StringToBytes(atob(str));
+    if (!w.Locust.Convert.base64StringToBytes) {
+        w.Locust.Convert.base64StringToBytes = function (str) {
+            return w.Locust.Convert.stringToBytes(atob(str));
         }
     }
-	if (!w.Locust.ToXml) {
-        w.Locust.ToXml = function (json) {
+	if (!w.Locust.Convert.toXml) {
+        w.Locust.Convert.toXml = function (json) {
             var doc = w.jQuery.parseXML("<xml/>");
             var xml = doc.getElementsByTagName("xml")[0];
             var key, elem;
-
-            for (key in Object.keys(json)) {
-                if (key && json.hasOwnProperty(key)) {
-                    elem = doc.createElement(key);
+			
+			w.Locust.eachKey(json, function(key) {
+				elem = doc.createElement(key);
                     w.jQuery(elem).text(json[key]);
                     xml.appendChild(elem);
-                }
-            }
-
+			});
+			
             return xml;
         }
     }
@@ -783,9 +802,9 @@ var __warnings = true;
 					} else if (typeof values == "string") {
 						s = s.replaceAll("{0}", values);
 					} else {
-						for (var key in Object.keys(values)) {
+						w.Locust.eachKey(values, function(key, i) {
 							s = s.replaceAll("{" + key + "}", values[key]);
-						}
+						});
 					}
 				} else {
 					s = this.replace(/{(\d+)}/g, function (match, number) { return args[number] != undefined ? args[number] : match; });
@@ -1011,13 +1030,14 @@ var __warnings = true;
 					var _result = [];
 					
 					if (i < separatorsCount) {
-						for (var index in Object.keys(arr)) {
+						w.Locust.eachKey(arr, function(index) {
 							if (typeof arr[index] == "string") {
 								var tempArr = arr[index].splitString(separators[i], options);
 								var tempItem = splitStringArray(tempArr, separators, options, i + 1);
+								
 								_result.push(tempItem);
 							}
-						}
+						});
 					} else {
 						_result = arr;
 					}
@@ -1109,13 +1129,11 @@ var __warnings = true;
         }
 
         var _other_attributes = "";
-
-        for (var key in Object.keys(_config)) {
-            if (_config.hasOwnProperty(key)) {
-                _other_attributes += key + "=\"" + _config[key] + "\"";
-            }
-        };
-
+		
+		w.Locust.eachKey(_config, function(key) {
+			_other_attributes += key + "=\"" + _config[key] + "\"";
+		});
+		
         result += "<button" + __id + " class=\"btn" + _config.display + _config.size + _config["class"] + "\" " + _config.style + _config.type + _config.title + _other_attributes + ">" + _config.text + "</button>";
 
         return { html: result, autoGeneratedId: autoGeneratedId, id: _config.id };
@@ -1475,17 +1493,17 @@ var __warnings = true;
     }
     if (!w.Locust.Cookie) {
         w.Locust.Cookie = {
-			DefaultEncoder: function(x){
+			defaultEncoder: function(x){
 				return JSON.stringify(x);
 			},
-			DefaultDecoder: function(x){
+			defaultDecoder: function(x){
 				try {
 					return JSON.parse(x);
 				} catch (e) {
 					return x;
 				}
 			},
-			Set: function (config) {
+			set: function (config) {
 				var _config = w.jQuery.extend({
 					name: "",
 					value: "",
@@ -1498,12 +1516,12 @@ var __warnings = true;
 				_config.logger = w.Locust.getLogger(_config.logger);
 				
 				if (!w.document) {
-					_config.logger.abort("Locust.Cookie.Set", "no document found");
+					_config.logger.abort("Locust.Cookie.set", "no document found");
 					return;
 				}
 				
 				if (!w.document.cookie) {
-					_config.logger.abort("Locust.Cookie.Set", "document does not support cookies");
+					_config.logger.abort("Locust.Cookie.set", "document does not support cookies");
 					return;
 				}
 				
@@ -1520,10 +1538,10 @@ var __warnings = true;
                     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
 					
                     expires = "; expires=" + date.toGMTString();
-					_config.logger.info("Locust.Cookie.Set", _config.name + ": " + expires);
+					_config.logger.info("Locust.Cookie.set", _config.name + ": " + expires);
                 } else {
                     expires = "";
-					_config.logger.info("Locust.Cookie.Set", _config.name + ": no expireDays is set");
+					_config.logger.info("Locust.Cookie.set", _config.name + ": no expireDays is set");
                 }
 				
 				var _value = _config.value;
@@ -1539,7 +1557,7 @@ var __warnings = true;
 				
 				return _value;
             },
-            Get: function (name) {
+            get: function (name) {
 				var _config = {
 					name: "",
 					decode: null,
@@ -1554,12 +1572,12 @@ var __warnings = true;
 				_config.logger = w.Locust.getLogger(_config.logger);
 				
 				if (!w.document) {
-					_config.logger.abort("Locust.Cookie.Get", "no document found");
+					_config.logger.abort("Locust.Cookie.get", "no document found");
 					return;
 				}
 				
 				if (!w.document.cookie) {
-					_config.logger.abort("Locust.Cookie.Get", "document does not support cookies");
+					_config.logger.abort("Locust.Cookie.get", "document does not support cookies");
 					return;
 				}
 				
@@ -1577,11 +1595,11 @@ var __warnings = true;
                     if (cookie.indexOf(nameAndEqualSign) == 0) {
 						result = decodeURIComponent(cookie.substring(nameAndEqualSign.length, cookie.length));
 						
-						_config.logger.debug("Locust.Cookie.Get", _config.name + ": found. [" + result + "]");
+						_config.logger.debug("Locust.Cookie.get", _config.name + ": found. [" + result + "]");
 						
 						if (w.jQuery.isFunction(_config.decode)) {
 							result = _config.decode(_value);
-							_config.logger.debug("Locust.Cookie.Get", _config.name + ": decoded value = " + result);
+							_config.logger.debug("Locust.Cookie.get", _config.name + ": decoded value = " + result);
 						}
 						
 						break;
@@ -1626,17 +1644,17 @@ var __warnings = true;
 				
                 return result;
 			},
-			GetOrSet: function (config) {
-				var result = w.Locust.Cookie.Get(config);
+			getOrSet: function (config) {
+				var result = w.Locust.Cookie.get(config);
 				
 				if (result == null) {
-					result = w.Locust.Cookie.Set(config);
+					result = w.Locust.Cookie.set(config);
 				}
 				
 				return result;
 			},
-            Remove: function (name, path) {
-                w.Locust.Cookie.Set(name, "", -1, path);
+            remove: function (name, path) {
+                w.Locust.Cookie.set(name, "", -1, path);
             }
 		};
     }
@@ -1699,8 +1717,8 @@ var __warnings = true;
 	
 	w.Locust.DOM.__events = ["click","dblclick","keydown","keyup","keypress","focus","blur","focusin","focusout","contextmenu","select","mouseover","mouseout","mouseenter","mouseleave","mouseup","mousedown","mousemove","load","unload","change","submit","hover", "change","resize","scroll"];
 	
-	if (!w.Locust.DOM.CreateElement) {
-        w.Locust.DOM.CreateElement = function (tag, config) {
+	if (!w.Locust.DOM.createElement) {
+        w.Locust.DOM.createElement = function (tag, config) {
 			var result;
 			
 			if (tag && tag.length) {
@@ -1714,56 +1732,52 @@ var __warnings = true;
 					if (typeof config == "string") {
 						result.html(config);
 					} else {
-						for (var key in Object.keys(config)) {
-							if (config.hasOwnProperty(key)) {
-								var _key = key.toLowerCase();
-								switch (_key) {
-									case "style":
-										if (typeof config.style == "string") {
-											result.attr("style", config.style);
-										} else {
-											for (var key in Object.keys(config.style)) {
-												if (config.style.hasOwnProperty(key)) {
-													result.css(key, config.style[key]);
-												}
-											}
+						w.Locust.eachKey(config, function(key) {
+							var _key = key.toLowerCase();
+							
+							switch (_key) {
+								case "style":
+									if (typeof config.style == "string") {
+										result.attr("style", config.style);
+									} else {
+										w.Locust.eachKey(config.style, function(key) {
+											result.css(key, config.style[key]);
+										});
+									}
+									break;
+								case "data":
+									w.Locust.eachKey(config.data, function(key) {
+										result.data(key, config.data[key]);
+									});
+									break;
+								case "value":
+									result.val(config.value);
+									break;
+								case "text":
+									result.text(config.text);
+									break;
+								case "children":
+									result.append(config.children);
+									break;
+								case "html":
+									result.html(config.html);
+									break;
+								default:
+									if (w.jQuery.isFunction(config[key])) {
+										var _eventIndex = w.Locust.DOM.__events.indexOf(_key);
+										
+										if (_eventIndex >= 0) {
+											result[w.Locust.DOM.__events[_eventIndex]](config[key]);
 										}
-										break;
-									case "data":
-										for (var key in Object.keys(config.data)) {
-											if (config.data.hasOwnProperty(key)) {
-												result.data(key, config.data[key]);
-											}
+									} else {
+										if (w.Locust.isEmpty(config[key])) {
+											result.attr(key, config[key]);
 										}
-										break;
-									case "value":
-										result.val(config.value);
-										break;
-									case "text":
-										result.text(config.text);
-										break;
-									case "children":
-										result.append(config.children);
-										break;
-									case "html":
-										result.html(config.html);
-										break;
-									default:
-										if (w.jQuery.isFunction(config[key])) {
-											var _eventIndex = w.Locust.DOM.__events.indexOf(_key);
-											
-											if (_eventIndex >= 0) {
-												result[w.Locust.DOM.__events[_eventIndex]](config[key]);
-											}
-										} else {
-											if (w.Locust.isEmpty(config[key])) {
-												result.attr(key, config[key]);
-											}
-										}
-										break;
-								}
+									}
+									
+									break;
 							}
-						}
+						});
 					}
 				}
 			}
@@ -1771,24 +1785,24 @@ var __warnings = true;
 			return result;
         }
     }
-	if (!w.Locust.DOM.CreateOption) {
-        w.Locust.DOM.CreateOption = function (config) {
+	if (!w.Locust.DOM.createOption) {
+        w.Locust.DOM.createOption = function (config) {
 			if (typeof config != "object") {
 				config = { text: config, value: config };
 			}
-            var result = w.Locust.DOM.CreateElement("<option>", config);
+            var result = w.Locust.DOM.createElement("<option>", config);
 			
 			return result;
         }
     }
-	if (!w.Locust.DOM.AppendOptions) {
-        w.Locust.DOM.AppendOptions = function (parentElement, config) {
+	if (!w.Locust.DOM.appendOptions) {
+        w.Locust.DOM.appendOptions = function (parentElement, config) {
 			if (parentElement) {
 				var _options = (config && config.options) || config;
 				
 				if (w.jQuery.isArray(_options)) {
 					_options.forEach(function(x) {
-						var _option = w.Locust.DOM.CreateOption(x);
+						var _option = w.Locust.DOM.createOption(x);
 						parentElement.append(_option);
 					});
 				}
@@ -1797,33 +1811,33 @@ var __warnings = true;
 			return parentElement;
 		}
 	}
-	if (!w.Locust.DOM.CreateSelect) {
-        w.Locust.DOM.CreateSelect = function (config) {
-            var result = w.Locust.DOM.CreateElement("<select>", config);
+	if (!w.Locust.DOM.createSelect) {
+        w.Locust.DOM.createSelect = function (config) {
+            var result = w.Locust.DOM.createElement("<select>", config);
 			
-			w.Locust.DOM.AppendOptions(result, config);
+			w.Locust.DOM.appendOptions(result, config);
 			
 			return result;
         }
     }
-	if (!w.Locust.DOM.CreateItem) {
-        w.Locust.DOM.CreateItem = function (config) {
+	if (!w.Locust.DOM.createItem) {
+        w.Locust.DOM.createItem = function (config) {
 			if (typeof config != "object") {
 				config = { html: config };
 			}
-            var result = w.Locust.DOM.CreateElement("<li>", config);
+            var result = w.Locust.DOM.createElement("<li>", config);
 			
 			return result;
         }
     }
-	if (!w.Locust.DOM.AppendItems) {
-        w.Locust.DOM.AppendItems = function (parentElement, config) {
+	if (!w.Locust.DOM.appendItems) {
+        w.Locust.DOM.appendItems = function (parentElement, config) {
 			if (parentElement) {
 				var _items = (config && config.items) || config;
 				
 				if (w.jQuery.isArray(_items)) {
 					_items.forEach(function(x) {
-						var _item = w.Locust.DOM.CreateItem(x);
+						var _item = w.Locust.DOM.createItem(x);
 						parentElement.append(_item);
 					});
 				}
@@ -1832,21 +1846,21 @@ var __warnings = true;
 			return parentElement;
 		}
 	}
-	if (!w.Locust.DOM.CreateList) {
-        w.Locust.DOM.CreateList = function (config) {
+	if (!w.Locust.DOM.createList) {
+        w.Locust.DOM.createList = function (config) {
 			var tag = "<ul>";
 			if (config && config.type != undefined) {
 				tag = "<ol>";
 			}
-            var result = w.Locust.DOM.CreateElement(tag, config);
+            var result = w.Locust.DOM.createElement(tag, config);
 			
-			w.Locust.DOM.AppendItems(result, config);
+			w.Locust.DOM.appendItems(result, config);
 			
 			return result;
         }
     }
-	if (!w.Locust.DOM.CreateTableCell) {
-        w.Locust.DOM.CreateTableCell = function (config, tag) {
+	if (!w.Locust.DOM.createTableCell) {
+        w.Locust.DOM.createTableCell = function (config, tag) {
 			var result;
 			var _tag = "<td>";
 			
@@ -1859,28 +1873,28 @@ var __warnings = true;
 			if (w.Locust.isEmpty(config)) {
 				result = w.jQuery(_tag).html(config);
 			} else {
-				result = w.Locust.DOM.CreateElement(_tag, config);
+				result = w.Locust.DOM.createElement(_tag, config);
 			}
 			
 			return result;
 		}
 	}
-	if (!w.Locust.DOM.CreateTableRow) {
-        w.Locust.DOM.CreateTableRow = function (config) {
+	if (!w.Locust.DOM.createTableRow) {
+        w.Locust.DOM.createTableRow = function (config) {
             var result;
 
 			if (w.jQuery.isArray(config)) {
 				result = w.jQuery("<tr>");
 				config.forEach(function(x) {
-					var td = w.Locust.DOM.CreateTableCell(x);
+					var td = w.Locust.DOM.createTableCell(x);
 					result.append(td);
 				});
 			} else {
-				result = w.Locust.DOM.CreateElement("<tr>", config);
+				result = w.Locust.DOM.createElement("<tr>", config);
 			
 				if (w.jQuery.isArray(config.cols)) {
 					config.cols.forEach(function(x) {
-						var td = w.Locust.DOM.CreateTableCell(x);
+						var td = w.Locust.DOM.createTableCell(x);
 						result.append(td);
 					});
 				}
@@ -1889,14 +1903,14 @@ var __warnings = true;
 			return result;
         }
     }
-	if (!w.Locust.DOM.AppendTableCells) {
-        w.Locust.DOM.AppendTableCells = function (parentElement, config, tag) {
+	if (!w.Locust.DOM.appendTableCells) {
+        w.Locust.DOM.appendTableCells = function (parentElement, config, tag) {
 			if (parentElement) {
 				var _cells = (config && config.cols) || (config && config.cells) || config;
 				
 				if (w.jQuery.isArray(_cells)) {
 					_cells.forEach(function(x) {
-						var td = w.Locust.DOM.CreateTableCell(x, tag);
+						var td = w.Locust.DOM.createTableCell(x, tag);
 						parentElement.append(td);
 					});
 				}
@@ -1905,14 +1919,14 @@ var __warnings = true;
 			return parentElement;
 		}
 	}
-	if (!w.Locust.DOM.AppendTableRows) {
-        w.Locust.DOM.AppendTableRows = function (parentElement, config) {
+	if (!w.Locust.DOM.appendTableRows) {
+        w.Locust.DOM.appendTableRows = function (parentElement, config) {
 			if (parentElement) {
 				var _rows = (config && config.rows) || config;
 				
 				if (w.jQuery.isArray(_rows)) {
 					_rows.forEach(function(x) {
-						var tr = w.Locust.DOM.CreateTableRow(x);
+						var tr = w.Locust.DOM.createTableRow(x);
 						parentElement.append(tr);
 					});
 				}
@@ -1920,61 +1934,61 @@ var __warnings = true;
 			return parentElement;
 		}
 	}
-	if (!w.Locust.DOM.CreateTableHead) {
-        w.Locust.DOM.CreateTableHead = function (config) {
-            var result = w.Locust.DOM.CreateElement("<thead>", config);
+	if (!w.Locust.DOM.createTableHead) {
+        w.Locust.DOM.createTableHead = function (config) {
+            var result = w.Locust.DOM.createElement("<thead>", config);
 			
 			if (config && config.cells) {
-				w.Locust.DOM.AppendTableCells(result, config.cells, "th");
+				w.Locust.DOM.appendTableCells(result, config.cells, "th");
 			}
 			
 			return result;
         }
     }
-	if (!w.Locust.DOM.CreateTableFoot) {
-        w.Locust.DOM.CreateTableFoot = function (config) {
-            var result = w.Locust.DOM.CreateElement("<tfoot>", config);
+	if (!w.Locust.DOM.createTableFoot) {
+        w.Locust.DOM.createTableFoot = function (config) {
+            var result = w.Locust.DOM.createElement("<tfoot>", config);
 			
 			if (config && config.cells) {
-				w.Locust.DOM.AppendTableCells(result, config.cells);
+				w.Locust.DOM.appendTableCells(result, config.cells);
 			}
 			
 			return result;
         }
     }
-	if (!w.Locust.DOM.CreateTableBody) {
-        w.Locust.DOM.CreateTableBody = function (config) {
-            var result = w.Locust.DOM.CreateElement("<tbody>", config);
+	if (!w.Locust.DOM.createTableBody) {
+        w.Locust.DOM.createTableBody = function (config) {
+            var result = w.Locust.DOM.createElement("<tbody>", config);
 			
-			w.Locust.DOM.AppendTableRows(result, config);
+			w.Locust.DOM.appendTableRows(result, config);
 			
 			return result;
         }
     }
-	if (!w.Locust.DOM.CreateTable) {
-        w.Locust.DOM.CreateTable = function (config) {
-            var result = w.Locust.DOM.CreateElement("<table>", config);
+	if (!w.Locust.DOM.createTable) {
+        w.Locust.DOM.createTable = function (config) {
+            var result = w.Locust.DOM.createElement("<table>", config);
 			
 			if (config && config.caption) {
-				var caption = w.Locust.DOM.CreateElement("<caption>", config.caption);
+				var caption = w.Locust.DOM.createElement("<caption>", config.caption);
 				result.append(caption);
 			}
 			
 			if (config && config.head) {
-				var head = w.Locust.DOM.CreateTableHead(config.head);
+				var head = w.Locust.DOM.createTableHead(config.head);
 				result.append(head);
 			}
 			
 			if (config && config.body) {
-				var body = w.Locust.DOM.CreateTableBody(config.body);
+				var body = w.Locust.DOM.createTableBody(config.body);
 				result.append(body);
 			}
 			else {
-				w.Locust.DOM.AppendTableRows(result, config);
+				w.Locust.DOM.appendTableRows(result, config);
 			}
 			
 			if (config && config.foot) {
-				var foot = w.Locust.DOM.CreateTableFoot(config.foot);
+				var foot = w.Locust.DOM.createTableFoot(config.foot);
 				result.append(foot);
 			}
 			
@@ -2013,7 +2027,7 @@ var __warnings = true;
     if (!w.Locust.Form) {
         w.Locust.Form = {};
     }
-    w.Locust.Form.Post = function (url, args) {
+    w.Locust.Form.post = function (url, args) {
         var f = w.jQuery("<form>").attr('method', 'POST').attr('action', url).insertAfter(w.jQuery("body"));
 		
         w.jQuery.each(args, function (propName, propValue) {
@@ -2046,16 +2060,16 @@ var __warnings = true;
     // 		"url"
     // 		"week"
     // 		"hidden"
-	if (!w.Locust.Form.DefaultExclude) {
-        w.Locust.Form.DefaultExclude = function (e) {
+	if (!w.Locust.Form.defaultExclude) {
+        w.Locust.Form.defaultExclude = function (e) {
 			var tag = e.tagName.toLowerCase();
 			var type = e.type.toLowerCase();
 
 			return w.jQuery(e).hasClass("exclude") || tag == "fieldset" || tag == "button" || (tag == "input" && (type == "image" || type == "button" || type == "submit" || type == "reset"));
 		}
 	}
-	if (!w.Locust.Form.Each) {
-        w.Locust.Form.Each = function (selector, fnProcess, excludes) {
+	if (!w.Locust.Form.each) {
+        w.Locust.Form.each = function (selector, fnProcess, excludes) {
             w.jQuery(selector).each(function (index, frm) {
                 if (w.jQuery(frm).prop("tagName").toLowerCase() == 'form') {
                     var elems = frm.elements;
@@ -2064,7 +2078,7 @@ var __warnings = true;
 						var _exclude;
 						
 						if (!w.jQuery.isFunction(excludes)) {
-							_exclude = w.Locust.Form.DefaultExclude;
+							_exclude = w.Locust.Form.defaultExclude;
 						} else {
 							_exclude = excludes;
 						};
@@ -2081,14 +2095,14 @@ var __warnings = true;
             });
         }
     }
-	if (!w.Locust.Form.ToJson) {
-        w.Locust.Form.ToJson = function (formSelector, excludes) {
+	if (!w.Locust.Form.toJson) {
+        w.Locust.Form.toJson = function (formSelector, excludes) {
 			var lastForm;
             var json = {};
 			var result = [];
 			var frmCnt = 0;
 			
-            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+            w.Locust.Form.each(formSelector, function (e, elementIndex, frm, frmIndex) {
 				if (lastForm == undefined) {
 					lastForm = frm;
 				}
@@ -2155,12 +2169,12 @@ var __warnings = true;
 	// if more than one form is going to be loaded using data, the data is expected to be an array of objects
 	// in { "index": number, "data": { ... } } format.
 	// 
-	if (!w.Locust.Form.LoadJson) {
-        w.Locust.Form.LoadJson = function (formSelector, data, excludes) {
+	if (!w.Locust.Form.loadJson) {
+        w.Locust.Form.loadJson = function (formSelector, data, excludes) {
 			var lastForm;
             var json;
 			
-			w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+			w.Locust.Form.each(formSelector, function (e, elementIndex, frm, frmIndex) {
 				if (lastForm != frm || json == undefined) {
 					lastForm = frm;
 					
@@ -2199,9 +2213,9 @@ var __warnings = true;
             }, excludes);
 		}
 	}
-	if (!w.Locust.Form.Reset) {
-        w.Locust.Form.Reset = function (formSelector, excludes) {
-            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+	if (!w.Locust.Form.reset) {
+        w.Locust.Form.reset = function (formSelector, excludes) {
+            w.Locust.Form.each(formSelector, function (e, elementIndex, frm, frmIndex) {
 				if (e.type == "checkbox" || e.type == "radio") {
 					w.jQuery(e).prop('checked', false);
 				} else if (e.type == "select") {
@@ -2212,23 +2226,23 @@ var __warnings = true;
             }, excludes);
         }
     }
-	if (!w.Locust.Form.Disable) {
-        w.Locust.Form.Disable = function (formSelector, excludes) {
-            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+	if (!w.Locust.Form.disable) {
+        w.Locust.Form.disable = function (formSelector, excludes) {
+            w.Locust.Form.each(formSelector, function (e, elementIndex, frm, frmIndex) {
                 w.jQuery(e).prop('disabled', 'disabled');
             }, excludes);
         }
     }
-    if (!w.Locust.Form.Enable) {
-        w.Locust.Form.Enable = function (formSelector, excludes) {
-            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+    if (!w.Locust.Form.enable) {
+        w.Locust.Form.enable = function (formSelector, excludes) {
+            w.Locust.Form.each(formSelector, function (e, elementIndex, frm, frmIndex) {
                 w.jQuery(e).removeAttr('disabled');
             }, excludes);
         }
     }
-	if (!w.Locust.Form.ReadOnly) {
-        w.Locust.Form.ReadOnly = function (formSelector, value, excludes) {
-            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+	if (!w.Locust.Form.readOnly) {
+        w.Locust.Form.readOnly = function (formSelector, value, excludes) {
+            w.Locust.Form.each(formSelector, function (e, elementIndex, frm, frmIndex) {
                 w.jQuery(e).prop('readonly', value);
             }, excludes);
         }
@@ -2297,19 +2311,17 @@ var __warnings = true;
 						{ "person[2].name": "saeed", "person[2].age": 26 }
 					]
 	*/
-	if (!w.Locust.Form.MvcArray) {
-        w.Locust.Form.MvcArray = function (array, name) {
+	if (!w.Locust.Form.mvcArray) {
+        w.Locust.Form.mvcArray = function (array, name) {
 			var result = [];
 			
 			if (w.jQuery.isArray(array)) {
 				array.forEach(function(x, i){
 					var json = {};
 					
-					for (var key in Object.keys(x)) {
-						if (x.hasOwnProperty(key)) {
-							json[name + "[" + i + "]." + key] = x[key];
-						}
-					}
+					w.Locust.eachKey(x, function(key) {
+						json[name + "[" + i + "]." + key] = x[key];
+					});
 					
 					result.push(json);
 				});
@@ -2318,6 +2330,7 @@ var __warnings = true;
 			return result;
 		}
 	}
+	
 	if (w.$f == undefined) {
 		w.$f = w.Locust.Form;
 	}
@@ -2348,11 +2361,11 @@ var __warnings = true;
         var hash = {};
         var generateHash = function (arg) {
             var result = "";
-            for (var property in Object.keys(arg)) {
-                if (arg.hasOwnProperty(property)) {
-                    result += paramSeparator + property + keyValueSeparator + arg[property];
-                }
-            }
+			
+			w.Locust.eachKey(arg, function(key) {
+				result += paramSeparator + key + keyValueSeparator + arg[key];
+			});
+			
             return result.substr(1);
         }
         var getHash = function () {
@@ -2390,20 +2403,15 @@ var __warnings = true;
                 return hash[arg];
             }
             if (typeof arg == 'number') {
-                var i = 0;
-                for (var property in Object.keys(hash)) {
-                    if (hash.hasOwnProperty(property)) {
-                        if (arg == i++) {
-                            return hash[property];
-                        }
-                    }
-                }
-
-                return "";
+				return w.Locust.eachKey(hash, function(key, i) {
+					if (arg == i) {
+						return hash[key];
+					}
+				}) || "";
             }
         };
         _self.set = function (key, value) {
-            if (value) {
+            if (value != undefined) {
                 if (key) {
                     hash[key] = value;
                     setHash(generateHash(hash));
@@ -6494,11 +6502,11 @@ var __warnings = true;
 							var items = item.value.items;
 							
 							if (items) {
-								for (var __key in Object.keys(items)) {
-									if (__key == searchKey) {
-										return items[__key];
+								return w.Locust.eachKey(items, function(key) {
+									if (key == searchKey) {
+										return items[key];
 									}
-								}
+								});
 							}
 						}
 					} catch (e) {

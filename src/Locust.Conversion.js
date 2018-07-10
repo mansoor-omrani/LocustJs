@@ -21,11 +21,13 @@
     if (!w.Locust.Convert) {
         w.Locust.Convert = {};
     }
-    w.Locust.Convert.TryParseInt = function (str, defaultValue) {
+    w.Locust.Convert.tryParseInt = function (str, defaultValue) {
         // source: http://pietschsoft.com/post/2008/01/14/JavaScript-intTryParse-Equivalent
         var result = defaultValue;
 		
-        if (str !== null) {
+        if (!(str == null || str == undefined)) {
+			str = str.toString();
+			
             if (str.length > 0) {
                 if (!w.isNaN(str)) {
                     result = w.parseInt(str);
@@ -35,8 +37,8 @@
 		
         return result;
     }
-	if (!w.Locust.Convert.ToArrayBuffer) {
-        w.Locust.Convert.ToArrayBuffer = function (buf) {
+	if (!w.Locust.Convert.toArrayBuffer) {
+        w.Locust.Convert.toArrayBuffer = function (buf) {
             var ab = new ArrayBuffer(buf.length);
             var view = new Uint8Array(ab);
 			
@@ -47,8 +49,8 @@
             return ab;
         }
     }
-    if (!w.Locust.Convert.BytesToString) {
-        w.Locust.Convert.BytesToString = function (bytes, utf8) {
+    if (!w.Locust.Convert.bytesToString) {
+        w.Locust.Convert.bytesToString = function (bytes, utf8) {
             utf8 = !!utf8;
 
             var len = bytes.length,
@@ -88,8 +90,8 @@
             return str;
         }
     }
-    if (!w.Locust.Convert.StringToBytes) {
-        w.Locust.Convert.StringToBytes = function (str, utf8) {
+    if (!w.Locust.Convert.stringToBytes) {
+        w.Locust.Convert.stringToBytes = function (str, utf8) {
             utf8 = !!utf8;
 
             var len = str.length,
@@ -125,30 +127,28 @@
             return bytes.subarray(0, j);
         }
     }
-    if (!w.Locust.Convert.BytesToBase64String) {
-        w.Locust.Convert.BytesToBase64String = function (arr) {
-            return btoa(w.Locust.Convert.BytesToString(arr));
+    if (!w.Locust.Convert.bytesToBase64String) {
+        w.Locust.Convert.bytesToBase64String = function (arr) {
+            return btoa(w.Locust.Convert.bytesToString(arr));
         }
     }
-    if (!w.Locust.Convert.Base64StringToBytes) {
-        w.Locust.Convert.Base64StringToBytes = function (str) {
-            return w.Locust.Convert.StringToBytes(atob(str));
+    if (!w.Locust.Convert.base64StringToBytes) {
+        w.Locust.Convert.base64StringToBytes = function (str) {
+            return w.Locust.Convert.stringToBytes(atob(str));
         }
     }
-	if (!w.Locust.ToXml) {
-        w.Locust.ToXml = function (json) {
+	if (!w.Locust.Convert.toXml) {
+        w.Locust.Convert.toXml = function (json) {
             var doc = w.jQuery.parseXML("<xml/>");
             var xml = doc.getElementsByTagName("xml")[0];
             var key, elem;
-
-            for (key in Object.keys(json)) {
-                if (key && json.hasOwnProperty(key)) {
-                    elem = doc.createElement(key);
+			
+			w.Locust.eachKey(json, function(key) {
+				elem = doc.createElement(key);
                     w.jQuery(elem).text(json[key]);
                     xml.appendChild(elem);
-                }
-            }
-
+			});
+			
             return xml;
         }
     }

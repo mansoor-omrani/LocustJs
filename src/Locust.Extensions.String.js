@@ -93,9 +93,9 @@
 					} else if (typeof values == "string") {
 						s = s.replaceAll("{0}", values);
 					} else {
-						for (var key in Object.keys(values)) {
+						w.Locust.eachKey(values, function(key, i) {
 							s = s.replaceAll("{" + key + "}", values[key]);
-						}
+						});
 					}
 				} else {
 					s = this.replace(/{(\d+)}/g, function (match, number) { return args[number] != undefined ? args[number] : match; });
@@ -321,13 +321,14 @@
 					var _result = [];
 					
 					if (i < separatorsCount) {
-						for (var index in Object.keys(arr)) {
+						w.Locust.eachKey(arr, function(index) {
 							if (typeof arr[index] == "string") {
 								var tempArr = arr[index].splitString(separators[i], options);
 								var tempItem = splitStringArray(tempArr, separators, options, i + 1);
+								
 								_result.push(tempItem);
 							}
-						}
+						});
 					} else {
 						_result = arr;
 					}

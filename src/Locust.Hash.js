@@ -23,11 +23,11 @@
         var hash = {};
         var generateHash = function (arg) {
             var result = "";
-            for (var property in Object.keys(arg)) {
-                if (arg.hasOwnProperty(property)) {
-                    result += paramSeparator + property + keyValueSeparator + arg[property];
-                }
-            }
+			
+			w.Locust.eachKey(arg, function(key) {
+				result += paramSeparator + key + keyValueSeparator + arg[key];
+			});
+			
             return result.substr(1);
         }
         var getHash = function () {
@@ -65,20 +65,15 @@
                 return hash[arg];
             }
             if (typeof arg == 'number') {
-                var i = 0;
-                for (var property in Object.keys(hash)) {
-                    if (hash.hasOwnProperty(property)) {
-                        if (arg == i++) {
-                            return hash[property];
-                        }
-                    }
-                }
-
-                return "";
+				return w.Locust.eachKey(hash, function(key, i) {
+					if (arg == i) {
+						return hash[key];
+					}
+				}) || "";
             }
         };
         _self.set = function (key, value) {
-            if (value) {
+            if (value != undefined) {
                 if (key) {
                     hash[key] = value;
                     setHash(generateHash(hash));

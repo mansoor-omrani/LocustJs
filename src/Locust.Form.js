@@ -25,7 +25,7 @@
     if (!w.Locust.Form) {
         w.Locust.Form = {};
     }
-    w.Locust.Form.Post = function (url, args) {
+    w.Locust.Form.post = function (url, args) {
         var f = w.jQuery("<form>").attr('method', 'POST').attr('action', url).insertAfter(w.jQuery("body"));
 		
         w.jQuery.each(args, function (propName, propValue) {
@@ -58,16 +58,16 @@
     // 		"url"
     // 		"week"
     // 		"hidden"
-	if (!w.Locust.Form.DefaultExclude) {
-        w.Locust.Form.DefaultExclude = function (e) {
+	if (!w.Locust.Form.defaultExclude) {
+        w.Locust.Form.defaultExclude = function (e) {
 			var tag = e.tagName.toLowerCase();
 			var type = e.type.toLowerCase();
 
 			return w.jQuery(e).hasClass("exclude") || tag == "fieldset" || tag == "button" || (tag == "input" && (type == "image" || type == "button" || type == "submit" || type == "reset"));
 		}
 	}
-	if (!w.Locust.Form.Each) {
-        w.Locust.Form.Each = function (selector, fnProcess, excludes) {
+	if (!w.Locust.Form.each) {
+        w.Locust.Form.each = function (selector, fnProcess, excludes) {
             w.jQuery(selector).each(function (index, frm) {
                 if (w.jQuery(frm).prop("tagName").toLowerCase() == 'form') {
                     var elems = frm.elements;
@@ -76,7 +76,7 @@
 						var _exclude;
 						
 						if (!w.jQuery.isFunction(excludes)) {
-							_exclude = w.Locust.Form.DefaultExclude;
+							_exclude = w.Locust.Form.defaultExclude;
 						} else {
 							_exclude = excludes;
 						};
@@ -93,14 +93,14 @@
             });
         }
     }
-	if (!w.Locust.Form.ToJson) {
-        w.Locust.Form.ToJson = function (formSelector, excludes) {
+	if (!w.Locust.Form.toJson) {
+        w.Locust.Form.toJson = function (formSelector, excludes) {
 			var lastForm;
             var json = {};
 			var result = [];
 			var frmCnt = 0;
 			
-            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+            w.Locust.Form.each(formSelector, function (e, elementIndex, frm, frmIndex) {
 				if (lastForm == undefined) {
 					lastForm = frm;
 				}
@@ -167,12 +167,12 @@
 	// if more than one form is going to be loaded using data, the data is expected to be an array of objects
 	// in { "index": number, "data": { ... } } format.
 	// 
-	if (!w.Locust.Form.LoadJson) {
-        w.Locust.Form.LoadJson = function (formSelector, data, excludes) {
+	if (!w.Locust.Form.loadJson) {
+        w.Locust.Form.loadJson = function (formSelector, data, excludes) {
 			var lastForm;
             var json;
 			
-			w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+			w.Locust.Form.each(formSelector, function (e, elementIndex, frm, frmIndex) {
 				if (lastForm != frm || json == undefined) {
 					lastForm = frm;
 					
@@ -211,9 +211,9 @@
             }, excludes);
 		}
 	}
-	if (!w.Locust.Form.Reset) {
-        w.Locust.Form.Reset = function (formSelector, excludes) {
-            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+	if (!w.Locust.Form.reset) {
+        w.Locust.Form.reset = function (formSelector, excludes) {
+            w.Locust.Form.each(formSelector, function (e, elementIndex, frm, frmIndex) {
 				if (e.type == "checkbox" || e.type == "radio") {
 					w.jQuery(e).prop('checked', false);
 				} else if (e.type == "select") {
@@ -224,23 +224,23 @@
             }, excludes);
         }
     }
-	if (!w.Locust.Form.Disable) {
-        w.Locust.Form.Disable = function (formSelector, excludes) {
-            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+	if (!w.Locust.Form.disable) {
+        w.Locust.Form.disable = function (formSelector, excludes) {
+            w.Locust.Form.each(formSelector, function (e, elementIndex, frm, frmIndex) {
                 w.jQuery(e).prop('disabled', 'disabled');
             }, excludes);
         }
     }
-    if (!w.Locust.Form.Enable) {
-        w.Locust.Form.Enable = function (formSelector, excludes) {
-            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+    if (!w.Locust.Form.enable) {
+        w.Locust.Form.enable = function (formSelector, excludes) {
+            w.Locust.Form.each(formSelector, function (e, elementIndex, frm, frmIndex) {
                 w.jQuery(e).removeAttr('disabled');
             }, excludes);
         }
     }
-	if (!w.Locust.Form.ReadOnly) {
-        w.Locust.Form.ReadOnly = function (formSelector, value, excludes) {
-            w.Locust.Form.Each(formSelector, function (e, elementIndex, frm, frmIndex) {
+	if (!w.Locust.Form.readOnly) {
+        w.Locust.Form.readOnly = function (formSelector, value, excludes) {
+            w.Locust.Form.each(formSelector, function (e, elementIndex, frm, frmIndex) {
                 w.jQuery(e).prop('readonly', value);
             }, excludes);
         }
@@ -309,19 +309,17 @@
 						{ "person[2].name": "saeed", "person[2].age": 26 }
 					]
 	*/
-	if (!w.Locust.Form.MvcArray) {
-        w.Locust.Form.MvcArray = function (array, name) {
+	if (!w.Locust.Form.mvcArray) {
+        w.Locust.Form.mvcArray = function (array, name) {
 			var result = [];
 			
 			if (w.jQuery.isArray(array)) {
 				array.forEach(function(x, i){
 					var json = {};
 					
-					for (var key in Object.keys(x)) {
-						if (x.hasOwnProperty(key)) {
-							json[name + "[" + i + "]." + key] = x[key];
-						}
-					}
+					w.Locust.eachKey(x, function(key) {
+						json[name + "[" + i + "]." + key] = x[key];
+					});
 					
 					result.push(json);
 				});
@@ -330,6 +328,7 @@
 			return result;
 		}
 	}
+	
 	if (w.$f == undefined) {
 		w.$f = w.Locust.Form;
 	}
