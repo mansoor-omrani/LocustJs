@@ -25,9 +25,11 @@
     if (!w.Locust.Form) {
         w.Locust.Form = {};
     }
-    w.Locust.Form.post = function (url, args) {
+    w.Locust.Form.post = function (url, args, target) {
         var f = w.jQuery("<form>").attr('method', 'POST').attr('action', url).insertAfter(w.jQuery("body"));
-		
+        if (target != undefined) {
+            f.attr("target", target);
+        }
         w.jQuery.each(args, function (propName, propValue) {
             w.jQuery('<input>').attr('type', 'hidden').attr('name', propName).val(propValue).appendTo(f);
         });
@@ -163,7 +165,30 @@
             
 			return result;
         }
-    }
+	}
+	if (!w.Locust.Form.setValue) {
+	    w.Locust.Form.setValue = function (e, value) {
+	        if (value == null || value == undefined) {
+	            value = "";
+	        }
+
+	        if (e.type == "checkbox" || e.type == "radio") {
+	            if (w.jQuery.isArray(value)) {
+	                w.jQuery(e).prop('checked', value.indexOf(w.jQuery(e).val()) >= 0);
+	            } else {
+	                if (w.jQuery(e).attr("value") != undefined) {
+	                    if (w.jQuery(e).val() == (value == undefined || value == null ? "" : value.toString())) {
+	                        w.jQuery(e).prop('checked', true);
+	                    }
+	                } else {
+	                    w.jQuery(e).prop('checked', value == "on");
+	                }
+	            }
+	        } else {
+	            w.jQuery(e).val(value);
+	        }
+	    }
+	}
 	// if more than one form is going to be loaded using data, the data is expected to be an array of objects
 	// in { "index": number, "data": { ... } } format.
 	// 
@@ -191,6 +216,7 @@
 					var key = e.name || e.id;
 					
 					if (json[key] != undefined) {
+                        /*
 						if (e.type == "checkbox" || e.type == "radio") {
 							if (w.jQuery.isArray(json[key])) {
 								w.jQuery(e).prop('checked', json[key].indexOf(w.jQuery(e).val()) >= 0);
@@ -206,6 +232,8 @@
 						} else {
 							w.jQuery(e).val(json[key]);
 						}
+                        */
+					    w.Locust.Form.setValue(e, json[key]);
 					}
 				}
             }, excludes);
@@ -329,6 +357,23 @@
 		}
 	}
 	
+	if (!w.Locust.Form.checkedValues) {
+	    w.Locust.Form.checkedValues = function (checkboxSelector, separator) {
+	        var result = [];
+	        $(checkboxSelector).each(function (i, x) {
+	            if (x.checked) {
+	                result.push($(x).val());
+	            }
+	        });
+
+	        if (separator == undefined) {
+	            return result;
+	        } else {
+	            return result.join(separator);
+	        }
+	    }
+	}
+
 	if (w.$f == undefined) {
 		w.$f = w.Locust.Form;
 	}

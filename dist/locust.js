@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.3";
+        w.Locust.Version = "1.4.5";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -799,7 +799,7 @@ var __warnings = true;
 							s = s.replaceAll("{" + i + "}", value);
 							i++;
 						})
-					} else if (typeof values == "string") {
+					} else if (!$.isPlainObject(values)) {
 						s = s.replaceAll("{0}", values);
 					} else {
 						w.Locust.eachKey(values, function(key, i) {
@@ -807,7 +807,14 @@ var __warnings = true;
 						});
 					}
 				} else {
-					s = this.replace(/{(\d+)}/g, function (match, number) { return args[number] != undefined ? args[number] : match; });
+				    var _args = arguments;
+				    s = this.replace(/{(\d+)}/g, function (match, number) {
+				        if (number >= 0 && number < _args.length) {
+				            return _args[number] != undefined ? _args[number] : match;
+				        } else {
+				            return match;
+				        }
+				    });
 				}
 			}
 			
@@ -1052,6 +1059,27 @@ var __warnings = true;
 		}
 	} else {
 		_logger.warning("Locust.Extensions.String", "String.prototype.nestedSplit already declared.");
+	}
+	if (!w.String.prototype.pascalCase) {
+	    /**
+         * Convert a string to Pascal Case (removing non alphabetic characters).
+         *
+         * @example
+         * 'hello_world'.pascalCase() // Will return `HelloWorld`.
+         * 'fOO BAR'.pascalCase()     // Will return `FooBar`.
+         *
+         * @returns {string}
+         *   The Pascal Cased string.
+         */
+	    // source: https://gist.github.com/jacks0n/e0bfb71a48c64fbbd71e5c6e956b17d7
+	    w.String.prototype.pascalCase = function () {
+	        return this.match(/[a-z]+/gi)
+                        .map(function (word) {
+                            return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()
+                        }).join('')
+	    }
+	} else {
+	    _logger.warning("Locust.Extensions.String", "String.prototype.pascalCase already declared.");
 	}
 })(__locustMainContext);
 //================================= Locust.Bootstrap =================================
@@ -2000,6 +2028,67 @@ var __warnings = true;
 	}
 })(__locustMainContext);
 
+//================================= Locust.Conversion =================================
+(function (w) {
+    function __error(msg) {
+		if (w.console && w.console.error) {
+			w.console.error(msg);
+		} else {
+			throw msg;
+		}
+	}
+	if (!w) {
+        throw "Locust.FileManager: no context given (use 'Locust.Base.js')";
+    }
+    if (!w.Locust) {
+		__error("Locust.FileManager: Locust namespace not found (use 'Locust.Base.js')");
+		return;
+    }
+	if (!w.jQuery) {
+        __error("Locust.FileManager: jQuery library not found");
+        return;
+    }
+    if (!w.Locust.FileManager) {
+        w.Locust.FileManager = {};
+    }
+	if (!w.Locust.FileManager.callFunction) {
+        w.Locust.FileManager.callFunction = function (path, field, frm) {
+			var elm;
+
+			if (frm) {
+				var _frm = w.jQuery("form#" + frm);
+
+				if (_frm.length > 0) {
+					elm = _frm.find("[name=" + field + "]");
+
+					if (elm.length == 0) {
+						elm = _frm.find("[id=" + field + "]");
+						
+						if (elm.length == 0) {
+							elm = undefined;
+						}
+					}
+				}
+			}
+
+			if (elm == undefined){
+				elm = w.jQuery("[name=" + field + "]");
+
+				if (elm.length == 0) {
+					elm = w.jQuery("[id=" + field + "]");
+				}
+			}
+
+			if (w.jQuery.isFunction(elm.val)) {
+				elm.val(path);
+			}
+		};
+    }
+	if (w.$fm == undefined) {
+		w.$fm = w.Locust.FileManager;
+	}
+})(__locustMainContext);
+
 //================================= Locust.Form =================================
 (function (w) {
     function __error(msg) {
@@ -2027,9 +2116,11 @@ var __warnings = true;
     if (!w.Locust.Form) {
         w.Locust.Form = {};
     }
-    w.Locust.Form.post = function (url, args) {
+    w.Locust.Form.post = function (url, args, target) {
         var f = w.jQuery("<form>").attr('method', 'POST').attr('action', url).insertAfter(w.jQuery("body"));
-		
+        if (target != undefined) {
+            f.attr("target", target);
+        }
         w.jQuery.each(args, function (propName, propValue) {
             w.jQuery('<input>').attr('type', 'hidden').attr('name', propName).val(propValue).appendTo(f);
         });
@@ -2165,7 +2256,30 @@ var __warnings = true;
             
 			return result;
         }
-    }
+	}
+	if (!w.Locust.Form.setValue) {
+	    w.Locust.Form.setValue = function (e, value) {
+	        if (value == null || value == undefined) {
+	            value = "";
+	        }
+
+	        if (e.type == "checkbox" || e.type == "radio") {
+	            if (w.jQuery.isArray(value)) {
+	                w.jQuery(e).prop('checked', value.indexOf(w.jQuery(e).val()) >= 0);
+	            } else {
+	                if (w.jQuery(e).attr("value") != undefined) {
+	                    if (w.jQuery(e).val() == (value == undefined || value == null ? "" : value.toString())) {
+	                        w.jQuery(e).prop('checked', true);
+	                    }
+	                } else {
+	                    w.jQuery(e).prop('checked', value == "on");
+	                }
+	            }
+	        } else {
+	            w.jQuery(e).val(value);
+	        }
+	    }
+	}
 	// if more than one form is going to be loaded using data, the data is expected to be an array of objects
 	// in { "index": number, "data": { ... } } format.
 	// 
@@ -2193,6 +2307,7 @@ var __warnings = true;
 					var key = e.name || e.id;
 					
 					if (json[key] != undefined) {
+                        /*
 						if (e.type == "checkbox" || e.type == "radio") {
 							if (w.jQuery.isArray(json[key])) {
 								w.jQuery(e).prop('checked', json[key].indexOf(w.jQuery(e).val()) >= 0);
@@ -2208,6 +2323,8 @@ var __warnings = true;
 						} else {
 							w.jQuery(e).val(json[key]);
 						}
+                        */
+					    w.Locust.Form.setValue(e, json[key]);
 					}
 				}
             }, excludes);
@@ -2331,6 +2448,23 @@ var __warnings = true;
 		}
 	}
 	
+	if (!w.Locust.Form.checkedValues) {
+	    w.Locust.Form.checkedValues = function (checkboxSelector, separator) {
+	        var result = [];
+	        $(checkboxSelector).each(function (i, x) {
+	            if (x.checked) {
+	                result.push($(x).val());
+	            }
+	        });
+
+	        if (separator == undefined) {
+	            return result;
+	        } else {
+	            return result.join(separator);
+	        }
+	    }
+	}
+
 	if (w.$f == undefined) {
 		w.$f = w.Locust.Form;
 	}
@@ -5721,20 +5855,30 @@ var __warnings = true;
             });
             return result;
         };
-        $.fn.post = function () {
+        $.fn.post = function (data, target) {
             var element = $(this);
             if (element.length == 1) {
-                if (element[0].tagName.toLowerCase() == "a") {
-                    var url = element.attr("href");
+                //if (element[0].tagName.toLowerCase() == "a") {
                     var postData = element.getPostData();
-                    if (!url) {
+
+                    $.extend(postData, data);
+
+                    if (target == undefined && postData.target != undefined) {
+                        target = postData.target;
+                        delete postData["target"];
+                    }
+
+                    var url = element.attr("href");
+
+                    if (!url || url == "#") {
                         url = postData.url;
                         delete postData["url"];
                     }
+
                     if (url) {
-                        w.Locust.Form.Post(url, postData);
+                        w.Locust.Form.post(url, postData, target);
                     }
-                }
+                //}
             }
         };
         $.fn.loadPost = function (url, data, success, dataType) {
@@ -6563,5 +6707,163 @@ var __warnings = true;
     }
 	if (w.$v == undefined) {
 		w.$v = w.Locust.Validation;
+	}
+})(__locustMainContext);
+
+//================================= Locust.WebTools =================================
+(function (w) {
+    function __error(msg) {
+		if (w.console && w.console.error) {
+			w.console.error(msg);
+		} else {
+			throw msg;
+		}
+	}
+	if (!w) {
+        throw "Locust.WebTools: no context given (use 'Locust.Base.js')";
+    }
+    if (!w.Locust) {
+		__error("Locust.WebTools: Locust namespace not found (use 'Locust.Base.js')");
+		return;
+    }
+	if (!w.jQuery) {
+        __error("Locust.WebTools: jQuery library not found");
+        return;
+    }
+    if (!w.Locust.WebTools) {
+        w.Locust.WebTools = {};
+    }
+	w.Locust.WebTools.makeSeoFriendly = function (s, customReplace) {
+        var result = [];
+		
+        if (s && s.length) {
+			s = s.toLowerCase();
+            var arr = s.split('');
+            var prev_ch;
+			
+            for (var i = 0; i < arr.length; i++) {
+                var ch = arr[i];
+
+				if (customReplace) {
+                    var replace = customReplace[ch];
+                    if (replace) {
+                        result.push(replace);
+                        continue;
+                    }
+                }
+				
+                if (ch == '&') {
+                    result.push("and");
+                    continue;
+                }
+
+                if (['+', '/', '\\', '|', '.', '?', '!', '*', '#', ':', '>', '<', '%', '@', '$', '^', '\t', '\n', '\r'].indexOf(ch) >= 0) {
+                    continue;
+                }
+
+                if (['-', ' ', '(', ')'].indexOf(ch) >= 0) {
+                    if (prev_ch != '-')
+                        result.push('-');
+                    prev_ch = '-';
+                } else {
+                    result.push(ch);
+                    prev_ch = ch;
+                }
+            }
+			
+			if (result.length > 0 && result[result.length - 1] == '-') {
+                result.removeAt(result.length - 1);
+            }
+        }
+		
+        return result.join("");
+    };
+    w.Locust.WebTools.getArray = function (select, valueProperty, textProperty, valueType) {
+        var result = [];
+        var _valueProperty = "id";
+        if (valueProperty != undefined) {
+            _valueProperty = valueProperty;
+        }
+        var _textProperty = "name";
+        if (textProperty != undefined) {
+            _textProperty = textProperty;
+        }
+
+        w.jQuery(select).find("option").each(function (i, x) {
+            var item = {};
+
+            item[_valueProperty] = w.jQuery(x).val();
+			
+            if (valueType != undefined) {
+                switch (valueType) {
+                    case "int": item[_valueProperty] = parseInt(item[_valueProperty]); break;
+                    case "float": item[_valueProperty] = parseFloat(item[_valueProperty]); break;
+                    case "date": item[_valueProperty] = new Date(item[_valueProperty]); break;
+                }
+            }
+			
+            item[_textProperty] = w.jQuery(x).text();
+
+            result.push(item);
+        });
+
+        return result;
+    };
+
+    w.Locust.WebTools.POPUP_DEFAULT_WIDTH = 400;
+    w.Locust.WebTools.POPUP_DEFAULT_HEIGHT = 300;
+
+	w.Locust.WebTools.popup = function (url, title, specs) {
+		// source: https://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen
+		// with slight modification
+		
+		// Fixes dual-screen position                         Most browsers      Firefox
+		var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+		var dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+
+		var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+		var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+		var _w = specs ? specs.width : 0;
+		var _h = specs ? specs.height: 0;
+
+		if (!_w) _w = w.Locust.WebTools.POPUP_DEFAULT_WIDTH;
+		if (!_h) _h = w.Locust.WebTools.POPUP_DEFAULT_HEIGHT;
+		
+		var left = ((width / 2) - (_w / 2)) + dualScreenLeft;
+		var top = ((height / 2) - (_h / 2)) + dualScreenTop;
+		var _specs = [];
+		
+		_specs.push("top=" + top);
+		_specs.push("left=" + left);
+		_specs.push("width=" + _w);
+		_specs.push("height=" + _h);
+		
+		w.Locust.eachKey(specs, function(key) {
+			var _key = key.toLowerCase();
+			var i = _specs.indexOf(_key);
+			var value = specs[key];
+
+			if (typeof value == "boolean") {
+			    value = value ? "yes" : "no";
+			}
+
+			if (i >= 0) {
+				_specs[i] = _key + "=" + value;
+			} else {
+				_specs.push(_key + "=" + value);
+			}
+		});
+		
+		var win = window.open(url, title, _specs.join(','));
+
+		// Puts focus on the win
+		if (window.focus) {
+			win.focus();
+		}
+		
+		return win;
+	}
+	if (w.$w == undefined) {
+		w.$w = w.Locust.WebTools;
 	}
 })(__locustMainContext);

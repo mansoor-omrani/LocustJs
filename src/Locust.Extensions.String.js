@@ -90,7 +90,7 @@
 							s = s.replaceAll("{" + i + "}", value);
 							i++;
 						})
-					} else if (typeof values == "string") {
+					} else if (!$.isPlainObject(values)) {
 						s = s.replaceAll("{0}", values);
 					} else {
 						w.Locust.eachKey(values, function(key, i) {
@@ -98,7 +98,14 @@
 						});
 					}
 				} else {
-					s = this.replace(/{(\d+)}/g, function (match, number) { return args[number] != undefined ? args[number] : match; });
+				    var _args = arguments;
+				    s = this.replace(/{(\d+)}/g, function (match, number) {
+				        if (number >= 0 && number < _args.length) {
+				            return _args[number] != undefined ? _args[number] : match;
+				        } else {
+				            return match;
+				        }
+				    });
 				}
 			}
 			
@@ -343,5 +350,26 @@
 		}
 	} else {
 		_logger.warning("Locust.Extensions.String", "String.prototype.nestedSplit already declared.");
+	}
+	if (!w.String.prototype.pascalCase) {
+	    /**
+         * Convert a string to Pascal Case (removing non alphabetic characters).
+         *
+         * @example
+         * 'hello_world'.pascalCase() // Will return `HelloWorld`.
+         * 'fOO BAR'.pascalCase()     // Will return `FooBar`.
+         *
+         * @returns {string}
+         *   The Pascal Cased string.
+         */
+	    // source: https://gist.github.com/jacks0n/e0bfb71a48c64fbbd71e5c6e956b17d7
+	    w.String.prototype.pascalCase = function () {
+	        return this.match(/[a-z]+/gi)
+                        .map(function (word) {
+                            return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()
+                        }).join('')
+	    }
+	} else {
+	    _logger.warning("Locust.Extensions.String", "String.prototype.pascalCase already declared.");
 	}
 })(__locustMainContext);

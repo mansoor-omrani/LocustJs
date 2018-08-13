@@ -67,20 +67,30 @@
             });
             return result;
         };
-        $.fn.post = function () {
+        $.fn.post = function (data, target) {
             var element = $(this);
             if (element.length == 1) {
-                if (element[0].tagName.toLowerCase() == "a") {
-                    var url = element.attr("href");
+                //if (element[0].tagName.toLowerCase() == "a") {
                     var postData = element.getPostData();
-                    if (!url) {
+
+                    $.extend(postData, data);
+
+                    if (target == undefined && postData.target != undefined) {
+                        target = postData.target;
+                        delete postData["target"];
+                    }
+
+                    var url = element.attr("href");
+
+                    if (!url || url == "#") {
                         url = postData.url;
                         delete postData["url"];
                     }
+
                     if (url) {
-                        w.Locust.Form.Post(url, postData);
+                        w.Locust.Form.post(url, postData, target);
                     }
-                }
+                //}
             }
         };
         $.fn.loadPost = function (url, data, success, dataType) {

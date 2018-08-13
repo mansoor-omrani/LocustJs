@@ -12,6 +12,7 @@
 	"src/Locust.Cryptography.js",
 	"src/Locust.Cookie.js",
 	"src/Locust.DOM.js",
+	"src/Locust.FileManager.js",
 	"src/Locust.Form.js",
 	"src/Locust.Hash.js",
 	"src/Locust.Mime.js",
@@ -21,6 +22,7 @@
 	"src/Locust.Language.js",
 	"src/Locust.Storage.js",
 	"src/Locust.Translation.js",
-	"src/Locust.Validation.js"
+	"src/Locust.Validation.js",
+	"src/Locust.WebTools.js"
   ]
 }
