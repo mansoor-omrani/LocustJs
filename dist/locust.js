@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.6";
+        w.Locust.Version = "1.4.7";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -1175,6 +1175,8 @@ var __warnings = true;
             body: "",
             footer: "",
             size: "",
+            className: "",
+            style: "",
             keyboard: true
         }, config);
 
@@ -1193,7 +1195,7 @@ var __warnings = true;
         _config.size = (_validateSize(_config.size)) ? "modal-" + _config.size : "";
 
         result =
-"<div id='" + _config.id + "' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='" + _config.id + "Label'>" +
+"<div id='" + _config.id + "' class='modal fade " + _config.className + "' tabindex='-1' role='dialog' aria-labelledby='" + _config.id + "Label' style=\"" + style + "\">" +
 "	<div class='modal-dialog " + _config.size + "' role='document'>" +
 "		<div class='modal-content'>" +
 "			<div class='modal-header'>" +
@@ -1553,7 +1555,7 @@ var __warnings = true;
 					return;
 				}
 				
-				if (!w.document.cookie) {
+				if (!w.navigator.cookieEnabled) {
 					_config.logger.abort("Locust.Cookie.set", "document does not support cookies");
 					return;
 				}
@@ -1604,7 +1606,7 @@ var __warnings = true;
 			        return;
 			    }
 
-			    if (!w.document.cookie) {
+			    if (!w.navigator.cookieEnabled) {
 			        _config.logger.abort("Locust.Cookie.iterate", "document does not support cookies");
 			        return;
 			    }
@@ -1669,7 +1671,7 @@ var __warnings = true;
 					return;
 				}
 				
-				if (!w.document.cookie) {
+				if (!w.navigator.cookieEnabled) {
 					_config.logger.abort("Locust.Cookie.get", "document does not support cookies");
 					return;
 				}

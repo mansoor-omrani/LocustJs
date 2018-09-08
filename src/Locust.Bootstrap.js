@@ -91,6 +91,8 @@
             body: "",
             footer: "",
             size: "",
+            className: "",
+            style: "",
             keyboard: true
         }, config);
 
@@ -109,7 +111,7 @@
         _config.size = (_validateSize(_config.size)) ? "modal-" + _config.size : "";
 
         result =
-"<div id='" + _config.id + "' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='" + _config.id + "Label'>" +
+"<div id='" + _config.id + "' class='modal fade " + _config.className + "' tabindex='-1' role='dialog' aria-labelledby='" + _config.id + "Label' style=\"" + style + "\">" +
 "	<div class='modal-dialog " + _config.size + "' role='document'>" +
 "		<div class='modal-content'>" +
 "			<div class='modal-header'>" +

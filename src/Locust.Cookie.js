@@ -52,7 +52,7 @@
 					return;
 				}
 				
-				if (!w.document.cookie) {
+				if (!w.navigator.cookieEnabled) {
 					_config.logger.abort("Locust.Cookie.set", "document does not support cookies");
 					return;
 				}
@@ -103,7 +103,7 @@
 			        return;
 			    }
 
-			    if (!w.document.cookie) {
+			    if (!w.navigator.cookieEnabled) {
 			        _config.logger.abort("Locust.Cookie.iterate", "document does not support cookies");
 			        return;
 			    }
@@ -168,7 +168,7 @@
 					return;
 				}
 				
-				if (!w.document.cookie) {
+				if (!w.navigator.cookieEnabled) {
 					_config.logger.abort("Locust.Cookie.get", "document does not support cookies");
 					return;
 				}
