@@ -18,6 +18,10 @@
 		__error("Locust.Extensions.Array: Locust.Logging namespace not found (use 'Locust.Logging.js')");
 		return;
 	}
+	if (!w.jQuery) {
+        __error("Locust.Cookie: jQuery library not found");
+        return;
+    }
 	var _logger = w.Locust.getLogger();
 	// ------------------------ String extensions -----------------------------//
 	w.StringSplitOptions =
@@ -90,7 +94,7 @@
 							s = s.replaceAll("{" + i + "}", value);
 							i++;
 						})
-					} else if (!$.isPlainObject(values)) {
+					} else if (!w.jQuery.isPlainObject(values)) {
 						s = s.replaceAll("{0}", values);
 					} else {
 						w.Locust.eachKey(values, function(key, i) {

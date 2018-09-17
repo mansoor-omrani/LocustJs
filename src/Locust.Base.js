@@ -10,7 +10,7 @@
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.7";
+        w.Locust.Version = "1.4.8";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -46,6 +46,19 @@
 		
 		return result;
 	}
+	
+	w.Locust.readyFns = [];
+	w.Locust.onready = function (fn) {
+	    if (typeof fn == "function") {
+	        w.Locust.readyFns.push(fn);
+	    }
+	};
+
+	w.Locust.ready = function () {
+	    for (var i = 0; i < w.Locust.readyFns.length; i++) {
+	        w.Locust.readyFns[i]();
+	    }
+	};
 	
 	w.$$ = w.Locust;
 })(__locustMainContext);

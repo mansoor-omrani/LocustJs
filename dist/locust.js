@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.7";
+        w.Locust.Version = "1.4.8";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -50,6 +50,19 @@ var __warnings = true;
 		
 		return result;
 	}
+	
+	w.Locust.readyFns = [];
+	w.Locust.onready = function (fn) {
+	    if (typeof fn == "function") {
+	        w.Locust.readyFns.push(fn);
+	    }
+	};
+
+	w.Locust.ready = function () {
+	    for (var i = 0; i < w.Locust.readyFns.length; i++) {
+	        w.Locust.readyFns[i]();
+	    }
+	};
 	
 	w.$$ = w.Locust;
 })(__locustMainContext);
@@ -727,6 +740,10 @@ var __warnings = true;
 		__error("Locust.Extensions.Array: Locust.Logging namespace not found (use 'Locust.Logging.js')");
 		return;
 	}
+	if (!w.jQuery) {
+        __error("Locust.Cookie: jQuery library not found");
+        return;
+    }
 	var _logger = w.Locust.getLogger();
 	// ------------------------ String extensions -----------------------------//
 	w.StringSplitOptions =
@@ -799,7 +816,7 @@ var __warnings = true;
 							s = s.replaceAll("{" + i + "}", value);
 							i++;
 						})
-					} else if (!$.isPlainObject(values)) {
+					} else if (!w.jQuery.isPlainObject(values)) {
 						s = s.replaceAll("{0}", values);
 					} else {
 						w.Locust.eachKey(values, function(key, i) {
