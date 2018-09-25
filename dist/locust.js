@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.8";
+        w.Locust.Version = "1.4.9";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -806,6 +806,19 @@ var __warnings = true;
 	if (!w.String.prototype.format) {
 		w.String.prototype.format = function () {
 			var s = this;
+            
+		    function formatWithObject(prefix, obj) {
+		        w.Locust.eachKey(obj, function (key, i) {
+		            var pv = obj[key];
+
+		            if (typeof pv == "object" && pv) {
+		                formatWithObject(prefix + key + ".", pv);
+		            } else {
+		                s = s.replaceAll("{" + prefix + key + "}", pv);
+		            }
+		        });
+		    }
+
 			if (arguments.length > 0) {
 				if (arguments.length == 1) {
 					var values = arguments[0];
@@ -816,12 +829,18 @@ var __warnings = true;
 							s = s.replaceAll("{" + i + "}", value);
 							i++;
 						})
-					} else if (!w.jQuery.isPlainObject(values)) {
-						s = s.replaceAll("{0}", values);
+					} else if (typeof values == "object") {
+					    w.Locust.eachKey(values, function (key, i) {
+					        var pv = values[key];
+
+					        if (typeof pv == "object" && pv) {
+					            formatWithObject(key + ".", pv);
+					        } else {
+					            s = s.replaceAll("{" + key + "}", pv);
+					        }
+					    });
 					} else {
-						w.Locust.eachKey(values, function(key, i) {
-							s = s.replaceAll("{" + key + "}", values[key]);
-						});
+					    s = s.replaceAll("{0}", values);
 					}
 				} else {
 				    var _args = arguments;
