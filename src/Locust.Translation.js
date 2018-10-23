@@ -298,6 +298,8 @@
 					}
 				}
 				
+				var result = [];
+
 				if (searchKey) {
 					searchKey = searchKey.toLowerCase();
 					
@@ -307,11 +309,15 @@
 							var items = item.value.items;
 							
 							if (items) {
-								return w.Locust.eachKey(items, function(key) {
+								result = w.Locust.eachKey(items, function(key, i, cnt) {
 									if (key == searchKey) {
 										return items[key];
 									}
 								});
+
+								if (result != undefined) {
+								    break;
+								}
 							}
 						}
 					} catch (e) {
@@ -319,7 +325,7 @@
 					}
 				}
 				
-				return [];
+				return result;
 			}
 			_self.getSingle = function(key, value1, value2, lang) {
 				var result = "";

@@ -29,10 +29,10 @@
 				var _frm = w.jQuery("form#" + frm);
 
 				if (_frm.length > 0) {
-					elm = _frm.find("[name=" + field + "]");
+					elm = _frm.find("[name='" + field + "']");
 
 					if (elm.length == 0) {
-						elm = _frm.find("[id=" + field + "]");
+						elm = _frm.find("[id='" + field + "']");
 						
 						if (elm.length == 0) {
 							elm = undefined;

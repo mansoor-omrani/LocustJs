@@ -10,7 +10,7 @@
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.9";
+        w.Locust.Version = "1.4.10";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -34,7 +34,7 @@
 		
 		if (typeof callback == "function") {
 			for (var i = 0; i < _keys.length; i++) {
-				var r = callback(_keys[i], i);
+			    var r = callback(_keys[i], i, _keys.length);
 				
 				if (r != undefined && r != null && r.toString() != "") {
 					result = r;

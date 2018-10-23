@@ -20,9 +20,10 @@
     w.Locust.Language.QUERYSTRING_PARAM_NAME = "la";
     w.Locust.Language.SCHEME = "url";
 
-    w.Locust.Language.Lang = function (shortName, name, localName, digits, dir, align) {
+    w.Locust.Language.Lang = function (shortName, name, localName, digits, dir, align, culture) {
         var _self = this;
 
+        _self.culture = culture;
         _self.shortName = shortName;
         _self.name = name;
         _self.localName = localName;
@@ -37,14 +38,14 @@
 
             for (var i = 0; i < s.length; i++) {
                 var ascii = s.charCodeAt(i);
-                result += ((ascii >= 48) && (ascii <= 57)) ? _self.digits : s.charAt(i);
+                result += ((ascii >= 48) && (ascii <= 57)) ? _self.digits[ascii - 48] : s.charAt(i);
             };
             return result;
         }
     }
 
-    w.Locust.Language.En = new w.Locust.Language.Lang("en", "English", "انگلیسی", ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], "ltr", "left");
-    w.Locust.Language.Fa = new w.Locust.Language.Lang("fa", "Farsi", "فارسی", ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'], "rtl", "right");
+    w.Locust.Language.En = new w.Locust.Language.Lang("en", "English", "انگلیسی", ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], "ltr", "left", "Gregorian");
+    w.Locust.Language.Fa = new w.Locust.Language.Lang("fa", "Farsi", "فارسی", ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'], "rtl", "right", "Persian");
     w.Locust.Language.Current = w.Locust.Language.En;
 
     var _la = "";

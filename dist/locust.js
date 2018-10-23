@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.9";
+        w.Locust.Version = "1.4.10";
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -38,7 +38,7 @@ var __warnings = true;
 		
 		if (typeof callback == "function") {
 			for (var i = 0; i < _keys.length; i++) {
-				var r = callback(_keys[i], i);
+			    var r = callback(_keys[i], i, _keys.length);
 				
 				if (r != undefined && r != null && r.toString() != "") {
 					result = r;
@@ -2137,10 +2137,10 @@ var __warnings = true;
 				var _frm = w.jQuery("form#" + frm);
 
 				if (_frm.length > 0) {
-					elm = _frm.find("[name=" + field + "]");
+					elm = _frm.find("[name='" + field + "']");
 
 					if (elm.length == 0) {
-						elm = _frm.find("[id=" + field + "]");
+						elm = _frm.find("[id='" + field + "']");
 						
 						if (elm.length == 0) {
 							elm = undefined;
@@ -6062,9 +6062,10 @@ var __warnings = true;
     w.Locust.Language.QUERYSTRING_PARAM_NAME = "la";
     w.Locust.Language.SCHEME = "url";
 
-    w.Locust.Language.Lang = function (shortName, name, localName, digits, dir, align) {
+    w.Locust.Language.Lang = function (shortName, name, localName, digits, dir, align, culture) {
         var _self = this;
 
+        _self.culture = culture;
         _self.shortName = shortName;
         _self.name = name;
         _self.localName = localName;
@@ -6079,14 +6080,14 @@ var __warnings = true;
 
             for (var i = 0; i < s.length; i++) {
                 var ascii = s.charCodeAt(i);
-                result += ((ascii >= 48) && (ascii <= 57)) ? _self.digits : s.charAt(i);
+                result += ((ascii >= 48) && (ascii <= 57)) ? _self.digits[ascii - 48] : s.charAt(i);
             };
             return result;
         }
     }
 
-    w.Locust.Language.En = new w.Locust.Language.Lang("en", "English", "انگلیسی", ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], "ltr", "left");
-    w.Locust.Language.Fa = new w.Locust.Language.Lang("fa", "Farsi", "فارسی", ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'], "rtl", "right");
+    w.Locust.Language.En = new w.Locust.Language.Lang("en", "English", "انگلیسی", ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], "ltr", "left", "Gregorian");
+    w.Locust.Language.Fa = new w.Locust.Language.Lang("fa", "Farsi", "فارسی", ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'], "rtl", "right", "Persian");
     w.Locust.Language.Current = w.Locust.Language.En;
 
     var _la = "";
@@ -6715,6 +6716,8 @@ var __warnings = true;
 					}
 				}
 				
+				var result = [];
+
 				if (searchKey) {
 					searchKey = searchKey.toLowerCase();
 					
@@ -6724,11 +6727,15 @@ var __warnings = true;
 							var items = item.value.items;
 							
 							if (items) {
-								return w.Locust.eachKey(items, function(key) {
+								result = w.Locust.eachKey(items, function(key, i, cnt) {
 									if (key == searchKey) {
 										return items[key];
 									}
 								});
+
+								if (result != undefined) {
+								    break;
+								}
 							}
 						}
 					} catch (e) {
@@ -6736,7 +6743,7 @@ var __warnings = true;
 					}
 				}
 				
-				return [];
+				return result;
 			}
 			_self.getSingle = function(key, value1, value2, lang) {
 				var result = "";
