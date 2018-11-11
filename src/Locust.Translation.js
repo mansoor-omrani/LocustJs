@@ -78,9 +78,26 @@
                             case 1:
                                 if (ch == ',')
                                     buffer.push(ch);
+								else
+                                if (ch == 'n')
+                                    buffer.push('\n');
                                 else
+                                if (ch == 'r')
+                                    buffer.push('\r');
+                                else
+                                if (ch == 'f')
+                                    buffer.push('\f');
+                                else
+                                if (ch == 'b')
+                                    buffer.push('\b');
+                                else
+                                if (ch == 'v')
+                                    buffer.push('\v');
+                                else {
                                     buffer.push('\\');
-
+									buffer.push(ch);
+								}
+								
                                 state = 0;
 
                                 break;

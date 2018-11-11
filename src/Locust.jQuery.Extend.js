@@ -123,6 +123,38 @@
                     _config.success(result);
                 }
             });
+        };
+		$.fn.secureClick = function (config) {
+            var _config = {
+                key: "xpr",
+                onValue: "1",
+                offValue: "l",
+                click: null
+            };
+            
+            if ($.isFunction(config)) {
+                _config.click = config;
+            } else {
+                if ($.isPlainObject(config)) {
+                    _config = $.extend({}, _config, config);
+                }
+            }
+
+            return $(this).each(function (i, x) {
+                var _this = $(x);
+
+                _this.on("mouseover", function () {
+                    _this.data(_config.key, _config.onValue);
+                }).on("mouseout", function () {
+                    _this.data(_config.key, _config.offValue);
+                }).click(function (e) {
+                    if (_this.data(_config.key) == _config.onValue) {
+                        if ($.isFunction(_config.click)) {
+                            _config.click.call(_this, e);
+                        }
+                    }
+                });
+            });
         }
     })(w.jQuery);
 })(__locustMainContext);

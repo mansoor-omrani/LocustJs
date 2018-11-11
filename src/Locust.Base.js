@@ -10,7 +10,11 @@
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.10";
+        w.Locust.Version = "1.5.1";
+    }
+	if (!w.jQuery) {
+        console.log("Locust.Base: jQuery library not found");
+        return;
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -45,6 +49,22 @@
 		}
 		
 		return result;
+	}
+	
+	w.Locust.toArray = function (obj) {
+	    var result = [];
+
+		if (obj != undefined) {
+			if (w.jQuery.isPlainObject(obj)) {
+				w.Locust.eachKey(obj, function (key, i) {
+					result.push(obj[key]);
+				});
+			} else {
+				result.push(obj);
+			}
+		}
+		
+	    return result;
 	}
 	
 	w.Locust.readyFns = [];

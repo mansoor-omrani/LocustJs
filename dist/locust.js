@@ -14,7 +14,11 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.4.10";
+        w.Locust.Version = "1.5.1";
+    }
+	if (!w.jQuery) {
+        console.log("Locust.Base: jQuery library not found");
+        return;
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
         w.Locust.isEmpty = function(x) {
@@ -49,6 +53,22 @@ var __warnings = true;
 		}
 		
 		return result;
+	}
+	
+	w.Locust.toArray = function (obj) {
+	    var result = [];
+
+		if (obj != undefined) {
+			if (w.jQuery.isPlainObject(obj)) {
+				w.Locust.eachKey(obj, function (key, i) {
+					result.push(obj[key]);
+				});
+			} else {
+				result.push(obj);
+			}
+		}
+		
+	    return result;
 	}
 	
 	w.Locust.readyFns = [];
@@ -737,11 +757,11 @@ var __warnings = true;
 		return;
 	}
 	if (!w.Locust.Logging) {
-		__error("Locust.Extensions.Array: Locust.Logging namespace not found (use 'Locust.Logging.js')");
+	    __error("Locust.Extensions.String: Locust.Logging namespace not found (use 'Locust.Logging.js')");
 		return;
 	}
 	if (!w.jQuery) {
-        __error("Locust.Cookie: jQuery library not found");
+        __error("Locust.Extensions.String: jQuery library not found");
         return;
     }
 	var _logger = w.Locust.getLogger();
@@ -806,7 +826,8 @@ var __warnings = true;
 	if (!w.String.prototype.format) {
 		w.String.prototype.format = function () {
 			var s = this;
-            
+			var _args = arguments;
+
 		    function formatWithObject(prefix, obj) {
 		        w.Locust.eachKey(obj, function (key, i) {
 		            var pv = obj[key];
@@ -834,7 +855,11 @@ var __warnings = true;
 					        var pv = values[key];
 
 					        if (typeof pv == "object" && pv) {
-					            formatWithObject(key + ".", pv);
+					            if (w.jQuery.isNumeric(key)) {
+					                formatWithObject("", pv);
+					            } else {
+					                formatWithObject(key + ".", pv);
+					            }
 					        } else {
 					            s = s.replaceAll("{" + key + "}", pv);
 					        }
@@ -843,7 +868,6 @@ var __warnings = true;
 					    s = s.replaceAll("{0}", values);
 					}
 				} else {
-				    var _args = arguments;
 				    s = this.replace(/{(\d+)}/g, function (match, number) {
 				        if (number >= 0 && number < _args.length) {
 				            return _args[number] != undefined ? _args[number] : match;
@@ -854,7 +878,66 @@ var __warnings = true;
 				}
 			}
 			
-			return s;
+			var i = 0;
+			var state = 0;
+			var ex = "";
+			var result = [];
+			var temp = "";
+
+			while (i < s.length) {
+			    var ch = s[i];
+
+			    switch (state) {
+			        case 0:
+			            if (ch == '{') {
+			                if (temp.length) {
+			                    result.push(temp);
+			                }
+			                temp = "";
+			                state = 1;
+			            } else if (ch == '\\') {
+			                state = 2;
+                        } else {
+			                temp += ch;
+			            }
+			            break;
+			        case 1:
+			            if (ch == '}') {
+			                if (ex.trim()) {
+			                    if (ex[0] == ':') {
+			                        var exr = eval(ex.substr(1).format(_args));
+
+			                        result.push(exr);
+			                    } else {
+			                        result.push("{" + ex + "}");
+			                    }
+			                    ex = "";
+			                }
+			                state = 0;
+			            } else {
+			                ex += ch;
+			            }
+
+			            break;
+			        case 2:
+			            if (ch == '{' || ch == '}') {
+			                result.push(ch);
+			            } else {
+			                result.push('\\' + ch);
+			            }
+			            state = 0;
+
+			            break;
+			    }
+
+			    i++;
+			}
+
+			if (temp.length) {
+			    result.push(temp);
+			}
+
+			return result.join("");
 		}
 	} else {
 		_logger.warning("Locust.Extensions.String", "String.prototype.format already declared.");
@@ -991,7 +1074,23 @@ var __warnings = true;
 	} else {
 		_logger.warning("Locust.Extensions.String", "String.prototype.isMath already declared.");
 	}
+
+	if (!w.String.prototype.left) {
+	    w.String.prototype.left = function (n) {
+	        return this.substr(0, n);
+	    }
+	} else {
+	    _logger.warning("Locust.Extensions.String", "String.prototype.left already declared.");
+	}
 	
+	if (!w.String.prototype.right) {
+	    w.String.prototype.right = function (n) {
+	        return this.length > n ? this.substr(this.length - n, n): this.toString();
+	    }
+	} else {
+	    _logger.warning("Locust.Extensions.String", "String.prototype.right already declared.");
+	}
+
 	if (!w.String.prototype.splitString) {
 		w.String.prototype.splitString = function (separator, splitOptions) {
 			var result = [];
@@ -5989,6 +6088,38 @@ var __warnings = true;
                     _config.success(result);
                 }
             });
+        };
+		$.fn.secureClick = function (config) {
+            var _config = {
+                key: "xpr",
+                onValue: "1",
+                offValue: "l",
+                click: null
+            };
+            
+            if ($.isFunction(config)) {
+                _config.click = config;
+            } else {
+                if ($.isPlainObject(config)) {
+                    _config = $.extend({}, _config, config);
+                }
+            }
+
+            return $(this).each(function (i, x) {
+                var _this = $(x);
+
+                _this.on("mouseover", function () {
+                    _this.data(_config.key, _config.onValue);
+                }).on("mouseout", function () {
+                    _this.data(_config.key, _config.offValue);
+                }).click(function (e) {
+                    if (_this.data(_config.key) == _config.onValue) {
+                        if ($.isFunction(_config.click)) {
+                            _config.click.call(_this, e);
+                        }
+                    }
+                });
+            });
         }
     })(w.jQuery);
 })(__locustMainContext);
@@ -6496,9 +6627,26 @@ var __warnings = true;
                             case 1:
                                 if (ch == ',')
                                     buffer.push(ch);
+								else
+                                if (ch == 'n')
+                                    buffer.push('\n');
                                 else
+                                if (ch == 'r')
+                                    buffer.push('\r');
+                                else
+                                if (ch == 'f')
+                                    buffer.push('\f');
+                                else
+                                if (ch == 'b')
+                                    buffer.push('\b');
+                                else
+                                if (ch == 'v')
+                                    buffer.push('\v');
+                                else {
                                     buffer.push('\\');
-
+									buffer.push(ch);
+								}
+								
                                 state = 0;
 
                                 break;

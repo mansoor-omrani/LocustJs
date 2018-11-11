@@ -15,11 +15,11 @@
 		return;
 	}
 	if (!w.Locust.Logging) {
-		__error("Locust.Extensions.Array: Locust.Logging namespace not found (use 'Locust.Logging.js')");
+	    __error("Locust.Extensions.String: Locust.Logging namespace not found (use 'Locust.Logging.js')");
 		return;
 	}
 	if (!w.jQuery) {
-        __error("Locust.Cookie: jQuery library not found");
+        __error("Locust.Extensions.String: jQuery library not found");
         return;
     }
 	var _logger = w.Locust.getLogger();
@@ -84,7 +84,8 @@
 	if (!w.String.prototype.format) {
 		w.String.prototype.format = function () {
 			var s = this;
-            
+			var _args = arguments;
+
 		    function formatWithObject(prefix, obj) {
 		        w.Locust.eachKey(obj, function (key, i) {
 		            var pv = obj[key];
@@ -112,7 +113,11 @@
 					        var pv = values[key];
 
 					        if (typeof pv == "object" && pv) {
-					            formatWithObject(key + ".", pv);
+					            if (w.jQuery.isNumeric(key)) {
+					                formatWithObject("", pv);
+					            } else {
+					                formatWithObject(key + ".", pv);
+					            }
 					        } else {
 					            s = s.replaceAll("{" + key + "}", pv);
 					        }
@@ -121,7 +126,6 @@
 					    s = s.replaceAll("{0}", values);
 					}
 				} else {
-				    var _args = arguments;
 				    s = this.replace(/{(\d+)}/g, function (match, number) {
 				        if (number >= 0 && number < _args.length) {
 				            return _args[number] != undefined ? _args[number] : match;
@@ -132,7 +136,66 @@
 				}
 			}
 			
-			return s;
+			var i = 0;
+			var state = 0;
+			var ex = "";
+			var result = [];
+			var temp = "";
+
+			while (i < s.length) {
+			    var ch = s[i];
+
+			    switch (state) {
+			        case 0:
+			            if (ch == '{') {
+			                if (temp.length) {
+			                    result.push(temp);
+			                }
+			                temp = "";
+			                state = 1;
+			            } else if (ch == '\\') {
+			                state = 2;
+                        } else {
+			                temp += ch;
+			            }
+			            break;
+			        case 1:
+			            if (ch == '}') {
+			                if (ex.trim()) {
+			                    if (ex[0] == ':') {
+			                        var exr = eval(ex.substr(1).format(_args));
+
+			                        result.push(exr);
+			                    } else {
+			                        result.push("{" + ex + "}");
+			                    }
+			                    ex = "";
+			                }
+			                state = 0;
+			            } else {
+			                ex += ch;
+			            }
+
+			            break;
+			        case 2:
+			            if (ch == '{' || ch == '}') {
+			                result.push(ch);
+			            } else {
+			                result.push('\\' + ch);
+			            }
+			            state = 0;
+
+			            break;
+			    }
+
+			    i++;
+			}
+
+			if (temp.length) {
+			    result.push(temp);
+			}
+
+			return result.join("");
 		}
 	} else {
 		_logger.warning("Locust.Extensions.String", "String.prototype.format already declared.");
@@ -269,7 +332,23 @@
 	} else {
 		_logger.warning("Locust.Extensions.String", "String.prototype.isMath already declared.");
 	}
+
+	if (!w.String.prototype.left) {
+	    w.String.prototype.left = function (n) {
+	        return this.substr(0, n);
+	    }
+	} else {
+	    _logger.warning("Locust.Extensions.String", "String.prototype.left already declared.");
+	}
 	
+	if (!w.String.prototype.right) {
+	    w.String.prototype.right = function (n) {
+	        return this.length > n ? this.substr(this.length - n, n): this.toString();
+	    }
+	} else {
+	    _logger.warning("Locust.Extensions.String", "String.prototype.right already declared.");
+	}
+
 	if (!w.String.prototype.splitString) {
 		w.String.prototype.splitString = function (separator, splitOptions) {
 			var result = [];
