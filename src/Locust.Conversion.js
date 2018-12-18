@@ -137,6 +137,27 @@
             return w.Locust.Convert.stringToBytes(atob(str));
         }
     }
+	if (!w.Locust.Convert.toBool) {
+        w.Locust.Convert.toBool = function (value) {
+            // source: https://codippa.com/how-to-convert-string-to-boolean-javascript/
+
+            if (typeof value == "string") {
+                value = value.trim().toLowerCase();
+            }
+
+            switch (value) {
+                case true:
+                case "true":
+                case 1:
+                case "1":
+                case "on":
+                case "yes":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    }
 	if (!w.Locust.Convert.toXml) {
         w.Locust.Convert.toXml = function (json) {
             var doc = w.jQuery.parseXML("<xml/>");

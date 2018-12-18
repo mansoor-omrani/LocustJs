@@ -88,7 +88,8 @@
             useCompression: false,
 			keyProtector: null,
 			valueChannel: null,
-            compressor: null,
+			compressor: null,
+            useBase64: false,
 			separator: "$",
             logger: null
         }, config);
@@ -138,8 +139,8 @@
                 var str = w.localStorage.getItem(_config.name);
                 var decompressed = str;
 				
-				if (_config.useCompression && str) {
-					decompressed = _config.compressor.decompressString(decompressed);
+                if (_config.useCompression && str) {
+                    decompressed = _config.compressor.decompressString(decompressed, _config.useBase64);
 				}
 
                 if (decompressed) {
@@ -149,22 +150,29 @@
 						if (arr[i]) {
 							if (_config.keyProtector.fixedLength) {
 								if (arr[i].length > _config.keyProtector.length) {
-									var _encodedKey = arr[i].substr(0, _config.keyProtector.length);
+								    var _encodedKey = arr[i].substr(0, _config.keyProtector.length);
+
 									try {
 										var _key = _config.keyProtector.decode(_encodedKey);
 										var _value = arr[i].substr(_config.keyProtector.length);
+
 										_value = _config.valueChannel.deserialize(_value);
+
 										_data.push({ key: _key, value: _value });
 									} catch (e) { }
 								}
 							} else {
-								var keySeparatorIndex = arr[i].indexOf(_config.keyProtector.separator);
+							    var keySeparatorIndex = arr[i].indexOf(_config.keyProtector.separator);
+
 								if (keySeparatorIndex > 0) {
-									var _encodedKey = arr[i].substr(0, keySeparatorIndex);
+								    var _encodedKey = arr[i].substr(0, keySeparatorIndex);
+
 									try {
 										var _key = _config.keyProtector.decode(_encodedKey);
 										var _value = arr[i].substr(keySeparatorIndex + 1);
+
 										_value = _config.valueChannel.deserialize(_value);
+
 										_data.push({ key: _key, value: _value });
 									} catch (e) { }
 								}
@@ -201,7 +209,7 @@
 					}
                 };
                 var str = result.join(_config.separator);
-                var compressed = (_config.useCompression)? _config.compressor.compressString(str): str;
+                var compressed = (_config.useCompression) ? _config.compressor.compressString(str, _config.useBase64) : str;
 
                 w.localStorage.setItem(_config.name, compressed);
             } catch (e) {

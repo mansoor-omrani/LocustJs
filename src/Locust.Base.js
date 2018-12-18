@@ -33,20 +33,23 @@
     }
     
 	w.Locust.eachKey = function (obj, callback) {
-		var _keys = Object.keys(obj);
 		var result;
-		
-		if (typeof callback == "function") {
-			for (var i = 0; i < _keys.length; i++) {
-			    var r = callback(_keys[i], i, _keys.length);
-				
-				if (r != undefined && r != null && r.toString() != "") {
-					result = r;
-					
-					break;
-				}
-			}
-		}
+
+        if (obj != null && obj != undefined) {
+            var _keys = Object.keys(obj);
+
+            if (typeof callback == "function") {
+                for (var i = 0; i < _keys.length; i++) {
+                    var r = callback(_keys[i], i, _keys.length);
+
+                    if (r != undefined && r != null && r.toString() != "") {
+                        result = r;
+
+                        break;
+                    }
+                }
+            }
+        }
 		
 		return result;
 	}

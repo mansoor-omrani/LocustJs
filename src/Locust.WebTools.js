@@ -97,7 +97,40 @@
 
         return result;
     };
+	w.Locust.WebTools.parseQuery = function (url) {
+        var result = {};
+        var iq = url.indexOf('?');
+        var ih = url.indexOf('#');
+        var arr;
 
+        if (iq > 0) {
+            if (ih > 0) {
+                if (ih - iq - 1 > 0) {
+                    arr = url.substr(iq + 1, ih - iq - 1);
+                }
+            } else {
+                arr = url.substr(iq + 1);
+            }
+        } else {
+            if (url.left(4).toLowerCase() != "http") {
+                arr = url;
+            }
+        }
+
+        arr.split('&').forEach(function (keyValue) {
+            var ei = keyValue.indexOf('=');
+            var key = keyValue.substr(0, ei);
+            var value = decodeURIComponent(keyValue.substr(ei + 1));
+
+            result[key] = value;
+        });
+
+        return result;
+    };
+    w.Locust.WebTools.querystring = function () {
+        return w.Locust.WebTools.parseQuery(w.location.href);
+    };
+	
     w.Locust.WebTools.POPUP_DEFAULT_WIDTH = 400;
     w.Locust.WebTools.POPUP_DEFAULT_HEIGHT = 300;
 

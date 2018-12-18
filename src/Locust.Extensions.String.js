@@ -90,6 +90,10 @@
 		        w.Locust.eachKey(obj, function (key, i) {
 		            var pv = obj[key];
 
+		            if (pv == null) {
+		                pv = "";
+		            }
+
 		            if (typeof pv == "object" && pv) {
 		                formatWithObject(prefix + key + ".", pv);
 		            } else {
@@ -105,12 +109,18 @@
 					if (w.Array.isArray(values)) {
 						var i = 0;
 						values.forEach(function (value) {
-							s = s.replaceAll("{" + i + "}", value);
+						    var v = value == null ? "" : value;
+
+							s = s.replaceAll("{" + i + "}", v);
 							i++;
 						})
-					} else if (typeof values == "object") {
+					} else if (typeof values == "object" && values != null) {
 					    w.Locust.eachKey(values, function (key, i) {
 					        var pv = values[key];
+
+					        if (pv == null) {
+					            pv = "";
+					        }
 
 					        if (typeof pv == "object" && pv) {
 					            if (w.jQuery.isNumeric(key)) {
@@ -123,12 +133,18 @@
 					        }
 					    });
 					} else {
+					    if (values == null) {
+					        values = "";
+					    }
+
 					    s = s.replaceAll("{0}", values);
 					}
 				} else {
 				    s = this.replace(/{(\d+)}/g, function (match, number) {
 				        if (number >= 0 && number < _args.length) {
-				            return _args[number] != undefined ? _args[number] : match;
+				            var v = _args[number] == null ? "" : _args[number];
+
+				            return _args[number] != undefined ? v : match;
 				        } else {
 				            return match;
 				        }

@@ -78,7 +78,7 @@
                             case 1:
                                 if (ch == ',')
                                     buffer.push(ch);
-								else
+                                else
                                 if (ch == 'n')
                                     buffer.push('\n');
                                 else
@@ -95,9 +95,9 @@
                                     buffer.push('\v');
                                 else {
                                     buffer.push('\\');
-									buffer.push(ch);
-								}
-								
+                                    buffer.push(ch);
+                                }
+
                                 state = 0;
 
                                 break;
@@ -229,13 +229,19 @@
             var _config = w.jQuery.extend({
                 name: "Texts",
                 basePath: "/localization",
+                useCompression: true,
+                useBase64: false,
                 logger: null
             }, config);
 
             _config.logger = w.Locust.getLogger(_config.logger);
 
             var _self = this;
-            var _store = new Locust.Storage.LocalDataStore({ name: _config.name, useCompression: true });
+            var _store = new Locust.Storage.LocalDataStore({
+                name: _config.name,
+                useCompression: _config.useCompression,
+                useBase64: _config.useBase64
+            });
             
             var loadTexts = function(storenames, type) {
 				var d = w.jQuery.Deferred();
