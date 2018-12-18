@@ -37,20 +37,23 @@ var __warnings = true;
     }
     
 	w.Locust.eachKey = function (obj, callback) {
-		var _keys = Object.keys(obj);
 		var result;
-		
-		if (typeof callback == "function") {
-			for (var i = 0; i < _keys.length; i++) {
-			    var r = callback(_keys[i], i, _keys.length);
-				
-				if (r != undefined && r != null && r.toString() != "") {
-					result = r;
-					
-					break;
-				}
-			}
-		}
+
+        if (obj != null && obj != undefined) {
+            var _keys = Object.keys(obj);
+
+            if (typeof callback == "function") {
+                for (var i = 0; i < _keys.length; i++) {
+                    var r = callback(_keys[i], i, _keys.length);
+
+                    if (r != undefined && r != null && r.toString() != "") {
+                        result = r;
+
+                        break;
+                    }
+                }
+            }
+        }
 		
 		return result;
 	}
@@ -224,6 +227,27 @@ var __warnings = true;
     if (!w.Locust.Convert.base64StringToBytes) {
         w.Locust.Convert.base64StringToBytes = function (str) {
             return w.Locust.Convert.stringToBytes(atob(str));
+        }
+    }
+	if (!w.Locust.Convert.toBool) {
+        w.Locust.Convert.toBool = function (value) {
+            // source: https://codippa.com/how-to-convert-string-to-boolean-javascript/
+
+            if (typeof value == "string") {
+                value = value.trim().toLowerCase();
+            }
+
+            switch (value) {
+                case true:
+                case "true":
+                case 1:
+                case "1":
+                case "on":
+                case "yes":
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 	if (!w.Locust.Convert.toXml) {
@@ -832,6 +856,10 @@ var __warnings = true;
 		        w.Locust.eachKey(obj, function (key, i) {
 		            var pv = obj[key];
 
+		            if (pv == null) {
+		                pv = "";
+		            }
+
 		            if (typeof pv == "object" && pv) {
 		                formatWithObject(prefix + key + ".", pv);
 		            } else {
@@ -847,12 +875,18 @@ var __warnings = true;
 					if (w.Array.isArray(values)) {
 						var i = 0;
 						values.forEach(function (value) {
-							s = s.replaceAll("{" + i + "}", value);
+						    var v = value == null ? "" : value;
+
+							s = s.replaceAll("{" + i + "}", v);
 							i++;
 						})
-					} else if (typeof values == "object") {
+					} else if (typeof values == "object" && values != null) {
 					    w.Locust.eachKey(values, function (key, i) {
 					        var pv = values[key];
+
+					        if (pv == null) {
+					            pv = "";
+					        }
 
 					        if (typeof pv == "object" && pv) {
 					            if (w.jQuery.isNumeric(key)) {
@@ -865,12 +899,18 @@ var __warnings = true;
 					        }
 					    });
 					} else {
+					    if (values == null) {
+					        values = "";
+					    }
+
 					    s = s.replaceAll("{0}", values);
 					}
 				} else {
 				    s = this.replace(/{(\d+)}/g, function (match, number) {
 				        if (number >= 0 && number < _args.length) {
-				            return _args[number] != undefined ? _args[number] : match;
+				            var v = _args[number] == null ? "" : _args[number];
+
+				            return _args[number] != undefined ? v : match;
 				        } else {
 				            return match;
 				        }
@@ -1534,23 +1574,49 @@ var __warnings = true;
 
         _config.logger = w.Locust.getLogger(_config.logger);
 
-        _self.compressString = function (rawStr) {
+        _self.compressString = function (rawStr, base64) {
             if (!pako) {
                 _config.logger.fail(_name, "compressString(): pako library not loaded.");
                 _config.logger.suggest(_name, "https://www.npmjs.com/package/pako");
 				
                 return "";
             }
-            return pako.deflate(rawStr, { to: 'string' })
+
+            var result = pako.deflate(rawStr, { to: 'string' });
+
+            if (base64 != undefined && base64) {
+                if (!Base64) {
+                    _config.logger.fail(_name, "compressString(): js-base64 library not loaded.");
+                    _config.logger.suggest(_name, "http://travis-ci.org/dankogai/js-base64");
+                } else {
+                    result = Base64.encode(result);
+                }
+            }
+
+            return result;
         }
-        _self.decompressString = function (compressedStr) {
+        _self.decompressString = function (compressedStr, base64) {
             if (!pako) {
                 _config.logger.fail(_name, "decompressString(): pako library not loaded.");
 				_config.logger.suggest(_name, "https://www.npmjs.com/package/pako");
 				
                 return "";
             }
-            return pako.inflate(compressedStr, { to: 'string' });
+
+            var result = compressedStr;
+
+            if (base64 != undefined && base64) {
+                if (!Base64) {
+                    _config.logger.fail(_name, "decompressString(): js-base64 library not loaded.");
+                    _config.logger.suggest(_name, "http://travis-ci.org/dankogai/js-base64");
+                } else {
+                    result = Base64.decode(result);
+                }
+            }
+
+            result = pako.inflate(result, { to: 'string' });
+
+            return result;
         }
     }
 	if (w.$cm == undefined) {
@@ -6337,7 +6403,8 @@ var __warnings = true;
             useCompression: false,
 			keyProtector: null,
 			valueChannel: null,
-            compressor: null,
+			compressor: null,
+            useBase64: false,
 			separator: "$",
             logger: null
         }, config);
@@ -6387,8 +6454,8 @@ var __warnings = true;
                 var str = w.localStorage.getItem(_config.name);
                 var decompressed = str;
 				
-				if (_config.useCompression && str) {
-					decompressed = _config.compressor.decompressString(decompressed);
+                if (_config.useCompression && str) {
+                    decompressed = _config.compressor.decompressString(decompressed, _config.useBase64);
 				}
 
                 if (decompressed) {
@@ -6398,22 +6465,29 @@ var __warnings = true;
 						if (arr[i]) {
 							if (_config.keyProtector.fixedLength) {
 								if (arr[i].length > _config.keyProtector.length) {
-									var _encodedKey = arr[i].substr(0, _config.keyProtector.length);
+								    var _encodedKey = arr[i].substr(0, _config.keyProtector.length);
+
 									try {
 										var _key = _config.keyProtector.decode(_encodedKey);
 										var _value = arr[i].substr(_config.keyProtector.length);
+
 										_value = _config.valueChannel.deserialize(_value);
+
 										_data.push({ key: _key, value: _value });
 									} catch (e) { }
 								}
 							} else {
-								var keySeparatorIndex = arr[i].indexOf(_config.keyProtector.separator);
+							    var keySeparatorIndex = arr[i].indexOf(_config.keyProtector.separator);
+
 								if (keySeparatorIndex > 0) {
-									var _encodedKey = arr[i].substr(0, keySeparatorIndex);
+								    var _encodedKey = arr[i].substr(0, keySeparatorIndex);
+
 									try {
 										var _key = _config.keyProtector.decode(_encodedKey);
 										var _value = arr[i].substr(keySeparatorIndex + 1);
+
 										_value = _config.valueChannel.deserialize(_value);
+
 										_data.push({ key: _key, value: _value });
 									} catch (e) { }
 								}
@@ -6450,7 +6524,7 @@ var __warnings = true;
 					}
                 };
                 var str = result.join(_config.separator);
-                var compressed = (_config.useCompression)? _config.compressor.compressString(str): str;
+                var compressed = (_config.useCompression) ? _config.compressor.compressString(str, _config.useBase64) : str;
 
                 w.localStorage.setItem(_config.name, compressed);
             } catch (e) {
@@ -6627,7 +6701,7 @@ var __warnings = true;
                             case 1:
                                 if (ch == ',')
                                     buffer.push(ch);
-								else
+                                else
                                 if (ch == 'n')
                                     buffer.push('\n');
                                 else
@@ -6644,9 +6718,9 @@ var __warnings = true;
                                     buffer.push('\v');
                                 else {
                                     buffer.push('\\');
-									buffer.push(ch);
-								}
-								
+                                    buffer.push(ch);
+                                }
+
                                 state = 0;
 
                                 break;
@@ -6778,13 +6852,19 @@ var __warnings = true;
             var _config = w.jQuery.extend({
                 name: "Texts",
                 basePath: "/localization",
+                useCompression: true,
+                useBase64: false,
                 logger: null
             }, config);
 
             _config.logger = w.Locust.getLogger(_config.logger);
 
             var _self = this;
-            var _store = new Locust.Storage.LocalDataStore({ name: _config.name, useCompression: true });
+            var _store = new Locust.Storage.LocalDataStore({
+                name: _config.name,
+                useCompression: _config.useCompression,
+                useBase64: _config.useBase64
+            });
             
             var loadTexts = function(storenames, type) {
 				var d = w.jQuery.Deferred();
@@ -7042,7 +7122,40 @@ var __warnings = true;
 
         return result;
     };
+	w.Locust.WebTools.parseQuery = function (url) {
+        var result = {};
+        var iq = url.indexOf('?');
+        var ih = url.indexOf('#');
+        var arr;
 
+        if (iq > 0) {
+            if (ih > 0) {
+                if (ih - iq - 1 > 0) {
+                    arr = url.substr(iq + 1, ih - iq - 1);
+                }
+            } else {
+                arr = url.substr(iq + 1);
+            }
+        } else {
+            if (url.left(4).toLowerCase() != "http") {
+                arr = url;
+            }
+        }
+
+        arr.split('&').forEach(function (keyValue) {
+            var ei = keyValue.indexOf('=');
+            var key = keyValue.substr(0, ei);
+            var value = decodeURIComponent(keyValue.substr(ei + 1));
+
+            result[key] = value;
+        });
+
+        return result;
+    };
+    w.Locust.WebTools.querystring = function () {
+        return w.Locust.WebTools.parseQuery(w.location.href);
+    };
+	
     w.Locust.WebTools.POPUP_DEFAULT_WIDTH = 400;
     w.Locust.WebTools.POPUP_DEFAULT_HEIGHT = 300;
 
