@@ -4,40 +4,40 @@ var __warnings = true;
 
 //================================= Locust.Base =================================
 (function (w) {
-	if (!w) {
+    if (!w) {
         throw "Locust.Base: no context given. aborting.";
     }
     if (!w.Locust) {
-        w.Locust = { };
+        w.Locust = {};
     }
     if (!w.Locust.Name) {
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.5.1";
+        w.Locust.Version = "1.5.2";
     }
-	if (!w.jQuery) {
+    if (!w.jQuery) {
         console.log("Locust.Base: jQuery library not found");
         return;
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
-        w.Locust.isEmpty = function(x) {
+        w.Locust.isEmpty = function (x) {
             if (x == undefined || x == null) {
                 return true;
-			}
-			
+            }
+
             for (var key in x) {
                 if (x.hasOwnProperty(key)) {
-					return false;
-				}
+                    return false;
+                }
             }
 
             return true;
         };
     }
-    
-	w.Locust.eachKey = function (obj, callback) {
-		var result;
+
+    w.Locust.eachKey = function (obj, callback) {
+        var result;
 
         if (obj != null && obj != undefined) {
             var _keys = Object.keys(obj);
@@ -54,40 +54,40 @@ var __warnings = true;
                 }
             }
         }
-		
-		return result;
-	}
-	
-	w.Locust.toArray = function (obj) {
-	    var result = [];
 
-		if (obj != undefined) {
-			if (w.jQuery.isPlainObject(obj)) {
-				w.Locust.eachKey(obj, function (key, i) {
-					result.push(obj[key]);
-				});
-			} else {
-				result.push(obj);
-			}
-		}
-		
-	    return result;
-	}
-	
-	w.Locust.readyFns = [];
-	w.Locust.onready = function (fn) {
-	    if (typeof fn == "function") {
-	        w.Locust.readyFns.push(fn);
-	    }
-	};
+        return result;
+    }
 
-	w.Locust.ready = function () {
-	    for (var i = 0; i < w.Locust.readyFns.length; i++) {
-	        w.Locust.readyFns[i]();
-	    }
-	};
-	
-	w.$$ = w.Locust;
+    w.Locust.toArray = function (obj) {
+        var result = [];
+
+        if (obj != undefined) {
+            if (w.jQuery.isPlainObject(obj)) {
+                w.Locust.eachKey(obj, function (key, i) {
+                    result.push(obj[key]);
+                });
+            } else {
+                result.push(obj);
+            }
+        }
+
+        return result;
+    }
+
+    w.Locust.readyFns = [];
+    w.Locust.onready = function (fn) {
+        if (typeof fn == "function") {
+            w.Locust.readyFns.push(fn);
+        }
+    };
+
+    w.Locust.ready = function () {
+        for (var i = 0; i < w.Locust.readyFns.length; i++) {
+            w.Locust.readyFns[i]();
+        }
+    };
+
+    w.$$ = w.Locust;
 })(__locustMainContext);
 
 //================================= Locust.Conversion =================================
@@ -1370,7 +1370,7 @@ var __warnings = true;
         _config.size = (_validateSize(_config.size)) ? "modal-" + _config.size : "";
 
         result =
-"<div id='" + _config.id + "' class='modal fade " + _config.className + "' tabindex='-1' role='dialog' aria-labelledby='" + _config.id + "Label' style=\"" + style + "\">" +
+"<div id='" + _config.id + "' class='modal fade " + _config.className + "' tabindex='-1' role='dialog' aria-labelledby='" + _config.id + "Label' style=\"" + _config.style + "\">" +
 "	<div class='modal-dialog " + _config.size + "' role='document'>" +
 "		<div class='modal-content'>" +
 "			<div class='modal-header'>" +
@@ -6621,6 +6621,53 @@ var __warnings = true;
 })(__locustMainContext);
 
 
+//================================= Locust.Validation =================================
+(function (w) {
+    function __error(msg) {
+		if (w.console && w.console.error) {
+			w.console.error(msg);
+		} else {
+			throw msg;
+		}
+	}
+	if (!w) {
+        throw "Locust.Text: no context given (use 'Locust.Base.js')";
+    }
+    if (!w.Locust) {
+		__error("Locust.Text: Locust namespace not found (use 'Locust.Base.js')");
+		return;
+    }
+    if (!w.Locust.Text) {
+        w.Locust.Text = {};
+    }
+    w.Locust.Text.StringBuilder = function () {
+        var buffer = [];
+        var result = "";
+        var result_built = false;
+        
+        this.append = function (value, index, len) {
+            result_built = false;
+            value = (value || "").toString();
+
+            if (value) {
+                if (index != undefined) {
+                    value = value.substr(index, len);
+                }
+                buffer.push(value);
+            }
+        }
+        this.build = function () {
+            if (!result_built) {
+                result = buffer.join("");
+                result_built = true;
+                buffer = [];
+            }
+
+            return result;
+        }
+    }
+})(__locustMainContext);
+
 //================================= Locust.Translation =================================
 (function (w) {
     function __error(msg) {
@@ -7122,7 +7169,7 @@ var __warnings = true;
 
         return result;
     };
-	w.Locust.WebTools.parseQuery = function (url) {
+    w.Locust.WebTools.parseQuery = function (url) {
         var result = {};
         var iq = url.indexOf('?');
         var ih = url.indexOf('#');
@@ -7142,20 +7189,22 @@ var __warnings = true;
             }
         }
 
-        arr.split('&').forEach(function (keyValue) {
-            var ei = keyValue.indexOf('=');
-            var key = keyValue.substr(0, ei);
-            var value = decodeURIComponent(keyValue.substr(ei + 1));
+        if (arr) {
+            arr.split('&').forEach(function (keyValue) {
+                var ei = keyValue.indexOf('=');
+                var key = keyValue.substr(0, ei);
+                var value = decodeURIComponent(keyValue.substr(ei + 1));
 
-            result[key] = value;
-        });
+                result[key] = value;
+            });
+        }
 
         return result;
     };
     w.Locust.WebTools.querystring = function () {
         return w.Locust.WebTools.parseQuery(w.location.href);
     };
-	
+    
     w.Locust.WebTools.POPUP_DEFAULT_WIDTH = 400;
     w.Locust.WebTools.POPUP_DEFAULT_HEIGHT = 300;
 
@@ -7208,7 +7257,109 @@ var __warnings = true;
 		}
 		
 		return win;
-	}
+    }
+    w.Locust.WebTools.jsEncode = function (value) {
+        // converted from Microsfot .NET System.Web.HttpUtility.JavaScriptStringEncode()
+        // https://github.com/dotnet/corefx/blob/e23f83e6172ef2d879342e1c4883012749b91ef1/src/System.Web.HttpUtility/src/System/Web/Util/HttpEncoder.cs
+
+        function charRequiresJavaScriptEncoding(ch) {
+            return ch < 0x20 // control chars always have to be encoded
+                || ch == '\"' // chars which must be encoded per JSON spec
+                || ch == '\\'
+                || ch == '\'' // HTML-sensitive chars encoded for safety
+                || ch == '<'
+                || ch == '>'
+                || ch == '&'
+                || ch == '\u0085' // newline chars (see Unicode 6.2, Table 5-1 [http://www.unicode.org/versions/Unicode6.2.0/ch05.pdf]) have to be encoded
+                || ch == '\u2028'
+                || ch == '\u2029';
+        }
+        function toHexString(num) {
+            var result = ('000' + (num).toString(16)).right(4);
+
+            return result;
+        }
+        function appendCharAsUnicodeJavaScript(builder, ch) {
+            if (ch == ' ') {
+                builder.append(' ');
+            } else {
+                builder.append("\\u" + toHexString(ch.charCodeAt(0)));
+            }
+        }
+
+        value = (value || "").toString();
+
+        if (!value.length) {
+            return "";
+        }
+
+        var b = null;
+        var startIndex = 0;
+        var count = 0;
+
+        for (var i = 0; i < value.length; i++)
+        {
+            var c = value[i];
+
+            // Append the unhandled characters (that do not require special treament)
+            // to the string builder when special characters are detected.
+
+            if (charRequiresJavaScriptEncoding(c)) {
+                if (b == null) {
+                    b = new w.Locust.Text.StringBuilder();
+                }
+
+                if (count > 0) {
+                    b.append(value, startIndex, count);
+                }
+
+                startIndex = i + 1;
+                count = 0;
+
+                switch (c) {
+                    case '\r':
+                        b.append("\\r");
+                        break;
+                    case '\t':
+                        b.append("\\t");
+                        break;
+                    case '\"':
+                        b.append("\\\"");
+                        break;
+                    case '\\':
+                        b.append("\\\\");
+                        break;
+                    case '\n':
+                        b.append("\\n");
+                        break;
+                    case '\b':
+                        b.append("\\b");
+                        break;
+                    case '\f':
+                        b.append("\\f");
+                        break;
+                    case ' ':
+                        b.append(' ');
+                        break;
+                    default:
+                        appendCharAsUnicodeJavaScript(b, c);
+                        break;
+                }
+            } else {
+                count++;
+            }
+        }
+
+        if (b == null) {
+            return value;
+        }
+
+        if (count > 0) {
+            b.append(value, startIndex, count);
+        }
+
+        return b.build();
+    }
 	if (w.$w == undefined) {
 		w.$w = w.Locust.WebTools;
 	}

@@ -97,7 +97,7 @@
 
         return result;
     };
-	w.Locust.WebTools.parseQuery = function (url) {
+    w.Locust.WebTools.parseQuery = function (url) {
         var result = {};
         var iq = url.indexOf('?');
         var ih = url.indexOf('#');
@@ -117,20 +117,22 @@
             }
         }
 
-        arr.split('&').forEach(function (keyValue) {
-            var ei = keyValue.indexOf('=');
-            var key = keyValue.substr(0, ei);
-            var value = decodeURIComponent(keyValue.substr(ei + 1));
+        if (arr) {
+            arr.split('&').forEach(function (keyValue) {
+                var ei = keyValue.indexOf('=');
+                var key = keyValue.substr(0, ei);
+                var value = decodeURIComponent(keyValue.substr(ei + 1));
 
-            result[key] = value;
-        });
+                result[key] = value;
+            });
+        }
 
         return result;
     };
     w.Locust.WebTools.querystring = function () {
         return w.Locust.WebTools.parseQuery(w.location.href);
     };
-	
+    
     w.Locust.WebTools.POPUP_DEFAULT_WIDTH = 400;
     w.Locust.WebTools.POPUP_DEFAULT_HEIGHT = 300;
 
@@ -183,7 +185,109 @@
 		}
 		
 		return win;
-	}
+    }
+    w.Locust.WebTools.jsEncode = function (value) {
+        // converted from Microsfot .NET System.Web.HttpUtility.JavaScriptStringEncode()
+        // https://github.com/dotnet/corefx/blob/e23f83e6172ef2d879342e1c4883012749b91ef1/src/System.Web.HttpUtility/src/System/Web/Util/HttpEncoder.cs
+
+        function charRequiresJavaScriptEncoding(ch) {
+            return ch < 0x20 // control chars always have to be encoded
+                || ch == '\"' // chars which must be encoded per JSON spec
+                || ch == '\\'
+                || ch == '\'' // HTML-sensitive chars encoded for safety
+                || ch == '<'
+                || ch == '>'
+                || ch == '&'
+                || ch == '\u0085' // newline chars (see Unicode 6.2, Table 5-1 [http://www.unicode.org/versions/Unicode6.2.0/ch05.pdf]) have to be encoded
+                || ch == '\u2028'
+                || ch == '\u2029';
+        }
+        function toHexString(num) {
+            var result = ('000' + (num).toString(16)).right(4);
+
+            return result;
+        }
+        function appendCharAsUnicodeJavaScript(builder, ch) {
+            if (ch == ' ') {
+                builder.append(' ');
+            } else {
+                builder.append("\\u" + toHexString(ch.charCodeAt(0)));
+            }
+        }
+
+        value = (value || "").toString();
+
+        if (!value.length) {
+            return "";
+        }
+
+        var b = null;
+        var startIndex = 0;
+        var count = 0;
+
+        for (var i = 0; i < value.length; i++)
+        {
+            var c = value[i];
+
+            // Append the unhandled characters (that do not require special treament)
+            // to the string builder when special characters are detected.
+
+            if (charRequiresJavaScriptEncoding(c)) {
+                if (b == null) {
+                    b = new w.Locust.Text.StringBuilder();
+                }
+
+                if (count > 0) {
+                    b.append(value, startIndex, count);
+                }
+
+                startIndex = i + 1;
+                count = 0;
+
+                switch (c) {
+                    case '\r':
+                        b.append("\\r");
+                        break;
+                    case '\t':
+                        b.append("\\t");
+                        break;
+                    case '\"':
+                        b.append("\\\"");
+                        break;
+                    case '\\':
+                        b.append("\\\\");
+                        break;
+                    case '\n':
+                        b.append("\\n");
+                        break;
+                    case '\b':
+                        b.append("\\b");
+                        break;
+                    case '\f':
+                        b.append("\\f");
+                        break;
+                    case ' ':
+                        b.append(' ');
+                        break;
+                    default:
+                        appendCharAsUnicodeJavaScript(b, c);
+                        break;
+                }
+            } else {
+                count++;
+            }
+        }
+
+        if (b == null) {
+            return value;
+        }
+
+        if (count > 0) {
+            b.append(value, startIndex, count);
+        }
+
+        return b.build();
+    }
 	if (w.$w == undefined) {
 		w.$w = w.Locust.WebTools;
 	}

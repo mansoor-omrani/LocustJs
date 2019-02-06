@@ -1,39 +1,39 @@
 ﻿//================================= Locust.Base =================================
 (function (w) {
-	if (!w) {
+    if (!w) {
         throw "Locust.Base: no context given. aborting.";
     }
     if (!w.Locust) {
-        w.Locust = { };
+        w.Locust = {};
     }
     if (!w.Locust.Name) {
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.5.1";
+        w.Locust.Version = "1.5.2";
     }
-	if (!w.jQuery) {
+    if (!w.jQuery) {
         console.log("Locust.Base: jQuery library not found");
         return;
     }
     if (!w.Locust.isEmpty || typeof w.Locust.isEmpty != "function") {
-        w.Locust.isEmpty = function(x) {
+        w.Locust.isEmpty = function (x) {
             if (x == undefined || x == null) {
                 return true;
-			}
-			
+            }
+
             for (var key in x) {
                 if (x.hasOwnProperty(key)) {
-					return false;
-				}
+                    return false;
+                }
             }
 
             return true;
         };
     }
-    
-	w.Locust.eachKey = function (obj, callback) {
-		var result;
+
+    w.Locust.eachKey = function (obj, callback) {
+        var result;
 
         if (obj != null && obj != undefined) {
             var _keys = Object.keys(obj);
@@ -50,38 +50,38 @@
                 }
             }
         }
-		
-		return result;
-	}
-	
-	w.Locust.toArray = function (obj) {
-	    var result = [];
 
-		if (obj != undefined) {
-			if (w.jQuery.isPlainObject(obj)) {
-				w.Locust.eachKey(obj, function (key, i) {
-					result.push(obj[key]);
-				});
-			} else {
-				result.push(obj);
-			}
-		}
-		
-	    return result;
-	}
-	
-	w.Locust.readyFns = [];
-	w.Locust.onready = function (fn) {
-	    if (typeof fn == "function") {
-	        w.Locust.readyFns.push(fn);
-	    }
-	};
+        return result;
+    }
 
-	w.Locust.ready = function () {
-	    for (var i = 0; i < w.Locust.readyFns.length; i++) {
-	        w.Locust.readyFns[i]();
-	    }
-	};
-	
-	w.$$ = w.Locust;
+    w.Locust.toArray = function (obj) {
+        var result = [];
+
+        if (obj != undefined) {
+            if (w.jQuery.isPlainObject(obj)) {
+                w.Locust.eachKey(obj, function (key, i) {
+                    result.push(obj[key]);
+                });
+            } else {
+                result.push(obj);
+            }
+        }
+
+        return result;
+    }
+
+    w.Locust.readyFns = [];
+    w.Locust.onready = function (fn) {
+        if (typeof fn == "function") {
+            w.Locust.readyFns.push(fn);
+        }
+    };
+
+    w.Locust.ready = function () {
+        for (var i = 0; i < w.Locust.readyFns.length; i++) {
+            w.Locust.readyFns[i]();
+        }
+    };
+
+    w.$$ = w.Locust;
 })(__locustMainContext);
