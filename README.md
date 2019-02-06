@@ -13,7 +13,7 @@ As my front-end skill is fairly limited, no typescript, ECMAScript2015, 2016, 20
 
 I wrote it in pure javascript (no modules, classes, closures and other modern javascript stuff). But I plan to upgrade it.
 
-I wrote some parts from scratch by myself. I might have borrowed other parts over the past years from various websites, discussions, forums, etc. Unfortunately I cannot remember all the links. But now that I am publicizing the work as an official library, I take care to mention the source of any code snippets I take from other sources.
+I wrote most of the parts from scratch by myself and borrowed some parts from various websites, discussions, forums, etc. For those borrowed code snippets I mentioned the source link.
 
 Currently I have not documented LocustJs. Well. I am not the only guilty one regarding documentation. So do all developers and programmers! But I promise. I will write documentations in the near future.
 
