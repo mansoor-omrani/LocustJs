@@ -45,7 +45,8 @@
     }
 
     w.Locust.Language.En = new w.Locust.Language.Lang("en", "English", "انگلیسی", ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], "ltr", "left", "Gregorian");
-    w.Locust.Language.Fa = new w.Locust.Language.Lang("fa", "Farsi", "فارسی", ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'], "rtl", "right", "Persian");
+    w.Locust.Language.Fa = new w.Locust.Language.Lang("fa", "Farsi", "فارسی", ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'], "rtl", "right", "Persian");
+    w.Locust.Language.Ar = new w.Locust.Language.Lang("ar", "Arabic", "عربی", ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'], "rtl", "right", "Islamic");
     w.Locust.Language.Current = w.Locust.Language.En;
 
     var _la = "";
@@ -71,5 +72,26 @@
 
     if (_la == "fa") {
         w.Locust.Language.Current = w.Locust.Language.Fa;
+    } else if (_la == "ar") {
+        w.Locust.Language.Current = w.Locust.Language.Ar;
+    };
+
+    if (w.jQuery) {
+        w.Locust.Language.numerize = function (selector, lang) {
+            w.jQuery(selector).each(function (i, node) {
+                w.Locust.DOM.traverse(node, function (n) {
+                    if (n.nodeType == w.Locust.DOM.NodeTypes["TEXT_NODE"]) {
+                        if (lang == undefined || !lang || typeof lang.number != "function") {
+                            n.nodeValue = w.Locust.Language.Current.number(n.nodeValue);
+                        } else {
+                            n.nodeValue = lang.number(n.nodeValue);
+                        }
+                    }
+                });
+            });
+        };
+    }
+    if (w.$la == undefined) {
+        w.$la = w.Locust.Language;
     }
 })(__locustMainContext);

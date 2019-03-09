@@ -25,6 +25,22 @@
     if (!w.Locust.DOM) {
         w.Locust.DOM = {};
     }
+    w.Locust.DOM.NodeTypes = {
+        1: "ELEMENT_NODE",
+        2: "ATTRIBUTE_NODE",
+        3: "TEXT_NODE",
+        8: "COMMENT_NODE",
+        9: "DOCUMENT_NODE",
+        10: "DOCUMENT_TYPE_NODE",
+
+        "ELEMENT_NODE":	1,
+        "ATTRIBUTE_NODE": 2,
+        "TEXT_NODE": 3,
+        "COMMENT_NODE": 8,
+        "DOCUMENT_NODE": 9,
+        "DOCUMENT_TYPE_NODE": 10
+    };
+
     if (!w.Locust.DOM.AppendScript) {
         w.Locust.DOM.AppendScript = function (src) {
 			if (!w.document) return;
@@ -327,6 +343,21 @@
 			}
 			
 			return result;
+        }
+    }
+    w.Locust.DOM.traverse = function (node, fnCallback, depth) {
+        if (!depth) {
+            depth = 0;
+        }
+
+        if (node && node.childNodes && node.childNodes.length && fnCallback && typeof fnCallback == "function") {
+            for (var i = 0; i < node.childNodes.length; i++) {
+                var n = node.childNodes[i];
+
+                fnCallback(n, i, depth);
+
+                w.Locust.DOM.traverse(n, fnCallback, depth + 1);
+            }
         }
     }
 	if (w.$d == undefined) {

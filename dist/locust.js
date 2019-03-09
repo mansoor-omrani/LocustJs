@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.5.2";
+        w.Locust.Version = "1.5.3";
     }
     if (!w.jQuery) {
         console.log("Locust.Base: jQuery library not found");
@@ -35,7 +35,7 @@ var __warnings = true;
             return true;
         };
     }
-
+    
     w.Locust.eachKey = function (obj, callback) {
         var result;
 
@@ -1962,6 +1962,22 @@ var __warnings = true;
     if (!w.Locust.DOM) {
         w.Locust.DOM = {};
     }
+    w.Locust.DOM.NodeTypes = {
+        1: "ELEMENT_NODE",
+        2: "ATTRIBUTE_NODE",
+        3: "TEXT_NODE",
+        8: "COMMENT_NODE",
+        9: "DOCUMENT_NODE",
+        10: "DOCUMENT_TYPE_NODE",
+
+        "ELEMENT_NODE":	1,
+        "ATTRIBUTE_NODE": 2,
+        "TEXT_NODE": 3,
+        "COMMENT_NODE": 8,
+        "DOCUMENT_NODE": 9,
+        "DOCUMENT_TYPE_NODE": 10
+    };
+
     if (!w.Locust.DOM.AppendScript) {
         w.Locust.DOM.AppendScript = function (src) {
 			if (!w.document) return;
@@ -2264,6 +2280,21 @@ var __warnings = true;
 			}
 			
 			return result;
+        }
+    }
+    w.Locust.DOM.traverse = function (node, fnCallback, depth) {
+        if (!depth) {
+            depth = 0;
+        }
+
+        if (node && node.childNodes && node.childNodes.length && fnCallback && typeof fnCallback == "function") {
+            for (var i = 0; i < node.childNodes.length; i++) {
+                var n = node.childNodes[i];
+
+                fnCallback(n, i, depth);
+
+                w.Locust.DOM.traverse(n, fnCallback, depth + 1);
+            }
         }
     }
 	if (w.$d == undefined) {
@@ -6284,7 +6315,8 @@ var __warnings = true;
     }
 
     w.Locust.Language.En = new w.Locust.Language.Lang("en", "English", "انگلیسی", ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], "ltr", "left", "Gregorian");
-    w.Locust.Language.Fa = new w.Locust.Language.Lang("fa", "Farsi", "فارسی", ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'], "rtl", "right", "Persian");
+    w.Locust.Language.Fa = new w.Locust.Language.Lang("fa", "Farsi", "فارسی", ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'], "rtl", "right", "Persian");
+    w.Locust.Language.Ar = new w.Locust.Language.Lang("ar", "Arabic", "عربی", ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'], "rtl", "right", "Islamic");
     w.Locust.Language.Current = w.Locust.Language.En;
 
     var _la = "";
@@ -6310,6 +6342,27 @@ var __warnings = true;
 
     if (_la == "fa") {
         w.Locust.Language.Current = w.Locust.Language.Fa;
+    } else if (_la == "ar") {
+        w.Locust.Language.Current = w.Locust.Language.Ar;
+    };
+
+    if (w.jQuery) {
+        w.Locust.Language.numerize = function (selector, lang) {
+            w.jQuery(selector).each(function (i, node) {
+                w.Locust.DOM.traverse(node, function (n) {
+                    if (n.nodeType == w.Locust.DOM.NodeTypes["TEXT_NODE"]) {
+                        if (lang == undefined || !lang || typeof lang.number != "function") {
+                            n.nodeValue = w.Locust.Language.Current.number(n.nodeValue);
+                        } else {
+                            n.nodeValue = lang.number(n.nodeValue);
+                        }
+                    }
+                });
+            });
+        };
+    }
+    if (w.$la == undefined) {
+        w.$la = w.Locust.Language;
     }
 })(__locustMainContext);
 
