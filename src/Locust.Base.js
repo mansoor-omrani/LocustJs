@@ -10,7 +10,7 @@
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.5.5";
+        w.Locust.Version = "1.5.4";
     }
     if (!w.jQuery) {
         console.log("Locust.Base: jQuery library not found");
