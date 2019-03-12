@@ -42,7 +42,7 @@
 			return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.replaceAll already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.replaceAll already declared.");
 	}
 	
 	if (!w.String.prototype.reverse) {
@@ -50,7 +50,7 @@
 			return this.split("").reverse().join("");
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.reverse already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.reverse already declared.");
 	}
 	
 	if (!w.String.prototype.ltrim) {
@@ -58,7 +58,7 @@
 			return this.replace(/^\s+/, '');
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.ltrim already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.ltrim already declared.");
 	}
 	
 	if (!w.String.prototype.rtrim) {
@@ -66,7 +66,7 @@
 			return this.replace(/\s+$/, '');
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.rtrim already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.rtrim already declared.");
 	}
 	
 	if (!w.String.prototype.toBytes) {
@@ -78,7 +78,7 @@
 			return data;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.toBytes already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.toBytes already declared.");
 	}
 	
 	if (!w.String.prototype.format) {
@@ -214,7 +214,7 @@
 			return result.join("");
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.format already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.format already declared.");
 	}
 	
 	if (!w.String.prototype.isPunctuation) {
@@ -224,7 +224,7 @@
 			return this.length == 1 && (__punctutationChars.indexOf(this) >= 0);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isPunctuation already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isPunctuation already declared.");
 	}
 	
 	if (!w.String.prototype.isControl) {
@@ -234,7 +234,7 @@
 			return this.length == 1 && (__chars.indexOf(this) >= 0);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isControl already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isControl already declared.");
 	}
 	
 	if (!w.String.prototype.isAlpha) {
@@ -242,7 +242,7 @@
 			return this.match(/^[a-z]+$/i) !== null;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isAlpha already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isAlpha already declared.");
 	}
 	
 	
@@ -251,7 +251,7 @@
 			return this.isAlpha();
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isLetter already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isLetter already declared.");
 	}
 	
 	if (!w.String.prototype.isLower) {
@@ -259,7 +259,7 @@
 			return this.match(/^[a-z]+$/) !== null;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isLower already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isLower already declared.");
 	}
 	
 	if (!w.String.prototype.isUpper) {
@@ -267,7 +267,7 @@
 			return this.match(/^[A-Z]+$/) !== null;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isUpper already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isUpper already declared.");
 	}
 	
 	if (!w.String.prototype.isDigit) {
@@ -275,7 +275,7 @@
 			return this.match(/^[0-9]+$/) !== null;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isDigit already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isDigit already declared.");
 	}
 	
 	if (!w.String.prototype.isAlphaNum) {
@@ -283,7 +283,7 @@
 			return this.match(/^[a-z0-9]+$/i) !== null;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isAlphaNum already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isAlphaNum already declared.");
 	}
 	
 	if (!w.String.prototype.isArithmatic) {
@@ -300,7 +300,7 @@
 			return result && this.length;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isArithmatic already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isArithmatic already declared.");
 	}
 	
 	if (!w.String.prototype.isLogic) {
@@ -310,7 +310,7 @@
 			return (this.length == 1 || this.length == 2) && (__items.indexOf(this) >= 0);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isLogic already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isLogic already declared.");
 	}
 	
 	if (!w.String.prototype.isBitwise) {
@@ -320,7 +320,7 @@
 			return (this.length == 1 || this.length == 2) && (__items.indexOf(this) >= 0);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isBitwise already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isBitwise already declared.");
 	}
 	
 	if (!w.String.prototype.isComparison) {
@@ -330,7 +330,7 @@
 			return (this.length == 1 || this.length == 2) && (__items.indexOf(this) >= 0);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isComparison already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isComparison already declared.");
 	}
 	
 	if (!w.String.prototype.isWhitespace) {
@@ -338,7 +338,7 @@
 			return this.length == 1 && (this == '\r' || this == '\n' || this == ' ' || this == '\t' || this == '\v');
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isWhitespace already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isWhitespace already declared.");
 	}
 	
 	if (!w.String.prototype.isMath) {
@@ -346,7 +346,7 @@
 			return this.isArithmatic() || this.isLogic() || this.isBitwise() || this.isComparison();
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isMath already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isMath already declared.");
 	}
 
 	if (!w.String.prototype.left) {
@@ -354,7 +354,7 @@
 	        return this.substr(0, n);
 	    }
 	} else {
-	    _logger.warning("Locust.Extensions.String", "String.prototype.left already declared.");
+	    _logger.warn("Locust.Extensions.String", "String.prototype.left already declared.");
 	}
 	
 	if (!w.String.prototype.right) {
@@ -362,7 +362,7 @@
 	        return this.length > n ? this.substr(this.length - n, n): this.toString();
 	    }
 	} else {
-	    _logger.warning("Locust.Extensions.String", "String.prototype.right already declared.");
+	    _logger.warn("Locust.Extensions.String", "String.prototype.right already declared.");
 	}
 
 	if (!w.String.prototype.splitString) {
@@ -399,7 +399,7 @@
 			return result;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.splitString already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.splitString already declared.");
 	}
 	
 	if (!w.String.prototype.nestedSplit) {
@@ -467,7 +467,7 @@
 			return result;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.nestedSplit already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.nestedSplit already declared.");
 	}
 	if (!w.String.prototype.pascalCase) {
 	    /**
@@ -488,6 +488,6 @@
                         }).join('')
 	    }
 	} else {
-	    _logger.warning("Locust.Extensions.String", "String.prototype.pascalCase already declared.");
+	    _logger.warn("Locust.Extensions.String", "String.prototype.pascalCase already declared.");
 	}
 })(__locustMainContext);

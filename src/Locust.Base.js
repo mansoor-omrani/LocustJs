@@ -10,7 +10,7 @@
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.5.3";
+        w.Locust.Version = "1.5.5";
     }
     if (!w.jQuery) {
         console.log("Locust.Base: jQuery library not found");
@@ -31,7 +31,9 @@
             return true;
         };
     }
-    
+    w.Locust.isNumeric = function (n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
     w.Locust.eachKey = function (obj, callback) {
         var result;
 

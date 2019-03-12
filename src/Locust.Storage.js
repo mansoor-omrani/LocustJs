@@ -97,11 +97,11 @@
 		_config.logger = w.Locust.getLogger(_config.logger);
 		
 		if (!_config.keyProtector || !_config.keyProtector.encode || !_config.keyProtector.decode || typeof _config.keyProtector.encode != "function" || typeof _config.keyProtector.decode != "function") {
-			_config.logger.warning("Locust.Storage.LocalDataStore", "bad keyProtector. default keyProtector used.");
+			_config.logger.warn("Locust.Storage.LocalDataStore", "bad keyProtector. default keyProtector used.");
 			_config.keyProtector = _defaultKeyProtector;
 		}
 		if (!_config.valueChannel || !_config.valueChannel.serialize || !_config.valueChannel.deserialize || typeof _config.valueChannel.serialize != "function" || typeof _config.valueChannel.deserialize != "function") {
-			_config.logger.warning("Locust.Storage.LocalDataStore", "bad valueChannel. default valueChannel used.");
+			_config.logger.warn("Locust.Storage.LocalDataStore", "bad valueChannel. default valueChannel used.");
 			_config.valueChannel = _defaultValueChannel;
 		}
 		if (!_config.name) {

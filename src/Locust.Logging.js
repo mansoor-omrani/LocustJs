@@ -32,25 +32,152 @@
 	w.Locust.Logging.__LOG_SUGGEST_COLOR = "magenta";
 	
 	w.Locust.Logging.__LOG_TRACE = false;
-	w.Locust.Logging.__LOG_INFO = true;
+    w.Locust.Logging.__LOG_INFO = false;
 	w.Locust.Logging.__LOG_PRIMARY = false;
 	w.Locust.Logging.__LOG_SECONDARY = false;
 	w.Locust.Logging.__LOG_SUCCESS = false;
 	w.Locust.Logging.__LOG_ALERT = false;
 	w.Locust.Logging.__LOG_WARNING = false;
-	w.Locust.Logging.__LOG_DANGER = true;
-	w.Locust.Logging.__LOG_FAIL = true;
-	w.Locust.Logging.__LOG_ABORT = true;
-	w.Locust.Logging.__LOG_CANCEL = true;
-	w.Locust.Logging.__LOG_SUGGEST = false;
-	
+    w.Locust.Logging.__LOG_DANGER = false;
+    w.Locust.Logging.__LOG_FAIL = false;
+    w.Locust.Logging.__LOG_ABORT = false;
+    w.Locust.Logging.__LOG_CANCEL = false;
+    w.Locust.Logging.__LOG_SUGGEST = false;
+
+    w.Locust.Logging.LoggingLevel = {
+        None: 0,
+        All: 1,
+        Trace: 2,
+        Errors: 3,
+        Normal: 4,
+        Interactive: 5
+    }
+    w.Locust.Logging.setLoggingLevel = function (loggingLevel) {
+        var level;
+
+        if (w.Locust.isNumeric(loggingLevel)) {
+            level = loggingLevel;
+        } else {
+            level = (loggingLevel || "").toLowerCase();
+
+            if (level.charCodeAt(0) >= 97 && level.charCodeAt(0) <= 122) {
+                level = String.fromCharCode(level.charCodeAt(0) - 32) + level.substr(1);
+            }
+
+            level = w.Locust.Logging.LoggingLevel[level];
+        }
+
+        switch (level) {
+            case w.Locust.Logging.LoggingLevel.None:
+                w.Locust.Logging.__LOG_TRACE = false;
+                w.Locust.Logging.__LOG_INFO = false;
+                w.Locust.Logging.__LOG_PRIMARY = false;
+                w.Locust.Logging.__LOG_SECONDARY = false;
+                w.Locust.Logging.__LOG_SUCCESS = false;
+                w.Locust.Logging.__LOG_ALERT = false;
+                w.Locust.Logging.__LOG_WARNING = false;
+                w.Locust.Logging.__LOG_DANGER = false;
+                w.Locust.Logging.__LOG_FAIL = false;
+                w.Locust.Logging.__LOG_ABORT = false;
+                w.Locust.Logging.__LOG_CANCEL = false;
+                w.Locust.Logging.__LOG_SUGGEST = false;
+
+                break;
+            case w.Locust.Logging.LoggingLevel.Errors:
+                w.Locust.Logging.__LOG_TRACE = false;
+                w.Locust.Logging.__LOG_INFO = false;
+                w.Locust.Logging.__LOG_PRIMARY = false;
+                w.Locust.Logging.__LOG_SECONDARY = false;
+                w.Locust.Logging.__LOG_SUCCESS = false;
+                w.Locust.Logging.__LOG_ALERT = false;
+                w.Locust.Logging.__LOG_WARNING = true;
+                w.Locust.Logging.__LOG_DANGER = true;
+                w.Locust.Logging.__LOG_FAIL = true;
+                w.Locust.Logging.__LOG_ABORT = true;
+                w.Locust.Logging.__LOG_CANCEL = true;
+                w.Locust.Logging.__LOG_SUGGEST = false;
+
+                break;
+            case w.Locust.Logging.LoggingLevel.Normal:
+                w.Locust.Logging.__LOG_TRACE = false;
+                w.Locust.Logging.__LOG_INFO = true;
+                w.Locust.Logging.__LOG_PRIMARY = true;
+                w.Locust.Logging.__LOG_SECONDARY = true;
+                w.Locust.Logging.__LOG_SUCCESS = false;
+                w.Locust.Logging.__LOG_ALERT = true;
+                w.Locust.Logging.__LOG_WARNING = true;
+                w.Locust.Logging.__LOG_DANGER = false;
+                w.Locust.Logging.__LOG_FAIL = true;
+                w.Locust.Logging.__LOG_ABORT = false;
+                w.Locust.Logging.__LOG_CANCEL = false;
+                w.Locust.Logging.__LOG_SUGGEST = false;
+
+                break;
+            case w.Locust.Logging.LoggingLevel.Interactive:
+                w.Locust.Logging.__LOG_TRACE = false;
+                w.Locust.Logging.__LOG_INFO = false;
+                w.Locust.Logging.__LOG_PRIMARY = true;
+                w.Locust.Logging.__LOG_SECONDARY = true;
+                w.Locust.Logging.__LOG_SUCCESS = false;
+                w.Locust.Logging.__LOG_ALERT = false;
+                w.Locust.Logging.__LOG_WARNING = false;
+                w.Locust.Logging.__LOG_DANGER = false;
+                w.Locust.Logging.__LOG_FAIL = false;
+                w.Locust.Logging.__LOG_ABORT = false;
+                w.Locust.Logging.__LOG_CANCEL = false;
+                w.Locust.Logging.__LOG_SUGGEST = true;
+
+                break;
+            case w.Locust.Logging.LoggingLevel.Trace:
+                w.Locust.Logging.__LOG_TRACE = true;
+                w.Locust.Logging.__LOG_INFO = true;
+                w.Locust.Logging.__LOG_PRIMARY = false;
+                w.Locust.Logging.__LOG_SECONDARY = false;
+                w.Locust.Logging.__LOG_SUCCESS = true;
+                w.Locust.Logging.__LOG_ALERT = true;
+                w.Locust.Logging.__LOG_WARNING = true;
+                w.Locust.Logging.__LOG_DANGER = false;
+                w.Locust.Logging.__LOG_FAIL = false;
+                w.Locust.Logging.__LOG_ABORT = true;
+                w.Locust.Logging.__LOG_CANCEL = true;
+                w.Locust.Logging.__LOG_SUGGEST = false;
+
+                break;
+            case w.Locust.Logging.LoggingLevel.All:
+                w.Locust.Logging.__LOG_TRACE = true;
+                w.Locust.Logging.__LOG_INFO = true;
+                w.Locust.Logging.__LOG_PRIMARY = true;
+                w.Locust.Logging.__LOG_SECONDARY = true;
+                w.Locust.Logging.__LOG_SUCCESS = true;
+                w.Locust.Logging.__LOG_ALERT = true;
+                w.Locust.Logging.__LOG_WARNING = true;
+                w.Locust.Logging.__LOG_DANGER = true;
+                w.Locust.Logging.__LOG_FAIL = true;
+                w.Locust.Logging.__LOG_ABORT = true;
+                w.Locust.Logging.__LOG_CANCEL = true;
+                w.Locust.Logging.__LOG_SUGGEST = true;
+
+                break;
+        }
+    }
+
+    w.Locust.Logging.setLoggingLevel(w.Locust.Logging.LoggingLevel.Interactive);
+
 	// ------------------------- Locust.Logging.BaseLogger ----------------------------
 	
 	w.Locust.Logging.BaseLogger = function() {
 		var _self = this;
     };
-	w.Locust.Logging.BaseLogger.prototype.prepareMessage = function(category, message) {
-		return (category ? (category + (message ? ": " + message : "")) : message);
+    w.Locust.Logging.BaseLogger.prototype.prepareMessage = function (category, message) {
+        var msg = "";
+
+        try {
+            msg = (message ? JSON.stringify(message) : "");
+        } catch (e) {
+            msg = "";
+        }
+
+        return (category ? category + ": " : "") + msg;
 	};
 	w.Locust.Logging.BaseLogger.prototype.log = function (category, message, type) {
 		type = type ? type.toLowerCase() : "";
@@ -59,10 +186,12 @@
 			case "primary": this.primary(category, message); break;
 			case "secondary": this.secondary(category, message); break;
 			case "success": this.success(category, message); break;
-			case "warning": this.warning(category, message); break;
+			case "warn": this.warn(category, message); break;
+            case "warning": this.warn(category, message); break;
 			case "alert": this.alert(category, message); break;
 			case "fail": this.fail(category, message); break;
-			case "danger": this.danger(category, message); break;
+			case "error": this.danger(category, message); break;
+            case "danger": this.danger(category, message); break;
 			case "abort": this.abort(category, message); break;
 			case "cancel": this.cancel(category, message); break;
 			case "suggest": this.suggest(category, message); break;
@@ -76,15 +205,18 @@
 	w.Locust.Logging.BaseLogger.prototype.secondary = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.success = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.alert = function(category, message) { };
-	w.Locust.Logging.BaseLogger.prototype.warning = function(category, message) { };
-	w.Locust.Logging.BaseLogger.prototype.danger = function(category, message) { };
+	w.Locust.Logging.BaseLogger.prototype.warn = function(category, message) { };
+    w.Locust.Logging.BaseLogger.prototype.error = function (category, message) {
+        this.danger(category, message);
+    };
+    w.Locust.Logging.BaseLogger.prototype.danger = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.fail = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.abort = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.cancel = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.suggest = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.trace = function(category, message) { };
-	
-	// ------------------------- Locust.Logging.ConsoleLogger ----------------------------
+
+    // ------------------------- Locust.Logging.ConsoleLogger ----------------------------
 	
     w.Locust.Logging.ConsoleLogger = function () {
 		var _self = this;
@@ -96,8 +228,11 @@
 	w.Locust.Logging.ConsoleLogger.prototype.constructor = w.Locust.Logging.ConsoleLogger;
 	
 	w.Locust.Logging.ConsoleLogger.prototype.info = function(category, message) {
-		if (w.Locust.Logging.__LOG_INFO)
-			w.console.log('%c' + this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_INFO_COLOR);
+		if (category) {
+			w.console.log(category);
+		}
+
+		w.console.log(message);
 	};
 	w.Locust.Logging.ConsoleLogger.prototype.primary = function(category, message) {
 		if (w.Locust.Logging.__LOG_PRIMARY)
@@ -115,14 +250,18 @@
 		if (w.Locust.Logging.__LOG_ALERT)
 			w.console.log('%c' + this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_ALERT_COLOR);
 	};
-	w.Locust.Logging.ConsoleLogger.prototype.warning = function(category, message) {
+	w.Locust.Logging.ConsoleLogger.prototype.warn = function(category, message) {
 		if (w.Locust.Logging.__LOG_WARNING)
 			w.console.warn('%c' + this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_WARNING_COLOR);
 	};
 	w.Locust.Logging.ConsoleLogger.prototype.danger = function(category, message) {
 		if (w.Locust.Logging.__LOG_DANGER)
 			w.console.error('%c' + this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_DANGER_COLOR + ';font-weight:bold');
-	};
+    };
+    w.Locust.Logging.ConsoleLogger.prototype.error = function(category, message) {
+		if (w.Locust.Logging.__LOG_DANGER)
+			w.console.error('%c' + this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_DANGER_COLOR + ';font-weight:bold');
+    };
 	w.Locust.Logging.ConsoleLogger.prototype.fail = function(category, message) {
 		if (w.Locust.Logging.__LOG_FAIL)
 			w.console.log('%c' + this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_FAIL_COLOR);
@@ -187,7 +326,7 @@
 		if (w.Locust.Logging.__LOG_ALERT)
 			this._log("alert", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_ALERT_COLOR);
 	};
-	w.Locust.Logging.DOMLogger.prototype.warning = function(category, message) {
+	w.Locust.Logging.DOMLogger.prototype.warn = function(category, message) {
 		if (w.Locust.Logging.__LOG_WARNING)
 			this._log("warning", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_WARNING_COLOR);
 	};
@@ -221,13 +360,13 @@
 	w.Locust.getLogger = function(logger) {
 		var result = logger;
 		var ok = true;
-		var methods = ["trace","info","primary","secondary","success","alert","warning","danger","fail","abort","cancel","suggest"];
+        var methods = ["trace", "info", "primary", "secondary", "success", "alert", "warning", "danger", "error","fail","abort","cancel","suggest"];
 		
 		if (!logger || typeof logger != "object") {
 			ok = false;
 		} else {
 			for (var i = 0; i < methods.length; i++) {
-				if (!logger[methods[i]] || typeof logger[methods[i]] != "function") {
+				if (typeof logger[methods[i]] != "function") {
 					ok = false;
 					break;
 				}

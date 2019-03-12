@@ -25,7 +25,7 @@
 			return this.slice(0);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.clone already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.clone already declared.");
 	}
 	// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 	if (!w.Array.prototype.shuffle) {
@@ -48,21 +48,21 @@
 			return this;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.shuffle already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.shuffle already declared.");
 	}
 	if (!w.Array.prototype.insertAt) {
 		w.Array.prototype.insertAt = function (index, item) {
 			return this.splice(index, 0, item);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.insertAt already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.insertAt already declared.");
 	}
 	if (!w.Array.prototype.removeAt) {
 		w.Array.prototype.removeAt = function (index) {
 			return this.splice(index, 1)[0];
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.removeAt already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.removeAt already declared.");
 	}
 	if (!w.Array.prototype.all) {
 		w.Array.prototype.all = function (fn) {
@@ -80,7 +80,7 @@
 			return result;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.all already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.all already declared.");
 	}
 	if (!w.Array.prototype.any) {
 		w.Array.prototype.any = function (fn) {
@@ -98,7 +98,7 @@
 			return result;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.any already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.any already declared.");
 	}
 	if (!w.Array.prototype.Objectify) {
 		/*	this method has close relation with String.prototype.nestedSplit in Locust.Extensions.String
@@ -200,6 +200,6 @@
 			return result;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.removeAt already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.removeAt already declared.");
 	}
 })(__locustMainContext);

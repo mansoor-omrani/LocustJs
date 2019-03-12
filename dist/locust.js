@@ -14,7 +14,7 @@ var __warnings = true;
         w.Locust.Name = "Locust";
     }
     if (!w.Locust.Version) {
-        w.Locust.Version = "1.5.3";
+        w.Locust.Version = "1.5.5";
     }
     if (!w.jQuery) {
         console.log("Locust.Base: jQuery library not found");
@@ -35,7 +35,9 @@ var __warnings = true;
             return true;
         };
     }
-    
+    w.Locust.isNumeric = function (n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
     w.Locust.eachKey = function (obj, callback) {
         var result;
 
@@ -304,25 +306,152 @@ var __warnings = true;
 	w.Locust.Logging.__LOG_SUGGEST_COLOR = "magenta";
 	
 	w.Locust.Logging.__LOG_TRACE = false;
-	w.Locust.Logging.__LOG_INFO = true;
+    w.Locust.Logging.__LOG_INFO = false;
 	w.Locust.Logging.__LOG_PRIMARY = false;
 	w.Locust.Logging.__LOG_SECONDARY = false;
 	w.Locust.Logging.__LOG_SUCCESS = false;
 	w.Locust.Logging.__LOG_ALERT = false;
 	w.Locust.Logging.__LOG_WARNING = false;
-	w.Locust.Logging.__LOG_DANGER = true;
-	w.Locust.Logging.__LOG_FAIL = true;
-	w.Locust.Logging.__LOG_ABORT = true;
-	w.Locust.Logging.__LOG_CANCEL = true;
-	w.Locust.Logging.__LOG_SUGGEST = false;
-	
+    w.Locust.Logging.__LOG_DANGER = false;
+    w.Locust.Logging.__LOG_FAIL = false;
+    w.Locust.Logging.__LOG_ABORT = false;
+    w.Locust.Logging.__LOG_CANCEL = false;
+    w.Locust.Logging.__LOG_SUGGEST = false;
+
+    w.Locust.Logging.LoggingLevel = {
+        None: 0,
+        All: 1,
+        Trace: 2,
+        Errors: 3,
+        Normal: 4,
+        Interactive: 5
+    }
+    w.Locust.Logging.setLoggingLevel = function (loggingLevel) {
+        var level;
+
+        if (w.Locust.isNumeric(loggingLevel)) {
+            level = loggingLevel;
+        } else {
+            level = (loggingLevel || "").toLowerCase();
+
+            if (level.charCodeAt(0) >= 97 && level.charCodeAt(0) <= 122) {
+                level = String.fromCharCode(level.charCodeAt(0) - 32) + level.substr(1);
+            }
+
+            level = w.Locust.Logging.LoggingLevel[level];
+        }
+
+        switch (level) {
+            case w.Locust.Logging.LoggingLevel.None:
+                w.Locust.Logging.__LOG_TRACE = false;
+                w.Locust.Logging.__LOG_INFO = false;
+                w.Locust.Logging.__LOG_PRIMARY = false;
+                w.Locust.Logging.__LOG_SECONDARY = false;
+                w.Locust.Logging.__LOG_SUCCESS = false;
+                w.Locust.Logging.__LOG_ALERT = false;
+                w.Locust.Logging.__LOG_WARNING = false;
+                w.Locust.Logging.__LOG_DANGER = false;
+                w.Locust.Logging.__LOG_FAIL = false;
+                w.Locust.Logging.__LOG_ABORT = false;
+                w.Locust.Logging.__LOG_CANCEL = false;
+                w.Locust.Logging.__LOG_SUGGEST = false;
+
+                break;
+            case w.Locust.Logging.LoggingLevel.Errors:
+                w.Locust.Logging.__LOG_TRACE = false;
+                w.Locust.Logging.__LOG_INFO = false;
+                w.Locust.Logging.__LOG_PRIMARY = false;
+                w.Locust.Logging.__LOG_SECONDARY = false;
+                w.Locust.Logging.__LOG_SUCCESS = false;
+                w.Locust.Logging.__LOG_ALERT = false;
+                w.Locust.Logging.__LOG_WARNING = true;
+                w.Locust.Logging.__LOG_DANGER = true;
+                w.Locust.Logging.__LOG_FAIL = true;
+                w.Locust.Logging.__LOG_ABORT = true;
+                w.Locust.Logging.__LOG_CANCEL = true;
+                w.Locust.Logging.__LOG_SUGGEST = false;
+
+                break;
+            case w.Locust.Logging.LoggingLevel.Normal:
+                w.Locust.Logging.__LOG_TRACE = false;
+                w.Locust.Logging.__LOG_INFO = true;
+                w.Locust.Logging.__LOG_PRIMARY = true;
+                w.Locust.Logging.__LOG_SECONDARY = true;
+                w.Locust.Logging.__LOG_SUCCESS = false;
+                w.Locust.Logging.__LOG_ALERT = true;
+                w.Locust.Logging.__LOG_WARNING = true;
+                w.Locust.Logging.__LOG_DANGER = false;
+                w.Locust.Logging.__LOG_FAIL = true;
+                w.Locust.Logging.__LOG_ABORT = false;
+                w.Locust.Logging.__LOG_CANCEL = false;
+                w.Locust.Logging.__LOG_SUGGEST = false;
+
+                break;
+            case w.Locust.Logging.LoggingLevel.Interactive:
+                w.Locust.Logging.__LOG_TRACE = false;
+                w.Locust.Logging.__LOG_INFO = false;
+                w.Locust.Logging.__LOG_PRIMARY = true;
+                w.Locust.Logging.__LOG_SECONDARY = true;
+                w.Locust.Logging.__LOG_SUCCESS = false;
+                w.Locust.Logging.__LOG_ALERT = false;
+                w.Locust.Logging.__LOG_WARNING = false;
+                w.Locust.Logging.__LOG_DANGER = false;
+                w.Locust.Logging.__LOG_FAIL = false;
+                w.Locust.Logging.__LOG_ABORT = false;
+                w.Locust.Logging.__LOG_CANCEL = false;
+                w.Locust.Logging.__LOG_SUGGEST = true;
+
+                break;
+            case w.Locust.Logging.LoggingLevel.Trace:
+                w.Locust.Logging.__LOG_TRACE = true;
+                w.Locust.Logging.__LOG_INFO = true;
+                w.Locust.Logging.__LOG_PRIMARY = false;
+                w.Locust.Logging.__LOG_SECONDARY = false;
+                w.Locust.Logging.__LOG_SUCCESS = true;
+                w.Locust.Logging.__LOG_ALERT = true;
+                w.Locust.Logging.__LOG_WARNING = true;
+                w.Locust.Logging.__LOG_DANGER = false;
+                w.Locust.Logging.__LOG_FAIL = false;
+                w.Locust.Logging.__LOG_ABORT = true;
+                w.Locust.Logging.__LOG_CANCEL = true;
+                w.Locust.Logging.__LOG_SUGGEST = false;
+
+                break;
+            case w.Locust.Logging.LoggingLevel.All:
+                w.Locust.Logging.__LOG_TRACE = true;
+                w.Locust.Logging.__LOG_INFO = true;
+                w.Locust.Logging.__LOG_PRIMARY = true;
+                w.Locust.Logging.__LOG_SECONDARY = true;
+                w.Locust.Logging.__LOG_SUCCESS = true;
+                w.Locust.Logging.__LOG_ALERT = true;
+                w.Locust.Logging.__LOG_WARNING = true;
+                w.Locust.Logging.__LOG_DANGER = true;
+                w.Locust.Logging.__LOG_FAIL = true;
+                w.Locust.Logging.__LOG_ABORT = true;
+                w.Locust.Logging.__LOG_CANCEL = true;
+                w.Locust.Logging.__LOG_SUGGEST = true;
+
+                break;
+        }
+    }
+
+    w.Locust.Logging.setLoggingLevel(w.Locust.Logging.LoggingLevel.Interactive);
+
 	// ------------------------- Locust.Logging.BaseLogger ----------------------------
 	
 	w.Locust.Logging.BaseLogger = function() {
 		var _self = this;
     };
-	w.Locust.Logging.BaseLogger.prototype.prepareMessage = function(category, message) {
-		return (category ? (category + (message ? ": " + message : "")) : message);
+    w.Locust.Logging.BaseLogger.prototype.prepareMessage = function (category, message) {
+        var msg = "";
+
+        try {
+            msg = (message ? JSON.stringify(message) : "");
+        } catch (e) {
+            msg = "";
+        }
+
+        return (category ? category + ": " : "") + msg;
 	};
 	w.Locust.Logging.BaseLogger.prototype.log = function (category, message, type) {
 		type = type ? type.toLowerCase() : "";
@@ -331,10 +460,12 @@ var __warnings = true;
 			case "primary": this.primary(category, message); break;
 			case "secondary": this.secondary(category, message); break;
 			case "success": this.success(category, message); break;
-			case "warning": this.warning(category, message); break;
+			case "warn": this.warn(category, message); break;
+            case "warning": this.warn(category, message); break;
 			case "alert": this.alert(category, message); break;
 			case "fail": this.fail(category, message); break;
-			case "danger": this.danger(category, message); break;
+			case "error": this.danger(category, message); break;
+            case "danger": this.danger(category, message); break;
 			case "abort": this.abort(category, message); break;
 			case "cancel": this.cancel(category, message); break;
 			case "suggest": this.suggest(category, message); break;
@@ -348,15 +479,18 @@ var __warnings = true;
 	w.Locust.Logging.BaseLogger.prototype.secondary = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.success = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.alert = function(category, message) { };
-	w.Locust.Logging.BaseLogger.prototype.warning = function(category, message) { };
-	w.Locust.Logging.BaseLogger.prototype.danger = function(category, message) { };
+	w.Locust.Logging.BaseLogger.prototype.warn = function(category, message) { };
+    w.Locust.Logging.BaseLogger.prototype.error = function (category, message) {
+        this.danger(category, message);
+    };
+    w.Locust.Logging.BaseLogger.prototype.danger = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.fail = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.abort = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.cancel = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.suggest = function(category, message) { };
 	w.Locust.Logging.BaseLogger.prototype.trace = function(category, message) { };
-	
-	// ------------------------- Locust.Logging.ConsoleLogger ----------------------------
+
+    // ------------------------- Locust.Logging.ConsoleLogger ----------------------------
 	
     w.Locust.Logging.ConsoleLogger = function () {
 		var _self = this;
@@ -368,8 +502,11 @@ var __warnings = true;
 	w.Locust.Logging.ConsoleLogger.prototype.constructor = w.Locust.Logging.ConsoleLogger;
 	
 	w.Locust.Logging.ConsoleLogger.prototype.info = function(category, message) {
-		if (w.Locust.Logging.__LOG_INFO)
-			w.console.log('%c' + this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_INFO_COLOR);
+		if (category) {
+			w.console.log(category);
+		}
+
+		w.console.log(message);
 	};
 	w.Locust.Logging.ConsoleLogger.prototype.primary = function(category, message) {
 		if (w.Locust.Logging.__LOG_PRIMARY)
@@ -387,14 +524,18 @@ var __warnings = true;
 		if (w.Locust.Logging.__LOG_ALERT)
 			w.console.log('%c' + this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_ALERT_COLOR);
 	};
-	w.Locust.Logging.ConsoleLogger.prototype.warning = function(category, message) {
+	w.Locust.Logging.ConsoleLogger.prototype.warn = function(category, message) {
 		if (w.Locust.Logging.__LOG_WARNING)
 			w.console.warn('%c' + this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_WARNING_COLOR);
 	};
 	w.Locust.Logging.ConsoleLogger.prototype.danger = function(category, message) {
 		if (w.Locust.Logging.__LOG_DANGER)
 			w.console.error('%c' + this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_DANGER_COLOR + ';font-weight:bold');
-	};
+    };
+    w.Locust.Logging.ConsoleLogger.prototype.error = function(category, message) {
+		if (w.Locust.Logging.__LOG_DANGER)
+			w.console.error('%c' + this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_DANGER_COLOR + ';font-weight:bold');
+    };
 	w.Locust.Logging.ConsoleLogger.prototype.fail = function(category, message) {
 		if (w.Locust.Logging.__LOG_FAIL)
 			w.console.log('%c' + this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_FAIL_COLOR);
@@ -459,7 +600,7 @@ var __warnings = true;
 		if (w.Locust.Logging.__LOG_ALERT)
 			this._log("alert", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_ALERT_COLOR);
 	};
-	w.Locust.Logging.DOMLogger.prototype.warning = function(category, message) {
+	w.Locust.Logging.DOMLogger.prototype.warn = function(category, message) {
 		if (w.Locust.Logging.__LOG_WARNING)
 			this._log("warning", this.prepareMessage(category, message), 'color: ' + w.Locust.Logging.__LOG_WARNING_COLOR);
 	};
@@ -493,13 +634,13 @@ var __warnings = true;
 	w.Locust.getLogger = function(logger) {
 		var result = logger;
 		var ok = true;
-		var methods = ["trace","info","primary","secondary","success","alert","warning","danger","fail","abort","cancel","suggest"];
+        var methods = ["trace", "info", "primary", "secondary", "success", "alert", "warning", "danger", "error","fail","abort","cancel","suggest"];
 		
 		if (!logger || typeof logger != "object") {
 			ok = false;
 		} else {
 			for (var i = 0; i < methods.length; i++) {
-				if (!logger[methods[i]] || typeof logger[methods[i]] != "function") {
+				if (typeof logger[methods[i]] != "function") {
 					ok = false;
 					break;
 				}
@@ -545,7 +686,7 @@ var __warnings = true;
 			return this.slice(0);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.clone already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.clone already declared.");
 	}
 	// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 	if (!w.Array.prototype.shuffle) {
@@ -568,21 +709,21 @@ var __warnings = true;
 			return this;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.shuffle already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.shuffle already declared.");
 	}
 	if (!w.Array.prototype.insertAt) {
 		w.Array.prototype.insertAt = function (index, item) {
 			return this.splice(index, 0, item);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.insertAt already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.insertAt already declared.");
 	}
 	if (!w.Array.prototype.removeAt) {
 		w.Array.prototype.removeAt = function (index) {
 			return this.splice(index, 1)[0];
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.removeAt already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.removeAt already declared.");
 	}
 	if (!w.Array.prototype.all) {
 		w.Array.prototype.all = function (fn) {
@@ -600,7 +741,7 @@ var __warnings = true;
 			return result;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.all already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.all already declared.");
 	}
 	if (!w.Array.prototype.any) {
 		w.Array.prototype.any = function (fn) {
@@ -618,7 +759,7 @@ var __warnings = true;
 			return result;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.any already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.any already declared.");
 	}
 	if (!w.Array.prototype.Objectify) {
 		/*	this method has close relation with String.prototype.nestedSplit in Locust.Extensions.String
@@ -720,7 +861,7 @@ var __warnings = true;
 			return result;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.Array", "warning: Array.prototype.removeAt already declared.");
+		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.removeAt already declared.");
 	}
 })(__locustMainContext);
 //================================= Locust.Extensions.Math =================================
@@ -808,7 +949,7 @@ var __warnings = true;
 			return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.replaceAll already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.replaceAll already declared.");
 	}
 	
 	if (!w.String.prototype.reverse) {
@@ -816,7 +957,7 @@ var __warnings = true;
 			return this.split("").reverse().join("");
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.reverse already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.reverse already declared.");
 	}
 	
 	if (!w.String.prototype.ltrim) {
@@ -824,7 +965,7 @@ var __warnings = true;
 			return this.replace(/^\s+/, '');
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.ltrim already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.ltrim already declared.");
 	}
 	
 	if (!w.String.prototype.rtrim) {
@@ -832,7 +973,7 @@ var __warnings = true;
 			return this.replace(/\s+$/, '');
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.rtrim already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.rtrim already declared.");
 	}
 	
 	if (!w.String.prototype.toBytes) {
@@ -844,7 +985,7 @@ var __warnings = true;
 			return data;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.toBytes already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.toBytes already declared.");
 	}
 	
 	if (!w.String.prototype.format) {
@@ -980,7 +1121,7 @@ var __warnings = true;
 			return result.join("");
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.format already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.format already declared.");
 	}
 	
 	if (!w.String.prototype.isPunctuation) {
@@ -990,7 +1131,7 @@ var __warnings = true;
 			return this.length == 1 && (__punctutationChars.indexOf(this) >= 0);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isPunctuation already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isPunctuation already declared.");
 	}
 	
 	if (!w.String.prototype.isControl) {
@@ -1000,7 +1141,7 @@ var __warnings = true;
 			return this.length == 1 && (__chars.indexOf(this) >= 0);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isControl already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isControl already declared.");
 	}
 	
 	if (!w.String.prototype.isAlpha) {
@@ -1008,7 +1149,7 @@ var __warnings = true;
 			return this.match(/^[a-z]+$/i) !== null;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isAlpha already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isAlpha already declared.");
 	}
 	
 	
@@ -1017,7 +1158,7 @@ var __warnings = true;
 			return this.isAlpha();
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isLetter already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isLetter already declared.");
 	}
 	
 	if (!w.String.prototype.isLower) {
@@ -1025,7 +1166,7 @@ var __warnings = true;
 			return this.match(/^[a-z]+$/) !== null;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isLower already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isLower already declared.");
 	}
 	
 	if (!w.String.prototype.isUpper) {
@@ -1033,7 +1174,7 @@ var __warnings = true;
 			return this.match(/^[A-Z]+$/) !== null;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isUpper already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isUpper already declared.");
 	}
 	
 	if (!w.String.prototype.isDigit) {
@@ -1041,7 +1182,7 @@ var __warnings = true;
 			return this.match(/^[0-9]+$/) !== null;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isDigit already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isDigit already declared.");
 	}
 	
 	if (!w.String.prototype.isAlphaNum) {
@@ -1049,7 +1190,7 @@ var __warnings = true;
 			return this.match(/^[a-z0-9]+$/i) !== null;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isAlphaNum already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isAlphaNum already declared.");
 	}
 	
 	if (!w.String.prototype.isArithmatic) {
@@ -1066,7 +1207,7 @@ var __warnings = true;
 			return result && this.length;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isArithmatic already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isArithmatic already declared.");
 	}
 	
 	if (!w.String.prototype.isLogic) {
@@ -1076,7 +1217,7 @@ var __warnings = true;
 			return (this.length == 1 || this.length == 2) && (__items.indexOf(this) >= 0);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isLogic already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isLogic already declared.");
 	}
 	
 	if (!w.String.prototype.isBitwise) {
@@ -1086,7 +1227,7 @@ var __warnings = true;
 			return (this.length == 1 || this.length == 2) && (__items.indexOf(this) >= 0);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isBitwise already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isBitwise already declared.");
 	}
 	
 	if (!w.String.prototype.isComparison) {
@@ -1096,7 +1237,7 @@ var __warnings = true;
 			return (this.length == 1 || this.length == 2) && (__items.indexOf(this) >= 0);
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isComparison already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isComparison already declared.");
 	}
 	
 	if (!w.String.prototype.isWhitespace) {
@@ -1104,7 +1245,7 @@ var __warnings = true;
 			return this.length == 1 && (this == '\r' || this == '\n' || this == ' ' || this == '\t' || this == '\v');
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isWhitespace already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isWhitespace already declared.");
 	}
 	
 	if (!w.String.prototype.isMath) {
@@ -1112,7 +1253,7 @@ var __warnings = true;
 			return this.isArithmatic() || this.isLogic() || this.isBitwise() || this.isComparison();
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.isMath already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.isMath already declared.");
 	}
 
 	if (!w.String.prototype.left) {
@@ -1120,7 +1261,7 @@ var __warnings = true;
 	        return this.substr(0, n);
 	    }
 	} else {
-	    _logger.warning("Locust.Extensions.String", "String.prototype.left already declared.");
+	    _logger.warn("Locust.Extensions.String", "String.prototype.left already declared.");
 	}
 	
 	if (!w.String.prototype.right) {
@@ -1128,7 +1269,7 @@ var __warnings = true;
 	        return this.length > n ? this.substr(this.length - n, n): this.toString();
 	    }
 	} else {
-	    _logger.warning("Locust.Extensions.String", "String.prototype.right already declared.");
+	    _logger.warn("Locust.Extensions.String", "String.prototype.right already declared.");
 	}
 
 	if (!w.String.prototype.splitString) {
@@ -1165,7 +1306,7 @@ var __warnings = true;
 			return result;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.splitString already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.splitString already declared.");
 	}
 	
 	if (!w.String.prototype.nestedSplit) {
@@ -1233,7 +1374,7 @@ var __warnings = true;
 			return result;
 		}
 	} else {
-		_logger.warning("Locust.Extensions.String", "String.prototype.nestedSplit already declared.");
+		_logger.warn("Locust.Extensions.String", "String.prototype.nestedSplit already declared.");
 	}
 	if (!w.String.prototype.pascalCase) {
 	    /**
@@ -1254,7 +1395,7 @@ var __warnings = true;
                         }).join('')
 	    }
 	} else {
-	    _logger.warning("Locust.Extensions.String", "String.prototype.pascalCase already declared.");
+	    _logger.warn("Locust.Extensions.String", "String.prototype.pascalCase already declared.");
 	}
 })(__locustMainContext);
 //================================= Locust.Bootstrap =================================
@@ -6465,11 +6606,11 @@ var __warnings = true;
 		_config.logger = w.Locust.getLogger(_config.logger);
 		
 		if (!_config.keyProtector || !_config.keyProtector.encode || !_config.keyProtector.decode || typeof _config.keyProtector.encode != "function" || typeof _config.keyProtector.decode != "function") {
-			_config.logger.warning("Locust.Storage.LocalDataStore", "bad keyProtector. default keyProtector used.");
+			_config.logger.warn("Locust.Storage.LocalDataStore", "bad keyProtector. default keyProtector used.");
 			_config.keyProtector = _defaultKeyProtector;
 		}
 		if (!_config.valueChannel || !_config.valueChannel.serialize || !_config.valueChannel.deserialize || typeof _config.valueChannel.serialize != "function" || typeof _config.valueChannel.deserialize != "function") {
-			_config.logger.warning("Locust.Storage.LocalDataStore", "bad valueChannel. default valueChannel used.");
+			_config.logger.warn("Locust.Storage.LocalDataStore", "bad valueChannel. default valueChannel used.");
 			_config.valueChannel = _defaultValueChannel;
 		}
 		if (!_config.name) {
