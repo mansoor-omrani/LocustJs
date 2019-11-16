@@ -64,6 +64,19 @@
 	} else {
 		_logger.warn("Locust.Extensions.Array", "warning: Array.prototype.removeAt already declared.");
 	}
+	if (!w.Array.range) {
+		w.Array.range = function (from, to) {
+		   let result = new w.Array(to - from);
+			
+		   for (let i = from; i < to; i++) {
+		     result.push(i)
+		   }
+			
+		   return result;
+		}
+	} else {
+		_logger.warn("Locust.Extensions.Array", "warning: Array.range already declared.");
+	}
 	if (!w.Array.prototype.all) {
 		w.Array.prototype.all = function (fn) {
 			var result = true;
